@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/决胜目标.png</file>
+    <file>icons/csdn.png</file>
+    <file>icons/wf_B站.png</file>
+    <file>icons/苹果.png</file>
+    <file>icons/腾讯视频.png</file>
+    <file>icons/24gl-minimization.png</file>
+    <file>icons/exit.png</file>
+    <file>icons/Pencil.png</file>
+    <file>icons/login.png</file>
+    <file>icons/UserPlus.png</file>
+    <file>icons/Close.png</file>
+    <file>icons/Calendar.png</file>
+    <file>icons/ClassLine.png</file>
+    <file>icons/-NotebookDotLine.png</file>
+    <file>icons/TargetArrow.png</file>
+  </qresource>
+</RCC>
