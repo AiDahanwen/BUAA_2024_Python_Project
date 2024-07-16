@@ -1,12 +1,13 @@
 import smtplib
 import string
+from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import random
 
 from database import get_constant
 
-send_by = '2892278592@qq.com'
-email_password = 'kwniejavvatkdgcf'
+send_by = '3498314162@qq.com'
+email_password = 'rkkemgvqthnachie'
 mail_host = 'smtp.qq.com'
 send_port = 465
 file_name = 'send_email_code.py'
@@ -17,7 +18,7 @@ def update_constants():
     global email_password
     global mail_host
     global send_port
-    
+
     send_by = get_constant(file_name, 'send_by')
     email_password = get_constant(file_name, 'email_password')
     mail_host = get_constant(file_name, 'mail_host')
@@ -29,12 +30,19 @@ def get_code(n=6):
     return ''.join(random.choice(chars) for _ in range(n))
 
 
-def send_email(send_to, content, subject='验证码'):
-    msg = MIMEText(content, 'plain', 'utf-8')
+def send_email(send_to, verify_code, subject='Email Verification Code'):
+
+    with open('html_content.html', 'r', encoding='utf-8') as file:
+        html_content = file.read().replace("verify_code", str(verify_code))
+
+    msg = MIMEMultipart('alternative')
     msg['From'] = send_by
     msg['To'] = send_to
     msg['Subject'] = subject
-    
+
+    html_part = MIMEText(html_content, 'html')
+    msg.attach(html_part)
+
     smtp = smtplib.SMTP_SSL(mail_host, send_port)
     smtp.login(send_by, email_password)
     smtp.sendmail(send_by, send_to, msg.as_string())
@@ -44,9 +52,8 @@ def send_email(send_to, content, subject='验证码'):
 def send_email_code(send_to):
     update_constants()
     verify_code = get_code()
-    content = '【验证码】您的验证码是：' + verify_code + ' 。若非本人操作，请忽略这条信息。'
     try:
-        send_email(send_to, content)
+        send_email(send_to, verify_code)
         return verify_code
     except Exception as e:
         print(e)
@@ -54,4 +61,4 @@ def send_email_code(send_to):
 
 
 if __name__ == '__main__':
-    print(send_email_code('2892278592@qq.com'))
+    print(send_email_code('zhanghanwen@buaa.edu.cn'))
