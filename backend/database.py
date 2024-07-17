@@ -1,6 +1,5 @@
 import pymysql
 import bcrypt
-import re
 
 
 def database_connect():
@@ -13,17 +12,19 @@ def database_connect():
                            binary_prefix=True)
 
 
-def database_read(cmd, args):
+def database_read(cmd, args, fetchone=True):
     try:
         connection = database_connect()
         cursor = connection.cursor()
-        query = cmd
-        cursor.execute(query, args)
-        result = cursor.fetchone()
+        cursor.execute(cmd, args)
+        if fetchone:
+            result = cursor.fetchone()[0]
+        else:
+            result = cursor.fetchall()
         cursor.close()
         connection.close()
-        return result[0] if result else None
-    except e:
+        return result
+    except Exception as e:
         return False
 
 
@@ -36,15 +37,7 @@ def database_write(cmd, args):
         cursor.close()
         connection.close()
         return True
-    except e:
-        return False
-
-
-def is_valid_email(email):
-    pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-    if re.match(pattern, email):
-        return True
-    else:
+    except Exception as e:
         return False
 
 
@@ -88,6 +81,16 @@ def reset_password(user_email, user_password):
     return database_write(cmd, args)
 
 
+def reset_name(user_email, user_name):
+    cmd = """
+        UPDATE users
+        SET user_name = %s
+        WHERE user_email = %s
+        """
+    args = (user_name, user_email)
+    return database_write(cmd, args)
+
+
 def delete_user(user_email):
     cmd = """
     DELETE FROM users
@@ -120,6 +123,30 @@ def is_user_password_correct(user_email, user_password):
     return False
 
 
-# print(add_user('ass', 'sss', 'sss'))
-# print(reset_password('sss', 'bbb'))
-print(is_user_password_correct('sss', 'bbb'))
+def is_user_email_exist(user_email):
+    cmd = """
+    SELECT COUNT(*) FROM users WHERE user_email = %s
+    """
+    args = (user_email,)
+    result = database_read(cmd, args)
+    return result > 0
+
+
+def list_users():
+    cmd = """
+    SELECT * FROM users
+    """
+    return (get_list_head(),) + database_read(cmd, (), False)
+
+
+def list_user_info(user_email):
+    cmd = """
+    SELECT  * FROM users
+    WHERE user_email = %s
+    """
+    args = user_email
+    return get_list_head(), database_read(cmd, args)
+
+
+def get_list_head():
+    return tuple([results[0] for results in database_read('DESCRIBE users', (), False)])
