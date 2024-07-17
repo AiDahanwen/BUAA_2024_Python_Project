@@ -125,13 +125,14 @@ border-bottom-left-radius:20px;</string>
            <property name="geometry">
             <rect>
              <x>1</x>
-             <y>4</y>
+             <y>-6</y>
              <width>381</width>
-             <height>371</height>
+             <height>381</height>
             </rect>
            </property>
            <property name="styleSheet">
-            <string notr="true">image:url(:/images/images/login.jpg)</string>
+            <string notr="true">background-color:rgb(92, 132, 194);
+image:url(images/login.jpg)</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>

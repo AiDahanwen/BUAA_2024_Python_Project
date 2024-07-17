@@ -63,8 +63,9 @@ class Ui_LoginWindow(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.label_6 = QtWidgets.QLabel(self.frame_4)
-        self.label_6.setGeometry(QtCore.QRect(1, 4, 381, 371))
-        self.label_6.setStyleSheet("image:url(:/images/images/login.jpg)")
+        self.label_6.setGeometry(QtCore.QRect(1, -6, 381, 381))
+        self.label_6.setStyleSheet("background-color:rgb(92, 132, 194);\n"
+"image:url(images/login.jpg)")
         self.label_6.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.label_6.setFrameShadow(QtWidgets.QFrame.Plain)
         self.label_6.setText("")
