@@ -27,7 +27,7 @@ class LoginWindow(QMainWindow):
         self.shadow.setBlurRadius(15)
         self.shadow.setColor(QtCore.Qt.black)
         self.ui.frame.setGraphicsEffect(self.shadow)
-        
+
         self.ui.pushButton_login.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(0))
         self.ui.pushButton_register.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(1))
         self.ui.pushButton_L_sure.clicked.connect(lambda: self.login_in())
