@@ -91,6 +91,16 @@ def reset_name(user_email, user_name):
     return database_write(cmd, args)
 
 
+def reset_signature(user_email, user_signature):
+    cmd = """
+    UPDATE users
+    SET signature = %s
+    WHERE user_email = %s
+    """
+    args = (user_signature, user_email)
+    return database_write(cmd, args)
+
+
 def delete_user(user_email):
     cmd = """
     DELETE FROM users

@@ -1,5 +1,6 @@
 **上传描述更新！**
 **frontend/backend-(content)-author**
+
 + feat：提交新功能
 
 + fix：修复了bug
@@ -16,13 +17,9 @@
 
 + chore：对构建流程或辅助工具和依赖库（如文档生成等）的更改
 
-
-
 > 毫不动摇地追随组长大人的步伐
 
 # frontend
-
-
 
 # backend
 
@@ -39,6 +36,12 @@ user='buaa_python_2024'
 passwd='DCJBzxhy2024'
 database='python_todo'
 ```
+
+#### 命名规范
+
+> 表名：[对象单数]<u>  </u>对象复数
+> 
+> 列名：表名单数<u>  </u>[<属性前缀>]<u>  </u>属性单数
 
 ### 密码机制
 
@@ -74,7 +77,7 @@ send_by = get_constant(file_name, 'send_by')
 
 用于检查指定用户的密码是否正确，参数为 **用户邮箱（需要保证唯一）** 和 **输入的用户密码**，返回值为 **True** 或 **False** 代表密码是否正确。
 
-### `reset_name(user_email, user_name)` 
+### `reset_name(user_email, user_name)`
 
 用于重置用户名，参数为 用户邮箱 **用户邮箱（需要保证唯一）** 和 **新的用户名**，返回值为 **True** 或 **False** 代表操作是否成功。
 
@@ -112,6 +115,5 @@ send_port = 465
 用于随机产生每日一句格言，内容涵盖文学、影视、诗词、哲学等方面，返回值为 **格言内容（字符串类型）与出处的元组**。下面的代码可以获得一句格言及出处。
 
 ```python
-sentenct=get_sentence()	# ('人生如逆旅，我亦是行人。', '临江仙·送钱穆父')
+sentenct=get_sentence()    # ('人生如逆旅，我亦是行人。', '临江仙·送钱穆父')
 ```
-
