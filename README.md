@@ -10,17 +10,7 @@
 
 ## database.py
 
-#### `get_constant(file_name, constant_name)`
-
-用于从数据库中获得常量的值，参数为**文件名**和**常量名**，返回值均为**字符串类型**。下面的代码可以获得发送方邮箱地址。
-
-```python
-send_by = get_constant(file_name, 'send_by')
-```
-
-把一些参数常量放在数据库，是为了不用修改代码就可以直接改变程序的运行状况。
-
-#### 数据库
+### 数据库
 
 使用阿里云数据库，可通过外网链接访问。
 
@@ -32,9 +22,43 @@ passwd='DCJBzxhy2024'
 database='python_todo'
 ```
 
+### 密码机制
+
+数据库中存储的是经过哈希加密后的密码以及加密所使用的盐。
+
+- 生成密码时，将随机生成盐对输入的密码进行加密，再将二者存储到数据库中
+
+- 检测密码正确与否时，将从数据库中获取盐对输入的密码进行加密，再与数据库中的密码进行比对
+
+### `get_constant(file_name, constant_name)`
+
+用于从数据库中获得常量的值，参数为 **文件名**和 **常量名**，返回值均为 **字符串类型**。下面的代码可以获得发送方邮箱地址。
+
+```python
+send_by = get_constant(file_name, 'send_by')
+```
+
+把一些参数常量放在数据库，是为了不用修改代码就可以直接改变程序的运行状况。
+
+### `add_user(user_name, user_email, user_password)`
+
+用于向数据库中新增用户，参数为 **用户名**、**用户邮箱（需要保证唯一）**和 **用户密码**，返回值为 **True** 或 **False** 代表操作是否成功。
+
+### `delete_user(user_email)`
+
+用于删除数据库中的指定用户，参数为**用户邮箱（需要保证唯一）**，返回值为 **True** 或 **False** 代表操作是否成功。
+
+### `reset_password(user_email, user_password)`
+
+用于重置数据库中指定用户的密码，参数为**用户邮箱（需要保证唯一）**和 **新的用户密码**，返回值为 **True** 或 **False** 代表操作是否成功。
+
+### `is_user_password_correct(user_email, user_password)`
+
+用于检查指定用户的密码是否正确，参数为**用户邮箱（需要保证唯一）**和 **输入的用户密码**，返回值为 **True** 或 **False** 代表密码是否正确。
+
 ## send_email_code.py
 
-#### `send_email_code(send_to)`
+### `send_email_code(send_to)`
 
 用于向指定邮箱发送验证码，参数为**接收方邮箱地址**，发送成功将返回**验证码（字符串类型）**，发送失败将返回**False**。验证码为随机生成的六位大小写字母、数字的组合。下面的代码可以向`2892278592@qq.com` 发送并返回验证码。
 
@@ -51,9 +75,9 @@ mail_host = 'smtp.qq.com'
 send_port = 465
 ```
 
-### daily_sentence.py
+## daily_sentence.py
 
-#### `get_sentence()`
+### `get_sentence()`
 
 用于随机产生每日一句格言，内容涵盖文学、影视、诗词、哲学等方面，返回值为**格言内容（字符串类型）与出处的元组**。下面的代码可以获得一句格言及出处。
 
