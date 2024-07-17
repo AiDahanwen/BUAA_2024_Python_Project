@@ -78,6 +78,10 @@ class Ui_Main_interface(object):
         self.pushButton_M_addtask.setIcon(icon1)
         self.pushButton_M_addtask.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_M_addtask.setObjectName("pushButton_M_addtask")
+        self.listView = QtWidgets.QListView(self.frame_2)
+        self.listView.setGeometry(QtCore.QRect(10, 70, 256, 301))
+        self.listView.setStyleSheet("border:1px solid black")
+        self.listView.setObjectName("listView")
         self.horizontalLayout_5.addWidget(self.frame_2)
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setSpacing(8)
@@ -179,7 +183,7 @@ class Ui_Main_interface(object):
         self.frame_17.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_17.setObjectName("frame_17")
         self.pushButton_5 = QtWidgets.QPushButton(self.frame_17)
-        self.pushButton_5.setGeometry(QtCore.QRect(30, 20, 91, 81))
+        self.pushButton_5.setGeometry(QtCore.QRect(40, 20, 91, 81))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
@@ -333,7 +337,7 @@ class Ui_Main_interface(object):
         Main_interface.setStatusBar(self.statusbar)
 
         self.retranslateUi(Main_interface)
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(1)
         self.pushButton_9.clicked.connect(Main_interface.close) # type: ignore
         self.pushButton_8.clicked.connect(Main_interface.showMinimized) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Main_interface)

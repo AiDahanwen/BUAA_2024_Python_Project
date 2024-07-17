@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="resource">
+    <file>icons/调度管理.png</file>
     <file>icons/加.png</file>
     <file>icons/1_微笑.png</file>
     <file>icons/我的.png</file>

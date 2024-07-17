@@ -34,19 +34,21 @@ class LoginWindow(QMainWindow):
         '''
         self.ui.pushButton_L_signup.clicked.connect(lambda: self.sign_up())
         self.ui.pushButton_L_forget.clicked.connect(lambda: self.forget_password())
+        self.ui.pushButton_L_login.clicked.connect(lambda: self.login_in())
+
+        # 每日一句功能
+        # self.ui.label_L_daily_sentence.setText()
 
         self.show()
 
-    '''
     def login_in(self):
         account = self.ui.lineEdit_L_account.text()
         password = self.ui.lineEdit_L_password.text()
-        if account == 'admin' and password == '123456':
-            self.win = MainWindow()
-            self.close()
-        else:
-            print('账号或密码错误！')
-    '''
+        # 下面需要三个判断：账号是否为空，密码是否为空，账号密码是否正确
+        # 页面跳转：登录成功后跳转到主界面
+        self.close()
+        self.win = MainWindow()
+        # 注意返回登陆的账号信息
 
     def sign_up(self):
         self.win = SignupWindow()
@@ -62,10 +64,28 @@ class SignupWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-        self.ui.pushButton_S_ensure.clicked.connect(lambda: self.close())
+
+        # 发送验证码
+        self.ui.pushButton_S_send.clicked.connect(self.send_check())
+        self.ui.pushButton_S_ensure.clicked.connect(lambda: self.signup_in())
+
         self.ui.label.adjustSize()
         self.ui.pushButton_S_send.adjustSize()
+
         self.show()
+
+    def send_check(self):
+        email_address = self.ui.lineEdit_S_email_address.text()
+        # 发送验证码
+
+    def signup_in(self):
+        check = self.ui.lineEdit_S_check.text()
+        # 验证码是否正确
+        new_account = self.ui.lineEdit_S_account.text()
+        new_email = self.ui.lineEdit_S_email_address.text()
+        new_password = self.ui.lineEdit_S_password1.text()
+        # 注册新用户
+        self.close()
 
 
 class FindWindow(QMainWindow):
@@ -75,10 +95,28 @@ class FindWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-        self.ui.pushButton_F_ensure.clicked.connect(lambda: self.close())
+
+        self.ui.pushButton_F_send.clicked.connect(lambda: self.send_check())
+        self.ui.pushButton_F_ensure.clicked.connect(lambda: self.find_password())
+
+        self.ui.stackedWidget.setCurrentIndex(0)
+
         self.ui.pushButton_F_send.adjustSize()
         self.ui.label.adjustSize()
+
         self.show()
+
+    def send_check(self):
+        email_address = self.ui.lineEdit_F_email_address.text()
+        # 发送验证码
+
+    def find_password(self):
+        check = self.ui.lineEdit_F_check.text()
+        # 验证码是否正确
+        email_address = self.ui.lineEdit_F_email_address.text()
+        new_password = self.ui.lineEdit_F_password1.text()
+        # 重置密码
+        self.close()
 
 
 class AddTaskWindow(QMainWindow):
@@ -137,6 +175,9 @@ class MainWindow(QMainWindow):
         self.ui.listWidget_2.itemClicked.connect(lambda: self.change_page(self.ui.listWidget_2.currentRow() + 3))
         self.ui.pushButton_M_addtask.clicked.connect(lambda: self.add_task())
         self.ui.pushButton_P_modify.clicked.connect(lambda: self.modify_person())
+
+        # self.ui.textEdit.setText('欢迎使用任务管理系统！') 可使用该功能进行用户信息的显示
+
         self.show()
 
     '''
