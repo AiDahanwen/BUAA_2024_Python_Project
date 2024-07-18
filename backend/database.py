@@ -177,6 +177,15 @@ def add_task(user_email, task_is_vital, task_title, task_content, task_deadline)
     return database_write(cmd, args)
 
 
+def delete_task(task_id):
+    cmd = """
+        DELETE FROM tasks
+        WHERE task_id = %s
+        """
+    args = (task_id,)
+    return database_write(cmd, args)
+
+
 def reset_task_info(task_id, info_category, task_info):
     # info_category: status, is_vital, title, content, create_time, deadline, complete_time
     cmd = """
@@ -199,4 +208,4 @@ def get_task_info(task_id, info_category):
     return database_read(cmd, args)
 
 
-print(get_task_info(3, "content"))
+print(delete_task(1))
