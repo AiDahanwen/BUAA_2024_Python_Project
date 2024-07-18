@@ -1,13 +1,5 @@
-import datetime
-import task_system
+import bcrypt
 from database import *
-
-
-class User:
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
-        self.avatar_url = ''
 
 
 def gen_hash_password(password):
@@ -53,12 +45,7 @@ def reset_user_info(user_email, info_category, user_info):
 
 
 def delete_user(user_email):
-    cmd = """
-    DELETE FROM users
-    WHERE user_email = %s
-    """
-    args = (user_email,)
-    return database_write(cmd, args)
+    return delete("users", "user_email", user_email)
 
 
 def is_user_password_correct(user_email, user_password):
