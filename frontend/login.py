@@ -23,9 +23,10 @@ class Ui_LoginWindow(object):
         self.centralwidget = QtWidgets.QWidget(LoginWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(50, 10, 761, 501))
+        self.frame.setGeometry(QtCore.QRect(50, 10, 811, 501))
         self.frame.setMinimumSize(QtCore.QSize(761, 501))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius:35px;\n"
 "\n"
 "QPushButton{\n"
 "    border:none;\n"
@@ -41,8 +42,8 @@ class Ui_LoginWindow(object):
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.frame_8 = QtWidgets.QFrame(self.frame)
-        self.frame_8.setStyleSheet("border-top-left-radius:20px;\n"
-"border-bottom-left-radius:20px;")
+        self.frame_8.setStyleSheet("border-top-left-radius:30px;\n"
+"border-bottom-left-radius:30px;")
         self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_8.setObjectName("frame_8")
@@ -58,19 +59,21 @@ class Ui_LoginWindow(object):
         sizePolicy.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
         self.frame_4.setSizePolicy(sizePolicy)
         self.frame_4.setMinimumSize(QtCore.QSize(380, 374))
-        self.frame_4.setStyleSheet("")
+        self.frame_4.setStyleSheet("border-left-radius:30px;")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.label_6 = QtWidgets.QLabel(self.frame_4)
-        self.label_6.setGeometry(QtCore.QRect(1, -6, 381, 381))
-        self.label_6.setStyleSheet("background-color:rgb(92, 132, 194);\n"
-"image:url(images/login.jpg)")
+        self.label_6.setGeometry(QtCore.QRect(-9, -6, 681, 511))
+        self.label_6.setStyleSheet("border-image:url(images/login.jpg);\n"
+"border-top-left-radius:50px;\n"
+"border-bottom-left-radius:50px;\n"
+"background-color:rgb(92, 132, 194);")
         self.label_6.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.label_6.setFrameShadow(QtWidgets.QFrame.Plain)
         self.label_6.setText("")
         self.label_6.setObjectName("label_6")
-        self.verticalLayout_2.addWidget(self.frame_4, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout_2.addWidget(self.frame_4)
         self.horizontalLayout_2.addWidget(self.frame_8)
         self.frame_9 = QtWidgets.QFrame(self.frame)
         self.frame_9.setStyleSheet("")
@@ -78,10 +81,9 @@ class Ui_LoginWindow(object):
         self.frame_9.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_9.setObjectName("frame_9")
         self.frame_2 = QtWidgets.QFrame(self.frame_9)
-        self.frame_2.setGeometry(QtCore.QRect(10, 140, 350, 350))
+        self.frame_2.setGeometry(QtCore.QRect(10, 140, 381, 350))
         self.frame_2.setMinimumSize(QtCore.QSize(350, 350))
         self.frame_2.setStyleSheet("#frame_2{\n"
-"    background-color: rgb(91, 130, 192);\n"
 "    border-top-right-radius:20px;\n"
 "    border-bottom-left-radius:20px;\n"
 "}\n"
@@ -91,16 +93,27 @@ class Ui_LoginWindow(object):
         self.frame_2.setObjectName("frame_2")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame_2)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.frame_3 = QtWidgets.QFrame(self.frame_2)
+        self.stackedWidget_2 = QtWidgets.QStackedWidget(self.frame_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(2)
+        sizePolicy.setHeightForWidth(self.stackedWidget_2.sizePolicy().hasHeightForWidth())
+        self.stackedWidget_2.setSizePolicy(sizePolicy)
+        self.stackedWidget_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.stackedWidget_2.setObjectName("stackedWidget_2")
+        self.page_2 = QtWidgets.QWidget()
+        self.page_2.setObjectName("page_2")
+        self.frame_3 = QtWidgets.QFrame(self.page_2)
+        self.frame_3.setGeometry(QtCore.QRect(0, 10, 361, 311))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(2)
         sizePolicy.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
         self.frame_3.setSizePolicy(sizePolicy)
-        self.frame_3.setStyleSheet("background-color:none\n"
-"QPushButton:pressed{\n"
+        self.frame_3.setStyleSheet("QPushButton:pressed{\n"
 "    padding-top:5px;\n"
 "    padding-left:5px;\n"
+"    background-color:rgb(103, 138, 194);\n"
 "}")
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -135,17 +148,6 @@ class Ui_LoginWindow(object):
         self.pushButton_L_signup = QtWidgets.QPushButton(self.frame_3)
         self.pushButton_L_signup.setObjectName("pushButton_L_signup")
         self.verticalLayout_3.addWidget(self.pushButton_L_signup, 0, QtCore.Qt.AlignHCenter)
-        self.verticalLayout.addWidget(self.frame_3)
-        self.stackedWidget_2 = QtWidgets.QStackedWidget(self.frame_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(2)
-        sizePolicy.setHeightForWidth(self.stackedWidget_2.sizePolicy().hasHeightForWidth())
-        self.stackedWidget_2.setSizePolicy(sizePolicy)
-        self.stackedWidget_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.stackedWidget_2.setObjectName("stackedWidget_2")
-        self.page_2 = QtWidgets.QWidget()
-        self.page_2.setObjectName("page_2")
         self.stackedWidget_2.addWidget(self.page_2)
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
@@ -176,8 +178,8 @@ class Ui_LoginWindow(object):
         self.stackedWidget_2.addWidget(self.page)
         self.verticalLayout.addWidget(self.stackedWidget_2)
         self.frame_10 = QtWidgets.QFrame(self.frame_9)
-        self.frame_10.setGeometry(QtCore.QRect(260, 0, 121, 41))
-        self.frame_10.setStyleSheet("background-color:rgb(81, 118, 172);\n"
+        self.frame_10.setGeometry(QtCore.QRect(280, 10, 121, 41))
+        self.frame_10.setStyleSheet("background-color:rgba(81, 118, 172, 0);\n"
 "QPushButton{\n"
 "    border:none;\n"
 "}\n"
@@ -206,7 +208,7 @@ class Ui_LoginWindow(object):
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout_3.addWidget(self.pushButton_2)
         self.label = QtWidgets.QLabel(self.frame_9)
-        self.label.setGeometry(QtCore.QRect(30, 90, 341, 41))
+        self.label.setGeometry(QtCore.QRect(30, 60, 351, 71))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -214,7 +216,7 @@ class Ui_LoginWindow(object):
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QtCore.QSize(251, 30))
         palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 0))
@@ -226,7 +228,7 @@ class Ui_LoginWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 0))
@@ -253,17 +255,17 @@ class Ui_LoginWindow(object):
         self.label.setPalette(palette)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
-        font.setPointSize(20)
+        font.setPointSize(25)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.label.setFont(font)
-        self.label.setStyleSheet("font: 20pt \"微软雅黑\";\n"
+        self.label.setStyleSheet("font: 25pt \"微软雅黑\";\n"
 "background-color:rgba(0, 0, 0, 0);")
         self.label.setObjectName("label")
         self.label_5 = QtWidgets.QLabel(self.frame_9)
-        self.label_5.setGeometry(QtCore.QRect(1, -6, 381, 391))
-        self.label_5.setStyleSheet("background-color:rgb(92, 132, 194)")
+        self.label_5.setGeometry(QtCore.QRect(-9, 4, 391, 381))
+        self.label_5.setStyleSheet("background-color:rgba(92, 132, 194, 0)")
         self.label_5.setText("")
         self.label_5.setObjectName("label_5")
         self.label_5.raise_()
@@ -271,6 +273,8 @@ class Ui_LoginWindow(object):
         self.frame_10.raise_()
         self.label.raise_()
         self.horizontalLayout_2.addWidget(self.frame_9)
+        self.frame_9.raise_()
+        self.frame_8.raise_()
         LoginWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(LoginWindow)
         self.statusbar.setObjectName("statusbar")

@@ -25,7 +25,7 @@
      <rect>
       <x>50</x>
       <y>10</y>
-      <width>761</width>
+      <width>811</width>
       <height>501</height>
      </rect>
     </property>
@@ -37,6 +37,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:35px;
 
 QPushButton{
 	border:none;
@@ -70,8 +71,8 @@ QPushButton{
      <item>
       <widget class="QFrame" name="frame_8">
        <property name="styleSheet">
-        <string notr="true">border-top-left-radius:20px;
-border-bottom-left-radius:20px;</string>
+        <string notr="true">border-top-left-radius:30px;
+border-bottom-left-radius:30px;</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -95,7 +96,7 @@ border-bottom-left-radius:20px;</string>
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item alignment="Qt::AlignHCenter">
+        <item>
          <widget class="QFrame" name="frame_4">
           <property name="enabled">
            <bool>true</bool>
@@ -113,7 +114,7 @@ border-bottom-left-radius:20px;</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">border-left-radius:30px;</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -124,15 +125,17 @@ border-bottom-left-radius:20px;</string>
           <widget class="QLabel" name="label_6">
            <property name="geometry">
             <rect>
-             <x>1</x>
+             <x>-9</x>
              <y>-6</y>
-             <width>381</width>
-             <height>381</height>
+             <width>681</width>
+             <height>511</height>
             </rect>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color:rgb(92, 132, 194);
-image:url(images/login.jpg)</string>
+            <string notr="true">border-image:url(images/login.jpg);
+border-top-left-radius:50px;
+border-bottom-left-radius:50px;
+background-color:rgb(92, 132, 194);</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
@@ -165,7 +168,7 @@ image:url(images/login.jpg)</string>
          <rect>
           <x>10</x>
           <y>140</y>
-          <width>350</width>
+          <width>381</width>
           <height>350</height>
          </rect>
         </property>
@@ -177,7 +180,6 @@ image:url(images/login.jpg)</string>
         </property>
         <property name="styleSheet">
          <string notr="true">#frame_2{
-	background-color: rgb(91, 130, 192);
 	border-top-right-radius:20px;
 	border-bottom-left-radius:20px;
 }
@@ -190,101 +192,6 @@ image:url(images/login.jpg)</string>
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QFrame" name="frame_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>2</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color:none
-QPushButton:pressed{
-	padding-top:5px;
-	padding-left:5px;
-}</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
-            <item>
-             <widget class="QLineEdit" name="lineEdit_L_account">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border:1px solid gray;
-border-radius:10px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="placeholderText">
-               <string> 用户名/邮箱：</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_L_password">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border:1px solid gray;
-border-radius:10px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="echoMode">
-               <enum>QLineEdit::Password</enum>
-              </property>
-              <property name="placeholderText">
-               <string> 密码：</string>
-              </property>
-             </widget>
-            </item>
-            <item alignment="Qt::AlignRight">
-             <widget class="QPushButton" name="pushButton_L_forget">
-              <property name="styleSheet">
-               <string notr="true">QPushButton:pressed{
-	padding-top:5px;
-	padding-left:5px;
-}</string>
-              </property>
-              <property name="text">
-               <string>忘记密码？</string>
-              </property>
-             </widget>
-            </item>
-            <item alignment="Qt::AlignHCenter">
-             <widget class="QPushButton" name="pushButton_L_login">
-              <property name="text">
-               <string>登录</string>
-              </property>
-             </widget>
-            </item>
-            <item alignment="Qt::AlignHCenter">
-             <widget class="QPushButton" name="pushButton_L_signup">
-              <property name="text">
-               <string>注册</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
          <item>
           <widget class="QStackedWidget" name="stackedWidget_2">
            <property name="sizePolicy">
@@ -299,7 +206,109 @@ border-radius:10px;</string>
            <property name="currentIndex">
             <number>0</number>
            </property>
-           <widget class="QWidget" name="page_2"/>
+           <widget class="QWidget" name="page_2">
+            <widget class="QFrame" name="frame_3">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>10</y>
+               <width>361</width>
+               <height>311</height>
+              </rect>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>2</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:pressed{
+	padding-top:5px;
+	padding-left:5px;
+	background-color:rgb(103, 138, 194);
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLineEdit" name="lineEdit_L_account">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border:1px solid gray;
+border-radius:10px;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="placeholderText">
+                 <string> 用户名/邮箱：</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_L_password">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border:1px solid gray;
+border-radius:10px;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
+                </property>
+                <property name="placeholderText">
+                 <string> 密码：</string>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignRight">
+               <widget class="QPushButton" name="pushButton_L_forget">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton:pressed{
+	padding-top:5px;
+	padding-left:5px;
+}</string>
+                </property>
+                <property name="text">
+                 <string>忘记密码？</string>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QPushButton" name="pushButton_L_login">
+                <property name="text">
+                 <string>登录</string>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QPushButton" name="pushButton_L_signup">
+                <property name="text">
+                 <string>注册</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
            <widget class="QWidget" name="page_3">
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
@@ -349,14 +358,14 @@ border-radius:10px;</string>
        <widget class="QFrame" name="frame_10">
         <property name="geometry">
          <rect>
-          <x>260</x>
-          <y>0</y>
+          <x>280</x>
+          <y>10</y>
           <width>121</width>
           <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(81, 118, 172);
+         <string notr="true">background-color:rgba(81, 118, 172, 0);
 QPushButton{
 	border:none;
 }
@@ -401,9 +410,9 @@ QPushButton:hover{
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>90</y>
-          <width>341</width>
-          <height>41</height>
+          <y>60</y>
+          <width>351</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -424,9 +433,9 @@ QPushButton:hover{
            <colorrole role="WindowText">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>255</red>
-              <green>255</green>
-              <blue>255</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -462,9 +471,9 @@ QPushButton:hover{
            <colorrole role="WindowText">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>255</red>
-              <green>255</green>
-              <blue>255</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -539,14 +548,14 @@ QPushButton:hover{
         <property name="font">
          <font>
           <family>微软雅黑</family>
-          <pointsize>20</pointsize>
+          <pointsize>25</pointsize>
           <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 20pt &quot;微软雅黑&quot;;
+         <string notr="true">font: 25pt &quot;微软雅黑&quot;;
 background-color:rgba(0, 0, 0, 0);</string>
         </property>
         <property name="text">
@@ -556,14 +565,14 @@ background-color:rgba(0, 0, 0, 0);</string>
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
-          <x>1</x>
-          <y>-6</y>
-          <width>381</width>
-          <height>391</height>
+          <x>-9</x>
+          <y>4</y>
+          <width>391</width>
+          <height>381</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(92, 132, 194)</string>
+         <string notr="true">background-color:rgba(92, 132, 194, 0)</string>
         </property>
         <property name="text">
          <string/>
@@ -576,6 +585,8 @@ background-color:rgba(0, 0, 0, 0);</string>
       </widget>
      </item>
     </layout>
+    <zorder>frame_9</zorder>
+    <zorder>frame_8</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
