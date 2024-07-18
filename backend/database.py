@@ -206,6 +206,3 @@ def get_task_info(task_id, info_category):
     """
     args = (task_id,)
     return database_read(cmd, args)
-
-
-print(delete_task(1))
