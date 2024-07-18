@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import pymysql
 import bcrypt
 
@@ -149,7 +151,7 @@ def list_users():
     cmd = """
     SELECT * FROM users
     """
-    return (get_list_head(),) + database_read(cmd, (), False)
+    return (get_list_head("users"),) + database_read(cmd, (), False)
 
 
 def list_user_info(user_email):
@@ -158,8 +160,43 @@ def list_user_info(user_email):
     WHERE user_email = %s
     """
     args = user_email
-    return get_list_head(), database_read(cmd, args)
+    return get_list_head("users"), database_read(cmd, args)
 
 
-def get_list_head():
-    return tuple([results[0] for results in database_read('DESCRIBE users', (), False)])
+def get_list_head(list_name):
+    return tuple([results[0] for results in database_read('DESCRIBE ' + list_name, (), False)])
+
+
+def add_task(user_email, task_is_vital, task_title, task_content, task_deadline):
+    cmd = """
+    INSERT INTO tasks (user_email, task_is_vital, task_title, task_content, task_create_time, task_deadline)
+    VALUE (%s, %s, %s ,%s, %s, %s)
+    """
+    task_create_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    args = (user_email, task_is_vital, task_title, task_content, task_create_time, task_deadline)
+    return database_write(cmd, args)
+
+
+def reset_task_info(task_id, info_category, task_info):
+    # info_category: status, is_vital, title, content, create_time, deadline, complete_time
+    cmd = """
+    UPDATE tasks
+    SET task_""" + info_category + """ = %s
+    WHERE task_id = %s
+    """
+    args = (task_info, task_id)
+    return database_write(cmd, args)
+
+
+def get_task_info(task_id, info_category):
+    # info_category: status, is_vital, title, content, create_time, deadline, complete_time
+    cmd = """
+    SELECT task_""" + info_category + """
+    FROM tasks
+    WHERE task_id = %s
+    """
+    args = (task_id,)
+    return database_read(cmd, args)
+
+
+print(get_task_info(3, "content"))
