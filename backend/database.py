@@ -53,18 +53,19 @@ def get_hash_password(password, salt):
 
 def get_constant(file_name, constant_name):
     cmd = """
-        SELECT constant_value
-        FROM constants
-        WHERE  constant_name = %s AND file_name = %s"""
+    SELECT constant_value
+    FROM constants
+    WHERE  constant_name = %s AND file_name = %s
+    """
     args = (constant_name, file_name)
     return database_read(cmd, args)
 
 
 def add_user(user_name, user_email, user_password):
     cmd = """
-        INSERT INTO users (user_name, user_email, user_password_hash, hash_salt)
-        VALUES(%s, %s, %s, %s)
-        """
+    INSERT INTO users (user_name, user_email, user_password_hash, hash_salt)
+    VALUES(%s, %s, %s, %s)
+    """
     salt, user_password_hash = gen_hash_password(user_password)
     args = (user_name, user_email, user_password_hash, salt)
     return database_write(cmd, args)
@@ -73,31 +74,22 @@ def add_user(user_name, user_email, user_password):
 def reset_password(user_email, user_password):
     salt, user_password_hash = gen_hash_password(user_password)
     cmd = """
-        UPDATE users
-        SET user_password_hash = %s, hash_salt = %s
-        WHERE user_email = %s
-        """
+    UPDATE users
+    SET user_password_hash = %s, hash_salt = %s
+    WHERE user_email = %s
+    """
     args = (user_password_hash, salt, user_email)
     return database_write(cmd, args)
 
 
-def reset_name(user_email, user_name):
-    cmd = """
-        UPDATE users
-        SET user_name = %s
-        WHERE user_email = %s
-        """
-    args = (user_name, user_email)
-    return database_write(cmd, args)
-
-
-def reset_signature(user_email, user_signature):
+def reset_user_info(user_email, info_category, user_info):
+    # info_category: name, avatar_url, signature
     cmd = """
     UPDATE users
-    SET signature = %s
+    SET user_""" + info_category + """ = %s
     WHERE user_email = %s
     """
-    args = (user_signature, user_email)
+    args = (user_info, user_email)
     return database_write(cmd, args)
 
 
@@ -112,9 +104,9 @@ def delete_user(user_email):
 
 def is_user_password_correct(user_email, user_password):
     cmd = """
-        SELECT hash_salt
-        FROM users
-        WHERE user_email = %s
+    SELECT hash_salt
+    FROM users
+    WHERE user_email = %s
     """
     args = (user_email,)
     salt = database_read(cmd, args)
@@ -122,9 +114,9 @@ def is_user_password_correct(user_email, user_password):
         return False
     user_password_hash = get_hash_password(user_password, salt)
     cmd = """
-        SELECT user_password_hash
-        FROM users
-        WHERE user_email = %s
+    SELECT user_password_hash
+    FROM users
+    WHERE user_email = %s
     """
     args = (user_email,)
     result = database_read(cmd, args)
@@ -142,6 +134,17 @@ def is_user_email_exist(user_email):
     return result > 0
 
 
+def get_user_info(user_email, info_category):
+    # info_category: name, avatar_url, signature
+    cmd = """
+    SELECT user_""" + info_category + """
+    FROM users
+    WHERE user_email = %s
+    """
+    args = (user_email,)
+    return database_read(cmd, args)
+
+
 def list_users():
     cmd = """
     SELECT * FROM users
@@ -151,7 +154,7 @@ def list_users():
 
 def list_user_info(user_email):
     cmd = """
-    SELECT  * FROM users
+    SELECT * FROM users
     WHERE user_email = %s
     """
     args = user_email
