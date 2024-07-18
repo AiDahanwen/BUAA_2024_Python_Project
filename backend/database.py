@@ -96,11 +96,15 @@ def reset_user_info(user_email, info_category, user_info):
 
 
 def delete_user(user_email):
+    return delete("users", "user_email", user_email)
+
+
+def delete(table_name, identifier_name, identifier):
     cmd = """
-    DELETE FROM users
-    WHERE user_email = %s
+    DELETE FROM """ + table_name + """
+    WHERE """ + identifier_name + """ = %s
     """
-    args = (user_email,)
+    args = (identifier,)
     return database_write(cmd, args)
 
 
@@ -178,12 +182,7 @@ def add_task(user_email, task_is_vital, task_title, task_content, task_deadline)
 
 
 def delete_task(task_id):
-    cmd = """
-        DELETE FROM tasks
-        WHERE task_id = %s
-        """
-    args = (task_id,)
-    return database_write(cmd, args)
+    return delete("tasks", "task_id", task_id)
 
 
 def reset_task_info(task_id, info_category, task_info):
