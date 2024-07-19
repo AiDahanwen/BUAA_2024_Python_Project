@@ -21,6 +21,8 @@ class Task:
         self.start_time = kwargs.get('start_time', None)
         self.end_time = kwargs.get('end_time', None)
         self.deadline = kwargs.get('deadline', None)
+        self.is_daily = kwargs.get('is_daily', 0)
+        self.tag = kwargs.get('tag', None)
     
     def __str__(self):
         return f'task_id: {self.id}\t' \
@@ -31,7 +33,9 @@ class Task:
                f'content: {self.content}\t' \
                f'start_time: {self.start_time}\t' \
                f'end_time: {self.end_time}\t' \
-               f'deadline: {self.deadline}\t'
+               f'deadline: {self.deadline}\t' \
+               f'is_daily: {self.is_daily}\t' \
+               f'tag: {self.tag}'
 
 
 def add_task(task):
@@ -75,6 +79,7 @@ def get_task_info(task_id, info_category):
 
 
 def get_tasks(user_email, condition_cmd='', condition_args=()):
+    update_tasks(user_email)
     cmd = """
     SELECT t.*
     FROM tasks t
@@ -120,12 +125,30 @@ def get_ordered_tasks_date(user_email, date):
     return sorted(tasks_date, key=lambda x: x.start_time)
 
 
-def update_tasks_status(user_email):
-    cmd = """
-    UPDATE tasks
-    SET task_status = 'expired'
-    WHERE user_email = %s AND task_deadline < NOW() AND task_status != 'completed';
+def update_tasks(user_email):
+    return update_daily_task('task_deadline') and update_daily_task('task_end_time') and \
+        update_daily_task('task_deadline') and update_task_status(user_email)
+
+
+def update_daily_task(time):
+    cmd = f"""
+    UPDATE `tasks`
+    SET {time} = CONCAT(
+    DATE_FORMAT(CURDATE(), '%Y-%m-%d'),
+    ' ',
+    TIME({time})
+    )
+    WHERE DATE({time}) != CURDATE()  AND task_is_daily = TRUE;
     """
+    return database_write(cmd)
+
+
+def update_task_status(user_email):
+    cmd = """
+          UPDATE tasks
+          SET task_status = 'expired'
+          WHERE user_email = %s AND task_deadline < NOW() AND task_status != 'completed';
+          """
     return database_write(cmd, (user_email,))
 
 
@@ -149,10 +172,21 @@ def get_task_objects(data):
     result = []
     for line in data:
         result.append(
-            Task(line[0], id=line[1], status=line[2], is_vital=line[3], title=line[4],
-                 content=line[5],
-                 start_time=line[6], end_time=line[7], deadline=line[8]))
+            Task(line[1], id=line[0], status=line[2], is_vital=line[3],
+                 title=line[4], content=line[5],
+                 start_time=line[6], end_time=line[7], deadline=line[8],
+                 is_daily=line[9], tag=line[10]))
     return result
+
+
+def get_tag_id(tag_name):
+    cmd = """
+    SELECT tag_id
+    FROM tags
+    WHERE tag_name = %s
+    """
+    args = (tag_name,)
+    return database_read(cmd, args)
 
 
 def print_list(lis):
@@ -164,9 +198,12 @@ def print_list(lis):
 # task = Task('test')
 # task.start_time = datetime.now() + timedelta(hours=1)
 # print(add_task(task))
-print_list(get_tasks('test'))
-for i in [4, 7, 15, 16, 17, 18, 19]:
-    print(reset_task_info(i, 'start_time', datetime.now() - timedelta(days=i + 1)))
+# print_list(get_tasks('test'))
+# for i in [4, 7, 15, 16, 17, 18, 19]:
+#     print(reset_task_info(i, 'start_time', datetime.now() - timedelta(days=i + 1)))
 # print(update_tasks_status('test'))
-print(get_task_completed_sum('test'))
+# print(get_task_completed_sum('test'))
+# print(reset_task_info(4, 'is_daily', True))
 print_list(get_tasks('test'))
+#
+# print(get_tag_id('d'))
