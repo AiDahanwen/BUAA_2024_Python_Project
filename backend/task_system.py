@@ -10,7 +10,7 @@ class TaskStatus(str):
 
 
 class Task:
-    
+
     def __init__(self, user_email, **kwargs):
         self.id = kwargs.get('id', 0)
         self.user_email = user_email
@@ -21,7 +21,7 @@ class Task:
         self.start_time = kwargs.get('start_time', None)
         self.end_time = kwargs.get('end_time', None)
         self.deadline = kwargs.get('deadline', None)
-    
+
     def __str__(self):
         return f'task_id: {self.id}\t' \
                f'user_email: {self.user_email}\t' \
@@ -54,24 +54,12 @@ def delete_task(*task_id):
 
 def reset_task_info(task_id, info_category, task_info):
     # info_category: status, is_vital, title, content, create_time, deadline, complete_time
-    cmd = """
-    UPDATE tasks
-    SET task_""" + info_category + """ = %s
-    WHERE task_id = %s
-    """
-    args = (task_info, task_id)
-    return database_write(cmd, args)
+    return reset_info("task", "task_id", task_id, info_category, task_info)
 
 
 def get_task_info(task_id, info_category):
     # info_category: status, is_vital, title, content, create_time, deadline, complete_time
-    cmd = """
-    SELECT task_""" + info_category + """
-    FROM tasks
-    WHERE task_id = %s
-    """
-    args = (task_id,)
-    return database_read(cmd, args)
+    return get_info("task", "task_id", task_id, info_category)
 
 
 def get_tasks(user_email, condition_cmd='', condition_args=()):
