@@ -166,31 +166,6 @@ def get_task_objects(data):
     return result
 
 
-def get_tag_id(tag_name):
-    cmd = """
-    SELECT tag_id
-    FROM tags
-    WHERE tag_name = %s
-    """
-    args = (tag_name,)
-    return database_read(cmd, args)
-
-
 def print_list(lis):
     for item in lis:
         print(item)
-
-
-# file_name = 'task_system.py'
-# task = Task('test')
-# task.start_time = datetime.now() + timedelta(hours=1)
-# print(add_task(task))
-# print_list(get_tasks('test'))
-# for i in [4, 7, 15, 16, 17, 18, 19]:
-#     print(reset_task_info(i, 'start_time', datetime.now() - timedelta(days=i + 1)))
-# print(update_tasks_status('test'))
-# print(get_task_completed_sum('test'))
-# print(reset_task_info(4, 'is_daily', True))
-print_list(get_tasks('test'))
-#
-# print(get_tag_id('d'))

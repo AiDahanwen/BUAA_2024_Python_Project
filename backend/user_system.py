@@ -52,11 +52,12 @@ def get_user_info(user_email, info_category):
 
 def is_user_email_exist(user_email):
     cmd = """
-    SELECT COUNT(*) FROM users WHERE user_email = %s
+    SELECT EXISTS(
+    SELECT 1 FROM users WHERE user_email = %s
+    ) AS user_email_exists;
     """
     args = (user_email,)
-    result = database_read(cmd, args)
-    return result > 0
+    return database_read(cmd, args)
 
 
 def list_all_users():
