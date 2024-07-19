@@ -45,7 +45,7 @@ def database_write(cmd, args):
         return False
 
 
-def get_constant(file_name, constant_name):
+def get_constant_info(file_name, constant_name):
     cmd = """
     SELECT constant_value
     FROM constants
@@ -64,21 +64,41 @@ def delete(table_name, identifier_name, identifier):
     return database_write(cmd, args)
 
 
-def list_users():
+def reset_info(subject_name, identifier_name, identifier, info_category, info):
     cmd = """
-    SELECT * FROM users
+    UPDATE """ + subject_name + """s
+    SET """ + subject_name + """_""" + info_category + """ = %s
+    WHERE """ + identifier_name + """ = %s
     """
-    return (get_list_head("users"),) + database_read(cmd, (), False)
+    args = (info, identifier)
+    return database_write(cmd, args)
 
 
-def list_user_info(user_email):
+def get_info(subject_name, identifier_name, identifier, info_category):
     cmd = """
-    SELECT * FROM users
-    WHERE user_email = %s
+    SELECT """ + subject_name + """_""" + info_category + """
+    FROM """ + subject_name + """s
+    WHERE """ + identifier_name + """ = %s
     """
-    args = user_email
-    return get_list_head("users"), database_read(cmd, args)
+    args = (identifier,)
+    return database_read(cmd, args)
 
 
-def get_list_head(list_name):
-    return tuple([results[0] for results in database_read('DESCRIBE ' + list_name, (), False)])
+def list_all(table_name):
+    cmd = """
+    SELECT * FROM """ + table_name + """
+    """
+    return (get_list_head(table_name),) + database_read(cmd, (), False)
+
+
+def list_info(table_name, identifier_name, identifier):
+    cmd = """
+    SELECT * FROM """ + table_name + """
+    WHERE """ + identifier_name + """ = %s
+    """
+    args = (identifier,)
+    return get_list_head(table_name), database_read(cmd, args)
+
+
+def get_list_head(table_name):
+    return tuple([results[0] for results in database_read('DESCRIBE ' + table_name, (), False)])

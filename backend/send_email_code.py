@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 import random
 import re
 
-from database import get_constant
+from database import get_constant_info
 
 send_by = '3498314162@qq.com'
 email_password = 'rkkemgvqthnachie'
@@ -20,10 +20,10 @@ def update_constants():
     global mail_host
     global send_port
     
-    send_by = get_constant(file_name, 'send_by')
-    email_password = get_constant(file_name, 'email_password')
-    mail_host = get_constant(file_name, 'mail_host')
-    send_port = get_constant(file_name, 'send_port')
+    send_by = get_constant_info(file_name, 'send_by')
+    email_password = get_constant_info(file_name, 'email_password')
+    mail_host = get_constant_info(file_name, 'mail_host')
+    send_port = get_constant_info(file_name, 'send_port')
 
 
 def get_code(n=6):

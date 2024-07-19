@@ -58,28 +58,15 @@ def delete_task(*task_id):
 
 def reset_task_info(task_id, info_category, task_info):
     # info_category: status, is_vital, title, content, create_time, deadline, complete_time
-    cmd = """
-    UPDATE tasks
-    SET task_""" + info_category + """ = %s
-    WHERE task_id = %s
-    """
-    args = (task_info, task_id)
-    return database_write(cmd, args)
+    return reset_info("task", "task_id", task_id, info_category, task_info)
 
 
 def get_task_info(task_id, info_category):
     # info_category: status, is_vital, title, content, create_time, deadline, complete_time
-    cmd = """
-    SELECT task_""" + info_category + """
-    FROM tasks
-    WHERE task_id = %s
-    """
-    args = (task_id,)
-    return database_read(cmd, args)
+    return get_info("task", "task_id", task_id, info_category)
 
 
 def get_tasks(user_email, condition_cmd='', condition_args=()):
-    update_tasks(user_email)
     cmd = """
     SELECT t.*
     FROM tasks t
