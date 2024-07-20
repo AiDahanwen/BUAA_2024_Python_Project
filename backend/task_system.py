@@ -41,11 +41,12 @@ class Task:
 def add_task(task):
     cmd = """
     INSERT INTO tasks (user_email, task_status, task_is_vital,
-    task_title, task_content, task_start_time, task_end_time, task_deadline)
-    VALUE (%s, %s, %s ,%s, %s, %s, %s, %s)
+    task_title, task_content, task_start_time, task_end_time, task_deadline,
+    task_is_daily, task_tag)
+    VALUE (%s, %s, %s ,%s, %s, %s, %s, %s, %s, %s)
     """
     args = (task.user_email, task.status, task.is_vital, task.title, task.content, task.start_time,
-            task.end_time, task.deadline)
+            task.end_time, task.deadline, task.is_daily, task.tag)
     return database_write(cmd, args)
 
 

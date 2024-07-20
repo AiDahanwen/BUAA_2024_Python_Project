@@ -68,4 +68,4 @@ def is_valid_email(email):
 
 
 if __name__ == '__main__':
-    print(send_email_code('zhanghanwen@buaa.edu.cn'))
+    print(send_email_code('2895227477@qq.com'))
