@@ -84,6 +84,15 @@ def get_info(subject_name, identifier_name, identifier, info_category):
     return database_read(cmd, args)
 
 
+def get(table_name, identifier_name, identifier):
+    cmd = """
+    SELECT * FROM """ + table_name + """
+    WHERE """ + identifier_name + """ = %s
+    """
+    args = (identifier,)
+    return database_read(cmd, args, False)
+
+
 def list_all(table_name):
     cmd = """
     SELECT * FROM """ + table_name + """
@@ -92,12 +101,7 @@ def list_all(table_name):
 
 
 def list_info(table_name, identifier_name, identifier):
-    cmd = """
-    SELECT * FROM """ + table_name + """
-    WHERE """ + identifier_name + """ = %s
-    """
-    args = (identifier,)
-    return get_list_head(table_name), database_read(cmd, args)
+    return get_list_head(table_name), get(table_name, identifier_name, identifier)
 
 
 def get_list_head(table_name):
