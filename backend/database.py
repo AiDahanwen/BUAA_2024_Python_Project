@@ -56,46 +56,57 @@ def get_constant_info(file_name, constant_name):
 
 
 def delete(table_name, identifier_name, identifier):
-    cmd = """
-    DELETE FROM """ + table_name + """
-    WHERE """ + identifier_name + """ = %s
+    cmd = f"""
+    DELETE FROM {table_name}
+    WHERE {identifier_name} = %s
     """
     args = (identifier,)
     return database_write(cmd, args)
 
 
 def reset_info(subject_name, identifier_name, identifier, info_category, info):
-    cmd = """
-    UPDATE """ + subject_name + """s
-    SET """ + subject_name + """_""" + info_category + """ = %s
-    WHERE """ + identifier_name + """ = %s
+    cmd = f"""
+    UPDATE {subject_name}s
+    SET {subject_name}_{info_category} = %s
+    WHERE {identifier_name} = %s
     """
     args = (info, identifier)
     return database_write(cmd, args)
 
 
 def get_info(subject_name, identifier_name, identifier, info_category):
-    cmd = """
-    SELECT """ + subject_name + """_""" + info_category + """
-    FROM """ + subject_name + """s
-    WHERE """ + identifier_name + """ = %s
+    cmd = f"""
+    SELECT {subject_name}_{info_category}
+    FROM {subject_name}s
+    WHERE {identifier_name} = %s
     """
     args = (identifier,)
     return database_read(cmd, args)
 
 
 def get(table_name, identifier_name, identifier):
-    cmd = """
-    SELECT * FROM """ + table_name + """
-    WHERE """ + identifier_name + """ = %s
+    cmd = f"""
+    SELECT * FROM {table_name}
+    WHERE {identifier_name} = %s
     """
     args = (identifier,)
     return database_read(cmd, args, False)
 
 
+def join(table_name, reference_table_name, identifier_name, identifier, condition_cmd, condition_args):
+    cmd = f"""
+    SELECT t.*
+    FROM {table_name} t
+    JOIN {reference_table_name} u ON t.{identifier_name} = u.{identifier_name}
+    WHERE u.{identifier_name} = %s
+    """ + condition_cmd
+    args = (identifier,) + condition_args
+    return database_read(cmd, args, False)
+
+
 def list_all(table_name):
-    cmd = """
-    SELECT * FROM """ + table_name + """
+    cmd = f"""
+    SELECT * FROM {table_name}
     """
     return (get_list_head(table_name),) + database_read(cmd, (), False)
 
@@ -106,3 +117,8 @@ def list_info(table_name, identifier_name, identifier):
 
 def get_list_head(table_name):
     return tuple([results[0] for results in database_read('DESCRIBE ' + table_name, (), False)])
+
+
+def print_list(lis):
+    for item in lis:
+        print(item)

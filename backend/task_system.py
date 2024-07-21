@@ -10,7 +10,7 @@ class TaskStatus(str):
 
 
 class Task:
-    
+
     def __init__(self, user_email, **kwargs):
         self.id = kwargs.get('id', 0)
         self.user_email = user_email
@@ -23,7 +23,7 @@ class Task:
         self.deadline = kwargs.get('deadline', None)
         self.is_daily = kwargs.get('is_daily', 0)
         self.tag = kwargs.get('tag', None)
-    
+
     def __str__(self):
         return f'task_id: {self.id}\t' \
                f'user_email: {self.user_email}\t' \
@@ -58,13 +58,15 @@ def delete_task(*task_id):
 
 
 def reset_task_info(task_id, info_category, task_info):
-    # info_category: status, is_vital, title, content, create_time, deadline, complete_time
     return reset_info("task", "task_id", task_id, info_category, task_info)
 
 
 def get_task_info(task_id, info_category):
-    # info_category: status, is_vital, title, content, create_time, deadline, complete_time
     return get_info("task", "task_id", task_id, info_category)
+
+
+def get_task(task_id):
+    get("tasks", "task_id", task_id)
 
 
 def get_tasks(user_email, condition_cmd='', condition_args=()):
@@ -165,8 +167,3 @@ def get_task_objects(data):
                  start_time=line[6], end_time=line[7], deadline=line[8],
                  is_daily=line[9], tag=line[10]))
     return result
-
-
-def print_list(lis):
-    for item in lis:
-        print(item)

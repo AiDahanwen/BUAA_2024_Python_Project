@@ -43,9 +43,28 @@ def get_task_record(task_record_id):
     return get("task_records", "task_record_id", task_record_id)
 
 
-def get_task_record_objects(task_records):
+def _get_task_records_of_user_with_condition(user_email, condition_cmd='', condition_args=()):
+    return join("task_records", "users", "user_email", user_email, condition_cmd, condition_args)
+
+
+def get_task_record_objects_of_user(user_email):
+    return get_task_objects(_get_task_records_of_user_with_condition(user_email))
+
+
+def _get_task_records_of_task_with_condition(task_id, condition_cmd='', condition_args=()):
+    return join("task_records", "tasks", "task_id", task_id, condition_cmd, condition_args)
+
+
+def get_task_record_objects_of_task(task_id):
+    return _get_task_record_objects(_get_task_records_of_task_with_condition(task_id))
+
+
+def _get_task_record_objects(task_records):
     result = []
     for line in task_records:
         result.append(
             TaskRecord(Task(line[1], id=line[2]), task_record_id=line[0], task_record_complete_time=line[3]))
     return result
+
+
+print_list(get_task_record_objects_of_task(4))
