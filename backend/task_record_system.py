@@ -8,7 +8,7 @@ class TaskRecord:
     def __init__(self, task, **kwargs):
         self.task_record_id = kwargs.get('task_record_id', 0)
         self.user_email = task.user_email
-        self.task_id = task.id
+        self.task_id = task.task_id
         self.task_record_complete_time = kwargs.get('task_record_complete_time', datetime.now())
 
     def __str__(self):
@@ -46,8 +46,7 @@ def get_task_record_object(task_record_id):
 def _get_task_record_objects(task_records):
     result = []
     for line in task_records:
-        result.append(
-            TaskRecord(Task(line[1], id=line[2]), task_record_id=line[0], task_record_complete_time=line[3]))
+        result.append(TaskRecord(Task(line[1], task_id=line[2]), task_record_id=line[0], task_record_complete_time=line[3]))
     return result
 
 
