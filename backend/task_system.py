@@ -57,6 +57,7 @@ class Task:
         self.task_end_time = kwargs.get('task_end_time', datetime.now() + timedelta(days=10))
         self.task_duration_time = kwargs.get('task_duration_time', timedelta(hours=10))
         self.task_elapsed_time = kwargs.get('task_elapsed_time', 0)
+        self.task_complete_time = kwargs.get('task_complete_time', None)
 
     def __str__(self):
         return f'task_id: {self.task_id}\n' \
@@ -71,7 +72,8 @@ class Task:
                f'task_start_time: {self.task_start_time}\n' \
                f'task_end_time: {self.task_end_time}\n' \
                f'task_duration_time: {self.task_duration_time}\n' \
-               f'task_elapsed_time: {self.task_elapsed_time}\n'
+               f'task_elapsed_time: {self.task_elapsed_time}\n' \
+               f'task_complete_time: {self.task_complete_time}\n'
 
 
 # 增
@@ -100,6 +102,19 @@ def reset_task_info(task_id, info_category, task_info):
     return reset_info("task", "task_id", task_id, info_category, task_info)
 
 
+def reset_task(task):
+    cmd = """
+    UPDATE tasks
+    SET task_status = %s, task_vital = %s, task_title = %s, task_content = %s, task_tag = %s, \
+    task_start_time = %s, task_end_time = %s, task_duration_time = %s
+    WHERE task_id = %s
+    """
+    args = (
+        task.task_status, task.task_vital, task.task_title, task.task_content, task.task_tag, task.task_start_time,
+        task.task_end_time, task.task_duration_time, task.task_id)
+    return database_write(cmd, args)
+
+
 def add_elapsed_time(task_id, elapsed_time):
     cmd = """
     UPDATE tasks
@@ -126,7 +141,7 @@ def _get_task_objects(data):
             Task(line[1], task_id=line[0], daily_task_id=line[2], task_status=line[3], task_vital=line[4],
                  task_title=line[5], task_content=line[6], task_tag=line[7], task_is_daily=line[8],
                  task_start_time=line[9], task_end_time=line[10], task_duration_time=line[11],
-                 task_elapsed_time=line[12]))
+                 task_elapsed_time=line[12], task_complete_time=line[13]))
     return result
 
 
@@ -160,19 +175,65 @@ def get_task_objects_of_user_with_status_in_date(user_email, some_date, status):
     return _get_task_objects_of_user_with_condition(user_email, condition_cmd, (some_date, some_date, status))
 
 
-def modify_task(task):
-    cmd = """
-    UPDATE tasks
-    SET task_status = %s, task_vital = %s, task_title = %s, task_content = %s, task_tag = %s, \
-    task_start_time = %s, task_end_time = %s, task_duration_time = %s
-    WHERE task_id = %s
-    """
-    args = (
-        task.task_status, task.task_vital, task.task_title, task.task_content, task.task_tag, task.task_start_time,
-        task.task_end_time, task.task_duration_time, task.task_id)
-    return database_write(cmd, args)
+def _get_time(task_time_period, task):
+    # 上午: 6:00 - 12:00; 下午: 12:00 - 18:00; 晚上: 18:00 - 23:30
+    if task_time_period == TaskTimePeriod.MORNING:
+        time_period_start = datetime.combine(date.today(), time(hour=6))
+        time_period_end = datetime.combine(date.today(), time(hour=12))
+    elif task_time_period == TaskTimePeriod.AFTERNOON:
+        time_period_start = datetime.combine(date.today(), time(hour=12))
+        time_period_end = datetime.combine(date.today(), time(hour=18))
+    else:
+        time_period_start = datetime.combine(date.today(), time(hour=18))
+        time_period_end = datetime.combine(date.today(), time(hour=23, minute=30))
+
+    start = max([time_period_start, task.task_start_time])
+    end = min([time_period_end, task.task_end_time])
+
+    return max([min([end - start, task.task_duration_time - task.task_elapsed_time]), timedelta(0)])
 
 
+def get_task_schedule_objects(user_email, morning_time, afternoon_time, evening_time):
+    # 处理时间
+    morning_time = timedelta(hours=morning_time)
+    afternoon_time = timedelta(hours=afternoon_time)
+    evening_time = timedelta(hours=evening_time)
+    current_date = date.today()
+
+    # 获取任务列表
+    task_objects_list = get_task_objects_of_user_with_status_in_date(user_email, current_date, TaskStatus.UNDERWAY) + \
+                        get_task_objects_of_user_with_status_in_date(user_email, current_date, TaskStatus.PENDING)
+    task_objects_list.sort(key=lambda x: (x.task_end_time, -x.task_vital), reverse=True)
+
+    # 规划日程
+    task_schedule_list = []
+    while (morning_time or afternoon_time or evening_time) and task_objects_list:
+        task = task_objects_list.pop()
+
+        task_time = min([_get_time(TaskTimePeriod.MORNING, task), morning_time])
+        if task_time:
+            task_schedule_list.append(TaskSchedule(task, TaskTimePeriod.MORNING, task_time))
+            task.task_elapsed_time += task_time
+            morning_time -= task_time
+
+        task_time = min([_get_time(TaskTimePeriod.AFTERNOON, task), afternoon_time])
+        if task_time:
+            task_schedule_list.append(TaskSchedule(task, TaskTimePeriod.AFTERNOON, task_time))
+            task.task_elapsed_time += task_time
+            afternoon_time -= task_time
+
+        task_time = min([_get_time(TaskTimePeriod.EVENING, task), evening_time])
+        if task_time:
+            task_schedule_list.append(TaskSchedule(task, TaskTimePeriod.EVENING, task_time))
+            task.task_elapsed_time += task_time
+            evening_time -= task_time
+
+    # 排序
+    task_schedule_list.sort(key=lambda x: x.task_time_period)
+    return task_schedule_list
+
+
+# TODO: 未修改
 def get_ordered_tasks_date(user_email, date):
     tasks_date = get_task_objects_of_user_in_date(user_email, date)
     return sorted(tasks_date, key=lambda x: x.task_start_time)
@@ -219,64 +280,3 @@ def get_task_completed_date(user_email, date):
     task_num = len(tasks)
     duration_sum = sum([(_.task_end_time - _.task_start_time).total_seconds() / 3600 for _ in tasks])
     return task_num, duration_sum
-
-
-def get_task_schedule_objects(user_email, morning_time, afternoon_time, evening_time):
-    # 处理时间
-    morning_time = timedelta(hours=morning_time)
-    afternoon_time = timedelta(hours=afternoon_time)
-    evening_time = timedelta(hours=evening_time)
-    current_date = date.today()
-
-    # 获取任务列表
-    task_objects_list = get_task_objects_of_user_with_status_in_date(user_email, current_date, TaskStatus.UNDERWAY) + \
-                        get_task_objects_of_user_with_status_in_date(user_email, current_date, TaskStatus.PENDING)
-    task_objects_list.sort(key=lambda x: (x.task_end_time, -x.task_vital), reverse=True)
-
-    # 规划日程
-    task_schedule_list = []
-    while (morning_time or afternoon_time or evening_time) and task_objects_list:
-        task = task_objects_list.pop()
-
-        task_time = min([_get_time(TaskTimePeriod.MORNING, task), morning_time])
-        if task_time:
-            task_schedule_list.append(TaskSchedule(task, TaskTimePeriod.MORNING, task_time))
-            task.task_elapsed_time += task_time
-            morning_time -= task_time
-
-        task_time = min([_get_time(TaskTimePeriod.AFTERNOON, task), afternoon_time])
-        if task_time:
-            task_schedule_list.append(TaskSchedule(task, TaskTimePeriod.AFTERNOON, task_time))
-            task.task_elapsed_time += task_time
-            afternoon_time -= task_time
-
-        task_time = min([_get_time(TaskTimePeriod.EVENING, task), evening_time])
-        if task_time:
-            task_schedule_list.append(TaskSchedule(task, TaskTimePeriod.EVENING, task_time))
-            task.task_elapsed_time += task_time
-            evening_time -= task_time
-
-    # 排序
-    task_schedule_list.sort(key=lambda x: x.task_time_period)
-    return task_schedule_list
-
-
-def _get_time(task_time_period, task):
-    # 上午: 6:00 - 12:00; 下午: 12:00 - 18:00; 晚上: 18:00 - 23:30
-    if task_time_period == TaskTimePeriod.MORNING:
-        time_period_start = datetime.combine(date.today(), time(hour=6))
-        time_period_end = datetime.combine(date.today(), time(hour=12))
-    elif task_time_period == TaskTimePeriod.AFTERNOON:
-        time_period_start = datetime.combine(date.today(), time(hour=12))
-        time_period_end = datetime.combine(date.today(), time(hour=18))
-    else:
-        time_period_start = datetime.combine(date.today(), time(hour=18))
-        time_period_end = datetime.combine(date.today(), time(hour=23, minute=30))
-
-    start = max([time_period_start, task.task_start_time])
-    end = min([time_period_end, task.task_end_time])
-
-    return max([min([end - start, task.task_duration_time - task.task_elapsed_time]), timedelta(0)])
-
-
-print_list(get_task_schedule_objects("test", 1, 1, 1))
