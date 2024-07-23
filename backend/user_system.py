@@ -1,5 +1,6 @@
 import bcrypt
 from backend.database import *
+from backend.database import *
 import oss2
 
 
@@ -88,3 +89,6 @@ def modify_user_avatar(user_email, avatar_url):
     bucket.put_object_from_file(temp, avatar_url)
     avatar_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
     reset_user_info(user_email, "avatar_url", avatar_url)
+# print(delete_user('2895227477@qq.com'))
+# print(add_user('wt', '2895227477@qq.com', '12345678'))
+print(reset_user_info('2895227477@qq.com', '', ''))

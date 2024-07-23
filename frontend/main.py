@@ -1,9 +1,14 @@
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QCursor
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QWidget, QHBoxLayout, QCheckBox, QPushButton, \
     QLabel, QListWidgetItem
 from PyQt5 import QtCore, Qt
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtCore import Qt
 
 from frontend.login_new import *
@@ -22,6 +27,8 @@ from backend.user_system import *
 from backend.task_system import *
 
 import sys
+import res
+import resource
 
 user_now = "2895227477@qq.com"
 morning = 0
@@ -86,6 +93,23 @@ class LoginWindow(QMainWindow):
     def forget_password(self):
         self.win = FindWindow()
 
+    def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
+        if event.button() == Qt.LeftButton:
+            self.m_flag = True
+            self.m_Position = event.globalPos() - self.pos()  # 获取鼠标相对窗口的位置
+            event.accept()
+            self.setCursor(QCursor(Qt.OpenHandCursor))  # 更改鼠标图标
+
+    def mouseMoveEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        if Qt.LeftButton and self.m_flag:
+            self.move(QMouseEvent.globalPos() - self.m_Position)  # 更改窗口位置
+            QMouseEvent.accept()
+
+    def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        self.m_flag = False
+        self.setCursor(QCursor(Qt.ArrowCursor))
+
+
 
 class SignupWindow(QMainWindow):
     def __init__(self):
@@ -145,6 +169,22 @@ class SignupWindow(QMainWindow):
             else:
                 self.ui.stackedWidget.setCurrentIndex(2)
 
+    def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
+        if event.button() == Qt.LeftButton:
+            self.m_flag = True
+            self.m_Position = event.globalPos() - self.pos()  # 获取鼠标相对窗口的位置
+            event.accept()
+            self.setCursor(QCursor(Qt.OpenHandCursor))  # 更改鼠标图标
+
+    def mouseMoveEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        if Qt.LeftButton and self.m_flag:
+            self.move(QMouseEvent.globalPos() - self.m_Position)  # 更改窗口位置
+            QMouseEvent.accept()
+
+    def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        self.m_flag = False
+        self.setCursor(QCursor(Qt.ArrowCursor))
+
 
 class FindWindow(QMainWindow):
     def __init__(self):
@@ -200,6 +240,21 @@ class FindWindow(QMainWindow):
                 self.close()
             else:
                 self.ui.stackedWidget.setCurrentIndex(2)
+    def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
+        if event.button() == Qt.LeftButton:
+            self.m_flag = True
+            self.m_Position = event.globalPos() - self.pos()  # 获取鼠标相对窗口的位置
+            event.accept()
+            self.setCursor(QCursor(Qt.OpenHandCursor))  # 更改鼠标图标
+
+    def mouseMoveEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        if Qt.LeftButton and self.m_flag:
+            self.move(QMouseEvent.globalPos() - self.m_Position)  # 更改窗口位置
+            QMouseEvent.accept()
+
+    def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        self.m_flag = False
+        self.setCursor(QCursor(Qt.ArrowCursor))
 
 
 class AddTaskWindow(QMainWindow):
@@ -296,6 +351,22 @@ class AddTaskWindow(QMainWindow):
             add_task(task)
             self.close()
 
+    def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
+        if event.button() == Qt.LeftButton:
+            self.m_flag = True
+            self.m_Position = event.globalPos() - self.pos()  # 获取鼠标相对窗口的位置
+            event.accept()
+            self.setCursor(QCursor(Qt.OpenHandCursor))  # 更改鼠标图标
+
+    def mouseMoveEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        if Qt.LeftButton and self.m_flag:
+            self.move(QMouseEvent.globalPos() - self.m_Position)  # 更改窗口位置
+            QMouseEvent.accept()
+
+    def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        self.m_flag = False
+        self.setCursor(QCursor(Qt.ArrowCursor))
+
 
 class FreeTimeWindow(QMainWindow):
     def __init__(self):
@@ -313,7 +384,24 @@ class FreeTimeWindow(QMainWindow):
         morning = self.ui.doubleSpinBox_free_morning.value()
         afternoon = self.ui.doubleSpinBox_free_afternoon.value()
         night = self.ui.doubleSpinBox_free_night.value()
+        # 保存空闲时间
         self.close()
+
+    def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
+        if event.button() == Qt.LeftButton:
+            self.m_flag = True
+            self.m_Position = event.globalPos() - self.pos()  # 获取鼠标相对窗口的位置
+            event.accept()
+            self.setCursor(QCursor(Qt.OpenHandCursor))  # 更改鼠标图标
+
+    def mouseMoveEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        if Qt.LeftButton and self.m_flag:
+            self.move(QMouseEvent.globalPos() - self.m_Position)  # 更改窗口位置
+            QMouseEvent.accept()
+
+    def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        self.m_flag = False
+        self.setCursor(QCursor(Qt.ArrowCursor))
 
 
 class CalendarTaskWindow(QMainWindow):
@@ -453,6 +541,22 @@ class ModifyPersonWindow(QMainWindow):
                 self.ui.stackedWidget.setCurrentIndex(2)
         self.close()
 
+    def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
+        if event.button() == Qt.LeftButton:
+            self.m_flag = True
+            self.m_Position = event.globalPos() - self.pos()  # 获取鼠标相对窗口的位置
+            event.accept()
+            self.setCursor(QCursor(Qt.OpenHandCursor))  # 更改鼠标图标
+
+    def mouseMoveEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        if Qt.LeftButton and self.m_flag:
+            self.move(QMouseEvent.globalPos() - self.m_Position)  # 更改窗口位置
+            QMouseEvent.accept()
+
+    def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        self.m_flag = False
+        self.setCursor(QCursor(Qt.ArrowCursor))
+
 
 class ImageLoader(QObject):
     def __init__(self, label, parent=None):
@@ -478,6 +582,22 @@ class ImageLoader(QObject):
         request = QNetworkRequest(QUrl(url))
         self.manager.get(request)
         self.manager.finished.connect(self.replyFinished)
+
+    def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
+        if event.button() == Qt.LeftButton:
+            self.m_flag = True
+            self.m_Position = event.globalPos() - self.pos()  # 获取鼠标相对窗口的位置
+            event.accept()
+            self.setCursor(QCursor(Qt.OpenHandCursor))  # 更改鼠标图标
+
+    def mouseMoveEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        if Qt.LeftButton and self.m_flag:
+            self.move(QMouseEvent.globalPos() - self.m_Position)  # 更改窗口位置
+            QMouseEvent.accept()
+
+    def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        self.m_flag = False
+        self.setCursor(QCursor(Qt.ArrowCursor))
 
 
 class CustomListItem_Todo(QWidget):
@@ -549,6 +669,7 @@ class MainWindow(QMainWindow):
         image_loader.loadImage(get_user_info(user_now, 'avatar_url'))  # 替换为你的图片URL
         self.ui.label_user_name.setText(get_user_info(user_now, 'name'))
 
+        # self.todolist()
         self.ui.listWidget.itemClicked.connect(lambda: self.change_page(self.ui.listWidget.currentRow()))
         self.ui.listWidget_2.itemClicked.connect(lambda: self.change_page(self.ui.listWidget_2.currentRow() + 3))
         self.ui.pushButton_M_addtask.clicked.connect(lambda: self.add_task())
@@ -659,6 +780,22 @@ class MainWindow(QMainWindow):
         self.close()
         self.login = LoginWindow()
         user_now = ''
+
+    def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
+        if event.button() == Qt.LeftButton:
+            self.m_flag = True
+            self.m_Position = event.globalPos() - self.pos()  # 获取鼠标相对窗口的位置
+            event.accept()
+            self.setCursor(QCursor(Qt.OpenHandCursor))  # 更改鼠标图标
+
+    def mouseMoveEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        if Qt.LeftButton and self.m_flag:
+            self.move(QMouseEvent.globalPos() - self.m_Position)  # 更改窗口位置
+            QMouseEvent.accept()
+
+    def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
+        self.m_flag = False
+        self.setCursor(QCursor(Qt.ArrowCursor))
 
 
 if __name__ == '__main__':

@@ -16,4 +16,7 @@
     <file>icons/-NotebookDotLine.png</file>
     <file>icons/TargetArrow.png</file>
   </qresource>
+  <qresource prefix="pictures">
+    <file>pictures/login_background.jpg</file>
+  </qresource>
 </RCC>
