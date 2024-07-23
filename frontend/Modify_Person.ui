@@ -17,27 +17,23 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>220</y>
-      <width>120</width>
-      <height>80</height>
+      <x>210</x>
+      <y>70</y>
+      <width>401</width>
+      <height>441</height>
      </rect>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-   </widget>
-   <widget class="QFrame" name="frame_3">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>49</y>
-      <width>481</width>
-      <height>451</height>
-     </rect>
+    <property name="minimumSize">
+     <size>
+      <width>361</width>
+      <height>381</height>
+     </size>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -48,59 +44,134 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>135</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>135</width>
+       <height>31</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;Agency FB&quot;;</string>
+     </property>
+     <property name="text">
+      <string>修改密码</string>
+     </property>
+    </widget>
     <widget class="QFrame" name="frame_2">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>100</y>
-       <width>371</width>
-       <height>321</height>
+       <x>61</x>
+       <y>71</y>
+       <width>231</width>
+       <height>291</height>
       </rect>
      </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>10</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>231</width>
+       <height>291</height>
+      </size>
+     </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 15pt &quot;微软雅黑&quot;;
-background-color: rgb(255, 255, 255);</string>
+      <string notr="true">QPushButton:pressed{
+	padding-top:5px;
+	padding-left:5px;
+}</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>20</number>
+      </property>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
-        <property name="placeholderText">
-         <string>用户名：</string>
+       <widget class="QLineEdit" name="lineEdit_modify_email_address">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
         <property name="placeholderText">
          <string>邮箱：</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_3">
-        <property name="text">
-         <string/>
+       <widget class="QLineEdit" name="lineEdit_modify_check">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
         </property>
         <property name="placeholderText">
-         <string>个性签名：</string>
+         <string>验证码：</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_4">
+       <widget class="QLineEdit" name="lineEdit_modify_password1">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
         <property name="placeholderText">
          <string>密码：</string>
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton_P_modify">
-        <property name="styleSheet">
-         <string notr="true">QPushButton:pressed{
-	padding-left:5px;
-	padding-top:5px;
-}</string>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_modify_password2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
         </property>
+        <property name="placeholderText">
+         <string>确认密码：</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QPushButton" name="pushButton_modify_ensure">
         <property name="text">
          <string>确认</string>
         </property>
@@ -108,34 +179,23 @@ background-color: rgb(255, 255, 255);</string>
       </item>
      </layout>
     </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>40</y>
-       <width>281</width>
-       <height>52</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;微软雅黑&quot;;</string>
-     </property>
-     <property name="text">
-      <string>修改个人信息</string>
-     </property>
-    </widget>
     <widget class="QFrame" name="frame_10">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>310</x>
        <y>0</y>
-       <width>71</width>
+       <width>91</width>
        <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
 	border:none;
+}
+
+QPushButton:hover{
+	padding-top:5px;
+	padding-left:5px;
 }</string>
      </property>
      <property name="frameShape">
@@ -146,40 +206,227 @@ background-color: rgb(255, 255, 255);</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QPushButton" name="pushButton_8">
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover{
-	padding-left:5px;
-	padding-top:5px;
-}</string>
-        </property>
+       <widget class="QPushButton" name="pushButton">
         <property name="text">
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="res.qrc">
+         <iconset>
           <normaloff>:/icons/icons/24gl-minimization.png</normaloff>:/icons/icons/24gl-minimization.png</iconset>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_9">
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover{
-	padding-left:5px;
-	padding-top:5px;
-}</string>
-        </property>
+       <widget class="QPushButton" name="pushButton_2">
         <property name="text">
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="res.qrc">
+         <iconset>
           <normaloff>:/icons/icons/Close.png</normaloff>:/icons/icons/Close.png</iconset>
         </property>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QPushButton" name="pushButton_modify_send">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>90</y>
+       <width>75</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton:pressed{
+	padding-left:5px;
+	padding-top:5px;
+}</string>
+     </property>
+     <property name="text">
+      <string>发送验证码</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_3">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>360</y>
+       <width>231</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>10</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>231</width>
+       <height>31</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>229</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>229</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="currentIndex">
+       <number>4</number>
+      </property>
+      <widget class="QWidget" name="page_void"/>
+      <widget class="QWidget" name="page_email_format_error">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>211</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>邮箱格式错误！</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_check_invalid">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="minimumSize">
+           <size>
+            <width>211</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>验证码输入错误！</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_code_inconsistent">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="minimumSize">
+           <size>
+            <width>211</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>两次密码输入不一致！</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_check_error">
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="minimumSize">
+           <size>
+            <width>211</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>验证码发送失败，请重试！</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_not_blank">
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="minimumSize">
+           <size>
+            <width>211</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>密码不能为空！</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page">
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>211</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>此邮箱未注册！</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -188,38 +435,5 @@ background-color: rgb(255, 255, 255);</string>
  <resources>
   <include location="res.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>pushButton_8</sender>
-   <signal>clicked()</signal>
-   <receiver>Modify_Person</receiver>
-   <slot>showMinimized()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>634</x>
-     <y>69</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>572</x>
-     <y>17</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_9</sender>
-   <signal>clicked()</signal>
-   <receiver>Modify_Person</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>665</x>
-     <y>68</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>722</x>
-     <y>18</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

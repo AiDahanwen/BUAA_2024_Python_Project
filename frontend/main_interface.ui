@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>946</width>
+    <width>1134</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,8 +17,8 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>30</y>
+      <x>220</x>
+      <y>20</y>
       <width>801</width>
       <height>521</height>
      </rect>
@@ -56,7 +56,7 @@
       <string notr="true">background-color: rgb(236, 236, 236);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_5">
       <widget class="QPushButton" name="pushButton">
@@ -75,7 +75,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resource.qrc">
+        <iconset>
          <normaloff>:/resource/icons/咖啡.png</normaloff>:/resource/icons/咖啡.png</iconset>
        </property>
        <property name="iconSize">
@@ -217,7 +217,7 @@ border-radius:10px;</string>
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="resource.qrc">
+               <iconset>
                 <normaloff>:/resource/icons/加.png</normaloff>:/resource/icons/加.png</iconset>
               </property>
               <property name="iconSize">
@@ -268,17 +268,26 @@ border-radius:10px;</string>
                  <widget class="QLabel" name="label_10">
                   <property name="geometry">
                    <rect>
-                    <x>50</x>
+                    <x>20</x>
                     <y>170</y>
                     <width>221</width>
                     <height>20</height>
                    </rect>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>221</width>
+                    <height>20</height>
+                   </size>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
                   </property>
                   <property name="text">
                    <string>点击右上角加号添加今日任务\^o^/</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </widget>
@@ -396,6 +405,12 @@ border-radius:10px;</string>
                   <height>23</height>
                  </rect>
                 </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>31</width>
+                  <height>23</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton:hover{
 	padding-left:5px;
@@ -406,7 +421,7 @@ border-radius:10px;</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="resource.qrc">
+                 <iconset>
                   <normaloff>:/resource/icons/调度管理.png</normaloff>:/resource/icons/调度管理.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -414,6 +429,25 @@ border-radius:10px;</string>
                   <width>20</width>
                   <height>20</height>
                  </size>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="pushButton_M_freetime">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>75</width>
+                  <height>23</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton:hover{
+	padding-left:5px;
+	padding-top:5px;
+}</string>
+                </property>
+                <property name="text">
+                 <string>空闲时间</string>
                 </property>
                </widget>
               </widget>
@@ -453,6 +487,24 @@ border-radius:10px;</string>
                   <property name="currentIndex">
                    <number>0</number>
                   </property>
+                  <widget class="QWidget" name="page_12">
+                   <widget class="QLabel" name="label_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>20</x>
+                      <y>100</y>
+                      <width>261</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string>点击左上角按钮添加今日空闲时间ヾ(•ω•`)o</string>
+                    </property>
+                   </widget>
+                  </widget>
                   <widget class="QWidget" name="page_8">
                    <widget class="QLabel" name="label_11">
                     <property name="geometry">
@@ -463,11 +515,20 @@ border-radius:10px;</string>
                       <height>20</height>
                      </rect>
                     </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>241</width>
+                      <height>20</height>
+                     </size>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
                     </property>
                     <property name="text">
                      <string>点击右上角按钮进行今日任务调度(●'◡'●)</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </widget>
@@ -610,17 +671,26 @@ border-radius:10px;</string>
               <widget class="QLabel" name="label_12">
                <property name="geometry">
                 <rect>
-                 <x>20</x>
+                 <x>10</x>
                  <y>190</y>
                  <width>271</width>
                  <height>20</height>
                 </rect>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>271</width>
+                 <height>20</height>
+                </size>
                </property>
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
                </property>
                <property name="text">
                 <string>选择左侧任意日期以查看当日任务情况♪(´▽｀)</string>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
                </property>
               </widget>
              </widget>
@@ -672,7 +742,7 @@ border-radius:10px;</string>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <property name="spacing">
-           <number>0</number>
+           <number>6</number>
           </property>
           <item>
            <widget class="QFrame" name="frame_6">
@@ -752,21 +822,21 @@ border-radius:10px;</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
-                 <widget class="QLabel" name="label_13">
+                 <widget class="QLabel" name="label_Sta_accumulate_sumofnum">
                   <property name="text">
                    <string>任务个数：</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_17">
+                 <widget class="QLabel" name="label_Sta_accumulate_sumoftime">
                   <property name="text">
                    <string>时长总数：</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_18">
+                 <widget class="QLabel" name="label_Sta_accumulate_averagetime">
                   <property name="text">
                    <string>日均时长：</string>
                   </property>
@@ -856,14 +926,14 @@ border-radius:10px;</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_11">
                 <item>
-                 <widget class="QLabel" name="label_19">
+                 <widget class="QLabel" name="label_Sta_everyday_sumofnum">
                   <property name="text">
                    <string>任务总数：</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_20">
+                 <widget class="QLabel" name="label_Sta_everyday_sumoftime">
                   <property name="text">
                    <string>时长总数：</string>
                   </property>
@@ -983,44 +1053,12 @@ border-radius:10px;</string>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton_5">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>20</y>
-          <width>91</width>
-          <height>81</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border:none;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/resource/icons/1_微笑.png</normaloff>:/resource/icons/1_微笑.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>50</width>
-          <height>50</height>
-         </size>
-        </property>
-       </widget>
        <widget class="QFrame" name="frame">
         <property name="geometry">
          <rect>
           <x>50</x>
           <y>110</y>
-          <width>371</width>
+          <width>501</width>
           <height>251</height>
          </rect>
         </property>
@@ -1029,35 +1067,91 @@ border-radius:10px;</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>用户名：</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <widget class="QLabel" name="label_My_name">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>5</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>用户名：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_modify_name">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>8</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>邮箱：</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <widget class="QLabel" name="label_My_name_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>5</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>邮箱：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_my_emali_address">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>8</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>个性签名：</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_17">
+           <item>
+            <widget class="QLabel" name="label_My_name_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>5</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>个性签名：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_modify_motto">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>8</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
-         <item>
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>密码：</string>
-           </property>
-          </widget>
-         </item>
-         <item alignment="Qt::AlignHCenter">
-          <widget class="QPushButton" name="pushButton_P_modify">
+         <item alignment="Qt::AlignLeft">
+          <widget class="QPushButton" name="pushButton_P_modify_password">
            <property name="styleSheet">
             <string notr="true">QPushButton:pressed{
 	padding-left:5px;
@@ -1065,83 +1159,39 @@ border-radius:10px;</string>
 }</string>
            </property>
            <property name="text">
-            <string>修改个人信息</string>
+            <string>修改密码</string>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>40</y>
-       <width>141</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <property name="spacing">
-       <number>5</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border:none;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/resource/icons/1_微笑.png</normaloff>:/resource/icons/1_微笑.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>10</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+       <widget class="QLabel" name="label_my_avatar">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>10</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
         </property>
         <property name="minimumSize">
          <size>
           <width>100</width>
-          <height>30</height>
+          <height>100</height>
          </size>
         </property>
-        <property name="styleSheet">
-         <string notr="true">font: 16pt &quot;微软雅黑&quot;;</string>
-        </property>
         <property name="text">
-         <string>用户名</string>
+         <string/>
         </property>
        </widget>
-      </item>
-     </layout>
+      </widget>
+     </widget>
     </widget>
     <widget class="QListWidget" name="listWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>91</y>
+       <y>150</y>
        <width>151</width>
        <height>241</height>
       </rect>
@@ -1153,7 +1203,7 @@ border-radius:10px;</string>
       <enum>QListView::Static</enum>
      </property>
      <property name="spacing">
-      <number>8</number>
+      <number>15</number>
      </property>
      <item>
       <property name="text">
@@ -1190,9 +1240,9 @@ border-radius:10px;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>430</y>
+       <y>410</y>
        <width>111</width>
-       <height>81</height>
+       <height>101</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1200,7 +1250,7 @@ border-radius:10px;</string>
 border-bottom-left:15px;</string>
      </property>
      <property name="spacing">
-      <number>8</number>
+      <number>15</number>
      </property>
      <item>
       <property name="text">
@@ -1252,63 +1302,128 @@ border-bottom-left:15px;</string>
       </item>
      </layout>
     </widget>
-   </widget>
-   <widget class="QFrame" name="frame_10">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>30</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
+    <widget class="QFrame" name="frame_21">
+     <property name="geometry">
+      <rect>
+       <x>-1</x>
+       <y>40</y>
+       <width>160</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>160</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_avatar">
+        <property name="minimumSize">
+         <size>
+          <width>79</width>
+          <height>78</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_user_name">
+        <property name="minimumSize">
+         <size>
+          <width>79</width>
+          <height>78</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QFrame" name="frame_10">
+     <property name="geometry">
+      <rect>
+       <x>680</x>
+       <y>0</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
 	border:none;
 }</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QPushButton" name="pushButton_8">
-       <property name="styleSheet">
-        <string notr="true">QPushButton:hover{
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="pushButton_8">
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover{
 	padding-left:5px;
 	padding-top:5px;
 }</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="res.qrc">
-         <normaloff>:/icons/icons/24gl-minimization.png</normaloff>:/icons/icons/24gl-minimization.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_9">
-       <property name="styleSheet">
-        <string notr="true">QPushButton:hover{
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>:/icons/icons/24gl-minimization.png</normaloff>:/icons/icons/24gl-minimization.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_9">
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover{
 	padding-left:5px;
 	padding-top:5px;
 }</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="res.qrc">
-         <normaloff>:/icons/icons/Close.png</normaloff>:/icons/icons/Close.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>:/icons/icons/Close.png</normaloff>:/icons/icons/Close.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
