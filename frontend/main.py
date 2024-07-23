@@ -1,7 +1,8 @@
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5 import QtCore
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PyQt5 import QtCore, Qt
+from PyQt5.QtCore import Qt
 
 from frontend.login_new import *
 from frontend.Modify_Person import *
@@ -404,10 +405,13 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_M_schedule.clicked.connect(lambda: self.schedule())
         self.ui.pushButton_M_freetime.clicked.connect(lambda: self.provide_free_time())
         self.ui.calendarWidget.clicked.connect(lambda: self.calendar_click())
+        self.ui.pushButton_modify_avatar.clicked.connect(lambda: self.modify_avatar())
 
         self.ui.lineEdit_modify_motto.setText(get_user_info(user_now, 'signature'))
         self.ui.lineEdit_modify_name.setText(get_user_info(user_now, 'name'))
         self.ui.label_my_emali_address.setText(user_now)
+        image_loader = ImageLoader(self.ui.label_user_avatar, self)
+        image_loader.loadImage(get_user_info(user_now, 'avatar_url'))
         self.ui.lineEdit_modify_name.textChanged.connect(lambda: self.modify_name())
         self.ui.lineEdit_modify_motto.textChanged.connect(lambda: self.modify_motto())
 
@@ -456,8 +460,8 @@ class MainWindow(QMainWindow):
 
     def calendar_click(self):
         self.ui.stackedWidget_3.setCurrentIndex(1)
-        date = self.ui.calendarWidget.selectedDate().toPyDate()
-        task_list = get_ordered_tasks_date(user_now, date)
+        current_date = self.ui.calendarWidget.selectedDate().toPyDate()
+        task_list = get_ordered_tasks_date(user_now, current_date)
         print_list(task_list)
 
     def modify_person(self):
@@ -471,6 +475,21 @@ class MainWindow(QMainWindow):
     def modify_motto(self):
         new_motto = self.ui.lineEdit_modify_motto.text()
         reset_user_info(user_now, 'signature', new_motto)
+
+    def modify_avatar(self):
+        options = QFileDialog.Options()
+        file_path, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
+                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
+        if file_path:
+            pixmap = QtGui.QPixmap(file_path)
+            if not pixmap.isNull():
+                self.ui.label_user_avatar.setPixmap(
+                    pixmap.scaled(self.ui.label_user_avatar.width(), self.ui.label_user_avatar.height(),
+                                  Qt.KeepAspectRatio, Qt.SmoothTransformation))
+                modify_user_avatar(user_now, file_path)
+                self.ui.label_avatar.setPixmap(
+                    pixmap.scaled(self.ui.label_user_avatar.width(), self.ui.label_user_avatar.height(),
+                                  Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
     def log_out(self):
         global user_now

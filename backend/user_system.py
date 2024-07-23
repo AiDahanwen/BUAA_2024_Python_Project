@@ -1,21 +1,23 @@
 import bcrypt
-from database import *
+from backend.database import *
+import oss2
 
 
 def gen_hash_password(password):
     salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+    hashed_password = bcrypt.hashpw(password.encode("utf-8"), salt)
     return salt, hashed_password
 
 
 def get_hash_password(password, salt):
-    return bcrypt.hashpw(password.encode('utf-8'), salt)
+    return bcrypt.hashpw(password.encode("utf-8"), salt)
 
 
 def reset_user_password(user_email, user_password):
     salt, user_password_hash = gen_hash_password(user_password)
-    return (reset_user_info(user_email, "password_hash", user_password_hash)
-            and reset_user_info(user_email, "hash_salt", salt))
+    return reset_user_info(
+        user_email, "password_hash", user_password_hash
+    ) and reset_user_info(user_email, "hash_salt", salt)
 
 
 def is_user_password_correct(user_email, user_password):
@@ -68,6 +70,21 @@ def list_user_info(user_email):
     return list_info("users", "user_email", user_email)
 
 
-# print(delete_user('2895227477@qq.com'))
-# print(add_user('wt', '2895227477@qq.com', '12345678'))
-print(reset_user_info('2895227477@qq.com', ''))
+# 填写RAM用户的访问密钥（AccessKey ID和AccessKey Secret）。
+accessKeyId = "LTAI5tNicQ2EWpzvo7YAYB7D"
+accessKeySecret = "UvT8HCUfLb8Y8Vu2hPgSADdZyNmQCV"
+# 使用代码嵌入的RAM用户的访问密钥配置访问凭证。
+auth = oss2.Auth(accessKeyId, accessKeySecret)
+# 填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
+endpoint = "https://oss-cn-beijing.aliyuncs.com"
+
+# 填写Bucket名称。
+bucket = oss2.Bucket(auth, endpoint, "foolish-han")
+
+
+def modify_user_avatar(user_email, avatar_url):
+    avatar_name = avatar_url.split("/")[-1]
+    temp = str(user_email) + "/" + avatar_name
+    bucket.put_object_from_file(temp, avatar_url)
+    avatar_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
+    reset_user_info(user_email, "avatar_url", avatar_url)
