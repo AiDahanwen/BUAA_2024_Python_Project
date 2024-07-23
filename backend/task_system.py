@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, date, time
 from enum import Enum
 
-from database import *
+from backend.database import *
 
 
 class TaskStatus(str):
@@ -15,6 +15,15 @@ class TaskVital(int):
     TRIVIAL = 0
     NORMAL = 1
     CRUCIAL = 2
+
+
+def get_task_vital(task_vital_str):
+    if task_vital_str == '不重要':
+        return TaskVital.TRIVIAL
+    elif task_vital_str == '一般重要':
+        return TaskVital.NORMAL
+    else:
+        return TaskVital.CRUCIAL
 
 
 class TaskTimePeriod(Enum):
@@ -241,7 +250,7 @@ def _get_task_objects(data):
 
 
 def _get_task_objects_of_user_with_condition(
-    user_email, condition_cmd="", condition_args=()
+        user_email, condition_cmd="", condition_args=()
 ):
     update_tasks(user_email)
     return _get_task_objects(
@@ -446,7 +455,7 @@ def delete_daily_task(*daily_task_id):
 
 
 def _get_daily_task_objects_of_user_with_condition(
-    user_email, condition_cmd="", condition_args=()
+        user_email, condition_cmd="", condition_args=()
 ):
     return _get_daily_task_objects(
         join(

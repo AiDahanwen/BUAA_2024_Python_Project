@@ -1,5 +1,5 @@
 import bcrypt
-from database import *
+from backend.database import *
 
 
 def gen_hash_password(password):
@@ -70,4 +70,4 @@ def list_user_info(user_email):
 
 # print(delete_user('2895227477@qq.com'))
 # print(add_user('wt', '2895227477@qq.com', '12345678'))
-print(reset_user_info('2895227477@qq.com', ''))
+#print(reset_user_info('2895227477@qq.com', ''))

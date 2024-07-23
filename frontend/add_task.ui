@@ -546,30 +546,43 @@
          <property name="leftMargin">
           <number>0</number>
          </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
          <item>
-          <widget class="QLabel" name="label_7">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-             <horstretch>1</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>是否重要：</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_Add_is_important">
+          <widget class="QComboBox" name="comboBox_important">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>10</horstretch>
+             <horstretch>5</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="text">
-            <string>是</string>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
            </property>
+           <item>
+            <property name="text">
+             <string>请选择重要等级</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>不重要</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>一般重要</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>特别重要</string>
+            </property>
+           </item>
           </widget>
          </item>
         </layout>
@@ -692,7 +705,7 @@
       <rect>
        <x>40</x>
        <y>480</y>
-       <width>381</width>
+       <width>329</width>
        <height>95</height>
       </rect>
      </property>
@@ -704,7 +717,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton_A_ensure">
+       <widget class="QPushButton" name="pushButton_Add_ensure">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -725,7 +738,7 @@
          </size>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="page"/>
         <widget class="QWidget" name="page_task_void">
@@ -768,6 +781,20 @@
            <widget class="QLabel" name="label_6">
             <property name="text">
              <string>请选择任务类型！</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="page_4">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>任务重要等级不能为空！</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>

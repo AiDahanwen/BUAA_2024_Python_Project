@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 import random
 import re
 
-from database import get_constant_info
+from backend.database import get_constant_info
 
 send_by = '3498314162@qq.com'
 email_password = 'rkkemgvqthnachie'

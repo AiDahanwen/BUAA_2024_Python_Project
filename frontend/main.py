@@ -206,6 +206,8 @@ class AddTaskWindow(QMainWindow):
         self.ui.timeEdit_every_end_time.setTime(QtCore.QTime.currentTime())
 
         self.ui.radioButton_Add_is_every.clicked.connect(lambda: self.every_or_ordinary())
+        self.ui.pushButton_Add_ensure.clicked.connect(lambda: self.everyday_task()
+        if self.ui.radioButton_Add_is_every.isChecked() else self.ordinary_task())
 
         self.ui.label.adjustSize()
         self.show()
@@ -219,38 +221,56 @@ class AddTaskWindow(QMainWindow):
     def check_input(self):
         task_name = self.ui.lineEdit_Add_task_name.text()
         task_content = self.ui.textEdit_Add_task_content.toPlainText()
-        # task_begin = self.ui.dateTimeEdit_Add_begin.dateTime().toPyDateTime()
-        # task_end = self.ui.dateTimeEdit_Add_end.dateTime().toPyDateTime()
         task_type = self.ui.comboBox_Add_task_type.currentText()
-        task_is_important = self.ui.radioButton_Add_is_important.isChecked()
-        if task_name == '':
+        task_important = self.ui.comboBox_important.currentText()
+        if task_name == "":
             self.ui.stackedWidget.setCurrentIndex(1)
-        # elif task_begin > task_end:
-        #     self.ui.stackedWidget.setCurrentIndex(2)
         elif task_type == '请选择任务类型':
             self.ui.stackedWidget.setCurrentIndex(3)
+        elif task_important == '请选择重要等级':
+            self.ui.stackedWidget.setCurrentIndex(4)
+        elif self.ui.radioButton_Add_is_every.isChecked():
+            task_begin_date = self.ui.dateEdit_every_begin_date.date().toPyDate()
+            task_end_date = self.ui.dateEdit_every_end_date.date().toPyDate()
+            task_begin_time = self.ui.timeEdit_every_begin_time.time().toPyTime()
+            task_end_time = self.ui.timeEdit_every_end_time.time().toPyTime()
+            if task_begin_date > task_end_date or task_begin_time > task_end_time:
+                self.ui.stackedWidget.setCurrentIndex(2)
+            else:
+                daily_task = DailyTask(user_now, daily_task_tag=task_type
+                                       , daily_task_title=task_name
+                                       , daily_task_start_date=task_begin_date
+                                       , daily_task_end_date=task_end_date
+                                       , daily_task_start_time=task_begin_time
+                                       , daily_task_end_time=task_end_time
+                                       , daily_task_content=task_content
+                                       , daily_task_vital=get_task_vital(task_important))
+
+                return daily_task
         else:
-            task = Task(user_now)
-            task.title = task_name
-            task.content = task_content
-            # task.start_time = task_begin
-            # task.deadline = task_end
-            task.tag = task_type
-            task.is_vital = task_is_important
-            return task
+            task_begin = self.ui.dateTimeEdit_ordinary_begin.dateTime().toPyDateTime()
+            task_end = self.ui.dateTimeEdit_ordinary_end.dateTime().toPyDateTime()
+            if task_begin > task_end:
+                self.ui.stackedWidget.setCurrentIndex(2)
+            else:
+                ordinary_task = Task(user_now, task_vital=get_task_vital(task_important)
+                                     , task_title=task_name
+                                     , task_start_time=task_begin
+                                     , task_end_time=task_end
+                                     , task_content=task_content
+                                     , task_tag=task_type)
+                return ordinary_task
         return None
 
     def everyday_task(self):
-        task = self.check_input()
-        if task:
-            task.is_daily = True
-            add_task(task)
+        daily_task = self.check_input()
+        if daily_task:
+            add_daily_task(daily_task)
             self.close()
 
     def ordinary_task(self):
         task = self.check_input()
         if task:
-            task.is_daily = False
             add_task(task)
             self.close()
 
@@ -388,6 +408,8 @@ class MainWindow(QMainWindow):
         self.ui.lineEdit_modify_motto.setText(get_user_info(user_now, 'signature'))
         self.ui.lineEdit_modify_name.setText(get_user_info(user_now, 'name'))
         self.ui.label_my_emali_address.setText(user_now)
+        self.ui.lineEdit_modify_name.textChanged.connect(lambda: self.modify_name())
+        self.ui.lineEdit_modify_motto.textChanged.connect(lambda: self.modify_motto())
 
         self.show()
 
@@ -440,6 +462,15 @@ class MainWindow(QMainWindow):
 
     def modify_person(self):
         self.win = ModifyPersonWindow()
+
+    def modify_name(self):
+        new_name = self.ui.lineEdit_modify_name.text()
+        reset_user_info(user_now, 'name', new_name)
+        self.ui.label_user_name.setText(new_name)
+
+    def modify_motto(self):
+        new_motto = self.ui.lineEdit_modify_motto.text()
+        reset_user_info(user_now, 'signature', new_motto)
 
     def log_out(self):
         global user_now
