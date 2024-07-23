@@ -41,8 +41,8 @@ class TaskTimePeriod(Enum):
 class TaskSchedule:
     def __init__(self, task, task_time_period, task_time):
         self.task = task
-        self.task_time_period = task_time_period  # TaskTimePeriod
-        self.task_time = task_time  # TimeDelta(min)
+        self.task_time_period = task_time_period  # TaskTimePeriod 上午/下午/晚上
+        self.task_time = task_time  # TimeDelta(min) 任务持续时间
 
     def __str__(self):
         return (
@@ -520,3 +520,13 @@ def update_task_status(user_email):
     WHERE user_email = %s
     """
     return database_write(cmd, (user_email,))
+
+
+def get_daily_task_object_of_user_id(user_email, daily_task_id):
+    condition_cmd = """
+    AND daily_task_id = %s;
+    """
+    condition_args = daily_task_id
+    return _get_daily_task_objects_of_user_with_condition(
+        user_email, condition_cmd, condition_args
+    )

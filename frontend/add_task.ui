@@ -76,7 +76,7 @@
        <x>20</x>
        <y>60</y>
        <width>421</width>
-       <height>411</height>
+       <height>421</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -87,7 +87,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
-       <number>8</number>
+       <number>6</number>
       </property>
       <property name="leftMargin">
        <number>0</number>
@@ -208,7 +208,7 @@
          <number>0</number>
         </property>
         <widget class="QWidget" name="page_2">
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QFrame" name="frame">
           <property name="geometry">
            <rect>
             <x>0</x>
@@ -219,6 +219,9 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
             <number>0</number>
            </property>
            <item>
@@ -542,6 +545,59 @@
           <verstretch>1</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimumSize">
+         <size>
+          <width>421</width>
+          <height>34</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_12">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>4</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>总耗时/每日耗时</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_duration">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>10</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="singleStep">
+            <double>0.500000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <property name="leftMargin">
           <number>0</number>
@@ -703,8 +759,8 @@
     <widget class="QFrame" name="frame">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>480</y>
+       <x>50</x>
+       <y>490</y>
        <width>329</width>
        <height>95</height>
       </rect>
@@ -738,7 +794,7 @@
          </size>
         </property>
         <property name="currentIndex">
-         <number>4</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="page"/>
         <widget class="QWidget" name="page_task_void">
@@ -795,6 +851,20 @@
            <widget class="QLabel" name="label_7">
             <property name="text">
              <string>任务重要等级不能为空！</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="page_5">
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>总耗时/每日耗时不能为空！</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
