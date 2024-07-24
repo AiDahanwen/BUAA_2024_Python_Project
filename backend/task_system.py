@@ -564,6 +564,7 @@ def update_task_status(user_email):
         WHEN NOW() < task_start_time THEN 'pending'
         WHEN NOW() > task_end_time AND task_status <> 'completed' THEN 'expired'
         WHEN NOW() BETWEEN task_start_time AND task_end_time AND task_status <> 'completed' THEN 'underway'
+        WHEN task_status = 'completed' THEN 'completed'
         ELSE 'pending'
     END
     WHERE user_email = %s
