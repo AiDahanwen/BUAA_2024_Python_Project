@@ -24,6 +24,7 @@
     <file>icons/TargetArrow.png</file>
   </qresource>
   <qresource prefix="pictures">
+    <file>pictures/meme1.jpg</file>
     <file>pictures/main_interface_background.jpg</file>
     <file>pictures/find_password_background.jpg</file>
     <file>pictures/login_background.jpg</file>
