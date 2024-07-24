@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, date, time
 from enum import Enum
 
-from backend.database import *
+from database import *
 
 
 class TaskStatus(str):
@@ -18,9 +18,9 @@ class TaskVital(int):
 
 
 def get_task_vital(task_vital_str):
-    if task_vital_str == '不重要':
+    if task_vital_str == "不重要":
         return TaskVital.TRIVIAL
-    elif task_vital_str == '一般重要':
+    elif task_vital_str == "一般重要":
         return TaskVital.NORMAL
     else:
         return TaskVital.CRUCIAL
@@ -250,7 +250,7 @@ def _get_task_objects(data):
 
 
 def _get_task_objects_of_user_with_condition(
-        user_email, condition_cmd="", condition_args=()
+    user_email, condition_cmd="", condition_args=()
 ):
     update_tasks(user_email)
     return _get_task_objects(
@@ -444,7 +444,17 @@ def add_daily_task(daily_task):
         daily_task.daily_task_duration_time,
         daily_task.daily_task_elapsed_time,
     )
-    return database_write(cmd, args)
+    connection = database_connect()
+    cursor = connection.cursor()
+    cursor.execute(cmd, args)
+    connection.commit()
+    cursor.execute("SELECT LAST_INSERT_ID();")
+    id = cursor.fetchone()[0]
+    connection.close()
+    daily_task.daily_task_id = id
+    if not add_task(daily_task.to_normal_task(daily_task.daily_task_start_date)):
+        return False
+    return True
 
 
 def delete_daily_task(*daily_task_id):
@@ -455,7 +465,7 @@ def delete_daily_task(*daily_task_id):
 
 
 def _get_daily_task_objects_of_user_with_condition(
-        user_email, condition_cmd="", condition_args=()
+    user_email, condition_cmd="", condition_args=()
 ):
     return _get_daily_task_objects(
         join(
@@ -469,7 +479,17 @@ def _get_daily_task_objects_of_user_with_condition(
     )
 
 
-def get_daily_task_object_of_user(user_email):
+def get_daily_task_object(user_email, daily_task_id):
+    condition_cmd = """
+    AND daily_task_id = %s;
+    """
+    condition_args = (daily_task_id,)
+    return _get_daily_task_objects_of_user_with_condition(
+        user_email, condition_cmd, condition_args
+    )
+
+
+def get_daily_task_object(user_email):
     return _get_daily_task_objects_of_user_with_condition(user_email)
 
 
@@ -485,27 +505,55 @@ def get_daily_task_object_of_user_date(user_email, date):
 def create_daily_task_copy_date(user_email, date):
     daily_tasks_date = get_daily_task_object_of_user_date(user_email, date)
     for daily_task in daily_tasks_date:
-        if is_daily_task_copy_exist(user_email, daily_task.daily_task_id, date):
-            continue
-        if not add_task(daily_task.to_normal_task(date)):
-            return False
+        temp = daily_task.daily_task_start_date
+        while temp <= date:
+            if not is_daily_task_copy_exist(user_email, daily_task.daily_task_id, temp):
+                if not add_task(daily_task.to_normal_task(temp)):
+                    return False
+            temp += timedelta(days=1)
+        if temp <= daily_task.daily_task_end_date:
+            if daily_task.daily_task_end_time < datetime.now().time():
+                if not is_daily_task_copy_exist(
+                    user_email, daily_task.daily_task_id, temp
+                ):
+                    if not add_task(daily_task.to_normal_task(temp)):
+                        return False
     return True
 
 
-def is_daily_task_copy_exist(user_email, daily_task_id, date):
-    condition_cmd = """
-    AND task_is_daily = 1 AND daily_task_id = %s AND DATE(task_start_time) = DATE(%s);
+def get_daily_task_copy_status_date(user_email, daily_task_id, date):
+    cmd = """
+    SELECT task_status
+    FROM tasks
+    WHERE user_email = %s 
+        AND task_is_daily = 1
+        AND daily_task_id = %s
+        AND DATE(task_start_time) = %s
     """
-    condition_args = (daily_task_id, date)
-    result = _get_task_objects_of_user_with_condition(
-        user_email, condition_cmd, condition_args
-    )
-    return len(result) != 0
+    args = (user_email, daily_task_id, date)
+    return database_read(cmd, args)
+
+
+def is_daily_task_copy_exist(user_email, daily_task_id, date):
+    cmd = """
+    SELECT EXISTS(
+        SELECT 1
+        FROM tasks
+        WHERE user_email = %s 
+            AND task_is_daily = 1 
+            AND daily_task_id = %s 
+            AND DATE(task_start_time) = DATE(%s)
+    )As task_exists
+    """
+    args = (user_email, daily_task_id, date)
+    result = database_read(cmd, args)
+    # print(result)
+    return result
 
 
 def update_tasks(user_email):
     return create_daily_task_copy_date(
-        user_email, datetime.today()
+        user_email, datetime.now().date()
     ) and update_task_status(user_email)
 
 
@@ -516,7 +564,18 @@ def update_task_status(user_email):
         WHEN NOW() < task_start_time THEN 'pending'
         WHEN NOW() > task_end_time AND task_status <> 'completed' THEN 'expired'
         WHEN NOW() BETWEEN task_start_time AND task_end_time AND task_status <> 'completed' THEN 'underway'
+        ELSE 'pending'
     END
     WHERE user_email = %s
     """
     return database_write(cmd, (user_email,))
+
+
+def task_is_complete(task):
+    reset_task_info(task.task_id, "status", TaskStatus.COMPLETED)
+    reset_task_info(task.task_id, "complete_time", datetime.now())
+    if task.task_is_daily:
+        daily_task = get_daily_task_object(task.user_email, task.daily_task_id)[0]
+        if daily_task.daily_task_end_date > date.today():
+            task = daily_task.to_normal_task(date.today() + timedelta(days=1))
+            add_task(task)
