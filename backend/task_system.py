@@ -479,7 +479,7 @@ def _get_daily_task_objects_of_user_with_condition(
     )
 
 
-def get_daily_task_object_of_user(user_email, daily_task_id):
+def get_daily_task_object(user_email, daily_task_id):
     condition_cmd = """
     AND daily_task_id = %s;
     """
