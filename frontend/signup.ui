@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>934</width>
+    <height>957</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>60</y>
-      <width>401</width>
-      <height>441</height>
+      <x>140</x>
+      <y>20</y>
+      <width>651</width>
+      <height>641</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -36,7 +36,10 @@
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">QFrame#frame{
+border-radius:20px;
+background-color: rgb(255, 255, 255);
+}</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -47,10 +50,10 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>20</y>
+       <x>80</x>
+       <y>90</y>
        <width>135</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -66,7 +69,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 20pt &quot;Agency FB&quot;;</string>
+      <string notr="true">font: 23pt &quot;微软雅黑&quot;;</string>
      </property>
      <property name="text">
       <string>注册</string>
@@ -75,10 +78,10 @@
     <widget class="QFrame" name="frame_2">
      <property name="geometry">
       <rect>
-       <x>61</x>
-       <y>71</y>
-       <width>231</width>
-       <height>291</height>
+       <x>90</x>
+       <y>130</y>
+       <width>411</width>
+       <height>411</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -113,8 +116,14 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>0</width>
+          <width>330</width>
           <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>330</width>
+          <height>16777215</height>
          </size>
         </property>
         <property name="text">
@@ -188,17 +197,42 @@
       </item>
       <item alignment="Qt::AlignHCenter">
        <widget class="QPushButton" name="pushButton_S_ensure">
+        <property name="minimumSize">
+         <size>
+          <width>390</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_S_ensure{
+background-color: rgb(53, 100, 110);
+color: rgb(255, 255, 255);
+font: 10pt &quot;微软雅黑&quot;;
+border-radius:20px;
+}
+QPushButton:hover{
+padding-left:5px;
+padding-top:5px;
+}
+</string>
+        </property>
         <property name="text">
          <string>确认</string>
         </property>
        </widget>
       </item>
      </layout>
+     <zorder>lineEdit_S_check</zorder>
+     <zorder>lineEdit_S_account</zorder>
+     <zorder>lineEdit_S_password1</zorder>
+     <zorder>lineEdit_S_password2</zorder>
+     <zorder>pushButton_S_ensure</zorder>
+     <zorder>lineEdit_S_email_address</zorder>
     </widget>
     <widget class="QFrame" name="frame_10">
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>560</x>
        <y>0</y>
        <width>91</width>
        <height>41</height>
@@ -227,7 +261,7 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="res.qrc">
           <normaloff>:/icons/icons/24gl-minimization.png</normaloff>:/icons/icons/24gl-minimization.png</iconset>
         </property>
        </widget>
@@ -238,7 +272,7 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="res.qrc">
           <normaloff>:/icons/icons/Close.png</normaloff>:/icons/icons/Close.png</iconset>
         </property>
        </widget>
@@ -248,10 +282,10 @@ QPushButton:hover{
     <widget class="QPushButton" name="pushButton_S_send">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>80</y>
-       <width>75</width>
-       <height>30</height>
+       <x>480</x>
+       <y>152</y>
+       <width>91</width>
+       <height>34</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -261,200 +295,226 @@ QPushButton:hover{
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton:pressed{
+      <string notr="true">
+QPushButton:hover{
 	padding-left:5px;
 	padding-top:5px;
+}
+QPushButton#pushButton_S_send{
+	background-color: rgb(53, 100, 110);
+	color: rgb(255, 255, 255);
+	font: 10pt &quot;微软雅黑&quot;;
 }</string>
      </property>
      <property name="text">
       <string>发送验证码</string>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_3">
+    <widget class="QListView" name="listView">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>360</y>
-       <width>231</width>
-       <height>40</height>
+       <x>0</x>
+       <y>0</y>
+       <width>651</width>
+       <height>641</height>
       </rect>
      </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>10</verstretch>
-      </sizepolicy>
+     <property name="styleSheet">
+      <string notr="true">border-image:url(:/pictures/pictures/find_password_background.jpg);
+border-radius:20px;</string>
+     </property>
+    </widget>
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>520</y>
+       <width>301</width>
+       <height>69</height>
+      </rect>
      </property>
      <property name="minimumSize">
       <size>
-       <width>231</width>
-       <height>31</height>
+       <width>229</width>
+       <height>30</height>
       </size>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(48, 92, 74);
+font: 10pt &quot;微软雅黑&quot;;</string>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+     <property name="currentIndex">
+      <number>4</number>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QStackedWidget" name="stackedWidget">
-        <property name="minimumSize">
-         <size>
-          <width>229</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="currentIndex">
-         <number>6</number>
-        </property>
-        <widget class="QWidget" name="page_void"/>
-        <widget class="QWidget" name="page_email_format_error">
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="minimumSize">
-             <size>
-              <width>211</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>邮箱格式错误！</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+     <widget class="QWidget" name="page_void"/>
+     <widget class="QWidget" name="page_email_format_error">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="minimumSize">
+          <size>
+           <width>211</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>邮箱格式错误！</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
-        <widget class="QWidget" name="page_check_invalid">
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QLabel" name="label_3">
-            <property name="minimumSize">
-             <size>
-              <width>211</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>验证码输入错误！</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_check_invalid">
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="minimumSize">
+          <size>
+           <width>211</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>验证码输入错误！</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
-        <widget class="QWidget" name="page_code_inconsistent">
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLabel" name="label_4">
-            <property name="minimumSize">
-             <size>
-              <width>211</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>两次密码输入不一致！</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_code_inconsistent">
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="minimumSize">
+          <size>
+           <width>211</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>两次密码输入不一致！</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
-        <widget class="QWidget" name="page_check_error">
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QLabel" name="label_5">
-            <property name="minimumSize">
-             <size>
-              <width>211</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>验证码发送失败，请重试！</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_check_error">
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="minimumSize">
+          <size>
+           <width>211</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>验证码发送失败，请重试！</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
-        <widget class="QWidget" name="page_not_blank">
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <widget class="QLabel" name="label_6">
-            <property name="minimumSize">
-             <size>
-              <width>211</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>用户名或密码不能为空！</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_not_blank">
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="minimumSize">
+          <size>
+           <width>211</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>用户名或密码不能为空！</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
-        <widget class="QWidget" name="page">
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
-          <item>
-           <widget class="QLabel" name="label_7">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>211</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>此邮箱已注册！</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page">
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>211</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>此邮箱已注册！</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
-       </widget>
-      </item>
-     </layout>
+       </item>
+      </layout>
+     </widget>
     </widget>
+    <widget class="QListView" name="listView_2">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>70</y>
+       <width>551</width>
+       <height>531</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 170);
+border-radius:20px;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>651</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border-top-right-radius:20px;
+border-top-left-radius:20px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>listView</zorder>
+    <zorder>listView_2</zorder>
+    <zorder>label</zorder>
+    <zorder>frame_2</zorder>
+    <zorder>pushButton_S_send</zorder>
+    <zorder>stackedWidget</zorder>
+    <zorder>label_8</zorder>
+    <zorder>frame_10</zorder>
    </widget>
   </widget>
  </widget>

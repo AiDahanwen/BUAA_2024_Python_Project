@@ -3,6 +3,17 @@ from backend.database import *
 from backend.database import *
 import oss2
 
+# 填写RAM用户的访问密钥（AccessKey ID和AccessKey Secret）
+accessKeyId = "LTAI5tNicQ2EWpzvo7YAYB7D"
+accessKeySecret = "UvT8HCUfLb8Y8Vu2hPgSADdZyNmQCV"
+# 使用代码嵌入的RAM用户的访问密钥配置访问凭证
+auth = oss2.Auth(accessKeyId, accessKeySecret)
+# 填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com
+endpoint = "https://oss-cn-beijing.aliyuncs.com"
+
+# 填写Bucket名称
+bucket = oss2.Bucket(auth, endpoint, "foolish-han")
+
 
 def gen_hash_password(password):
     salt = bcrypt.gensalt()
@@ -71,24 +82,28 @@ def list_user_info(user_email):
     return list_info("users", "user_email", user_email)
 
 
-# 填写RAM用户的访问密钥（AccessKey ID和AccessKey Secret）。
-accessKeyId = "LTAI5tNicQ2EWpzvo7YAYB7D"
-accessKeySecret = "UvT8HCUfLb8Y8Vu2hPgSADdZyNmQCV"
-# 使用代码嵌入的RAM用户的访问密钥配置访问凭证。
-auth = oss2.Auth(accessKeyId, accessKeySecret)
-# 填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
-endpoint = "https://oss-cn-beijing.aliyuncs.com"
-
-# 填写Bucket名称。
-bucket = oss2.Bucket(auth, endpoint, "foolish-han")
-
-
 def modify_user_avatar(user_email, avatar_url):
     avatar_name = avatar_url.split("/")[-1]
     temp = str(user_email) + "/" + avatar_name
     bucket.put_object_from_file(temp, avatar_url)
     avatar_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
     reset_user_info(user_email, "avatar_url", avatar_url)
+
+
+def store_local_user_email_password(user_email, user_password):
+    with open('local/storage.txt', 'w') as fd:
+        fd.write(f'{user_email} {user_password}')
+
+
+def get_local_user_email_password():
+    try:
+        with open('local/storage.txt', 'r') as fd:
+            data = fd.read()
+        return data.split()
+    except FileNotFoundError:
+        return False
+
+
 # print(delete_user('2895227477@qq.com'))
 # print(add_user('wt', '2895227477@qq.com', '12345678'))
 print(reset_user_info('2895227477@qq.com', '', ''))

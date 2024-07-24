@@ -6,21 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1134</width>
-    <height>600</height>
+    <width>1277</width>
+    <height>816</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">font: 75 12pt &quot;微软雅黑&quot;;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>12</pointsize>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>20</x>
       <y>20</y>
-      <width>801</width>
-      <height>521</height>
+      <width>1231</width>
+      <height>761</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -30,11 +42,9 @@
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-
-#frame{
+     <string notr="true">QFrame#frame{
 	background-color: rgb(255, 255, 255);
-	border-radius:15px;
+	border-radius:20px;
 }</string>
     </property>
     <property name="frameShape">
@@ -46,14 +56,14 @@
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="geometry">
       <rect>
-       <x>159</x>
-       <y>39</y>
-       <width>631</width>
-       <height>471</height>
+       <x>220</x>
+       <y>50</y>
+       <width>1001</width>
+       <height>701</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(236, 236, 236);</string>
+      <string notr="true">background-color: rgba(236, 236, 236, 100);</string>
      </property>
      <property name="currentIndex">
       <number>1</number>
@@ -75,7 +85,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="resource.qrc">
          <normaloff>:/resource/icons/咖啡.png</normaloff>:/resource/icons/咖啡.png</iconset>
        </property>
        <property name="iconSize">
@@ -90,7 +100,7 @@
         <rect>
          <x>190</x>
          <y>180</y>
-         <width>300</width>
+         <width>351</width>
          <height>51</height>
         </rect>
        </property>
@@ -114,8 +124,8 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>611</width>
-         <height>451</height>
+         <width>971</width>
+         <height>691</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -131,7 +141,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 255);
+           <string notr="true">background-color: rgba(255, 255, 255, 0);
 border-radius:10px;</string>
           </property>
           <property name="frameShape">
@@ -179,14 +189,15 @@ border-radius:10px;</string>
              <widget class="QLabel" name="label_9">
               <property name="geometry">
                <rect>
-                <x>110</x>
+                <x>140</x>
                 <y>10</y>
-                <width>81</width>
-                <height>24</height>
+                <width>191</width>
+                <height>41</height>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">font: 75 16pt &quot;Times New Roman&quot;;</string>
+               <string notr="true">color: rgb(42, 75, 85);
+font: 87 20pt &quot;Arial Black&quot;;</string>
               </property>
               <property name="text">
                <string>ToDoList</string>
@@ -195,7 +206,7 @@ border-radius:10px;</string>
              <widget class="QPushButton" name="pushButton_M_addtask">
               <property name="geometry">
                <rect>
-                <x>260</x>
+                <x>400</x>
                 <y>10</y>
                 <width>31</width>
                 <height>23</height>
@@ -217,7 +228,7 @@ border-radius:10px;</string>
                <string/>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="resource.qrc">
                 <normaloff>:/resource/icons/加.png</normaloff>:/resource/icons/加.png</iconset>
               </property>
               <property name="iconSize">
@@ -262,7 +273,7 @@ border-radius:10px;</string>
               <item>
                <widget class="QStackedWidget" name="stackedWidget_2">
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="page_6">
                  <widget class="QLabel" name="label_10">
@@ -289,6 +300,286 @@ border-radius:10px;</string>
                   <property name="wordWrap">
                    <bool>true</bool>
                   </property>
+                 </widget>
+                 <widget class="QWidget" name="layoutWidget">
+                  <property name="geometry">
+                   <rect>
+                    <x>440</x>
+                    <y>10</y>
+                    <width>351</width>
+                    <height>541</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout">
+                   <property name="spacing">
+                    <number>8</number>
+                   </property>
+                   <item>
+                    <widget class="QFrame" name="frame_3">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>5</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>298</width>
+                       <height>274</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:10px;</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_6">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QFrame" name="frame_12">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>2</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <widget class="QLabel" name="label_4">
+                         <property name="geometry">
+                          <rect>
+                           <x>110</x>
+                           <y>9</y>
+                           <width>131</width>
+                           <height>24</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">font: 75 16pt &quot;Times New Roman&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Schedule</string>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="pushButton_M_schedule">
+                         <property name="geometry">
+                          <rect>
+                           <x>260</x>
+                           <y>10</y>
+                           <width>31</width>
+                           <height>23</height>
+                          </rect>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>23</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton:hover{
+	padding-left:5px;
+	padding-top:5px;
+}</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>:/resource/icons/调度管理.png</normaloff>:/resource/icons/调度管理.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="pushButton_M_freetime">
+                         <property name="geometry">
+                          <rect>
+                           <x>10</x>
+                           <y>10</y>
+                           <width>75</width>
+                           <height>23</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton:hover{
+	padding-left:5px;
+	padding-top:5px;
+}</string>
+                         </property>
+                         <property name="text">
+                          <string>空闲时间</string>
+                         </property>
+                        </widget>
+                        <zorder>label_4</zorder>
+                        <zorder>pushButton_M_freetime</zorder>
+                        <zorder>pushButton_M_schedule</zorder>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="frame_13">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>11</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_8">
+                         <property name="spacing">
+                          <number>0</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QStackedWidget" name="stackedWidget_3">
+                           <property name="currentIndex">
+                            <number>1</number>
+                           </property>
+                           <widget class="QWidget" name="page_12">
+                            <widget class="QLabel" name="label_2">
+                             <property name="geometry">
+                              <rect>
+                               <x>20</x>
+                               <y>100</y>
+                               <width>261</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
+                             </property>
+                             <property name="text">
+                              <string>点击左上角按钮添加今日空闲时间ヾ(•ω•`)o</string>
+                             </property>
+                            </widget>
+                           </widget>
+                           <widget class="QWidget" name="page_8">
+                            <widget class="QLabel" name="label_11">
+                             <property name="geometry">
+                              <rect>
+                               <x>30</x>
+                               <y>100</y>
+                               <width>271</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>241</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
+                             </property>
+                             <property name="text">
+                              <string>点击右上角按钮进行今日任务调度(●'◡'●)</string>
+                             </property>
+                             <property name="wordWrap">
+                              <bool>true</bool>
+                             </property>
+                            </widget>
+                           </widget>
+                           <widget class="QWidget" name="page_9">
+                            <layout class="QHBoxLayout" name="horizontalLayout_9">
+                             <property name="spacing">
+                              <number>0</number>
+                             </property>
+                             <property name="leftMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="topMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="rightMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="bottomMargin">
+                              <number>0</number>
+                             </property>
+                             <item>
+                              <widget class="QListWidget" name="listWidget_schedule"/>
+                             </item>
+                            </layout>
+                           </widget>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_4">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>3</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>298</width>
+                       <height>165</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:10px;</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </widget>
                 <widget class="QWidget" name="page_7">
@@ -320,275 +611,6 @@ border-radius:10px;</string>
            </item>
           </layout>
          </widget>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <property name="spacing">
-           <number>8</number>
-          </property>
-          <item>
-           <widget class="QFrame" name="frame_3">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>5</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>298</width>
-              <height>274</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:10px;</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_6">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QFrame" name="frame_12">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>2</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <widget class="QLabel" name="label_4">
-                <property name="geometry">
-                 <rect>
-                  <x>110</x>
-                  <y>9</y>
-                  <width>77</width>
-                  <height>24</height>
-                 </rect>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">font: 75 16pt &quot;Times New Roman&quot;;</string>
-                </property>
-                <property name="text">
-                 <string>Schedule</string>
-                </property>
-               </widget>
-               <widget class="QPushButton" name="pushButton_M_schedule">
-                <property name="geometry">
-                 <rect>
-                  <x>260</x>
-                  <y>10</y>
-                  <width>31</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>31</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QPushButton:hover{
-	padding-left:5px;
-	padding-top:5px;
-}</string>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/resource/icons/调度管理.png</normaloff>:/resource/icons/调度管理.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </widget>
-               <widget class="QPushButton" name="pushButton_M_freetime">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>10</y>
-                  <width>75</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QPushButton:hover{
-	padding-left:5px;
-	padding-top:5px;
-}</string>
-                </property>
-                <property name="text">
-                 <string>空闲时间</string>
-                </property>
-               </widget>
-              </widget>
-             </item>
-             <item>
-              <widget class="QFrame" name="frame_13">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>11</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_8">
-                <property name="spacing">
-                 <number>0</number>
-                </property>
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QStackedWidget" name="stackedWidget_3">
-                  <property name="currentIndex">
-                   <number>0</number>
-                  </property>
-                  <widget class="QWidget" name="page_12">
-                   <widget class="QLabel" name="label_2">
-                    <property name="geometry">
-                     <rect>
-                      <x>20</x>
-                      <y>100</y>
-                      <width>261</width>
-                      <height>20</height>
-                     </rect>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
-                    </property>
-                    <property name="text">
-                     <string>点击左上角按钮添加今日空闲时间ヾ(•ω•`)o</string>
-                    </property>
-                   </widget>
-                  </widget>
-                  <widget class="QWidget" name="page_8">
-                   <widget class="QLabel" name="label_11">
-                    <property name="geometry">
-                     <rect>
-                      <x>30</x>
-                      <y>100</y>
-                      <width>241</width>
-                      <height>20</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>241</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
-                    </property>
-                    <property name="text">
-                     <string>点击右上角按钮进行今日任务调度(●'◡'●)</string>
-                    </property>
-                    <property name="wordWrap">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </widget>
-                  <widget class="QWidget" name="page_9">
-                   <layout class="QHBoxLayout" name="horizontalLayout_9">
-                    <property name="spacing">
-                     <number>0</number>
-                    </property>
-                    <property name="leftMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
-                    </property>
-                    <item>
-                     <widget class="QListWidget" name="listWidget_schedule"/>
-                    </item>
-                   </layout>
-                  </widget>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFrame" name="frame_4">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>3</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>298</width>
-              <height>165</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:10px;</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
         </item>
        </layout>
       </widget>
@@ -1038,14 +1060,14 @@ border-radius:10px;</string>
       <widget class="QFrame" name="frame_17">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>571</width>
-         <height>411</height>
+         <x>20</x>
+         <y>20</y>
+         <width>961</width>
+         <height>651</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -1056,10 +1078,10 @@ border-radius:10px;</string>
        <widget class="QFrame" name="frame">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>110</y>
-          <width>501</width>
-          <height>251</height>
+          <x>40</x>
+          <y>100</y>
+          <width>511</width>
+          <height>331</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1175,15 +1197,15 @@ border-radius:10px;</string>
          </rect>
         </property>
         <property name="text">
-         <string/>
+         <string>头像</string>
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton_modify_avatar">
         <property name="geometry">
          <rect>
-          <x>180</x>
+          <x>220</x>
           <y>50</y>
-          <width>75</width>
+          <width>101</width>
           <height>35</height>
          </rect>
         </property>
@@ -1204,13 +1226,27 @@ border-radius:10px;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>150</y>
-       <width>151</width>
-       <height>241</height>
+       <y>160</y>
+       <width>231</width>
+       <height>181</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>12</pointsize>
+       <weight>9</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">border:none;</string>
+      <string notr="true">QListWidget#listWidget{
+border:none;
+background-color: rgba(255, 255, 255, 0);
+font:75 12pt &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);
+}</string>
      </property>
      <property name="movement">
       <enum>QListView::Static</enum>
@@ -1220,96 +1256,172 @@ border-radius:10px;</string>
      </property>
      <item>
       <property name="text">
-       <string>每日计划</string>
+       <string> 每日计划</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="textAlignment">
+       <set>AlignLeading|AlignVCenter</set>
       </property>
       <property name="icon">
-       <iconset>
-        <normalon>:/resource/icons/ClassLine.png</normalon>
-       </iconset>
+       <iconset resource="res.qrc">
+        <normaloff>:/icons/icons/clock-in-fill.png</normaloff>:/icons/icons/clock-in-fill.png</iconset>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>日历</string>
+       <string> 日历</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="icon">
-       <iconset>
-        <normalon>:/icons/icons/Calendar.png</normalon>
-       </iconset>
+       <iconset resource="res.qrc">
+        <normaloff>:/icons/icons/date-use-fill.png</normaloff>:/icons/icons/date-use-fill.png</iconset>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>统计数据</string>
+       <string> 统计数据</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="icon">
-       <iconset>
-        <normalon>:/resource/icons/统计分析-项目表格统计.png</normalon>
-       </iconset>
+       <iconset resource="res.qrc">
+        <normaloff>:/icons/icons/data-fill.png</normaloff>:/icons/icons/data-fill.png</iconset>
       </property>
      </item>
     </widget>
     <widget class="QListWidget" name="listWidget_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>410</y>
-       <width>111</width>
-       <height>101</height>
+       <x>10</x>
+       <y>650</y>
+       <width>211</width>
+       <height>100</height>
       </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">border:none;
-border-bottom-left:15px;</string>
+color: rgb(255, 255, 255);
+font: 75 12pt &quot;微软雅黑&quot;;
+border-bottom-left:15px;
+background-color: rgba(255, 255, 255, 0);</string>
      </property>
      <property name="spacing">
-      <number>15</number>
+      <number>10</number>
      </property>
      <item>
       <property name="text">
        <string>我的</string>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="icon">
-       <iconset>
-        <normalon>:/resource/icons/我的.png</normalon>
-       </iconset>
+       <iconset resource="res.qrc">
+        <normaloff>:/icons/icons/login-fll.png</normaloff>:/icons/icons/login-fll.png</iconset>
       </property>
      </item>
      <item>
       <property name="text">
        <string>退出</string>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="icon">
-       <iconset>
-        <normalon>:/icons/icons/login.png</normalon>
-       </iconset>
+       <iconset resource="res.qrc">
+        <normaloff>:/icons/icons/logout-fill (1).png</normaloff>:/icons/icons/logout-fill (1).png</iconset>
       </property>
      </item>
     </widget>
-    <widget class="QWidget" name="layoutWidget">
+    <widget class="QFrame" name="frame">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>131</width>
-       <height>25</height>
+       <x>10</x>
+       <y>-10</y>
+       <width>241</width>
+       <height>61</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="pushButton_3">
+        <property name="maximumSize">
+         <size>
+          <width>35</width>
+          <height>33</height>
+         </size>
+        </property>
         <property name="styleSheet">
-         <string notr="true">border:none;</string>
+         <string notr="true">border:none;
+border-image: url(:/icons/icons/icon.png);</string>
         </property>
         <property name="text">
-         <string>icon</string>
+         <string/>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="label_3">
+        <property name="styleSheet">
+         <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+color: rgb(55, 89, 100);</string>
+        </property>
         <property name="text">
-         <string>APP_NAME</string>
+         <string>TDesigner</string>
         </property>
        </widget>
       </item>
@@ -1320,8 +1432,8 @@ border-bottom-left:15px;</string>
       <rect>
        <x>-1</x>
        <y>40</y>
-       <width>160</width>
-       <height>80</height>
+       <width>211</width>
+       <height>101</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -1329,6 +1441,9 @@ border-bottom-left:15px;</string>
        <width>160</width>
        <height>80</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -1361,7 +1476,7 @@ border-bottom-left:15px;</string>
          </size>
         </property>
         <property name="text">
-         <string/>
+         <string>头像</string>
         </property>
        </widget>
       </item>
@@ -1373,8 +1488,21 @@ border-bottom-left:15px;</string>
           <height>78</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>12</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 12pt &quot;微软雅黑&quot;;
+color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string>我的名字</string>
         </property>
        </widget>
       </item>
@@ -1383,7 +1511,7 @@ border-bottom-left:15px;</string>
     <widget class="QFrame" name="frame_10">
      <property name="geometry">
       <rect>
-       <x>680</x>
+       <x>1110</x>
        <y>0</y>
        <width>121</width>
        <height>41</height>
@@ -1413,7 +1541,7 @@ border-bottom-left:15px;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="res.qrc">
           <normaloff>:/icons/icons/24gl-minimization.png</normaloff>:/icons/icons/24gl-minimization.png</iconset>
         </property>
        </widget>
@@ -1430,13 +1558,70 @@ border-bottom-left:15px;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="res.qrc">
           <normaloff>:/icons/icons/Close.png</normaloff>:/icons/icons/Close.png</iconset>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
+    <widget class="QListView" name="listView">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1231</width>
+       <height>761</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:20px;
+border-image: url(:/pictures/pictures/main_interface_background.jpg);
+</string>
+     </property>
+    </widget>
+    <widget class="QListView" name="listView_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1231</width>
+       <height>761</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:20px;
+background-color: rgba(45, 79, 89, 100);
+</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>-1</y>
+       <width>1231</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border-top-right-radius:20px;
+border-top-left-radius:20px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>listView</zorder>
+    <zorder>listView_2</zorder>
+    <zorder>stackedWidget</zorder>
+    <zorder>listWidget</zorder>
+    <zorder>listWidget_2</zorder>
+    <zorder>frame_21</zorder>
+    <zorder>label_5</zorder>
+    <zorder>frame_10</zorder>
+    <zorder>frame</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -1453,8 +1638,8 @@ border-bottom-left:15px;</string>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>816</x>
-     <y>45</y>
+     <x>1194</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>879</x>
@@ -1469,8 +1654,8 @@ border-bottom-left:15px;</string>
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>765</x>
-     <y>43</y>
+     <x>1140</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>716</x>
