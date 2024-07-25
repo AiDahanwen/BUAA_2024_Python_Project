@@ -250,7 +250,7 @@ def _get_task_objects(data):
 
 
 def _get_task_objects_of_user_with_condition(
-    user_email, condition_cmd="", condition_args=()
+        user_email, condition_cmd="", condition_args=()
 ):
     update_tasks(user_email)
     return _get_task_objects(
@@ -288,6 +288,42 @@ def get_task_objects_of_user_with_status_in_date(user_email, some_date, status):
     return _get_task_objects_of_user_with_condition(
         user_email, condition_cmd, (some_date, some_date, status)
     )
+
+
+def get_complete_task_sum_in_date(user_email, some_date):
+    return len(get_task_objects_of_user_with_status_in_date(user_email, some_date, TaskStatus.COMPLETED))
+
+
+def get_work_time_sum_in_date(user_email, some_date):
+    task_complete_list = get_task_objects_of_user_with_status_in_date(user_email, some_date, TaskStatus.COMPLETED)
+    task_underway_list = get_task_objects_of_user_with_status_in_date(user_email, some_date, TaskStatus.UNDERWAY)
+    time_sum = timedelta(days=0)
+
+    for task in task_complete_list:
+        time_sum += task.task_duration_time
+
+    for task in task_underway_list:
+        time_sum += task.task_elapsed_time
+
+    return time_sum
+
+
+def get_complete_task_sum(user_email):
+    return len(get_tasks_of_user_with_status(user_email, TaskStatus.COMPLETED))
+
+
+def get_work_time_sum(user_email):
+    task_complete_list = get_tasks_of_user_with_status(user_email, TaskStatus.COMPLETED)
+    task_underway_list = get_tasks_of_user_with_status(user_email, TaskStatus.UNDERWAY)
+    time_sum = timedelta(days=0)
+
+    for task in task_complete_list:
+        time_sum += task.task_duration_time
+
+    for task in task_underway_list:
+        time_sum += task.task_elapsed_time
+
+    return time_sum
 
 
 def _get_time(task_time_period, task):
@@ -465,7 +501,7 @@ def delete_daily_task(*daily_task_id):
 
 
 def _get_daily_task_objects_of_user_with_condition(
-    user_email, condition_cmd="", condition_args=()
+        user_email, condition_cmd="", condition_args=()
 ):
     return _get_daily_task_objects(
         join(
@@ -514,7 +550,7 @@ def create_daily_task_copy_date(user_email, date):
         if temp <= daily_task.daily_task_end_date:
             if daily_task.daily_task_end_time < datetime.now().time():
                 if not is_daily_task_copy_exist(
-                    user_email, daily_task.daily_task_id, temp
+                        user_email, daily_task.daily_task_id, temp
                 ):
                     if not add_task(daily_task.to_normal_task(temp)):
                         return False
@@ -580,3 +616,9 @@ def task_is_complete(task):
         if daily_task.daily_task_end_date > date.today():
             task = daily_task.to_normal_task(date.today() + timedelta(days=1))
             add_task(task)
+
+
+print(get_complete_task_sum("test"))
+print(get_complete_task_sum_in_date("test", date(year=2024, month=7, day=20)))
+print(get_work_time_sum("test"))
+print(get_work_time_sum_in_date("test", date(year=2024, month=7, day=20)))
