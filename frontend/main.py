@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QObject, QUrl, pyqtSlot
+from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QTime
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtGui import QCursor
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
@@ -428,6 +428,7 @@ class CalendarTaskWindow(QMainWindow):
             self.ui.label_calendar_daily_begin_time.setText(daily.daily_task_start_time.strftime('%H:%M:%S'))
             self.ui.label_daily_end_date.setText(daily.daily_task_end_date.strftime('%Y-%m-%d'))
             self.ui.label_daily_end_time.setText(daily.daily_task_end_time.strftime('%H:%M:%S'))
+
         else:
             self.ui.checkBox_calendar_is_daily.setChecked(False)
             self.ui.checkBox_calendar_is_daily.setEnabled(False)
@@ -697,7 +698,42 @@ class MainWindow(QMainWindow):
         self.ui.lineEdit_modify_name.textChanged.connect(lambda: self.modify_name())
         self.ui.lineEdit_modify_motto.textChanged.connect(lambda: self.modify_motto())
 
+        timer = QtCore.QTimer(self)
+        timer.timeout.connect(self.showtime)
+
+        timer.start()
+
         self.show()
+
+    #显示当前时间
+    def showtime(self):
+        global text_set_flag
+        datetime = QtCore.QDateTime.currentDateTime()
+        #print("datetime")
+        text = datetime.toString('yyyy-MM-dd HH:mm:ss')
+        #print(text)
+        self.ui.label_time.setText(text)
+        #self.retranslateUi(self)
+        #QtCore.QMetaObject.connectSlotsByName(self)
+        current_time = text.split(' ')[1]
+        current_hour = current_time.split(':')[0]
+        if text_set_flag == False:
+            if 0 <= int(current_hour) < 6:
+                night_text_list = ["夜深了，休息一下吧！辛苦啦！", "深夜还在奋斗，respect", "这个点登录，是在为明天做计划吗？"]
+                night_text = night_text_list.pop(random.randint(0, len(night_text_list)-1))
+                self.ui.label.setText(night_text)
+                text_set_flag = True
+            elif int(current_hour) < 12:
+                morning_text_list = ["早上好，今天要做些什么呢？", "早上好~欢迎开启美好的一天☀", "又是新的一天啦 加油！"]
+                morning_text = morning_text_list.pop(random.randint(0, len(morning_text_list) - 1))
+                self.ui.label.setText(morning_text)
+                text_set_flag = True
+            elif int(current_hour) < 19:
+                self.ui.label.setText("下午好，要来杯下午茶吗？")
+                text_set_flag = True
+            else:
+                self.ui.label.setText("晚上好，今晚的月亮好漂亮")
+                text_set_flag = True
 
     def label_adjust_size(self):
         self.ui.label.adjustSize()
