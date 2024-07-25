@@ -656,6 +656,28 @@ class CustomListItem_Schedule(QWidget):
         self.setLayout(layout)
 
 
+class CustomListItem_Calendar(QWidget):
+    def __init__(self, name, state, importance=TaskVital.TRIVIAL, parent=None):
+        super().__init__(parent)
+        layout = QHBoxLayout(self)
+        self.pushButton_name = QPushButton(name, self)
+        self.label_state = QLabel(state, self)
+        self.important_icon.setFixedSize(30, 30)
+
+        if importance == TaskVital.TRIVIAL:
+            icon_pixmap = QPixmap("../icons/橙色五角星.png")
+        elif importance == TaskVital.NORMAL:
+            icon_pixmap = QPixmap("../icons/黄色五角星.png")
+        else:
+            icon_pixmap = QPixmap("../icons/红色五角星.png")
+
+        scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.important_icon.setPixmap(scaled_pixmap)
+
+        layout.addWidget(self.pushButton_name, self.label_state, self.important_icon)
+        self.setLayout(layout)
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -669,7 +691,12 @@ class MainWindow(QMainWindow):
         self.label_adjust_size()
 
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.stackedWidget_2.setCurrentIndex(0)
+        task_list = get_tasks_of_user_with_status(user_now, TaskStatus.PENDING) + get_tasks_of_user_with_status(
+            user_now, TaskStatus.UNDERWAY)
+        if len(task_list) == 0:
+            self.ui.stackedWidget_2.setCurrentIndex(0)
+        else:
+            self.ui.stackedWidget_2.setCurrentIndex(1)
         self.ui.stackedWidget_3.setCurrentIndex(0)
         self.ui.stackedWidget_4.setCurrentIndex(0)
 
@@ -677,7 +704,6 @@ class MainWindow(QMainWindow):
         image_loader.loadImage(get_user_info(user_now, 'avatar_url'))  # 替换为你的图片URL
         self.ui.label_user_name.setText(get_user_info(user_now, 'name'))
 
-        self.todolist()
         self.ui.listWidget.itemClicked.connect(lambda: self.change_page(self.ui.listWidget.currentRow()))
         self.ui.listWidget_2.itemClicked.connect(lambda: self.change_page(self.ui.listWidget_2.currentRow() + 3))
         self.ui.pushButton_M_addtask.clicked.connect(lambda: self.add_task())
@@ -816,7 +842,13 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget_3.setCurrentIndex(1)
         current_date = self.ui.calendarWidget.selectedDate().toPyDate()
         task_list = get_ordered_tasks_date(user_now, current_date)
-        print_list(task_list)
+        for task in task_list:
+            custom_item = CustomListItem_Calendar(task.task_title, task.task_status, task.task_vital)
+            custom_item.pushButton_name.clicked.connect(self.display_task(task))
+            list_item = QListWidgetItem(self.ui.listWidget_todolist)
+            list_item.setSizeHint(custom_item.sizeHint())
+            self.ui.listWidget_todolist.addItem(list_item)
+            self.ui.listWidget_todolist.setItemWidget(list_item, custom_item)
 
     def modify_person(self):
         self.win = ModifyPersonWindow()
