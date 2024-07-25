@@ -1,6 +1,6 @@
 import bcrypt
 from backend.database import *
-from datetime import date
+from backend.database import *
 import oss2
 
 # 填写RAM用户的访问密钥（AccessKey ID和AccessKey Secret）

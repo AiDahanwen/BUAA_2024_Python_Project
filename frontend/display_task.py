@@ -369,7 +369,7 @@ class Ui_DisplayTaskWindow(object):
         DisplayTaskWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(DisplayTaskWindow)
-        self.stackedWidget_2.setCurrentIndex(0)
+        self.stackedWidget_2.setCurrentIndex(1)
         self.pushButton.clicked.connect(DisplayTaskWindow.showMinimized) # type: ignore
         self.pushButton_2.clicked.connect(DisplayTaskWindow.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(DisplayTaskWindow)
