@@ -259,15 +259,25 @@ border-radius:10px;</string>
              <widget class="QLabel" name="label_9">
               <property name="geometry">
                <rect>
-                <x>140</x>
+                <x>130</x>
                 <y>10</y>
                 <width>191</width>
                 <height>41</height>
                </rect>
               </property>
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>23</pointsize>
+                <weight>10</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(42, 75, 85);
-font: 87 20pt &quot;Arial Black&quot;;</string>
+
+font: 87 23pt &quot;Arial Black&quot;;</string>
               </property>
               <property name="text">
                <string>ToDoList</string>
@@ -546,7 +556,7 @@ border-radius:10px;</string>
                          <item>
                           <widget class="QStackedWidget" name="stackedWidget_3">
                            <property name="currentIndex">
-                            <number>1</number>
+                            <number>0</number>
                            </property>
                            <widget class="QWidget" name="page_12">
                             <widget class="QLabel" name="label_2">
@@ -1397,10 +1407,22 @@ background-color: rgba(255, 255, 255, 220);
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>200</y>
+       <y>240</y>
        <width>221</width>
        <height>181</height>
       </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>221</width>
+       <height>181</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>221</width>
+       <height>181</height>
+      </size>
      </property>
      <property name="font">
       <font>
@@ -1497,13 +1519,13 @@ background-color: rgba(255, 255, 255, 0);
      </property>
      <property name="minimumSize">
       <size>
-       <width>0</width>
+       <width>211</width>
        <height>100</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>16777215</width>
+       <width>211</width>
        <height>100</height>
       </size>
      </property>
@@ -1564,56 +1586,13 @@ background-color: rgba(255, 255, 255, 0);</string>
       </property>
      </item>
     </widget>
-    <widget class="QFrame" name="frame">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>-10</y>
-       <width>241</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="maximumSize">
-         <size>
-          <width>35</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border:none;
-border-image: url(:/icons/icons/icon.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="styleSheet">
-         <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
-color: rgb(55, 89, 100);</string>
-        </property>
-        <property name="text">
-         <string>TDesigner</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QFrame" name="frame_21">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>40</y>
        <width>191</width>
-       <height>171</height>
+       <height>191</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -1640,12 +1619,41 @@ color: rgb(55, 89, 100);</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
+     <widget class="QLabel" name="label_avatar">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>101</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>101</width>
+        <height>101</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>101</width>
+        <height>101</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:30px;
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>头像aaaa</string>
+      </property>
+     </widget>
      <widget class="QLabel" name="label_user_name">
       <property name="geometry">
        <rect>
-        <x>12</x>
-        <y>86</y>
-        <width>161</width>
+        <x>10</x>
+        <y>130</y>
+        <width>171</width>
         <height>61</height>
        </rect>
       </property>
@@ -1658,7 +1666,7 @@ color: rgb(55, 89, 100);</string>
       <property name="font">
        <font>
         <family>微软雅黑</family>
-        <pointsize>12</pointsize>
+        <pointsize>15</pointsize>
         <weight>75</weight>
         <italic>false</italic>
         <bold>true</bold>
@@ -1666,32 +1674,14 @@ color: rgb(55, 89, 100);</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">color: rgb(255, 255, 255);
+</string>
       </property>
       <property name="text">
        <string>我的名字</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_avatar">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>30</y>
-        <width>79</width>
-        <height>78</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>79</width>
-        <height>78</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>头像aaaa</string>
       </property>
      </widget>
     </widget>
@@ -1731,12 +1721,21 @@ color: rgb(55, 89, 100);</string>
          <iconset resource="res.qrc">
           <normaloff>:/icons/icons/24gl-minimization.png</normaloff>:/icons/icons/24gl-minimization.png</iconset>
         </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_9">
         <property name="styleSheet">
-         <string notr="true">QPushButton:hover{
+         <string notr="true">QPushButton#pushButton_9{
+background-image: url(:/icons/icons/Close.png);
+}
+QPushButton:hover{
 	padding-left:5px;
 	padding-top:5px;
 }</string>
@@ -1747,6 +1746,12 @@ color: rgb(55, 89, 100);</string>
         <property name="icon">
          <iconset resource="res.qrc">
           <normaloff>:/icons/icons/Close.png</normaloff>:/icons/icons/Close.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
         </property>
        </widget>
       </item>
@@ -1800,6 +1805,32 @@ border-top-left-radius:20px;</string>
       <string/>
      </property>
     </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>-7</y>
+       <width>361</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 14pt &quot;Century Gothic&quot;;
+color: rgb(55, 89, 100);</string>
+     </property>
+     <property name="text">
+      <string>TDesigner - todolist just for you</string>
+     </property>
+    </widget>
     <zorder>listView</zorder>
     <zorder>listView_2</zorder>
     <zorder>stackedWidget</zorder>
@@ -1808,7 +1839,7 @@ border-top-left-radius:20px;</string>
     <zorder>frame_21</zorder>
     <zorder>label_5</zorder>
     <zorder>frame_10</zorder>
-    <zorder>frame</zorder>
+    <zorder>label_7</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

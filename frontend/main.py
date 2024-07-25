@@ -738,6 +738,9 @@ class MainWindow(QMainWindow):
 
         timer.start()
 
+        self.ui.listWidget.setSpacing(15)
+        self.ui.listWidget_2.setSpacing(10)
+
         self.show()
 
     # 显示当前时间

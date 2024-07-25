@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_FindWindow(object):
     def setupUi(self, FindWindow):
         FindWindow.setObjectName("FindWindow")
-        FindWindow.resize(805, 678)
+        FindWindow.resize(879, 736)
         self.centralwidget = QtWidgets.QWidget(FindWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
