@@ -1,6 +1,6 @@
 import bcrypt
 from backend.database import *
-from backend.database import *
+from datetime import date
 import oss2
 
 # 填写RAM用户的访问密钥（AccessKey ID和AccessKey Secret）
@@ -42,11 +42,11 @@ def is_user_password_correct(user_email, user_password):
 
 def add_user(user_name, user_email, user_password):
     cmd = """
-    INSERT INTO users (user_name, user_email, user_password_hash, user_hash_salt)
-    VALUES(%s, %s, %s, %s)
+    INSERT INTO users (user_name, user_email, user_password_hash, user_hash_salt, user_register_date)
+    VALUES(%s, %s, %s, %s, %s)
     """
     salt, user_password_hash = gen_hash_password(user_password)
-    args = (user_name, user_email, user_password_hash, salt)
+    args = (user_name, user_email, user_password_hash, salt, date.today())
     return database_write(cmd, args)
 
 
@@ -102,8 +102,3 @@ def get_local_user_email_password():
         return data.split()
     except FileNotFoundError:
         return False
-
-
-# print(delete_user('2895227477@qq.com'))
-# print(add_user('wt', '2895227477@qq.com', '12345678'))
-print(reset_user_info('2895227477@qq.com', '', ''))

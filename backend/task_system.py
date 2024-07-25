@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, date, time
 from enum import Enum
 
-from backend.database import *
+from backend.user_system import *
 
 
 class TaskStatus(str):
@@ -206,14 +206,17 @@ def reset_task(task):
     return database_write(cmd, args)
 
 
-def add_elapsed_time(task_id, elapsed_time):
-    cmd = """
-    UPDATE tasks
-    SET task_elapsed_time = ADDTIME(task_elapsed_time, %s)
-    WHERE task_id = %s
-    """
-    args = (elapsed_time, task_id)
-    return database_write(cmd, args)
+def add_work_time(task, work_time):
+    if task.task_elapsed_time + work_time < task.task_duration_time:
+        cmd = """
+        UPDATE tasks
+        SET task_elapsed_time = ADDTIME(task_elapsed_time, %s)
+        WHERE task_id = %s
+        """
+        args = (work_time, task.task_id)
+        database_write(cmd, args)
+    else:
+        task_is_complete(task)
 
 
 # 查
@@ -324,6 +327,11 @@ def get_work_time_sum(user_email):
         time_sum += task.task_elapsed_time
 
     return time_sum
+
+
+def get_average_work_time(user_email):
+    date_sum = date.today() - get_user_info(user_email, "register_date") + timedelta(days=1)
+    return get_work_time_sum(user_email) / date_sum.days
 
 
 def _get_time(task_time_period, task):
@@ -618,7 +626,4 @@ def task_is_complete(task):
             add_task(task)
 
 
-print(get_complete_task_sum("test"))
-print(get_complete_task_sum_in_date("test", date(year=2024, month=7, day=20)))
-print(get_work_time_sum("test"))
-print(get_work_time_sum_in_date("test", date(year=2024, month=7, day=20)))
+add_work_time(get_task_object_of_user("114514")[0], timedelta(hours=4))
