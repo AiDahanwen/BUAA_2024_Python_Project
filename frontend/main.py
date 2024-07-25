@@ -34,6 +34,7 @@ user_now = "2895227477@qq.com"
 morning = 0
 afternoon = 0
 night = 0
+text_set_flag = False
 
 
 def transfer_vital(vital):
@@ -108,7 +109,6 @@ class LoginWindow(QMainWindow):
     def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
         self.m_flag = False
         self.setCursor(QCursor(Qt.ArrowCursor))
-
 
 
 class SignupWindow(QMainWindow):
@@ -240,6 +240,7 @@ class FindWindow(QMainWindow):
                 self.close()
             else:
                 self.ui.stackedWidget.setCurrentIndex(2)
+
     def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
         if event.button() == Qt.LeftButton:
             self.m_flag = True
@@ -422,7 +423,7 @@ class CalendarTaskWindow(QMainWindow):
             self.ui.checkBox_calendar_is_daily.setEnabled(False)
             self.ui.stackedWidget_2.setCurrentIndex(1)
 
-            daily = get_daily_task_object_of_user_id(user_now, task.task_id)[0]
+            daily = get_daily_task_object(user_now, task.task_id)[0]
 
             self.ui.label_calendar_daily_begin_date.setText(daily.daily_task_start_date.strftime('%Y-%m-%d'))
             self.ui.label_calendar_daily_begin_time.setText(daily.daily_task_start_time.strftime('%H:%M:%S'))
@@ -461,18 +462,19 @@ class DisplayTaskWindow(QMainWindow):
             self.ui.checkBox_is_daily.setEnabled(False)
             self.ui.stackedWidget_2.setCurrentIndex(1)
 
-
-            daily = get_daily_task_object_of_user_id(user_now, task.task_id)[0]
+            daily = get_daily_task_object(user_now, task.task_id)[0]
 
             self.ui.dateEdit_every_begin_date.setDate(daily.daily_task_start_date)
             self.ui.dateEdit_every_end_date.setDate(daily.daily_task_end_date)
             self.ui.timeEdit_every_begin_time.setTime(daily.daily_task_start_time)
             self.ui.timeEdit_every_end_time.setTime(daily.daily_task_end_time)
 
-            # self.ui.dateEdit_every_begin_date.dateChanged.connect(lambda: self.modify_daily_begin_date())
-            # self.ui.dateEdit_every_end_date.dateChanged.connect(lambda: self.modify_daily_end_date())
-            # self.ui.timeEdit_every_begin_time.timeChanged.connect(lambda: self.modify_daily_begin_time())
-            # self.ui.timeEdit_every_end_time.timeChanged.connect(lambda: self.modify_daily_end_time())
+            self.ui.dateEdit_every_begin_date.dateChanged.connect(lambda: self.modify_daily_begin_date(daily))
+            self.ui.dateEdit_every_end_date.dateChanged.connect(lambda: self.modify_daily_end_date(daily))
+            self.ui.timeEdit_every_begin_time.timeChanged.connect(lambda: self.modify_daily_begin_time(daily))
+            self.ui.timeEdit_every_end_time.timeChanged.connect(lambda: self.modify_daily_end_time(daily))
+
+            self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(daily=daily))
 
         else:
             self.ui.checkBox_is_daily.setChecked(False)
@@ -481,12 +483,18 @@ class DisplayTaskWindow(QMainWindow):
             self.ui.dateTimeEdit_ordinary_begin.setDateTime(task.task_start_time)
             self.ui.dateTimeEdit_ordinary_end.setDateTime(task.task_end_time)
 
-            # self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(lambda: self.modify_ordinary_begin_time())
-            # self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(lambda: self.modify_ordinary_end_time())
-        self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(task))
+            self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(lambda: self.modify_ordinary_begin_time())
+            self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(lambda: self.modify_ordinary_end_time())
+
+            self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(task=task))
+
         self.show()
 
-    def modify_task(self, task):
+    def modify_task(self, task=None, daily=None):
+        if self.ui.checkBox_is_daily.isChecked():
+            return daily
+        else:
+            return task
 
 
 class ModifyPersonWindow(QMainWindow):
@@ -628,7 +636,7 @@ class CustomListItem_Todo(QWidget):
 
 
 class CustomListItem_Schedule(QWidget):
-    def __init__(self, period, name, importance=TaskVital.TRIVIAL, parent=None):
+    def __init__(self, name, period='', importance=TaskVital.TRIVIAL, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
         self.label_period = QLabel(period, self)
@@ -675,7 +683,7 @@ class MainWindow(QMainWindow):
         image_loader.loadImage(get_user_info(user_now, 'avatar_url'))  # 替换为你的图片URL
         self.ui.label_user_name.setText(get_user_info(user_now, 'name'))
 
-        # self.todolist()
+        self.todolist()
         self.ui.listWidget.itemClicked.connect(lambda: self.change_page(self.ui.listWidget.currentRow()))
         self.ui.listWidget_2.itemClicked.connect(lambda: self.change_page(self.ui.listWidget_2.currentRow() + 3))
         self.ui.pushButton_M_addtask.clicked.connect(lambda: self.add_task())
@@ -684,6 +692,13 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_M_freetime.clicked.connect(lambda: self.provide_free_time())
         self.ui.calendarWidget.clicked.connect(lambda: self.calendar_click())
         self.ui.pushButton_modify_avatar.clicked.connect(lambda: self.modify_avatar())
+
+        self.ui.label_Sta_accumulate_sumofnum.setText("任务个数：" + str(get_complete_task_sum(user_now)))
+        self.ui.label_Sta_accumulate_sumoftime.setText("时长总数：" + str(get_work_time_sum(user_now)))
+        self.ui.label_Sta_everyday_sumofnum.setText(
+            "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
+        self.ui.label_Sta_everyday_sumoftime.setText(
+            "时长总数：" + str(get_work_time_sum_in_date(user_now, datetime.today())))
 
         self.ui.lineEdit_modify_motto.setText(get_user_info(user_now, 'signature'))
         self.ui.lineEdit_modify_name.setText(get_user_info(user_now, 'name'))
@@ -700,7 +715,7 @@ class MainWindow(QMainWindow):
 
         self.show()
 
-    #显示当前时间
+    # 显示当前时间
     def showtime(self):
         global text_set_flag
         datetime = QtCore.QDateTime.currentDateTime()
@@ -770,6 +785,7 @@ class MainWindow(QMainWindow):
         self.todolist()
 
     def complete_task(self, task):
+        task_is_complete(task)
 
     def display_task(self, task):
         self.win = DisplayTaskWindow(task)
@@ -781,7 +797,25 @@ class MainWindow(QMainWindow):
     def schedule(self):
         self.ui.stackedWidget_3.setCurrentIndex(2)
         schedule_list = get_task_schedule_objects(user_now, morning, afternoon, night)
+        now_period = schedule_list[0].task_time_period
+        count = 0
         for task in schedule_list:
+            if task.task_time_period == now_period:
+                count += 1
+                if count == 1:
+                    custom_item = CustomListItem_Schedule(task.task_title, now_period, task.task_importance)
+                else:
+                    custom_item = CustomListItem_Schedule(task.task_title, '', task.task_importance)
+
+            else:
+                now_period = task.task_time_period
+                count = 1
+                custom_item = CustomListItem_Schedule(task.task_title, now_period, task.task_importance)
+            custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task))
+            list_item = QListWidgetItem(self.ui.listWidget_schedule)
+            list_item.setSizeHint(custom_item.sizeHint())
+            self.ui.listWidget_schedule.addItem(list_item)
+            self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
 
     def calendar_click(self):
         self.ui.stackedWidget_3.setCurrentIndex(1)
