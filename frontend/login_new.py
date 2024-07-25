@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow):
         LoginWindow.setObjectName("LoginWindow")
-        LoginWindow.resize(1197, 859)
+        LoginWindow.resize(1087, 620)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -68,7 +68,7 @@ class Ui_LoginWindow(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.label_L_daily_sentence = QtWidgets.QLabel(self.frame_4)
-        self.label_L_daily_sentence.setGeometry(QtCore.QRect(50, 20, 461, 91))
+        self.label_L_daily_sentence.setGeometry(QtCore.QRect(40, 20, 421, 91))
         self.label_L_daily_sentence.setMinimumSize(QtCore.QSize(341, 91))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -82,6 +82,7 @@ class Ui_LoginWindow(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
         self.label_L_daily_sentence.setPalette(palette)
         self.label_L_daily_sentence.setStyleSheet("font: 15pt \"华文行楷\";")
+        self.label_L_daily_sentence.setWordWrap(True)
         self.label_L_daily_sentence.setObjectName("label_L_daily_sentence")
         self.listView = QtWidgets.QListView(self.frame_4)
         self.listView.setGeometry(QtCore.QRect(0, 0, 511, 581))
@@ -442,7 +443,7 @@ class Ui_LoginWindow(object):
     def retranslateUi(self, LoginWindow):
         _translate = QtCore.QCoreApplication.translate
         LoginWindow.setWindowTitle(_translate("LoginWindow", "MainWindow"))
-        self.label_L_daily_sentence.setText(_translate("LoginWindow", "此处放每日一句"))
+        self.label_L_daily_sentence.setText(_translate("LoginWindow", "此处放每日一句aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
         self.lineEdit_L_account.setPlaceholderText(_translate("LoginWindow", " 用户名/邮箱："))
         self.lineEdit_L_password.setPlaceholderText(_translate("LoginWindow", " 密码："))
         self.pushButton_L_login.setText(_translate("LoginWindow", "登  录"))

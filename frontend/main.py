@@ -1,4 +1,6 @@
-from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QTime
+from time import sleep
+
+from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QTime, QPropertyAnimation, QRect
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtGui import QCursor
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
@@ -708,6 +710,7 @@ class MainWindow(QMainWindow):
         image_loader = ImageLoader(self.ui.label_avatar, self)
         image_loader.loadImage(get_user_info(user_now, 'avatar_url'))  # 替换为你的图片URL
         self.ui.label_user_name.setText(get_user_info(user_now, 'name'))
+        self.ui.label_sentence.setText(get_user_info(user_now, 'signature'))
 
         self.ui.listWidget.itemClicked.connect(lambda: self.change_page(self.ui.listWidget.currentRow()))
         self.ui.listWidget_2.itemClicked.connect(lambda: self.change_page(self.ui.listWidget_2.currentRow() + 3))
@@ -737,6 +740,19 @@ class MainWindow(QMainWindow):
         timer.timeout.connect(self.showtime)
 
         timer.start()
+
+        #用于控制左边listWidget地行间距
+        self.ui.listWidget.setSpacing(15)
+        self.ui.listWidget_2.setSpacing(10)
+
+        #用于控制电子木鱼
+        moralities = str(get_user_info(user_now, 'moralities'))
+        self.ui.label_merits.setText(moralities)
+
+        self.ui.frame_24.setVisible(False)
+        self.ui.pushButton_modify_avatar.clicked.connect(lambda: self.modify_avatar())
+        self.ui.pushButton_2.clicked.connect(lambda: self.do_muyu_anim())
+        self.ui.pushButton_2.clicked.connect(lambda: self.moralities_add())
 
         self.show()
 
@@ -865,6 +881,7 @@ class MainWindow(QMainWindow):
     def modify_motto(self):
         new_motto = self.ui.lineEdit_modify_motto.text()
         reset_user_info(user_now, 'signature', new_motto)
+        self.ui.label_sentence.setText(new_motto)
 
     def modify_avatar(self):
         options = QFileDialog.Options()
@@ -902,6 +919,48 @@ class MainWindow(QMainWindow):
     def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
         self.m_flag = False
         self.setCursor(QCursor(Qt.ArrowCursor))
+
+    def do_muyu_anim(self):
+        self.ui.frame_24.setVisible(True)
+
+        self.anim_move = QPropertyAnimation(self.ui.frame_24, b"geometry")
+        self.anim_move.setDuration(300)
+        self.anim_move.setStartValue(QRect(160, 120, 120, 41))
+        self.anim_move.setEndValue(QRect(170, 20, 120, 41))
+        self.anim_move.finished.connect(self.check_animation_finished)
+        self.anim_move.start()
+        # morality = get_user_info(user_now, 'moralities')
+        # morality += 1
+        # reset_user_info(user_now, 'moralities', morality)
+        # self.ui.label_merits.setText(str(morality))
+
+    def check_animation_finished(self):
+        if self.ui.frame_24.geometry() == QRect(170, 20, 120, 41):
+            self.ui.frame_24.setVisible(False)
+
+        # self.anim_disappear = QPropertyAnimation(self.ui.frame_24, b"windowOpacity")
+        # self.anim_disappear.setDuration(20)
+        # self.anim_disappear.setStartValue(1)
+        # self.anim_disappear.setEndValue(0)
+        # self.anim_disappear.start()
+        # print("窗口渐隐")
+        # for i in range(80, 0, -1):
+        #     opacity = i/100
+        #     print("opacity:", opacity)
+        #     self.ui.frame_24.setStyleSheet("background-color:rgba(")
+        #     self.ui.frame_24.repaint()
+        #     QApplication.processEvents()
+        #     sleep(0.05)
+
+    def moralities_add(self):
+        morality = get_user_info(user_now, 'moralities')
+        morality += 1
+        reset_user_info(user_now, 'moralities', morality)
+        self.ui.label_merits.setText(str(morality))
+
+
+
+
 
 
 if __name__ == '__main__':

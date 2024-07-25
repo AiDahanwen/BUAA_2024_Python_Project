@@ -130,9 +130,9 @@ border-bottom-left-radius:20px</string>
           <widget class="QLabel" name="label_L_daily_sentence">
            <property name="geometry">
             <rect>
-             <x>50</x>
+             <x>40</x>
              <y>20</y>
-             <width>461</width>
+             <width>421</width>
              <height>91</height>
             </rect>
            </property>
@@ -183,7 +183,10 @@ border-bottom-left-radius:20px</string>
             <string notr="true">font: 15pt &quot;华文行楷&quot;;</string>
            </property>
            <property name="text">
-            <string>此处放每日一句</string>
+            <string>此处放每日一句aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
            </property>
           </widget>
           <widget class="QListView" name="listView">
