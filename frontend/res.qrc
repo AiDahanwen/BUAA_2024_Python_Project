@@ -24,6 +24,10 @@
     <file>icons/TargetArrow.png</file>
   </qresource>
   <qresource prefix="pictures">
+    <file>pictures/muyu_1.png</file>
+    <file>pictures/muyu_transparent_bg.jpg</file>
+    <file>pictures/plus_one.jpeg</file>
+    <file>pictures/muyu.jpeg</file>
     <file>pictures/meme1.jpg</file>
     <file>pictures/main_interface_background.jpg</file>
     <file>pictures/find_password_background.jpg</file>

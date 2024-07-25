@@ -1,4 +1,6 @@
-from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QTime
+from time import sleep
+
+from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QTime, QPropertyAnimation, QRect
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtGui import QCursor
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
@@ -739,8 +741,18 @@ class MainWindow(QMainWindow):
 
         timer.start()
 
+        #用于控制左边listWidget地行间距
         self.ui.listWidget.setSpacing(15)
         self.ui.listWidget_2.setSpacing(10)
+
+        #用于控制电子木鱼
+        moralities = str(get_user_info(user_now, 'moralities'))
+        self.ui.label_merits.setText(moralities)
+
+        self.ui.frame_24.setVisible(False)
+        self.ui.pushButton_modify_avatar.clicked.connect(lambda: self.modify_avatar())
+        self.ui.pushButton_2.clicked.connect(lambda: self.do_muyu_anim())
+        self.ui.pushButton_2.clicked.connect(lambda: self.moralities_add())
 
         self.show()
 
@@ -907,6 +919,48 @@ class MainWindow(QMainWindow):
     def mouseReleaseEvent(self, QMouseEvent):  # 鼠标拖拽窗口移动
         self.m_flag = False
         self.setCursor(QCursor(Qt.ArrowCursor))
+
+    def do_muyu_anim(self):
+        self.ui.frame_24.setVisible(True)
+
+        self.anim_move = QPropertyAnimation(self.ui.frame_24, b"geometry")
+        self.anim_move.setDuration(300)
+        self.anim_move.setStartValue(QRect(160, 120, 120, 41))
+        self.anim_move.setEndValue(QRect(170, 20, 120, 41))
+        self.anim_move.finished.connect(self.check_animation_finished)
+        self.anim_move.start()
+        # morality = get_user_info(user_now, 'moralities')
+        # morality += 1
+        # reset_user_info(user_now, 'moralities', morality)
+        # self.ui.label_merits.setText(str(morality))
+
+    def check_animation_finished(self):
+        if self.ui.frame_24.geometry() == QRect(170, 20, 120, 41):
+            self.ui.frame_24.setVisible(False)
+
+        # self.anim_disappear = QPropertyAnimation(self.ui.frame_24, b"windowOpacity")
+        # self.anim_disappear.setDuration(20)
+        # self.anim_disappear.setStartValue(1)
+        # self.anim_disappear.setEndValue(0)
+        # self.anim_disappear.start()
+        # print("窗口渐隐")
+        # for i in range(80, 0, -1):
+        #     opacity = i/100
+        #     print("opacity:", opacity)
+        #     self.ui.frame_24.setStyleSheet("background-color:rgba(")
+        #     self.ui.frame_24.repaint()
+        #     QApplication.processEvents()
+        #     sleep(0.05)
+
+    def moralities_add(self):
+        morality = get_user_info(user_now, 'moralities')
+        morality += 1
+        reset_user_info(user_now, 'moralities', morality)
+        self.ui.label_merits.setText(str(morality))
+
+
+
+
 
 
 if __name__ == '__main__':
