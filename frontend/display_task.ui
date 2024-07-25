@@ -323,7 +323,7 @@
          </size>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page_2">
          <widget class="QWidget" name="layoutWidget">
@@ -733,8 +733,8 @@
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>506</x>
-     <y>120</y>
+     <x>515</x>
+     <y>56</y>
     </hint>
     <hint type="destinationlabel">
      <x>452</x>
@@ -749,8 +749,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>598</x>
-     <y>125</y>
+     <x>636</x>
+     <y>56</y>
     </hint>
     <hint type="destinationlabel">
      <x>682</x>

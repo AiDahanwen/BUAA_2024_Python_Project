@@ -26,9 +26,9 @@ class Ui_FindWindow(object):
         self.frame.setSizePolicy(sizePolicy)
         self.frame.setMinimumSize(QtCore.QSize(361, 381))
         self.frame.setStyleSheet("QWidget#frame{\n"
-"background-color: rgb(255, 255, 255);\n"
-"border-radius:20px;\n"
-"}")
+                                 "background-color: rgb(255, 255, 255);\n"
+                                 "border-radius:20px;\n"
+                                 "}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -41,7 +41,7 @@ class Ui_FindWindow(object):
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QtCore.QSize(135, 31))
         self.label.setStyleSheet("font: 20pt \"微软雅黑\";\n"
-"background-color:rgba(255, 255, 255, 0)")
+                                 "background-color:rgba(255, 255, 255, 0)")
         self.label.setObjectName("label")
         self.frame_2 = QtWidgets.QFrame(self.frame)
         self.frame_2.setGeometry(QtCore.QRect(90, 130, 421, 371))
@@ -52,12 +52,12 @@ class Ui_FindWindow(object):
         self.frame_2.setSizePolicy(sizePolicy)
         self.frame_2.setMinimumSize(QtCore.QSize(231, 291))
         self.frame_2.setStyleSheet("QFrame{\n"
-"    background-color: rgba(255, 255, 255, 0);\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                   "    background-color: rgba(255, 255, 255, 0);\n"
+                                   "}\n"
+                                   "QPushButton:pressed{\n"
+                                   "    padding-top:5px;\n"
+                                   "    padding-left:5px;\n"
+                                   "}")
         self.frame_2.setObjectName("frame_2")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame_2)
         self.verticalLayout.setSpacing(20)
@@ -71,10 +71,10 @@ class Ui_FindWindow(object):
         self.lineEdit_F_email_address.setMinimumSize(QtCore.QSize(0, 30))
         self.lineEdit_F_email_address.setMaximumSize(QtCore.QSize(300, 16777215))
         self.lineEdit_F_email_address.setStyleSheet("QLineEdit{\n"
-"border:none;\n"
-"border-bottom:1.5px solid black;\n"
-"    font: 9pt \"微软雅黑\";\n"
-"}")
+                                                    "border:none;\n"
+                                                    "border-bottom:1.5px solid black;\n"
+                                                    "    font: 9pt \"微软雅黑\";\n"
+                                                    "}")
         self.lineEdit_F_email_address.setText("")
         self.lineEdit_F_email_address.setObjectName("lineEdit_F_email_address")
         self.verticalLayout.addWidget(self.lineEdit_F_email_address)
@@ -86,52 +86,52 @@ class Ui_FindWindow(object):
         self.lineEdit_F_check.setSizePolicy(sizePolicy)
         self.lineEdit_F_check.setMinimumSize(QtCore.QSize(0, 30))
         self.lineEdit_F_check.setStyleSheet("QLineEdit{\n"
-"border:none;\n"
-"border-bottom:1.5px solid black;\n"
-"    font: 9pt \"微软雅黑\";\n"
-"}")
+                                            "border:none;\n"
+                                            "border-bottom:1.5px solid black;\n"
+                                            "    font: 9pt \"微软雅黑\";\n"
+                                            "}")
         self.lineEdit_F_check.setObjectName("lineEdit_F_check")
         self.verticalLayout.addWidget(self.lineEdit_F_check)
         self.lineEdit_F_password1 = QtWidgets.QLineEdit(self.frame_2)
         self.lineEdit_F_password1.setMinimumSize(QtCore.QSize(0, 30))
         self.lineEdit_F_password1.setStyleSheet("QLineEdit{\n"
-"border:none;\n"
-"border-bottom:1.5px solid black;\n"
-"    font: 9pt \"微软雅黑\";\n"
-"}")
+                                                "border:none;\n"
+                                                "border-bottom:1.5px solid black;\n"
+                                                "    font: 9pt \"微软雅黑\";\n"
+                                                "}")
         self.lineEdit_F_password1.setObjectName("lineEdit_F_password1")
         self.verticalLayout.addWidget(self.lineEdit_F_password1)
         self.lineEdit_F_password2 = QtWidgets.QLineEdit(self.frame_2)
         self.lineEdit_F_password2.setMinimumSize(QtCore.QSize(0, 30))
         self.lineEdit_F_password2.setStyleSheet("QLineEdit{\n"
-"    font: 9pt \"微软雅黑\";\n"
-"border:none;\n"
-"border-bottom:1.5px solid black;\n"
-"}")
+                                                "    font: 9pt \"微软雅黑\";\n"
+                                                "border:none;\n"
+                                                "border-bottom:1.5px solid black;\n"
+                                                "}")
         self.lineEdit_F_password2.setObjectName("lineEdit_F_password2")
         self.verticalLayout.addWidget(self.lineEdit_F_password2)
         self.pushButton_F_ensure = QtWidgets.QPushButton(self.frame_2)
         self.pushButton_F_ensure.setMinimumSize(QtCore.QSize(0, 30))
         self.pushButton_F_ensure.setMaximumSize(QtCore.QSize(16777215, 40))
         self.pushButton_F_ensure.setStyleSheet("QPushButton{\n"
-"border-radius:20px;\n"
-"background-color: rgb(26, 67, 63);\n"
-"color: rgb(255, 255, 255);\n"
-"    font: 10pt \"微软雅黑\";\n"
-"}")
+                                               "border-radius:20px;\n"
+                                               "background-color: rgb(26, 67, 63);\n"
+                                               "color: rgb(255, 255, 255);\n"
+                                               "    font: 10pt \"微软雅黑\";\n"
+                                               "}")
         self.pushButton_F_ensure.setObjectName("pushButton_F_ensure")
         self.verticalLayout.addWidget(self.pushButton_F_ensure)
         self.frame_10 = QtWidgets.QFrame(self.frame)
         self.frame_10.setGeometry(QtCore.QRect(530, 0, 91, 41))
         self.frame_10.setStyleSheet("QPushButton{\n"
-"    border:none;\n"
-"    background-color: rgba(255, 255, 255, 0);\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                    "    border:none;\n"
+                                    "    background-color: rgba(255, 255, 255, 0);\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton:hover{\n"
+                                    "    padding-top:5px;\n"
+                                    "    padding-left:5px;\n"
+                                    "}")
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
@@ -166,7 +166,7 @@ class Ui_FindWindow(object):
         self.label_2 = QtWidgets.QLabel(self.page_email_format_error)
         self.label_2.setMinimumSize(QtCore.QSize(211, 20))
         self.label_2.setStyleSheet("font: 10pt \"微软雅黑\";\n"
-"color: rgb(217, 0, 0);")
+                                   "color: rgb(217, 0, 0);")
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_2.addWidget(self.label_2)
@@ -178,7 +178,7 @@ class Ui_FindWindow(object):
         self.label_3 = QtWidgets.QLabel(self.page_check_invalid)
         self.label_3.setMinimumSize(QtCore.QSize(211, 20))
         self.label_3.setStyleSheet("font: 10pt \"微软雅黑\";\n"
-"color: rgb(217, 0, 0);")
+                                   "color: rgb(217, 0, 0);")
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_4.addWidget(self.label_3)
@@ -190,7 +190,7 @@ class Ui_FindWindow(object):
         self.label_4 = QtWidgets.QLabel(self.page_code_inconsistent)
         self.label_4.setMinimumSize(QtCore.QSize(211, 20))
         self.label_4.setStyleSheet("font: 10pt \"微软雅黑\";\n"
-"color: rgb(217, 0, 0);")
+                                   "color: rgb(217, 0, 0);")
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.horizontalLayout_5.addWidget(self.label_4)
@@ -202,7 +202,7 @@ class Ui_FindWindow(object):
         self.label_5 = QtWidgets.QLabel(self.page_check_error)
         self.label_5.setMinimumSize(QtCore.QSize(211, 20))
         self.label_5.setStyleSheet("font: 10pt \"微软雅黑\";\n"
-"color: rgb(217, 0, 0);")
+                                   "color: rgb(217, 0, 0);")
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_6.addWidget(self.label_5)
@@ -214,7 +214,7 @@ class Ui_FindWindow(object):
         self.label_6 = QtWidgets.QLabel(self.page_not_blank)
         self.label_6.setMinimumSize(QtCore.QSize(211, 20))
         self.label_6.setStyleSheet("font: 10pt \"微软雅黑\";\n"
-"color: rgb(217, 0, 0);")
+                                   "color: rgb(217, 0, 0);")
         self.label_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_6.setObjectName("label_6")
         self.horizontalLayout_7.addWidget(self.label_6)
@@ -231,7 +231,7 @@ class Ui_FindWindow(object):
         self.label_7.setSizePolicy(sizePolicy)
         self.label_7.setMinimumSize(QtCore.QSize(211, 30))
         self.label_7.setStyleSheet("font: 10pt \"微软雅黑\";\n"
-"color: rgb(217, 0, 0);")
+                                   "color: rgb(217, 0, 0);")
         self.label_7.setAlignment(QtCore.Qt.AlignCenter)
         self.label_7.setObjectName("label_7")
         self.horizontalLayout_8.addWidget(self.label_7)
@@ -239,31 +239,31 @@ class Ui_FindWindow(object):
         self.listView = QtWidgets.QListView(self.frame)
         self.listView.setGeometry(QtCore.QRect(0, 0, 621, 631))
         self.listView.setStyleSheet("border-image:url(:/pictures/pictures/find_password_background.jpg);\n"
-"border-radius:20px;")
+                                    "border-radius:20px;")
         self.listView.setObjectName("listView")
         self.pushButton_F_send = QtWidgets.QPushButton(self.frame)
         self.pushButton_F_send.setGeometry(QtCore.QRect(440, 156, 101, 30))
         self.pushButton_F_send.setMinimumSize(QtCore.QSize(0, 30))
         self.pushButton_F_send.setStyleSheet("QPushButton{\n"
-"font: 9pt \"微软雅黑\";\n"
-"    background-color: rgb(26, 67, 63);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                             "font: 9pt \"微软雅黑\";\n"
+                                             "    background-color: rgb(26, 67, 63);\n"
+                                             "    color: rgb(255, 255, 255);\n"
+                                             "}\n"
+                                             "QPushButton:hover{\n"
+                                             "    padding-left:5px;\n"
+                                             "    padding-top:5px;\n"
+                                             "}")
         self.pushButton_F_send.setObjectName("pushButton_F_send")
         self.listView_2 = QtWidgets.QListView(self.frame)
         self.listView_2.setGeometry(QtCore.QRect(60, 70, 501, 501))
         self.listView_2.setStyleSheet("background-color: rgba(255, 255, 255, 170);\n"
-"border-radius:20px;")
+                                      "border-radius:20px;")
         self.listView_2.setObjectName("listView_2")
         self.label_8 = QtWidgets.QLabel(self.frame)
         self.label_8.setGeometry(QtCore.QRect(0, 0, 621, 41))
         self.label_8.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-top-right-radius:20px;\n"
-"border-top-left-radius:20px;")
+                                   "border-top-right-radius:20px;\n"
+                                   "border-top-left-radius:20px;")
         self.label_8.setText("")
         self.label_8.setObjectName("label_8")
         self.listView.raise_()
@@ -281,8 +281,8 @@ class Ui_FindWindow(object):
 
         self.retranslateUi(FindWindow)
         self.stackedWidget.setCurrentIndex(5)
-        self.pushButton.clicked.connect(FindWindow.showMinimized) # type: ignore
-        self.pushButton_2.clicked.connect(FindWindow.close) # type: ignore
+        self.pushButton.clicked.connect(FindWindow.showMinimized)  # type: ignore
+        self.pushButton_2.clicked.connect(FindWindow.close)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(FindWindow)
 
     def retranslateUi(self, FindWindow):
@@ -301,4 +301,6 @@ class Ui_FindWindow(object):
         self.label_6.setText(_translate("FindWindow", "密码不能为空！"))
         self.label_7.setText(_translate("FindWindow", "此邮箱未注册！"))
         self.pushButton_F_send.setText(_translate("FindWindow", "发送验证码"))
+
+
 import res_rc
