@@ -708,6 +708,7 @@ class MainWindow(QMainWindow):
         image_loader = ImageLoader(self.ui.label_avatar, self)
         image_loader.loadImage(get_user_info(user_now, 'avatar_url'))  # 替换为你的图片URL
         self.ui.label_user_name.setText(get_user_info(user_now, 'name'))
+        self.ui.label_sentence.setText(get_user_info(user_now, 'signature'))
 
         self.ui.listWidget.itemClicked.connect(lambda: self.change_page(self.ui.listWidget.currentRow()))
         self.ui.listWidget_2.itemClicked.connect(lambda: self.change_page(self.ui.listWidget_2.currentRow() + 3))
@@ -868,6 +869,7 @@ class MainWindow(QMainWindow):
     def modify_motto(self):
         new_motto = self.ui.lineEdit_modify_motto.text()
         reset_user_info(user_now, 'signature', new_motto)
+        self.ui.label_sentence.setText(new_motto)
 
     def modify_avatar(self):
         options = QFileDialog.Options()
