@@ -27,13 +27,12 @@ from backend.user_system import *
 from backend.task_system import *
 
 import sys
-import res
-import resource
 
 user_now = "2895227477@qq.com"
 morning = 0
 afternoon = 0
 night = 0
+text_set_flag = False
 
 
 def transfer_vital(vital):
@@ -688,7 +687,12 @@ class MainWindow(QMainWindow):
         self.ui.calendarWidget.clicked.connect(lambda: self.calendar_click())
         self.ui.pushButton_modify_avatar.clicked.connect(lambda: self.modify_avatar())
 
-        # self.ui.label_Sta_accumulate_sumofnum.setText(str(get_user_info(user_now, 'accumulate_sumofnum')))
+        self.ui.label_Sta_accumulate_sumofnum.setText("任务个数：" + str(get_complete_task_sum(user_now)))
+        self.ui.label_Sta_accumulate_sumoftime.setText("时长总数：" + str(get_work_time_sum(user_now)))
+        self.ui.label_Sta_everyday_sumofnum.setText(
+            "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
+        self.ui.label_Sta_everyday_sumoftime.setText(
+            "时长总数：" + str(get_work_time_sum_in_date(user_now, datetime.today())))
 
         self.ui.lineEdit_modify_motto.setText(get_user_info(user_now, 'signature'))
         self.ui.lineEdit_modify_name.setText(get_user_info(user_now, 'name'))
@@ -705,22 +709,23 @@ class MainWindow(QMainWindow):
 
         self.show()
 
-    #显示当前时间
+    # 显示当前时间
     def showtime(self):
         global text_set_flag
         datetime = QtCore.QDateTime.currentDateTime()
-        #print("datetime")
+        # print("datetime")
         text = datetime.toString('yyyy-MM-dd HH:mm:ss')
-        #print(text)
+        # print(text)
         self.ui.label_time.setText(text)
-        #self.retranslateUi(self)
-        #QtCore.QMetaObject.connectSlotsByName(self)
+        # self.retranslateUi(self)
+        # QtCore.QMetaObject.connectSlotsByName(self)
         current_time = text.split(' ')[1]
         current_hour = current_time.split(':')[0]
         if text_set_flag == False:
             if 0 <= int(current_hour) < 6:
-                night_text_list = ["夜深了，休息一下吧！辛苦啦！", "深夜还在奋斗，respect", "这个点登录，是在为明天做计划吗？"]
-                night_text = night_text_list.pop(random.randint(0, len(night_text_list)-1))
+                night_text_list = ["夜深了，休息一下吧！辛苦啦！", "深夜还在奋斗，respect",
+                                   "这个点登录，是在为明天做计划吗？"]
+                night_text = night_text_list.pop(random.randint(0, len(night_text_list) - 1))
                 self.ui.label.setText(night_text)
                 text_set_flag = True
             elif int(current_hour) < 12:
@@ -775,7 +780,7 @@ class MainWindow(QMainWindow):
         self.todolist()
 
     def complete_task(self, task):
-        task_is_complete(task.task_id)
+        task_is_complete(task)
 
     def display_task(self, task):
         self.win = DisplayTaskWindow(task)
@@ -865,5 +870,5 @@ class MainWindow(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = LoginWindow()
+    window = MainWindow()
     sys.exit(app.exec_())
