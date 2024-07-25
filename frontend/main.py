@@ -27,7 +27,6 @@ from backend.user_system import *
 from backend.task_system import *
 
 import sys
-import res
 import resource
 
 user_now = "2895227477@qq.com"
