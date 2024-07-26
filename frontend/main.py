@@ -279,12 +279,28 @@ class AddTaskWindow(QMainWindow):
         self.ui.timeEdit_every_begin_time.setTime(QtCore.QTime.currentTime())
         self.ui.timeEdit_every_end_time.setTime(QtCore.QTime.currentTime())
 
+        self.ui.pushButton_Add_task_photo.clicked.connect(lambda: self.upload_photos())
         self.ui.radioButton_Add_is_every.clicked.connect(lambda: self.every_or_ordinary())
         self.ui.pushButton_Add_ensure.clicked.connect(lambda: self.everyday_task()
         if self.ui.radioButton_Add_is_every.isChecked() else self.ordinary_task())
 
         self.ui.label.adjustSize()
         self.show()
+
+    def upload_photos(self):
+        options = QFileDialog.Options()
+        file_path, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
+                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
+        if file_path:
+            pixmap = QtGui.QPixmap(file_path)
+            if not pixmap.isNull():
+                self.ui.label_user_avatar.setPixmap(
+                    pixmap.scaled(self.ui.label_user_avatar.width(), self.ui.label_user_avatar.height(),
+                                  Qt.KeepAspectRatio, Qt.SmoothTransformation))
+                modify_user_avatar(user_now, file_path)
+                self.ui.label_avatar.setPixmap(
+                    pixmap.scaled(self.ui.label_user_avatar.width(), self.ui.label_user_avatar.height(),
+                                  Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
     def every_or_ordinary(self):
         if self.ui.radioButton_Add_is_every.isChecked():
@@ -451,9 +467,9 @@ class DisplayTaskWindow(QMainWindow):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
         self.ui.lineEdit_display_taskname.setText(task.task_title)
-        self.ui.comboBox_important.setCurrentIndex(self.transfer_vital(task.task_vital))
+        self.ui.comboBox_important.setCurrentText(transfer_vital(task.task_vital))
         self.ui.textEdit_task_content.setText(task.task_content)
-        self.ui.comboBox_display_task_type.setCurrentIndex(task.task_tag)
+        self.ui.comboBox_display_task_type.setCurrentText(task.task_tag)
         self.ui.progressBar_display_progress.setValue(task.task_elapsed_time / task.task_duration_time * 100)
         self.ui.label_dispaly_state.setText(task.task_status)
         self.ui.stackedWidget_2.setCurrentIndex(0)
@@ -463,7 +479,7 @@ class DisplayTaskWindow(QMainWindow):
             self.ui.checkBox_is_daily.setEnabled(False)
             self.ui.stackedWidget_2.setCurrentIndex(1)
 
-            daily = get_daily_task_object(user_now, task.task_id)[0]
+            daily = get_daily_task_object(user_now, task.daily_task_id)[0]
 
             self.ui.dateEdit_every_begin_date.setDate(daily.daily_task_start_date)
             self.ui.dateEdit_every_end_date.setDate(daily.daily_task_end_date)
@@ -491,11 +507,31 @@ class DisplayTaskWindow(QMainWindow):
 
         self.show()
 
+    def modify_daily_begin_date(self, daily):
+        daily.daily_task_start_date = self.ui.dateEdit_every_begin_date.date().toPyDate()
+
+    def modify_daily_end_date(self, daily):
+        daily.daily_task_end_date = self.ui.dateEdit_every_end_date.date().toPyDate()
+
+    def modify_daily_begin_time(self, daily):
+        daily.daily_task_start_time = self.ui.timeEdit_every_begin_time.time().toPyTime()
+
+    def modify_daily_end_time(self, daily):
+        daily.daily_task_end_time = self.ui.timeEdit_every_end_time.time().toPyTime()
+
+    def modify_ordinary_begin_time(self, task):
+        task.task_start_time = self.ui.dateTimeEdit_ordinary_begin.dateTime().toPyDateTime()
+
+    def modify_ordinary_end_time(self, task):
+        task.task_end_time = self.ui.dateTimeEdit_ordinary_end.dateTime().toPyDateTime()
+
     def modify_task(self, task=None, daily=None):
         if self.ui.checkBox_is_daily.isChecked():
-            return daily
+            self.close()
+            reset_daily_task(daily)
         else:
-            return task
+            self.close()
+            reset_task(task)
 
 
 class ModifyPersonWindow(QMainWindow):
@@ -612,13 +648,15 @@ class ImageLoader(QObject):
 
 
 class CustomListItem_Todo(QWidget):
-    def __init__(self, text, importance=TaskVital.TRIVIAL, parent=None):
+    def __init__(self, text, status, importance=TaskVital.TRIVIAL, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
         self.button_1 = QCheckBox(self)
         self.button_2 = QPushButton(text, self)
         self.important_icon = QLabel(self)
         self.important_icon.setFixedSize(30, 30)
+        if status == TaskStatus.COMPLETED:
+            self.button_1.setChecked(True)
 
         if importance == TaskVital.TRIVIAL:
             icon_pixmap = QPixmap("../icons/橙色五角星.png")
@@ -665,6 +703,7 @@ class CustomListItem_Calendar(QWidget):
         layout = QHBoxLayout(self)
         self.pushButton_name = QPushButton(name, self)
         self.label_state = QLabel(state, self)
+        self.important_icon = QLabel(self)
         self.important_icon.setFixedSize(30, 30)
 
         if importance == TaskVital.TRIVIAL:
@@ -677,13 +716,16 @@ class CustomListItem_Calendar(QWidget):
         scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.important_icon.setPixmap(scaled_pixmap)
 
-        layout.addWidget(self.pushButton_name, self.label_state, self.important_icon)
+        layout.addWidget(self.pushButton_name)
+        layout.addWidget(self.label_state)
+        layout.addWidget(self.important_icon)
         self.setLayout(layout)
 
 
 class MainWindow(QMainWindow):
-    #表示此时早上好等语句有没有set
+    # 表示此时早上好等语句有没有set
     text_set_flag = False
+
     def __init__(self):
         super().__init__()
         global text_set_flag
@@ -704,6 +746,7 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget_2.setCurrentIndex(0)
         else:
             self.ui.stackedWidget_2.setCurrentIndex(1)
+            self.todolist()
         self.ui.stackedWidget_3.setCurrentIndex(0)
         self.ui.stackedWidget_4.setCurrentIndex(0)
 
@@ -760,18 +803,19 @@ class MainWindow(QMainWindow):
     def showtime(self):
         global text_set_flag
         datetime = QtCore.QDateTime.currentDateTime()
-        #print("datetime")
+        # print("datetime")
         text = datetime.toString('yyyy-MM-dd HH:mm:ss')
-        #print(text)
+        # print(text)
         self.ui.label_time.setText(text)
-        #self.retranslateUi(self)
-        #QtCore.QMetaObject.connectSlotsByName(self)
+        # self.retranslateUi(self)
+        # QtCore.QMetaObject.connectSlotsByName(self)
         current_time = text.split(' ')[1]
         current_hour = current_time.split(':')[0]
         if text_set_flag == False:
             if 0 <= int(current_hour) < 6:
-                night_text_list = ["夜深了，休息一下吧！辛苦啦！", "深夜还在奋斗，respect", "这个点登录，是在为明天做计划吗？"]
-                night_text = night_text_list.pop(random.randint(0, len(night_text_list)-1))
+                night_text_list = ["夜深了，休息一下吧！辛苦啦！", "深夜还在奋斗，respect",
+                                   "这个点登录，是在为明天做计划吗？"]
+                night_text = night_text_list.pop(random.randint(0, len(night_text_list) - 1))
                 self.ui.label.setText(night_text)
                 text_set_flag = True
             elif int(current_hour) < 12:
@@ -809,10 +853,11 @@ class MainWindow(QMainWindow):
             self.log_out()
 
     def todolist(self):
+        self.ui.listWidget_todolist.clear()
         task_list = get_tasks_of_user_with_status(user_now, TaskStatus.PENDING) + \
                     get_tasks_of_user_with_status(user_now, TaskStatus.UNDERWAY)
         for task in task_list:
-            custom_item = CustomListItem_Todo(task.task_title, task)
+            custom_item = CustomListItem_Todo(task.task_title, task.task_status, task.task_vital)
             custom_item.button_1.clicked.connect(lambda: self.complete_task(task))
             custom_item.button_2.clicked.connect(lambda: self.display_task(task))
             list_item = QListWidgetItem(self.ui.listWidget_todolist)
@@ -827,6 +872,7 @@ class MainWindow(QMainWindow):
 
     def complete_task(self, task):
         task_is_complete(task)
+        self.todolist()
 
     def display_task(self, task):
         self.win = DisplayTaskWindow(task)
@@ -864,7 +910,7 @@ class MainWindow(QMainWindow):
         task_list = get_ordered_tasks_date(user_now, current_date)
         for task in task_list:
             custom_item = CustomListItem_Calendar(task.task_title, task.task_status, task.task_vital)
-            custom_item.pushButton_name.clicked.connect(self.display_task(task))
+            custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task))
             list_item = QListWidgetItem(self.ui.listWidget_todolist)
             list_item.setSizeHint(custom_item.sizeHint())
             self.ui.listWidget_todolist.addItem(list_item)
