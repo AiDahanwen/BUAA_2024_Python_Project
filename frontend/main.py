@@ -1,5 +1,5 @@
 from time import sleep
-
+from datetime import datetime, timedelta, date, time
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QTime, QPropertyAnimation, QRect
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtGui import QCursor
@@ -29,7 +29,6 @@ from backend.user_system import *
 from backend.task_system import *
 
 import sys
-import resource
 
 user_now = "2895227477@qq.com"
 morning = 0
@@ -266,6 +265,7 @@ class AddTaskWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        self.photo_path = None
 
         self.ui.stackedWidget_2.adjustSize()
         self.ui.stackedWidget.adjustSize()
@@ -294,13 +294,7 @@ class AddTaskWindow(QMainWindow):
         if file_path:
             pixmap = QtGui.QPixmap(file_path)
             if not pixmap.isNull():
-                self.ui.label_user_avatar.setPixmap(
-                    pixmap.scaled(self.ui.label_user_avatar.width(), self.ui.label_user_avatar.height(),
-                                  Qt.KeepAspectRatio, Qt.SmoothTransformation))
-                modify_user_avatar(user_now, file_path)
-                self.ui.label_avatar.setPixmap(
-                    pixmap.scaled(self.ui.label_user_avatar.width(), self.ui.label_user_avatar.height(),
-                                  Qt.KeepAspectRatio, Qt.SmoothTransformation))
+                self.photo_path = file_path
 
     def every_or_ordinary(self):
         if self.ui.radioButton_Add_is_every.isChecked():
@@ -360,12 +354,14 @@ class AddTaskWindow(QMainWindow):
     def everyday_task(self):
         daily_task = self.check_input()
         if daily_task:
+            modify_daily_task_pic_url(daily_task, self.photo_path)
             add_daily_task(daily_task)
             self.close()
 
     def ordinary_task(self):
         task = self.check_input()
         if task:
+            modify_task_pic_url(task, self.photo_path)
             add_task(task)
             self.close()
 
@@ -784,11 +780,11 @@ class MainWindow(QMainWindow):
 
         timer.start()
 
-        #用于控制左边listWidget地行间距
+        # 用于控制左边listWidget地行间距
         self.ui.listWidget.setSpacing(15)
         self.ui.listWidget_2.setSpacing(10)
 
-        #用于控制电子木鱼
+        # 用于控制电子木鱼
         moralities = str(get_user_info(user_now, 'moralities'))
         self.ui.label_merits.setText(moralities)
 
@@ -911,10 +907,10 @@ class MainWindow(QMainWindow):
         for task in task_list:
             custom_item = CustomListItem_Calendar(task.task_title, task.task_status, task.task_vital)
             custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task))
-            list_item = QListWidgetItem(self.ui.listWidget_todolist)
+            list_item = QListWidgetItem(self.ui.listWidget_calender)
             list_item.setSizeHint(custom_item.sizeHint())
-            self.ui.listWidget_todolist.addItem(list_item)
-            self.ui.listWidget_todolist.setItemWidget(list_item, custom_item)
+            self.ui.listWidget_calender.addItem(list_item)
+            self.ui.listWidget_calender.setItemWidget(list_item, custom_item)
 
     def modify_person(self):
         self.win = ModifyPersonWindow()
@@ -1003,10 +999,6 @@ class MainWindow(QMainWindow):
         morality += 1
         reset_user_info(user_now, 'moralities', morality)
         self.ui.label_merits.setText(str(morality))
-
-
-
-
 
 
 if __name__ == '__main__':
