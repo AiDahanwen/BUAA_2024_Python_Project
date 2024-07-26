@@ -71,6 +71,7 @@ class Task:
         self.task_duration_time = kwargs.get("task_duration_time", timedelta(hours=10))
         self.task_elapsed_time = kwargs.get("task_elapsed_time", 0)
         self.task_complete_time = kwargs.get("task_complete_time", None)
+        self.task_pic_url = kwargs.get("task_pic_url", None)
 
     def __str__(self):
         return (
@@ -88,6 +89,7 @@ class Task:
             f"task_duration_time: {self.task_duration_time}\n"
             f"task_elapsed_time: {self.task_elapsed_time}\n"
             f"task_complete_time: {self.task_complete_time}\n"
+            f"task_pic_url: {self.task_pic_url}\n"
         )
 
 
@@ -115,6 +117,7 @@ class DailyTask:
             "daily_task_duration_time", timedelta(hours=10)
         )
         self.daily_task_elapsed_time = kwargs.get("daily_task_elapsed_time", 0)
+        self.daily_task_pic_url = kwargs.get("daily_task_pic_url", None)
 
     def __str__(self):
         return (
@@ -129,7 +132,8 @@ class DailyTask:
             f"daily_task_start_time: {self.daily_task_start_time}\n"
             f"daily_task_end_time: {self.daily_task_end_time}\n"
             f"daily_task_duration_time: {self.daily_task_duration_time}\n"
-            f"daily_task_elapsed_time: {self.daily_task_elapsed_time}"
+            f"daily_task_elapsed_time: {self.daily_task_elapsed_time}\n"
+            f"daily_task_pic_url: {self.daily_task_pic_url}\n"
         )
 
     def to_normal_task(self, date):
@@ -145,6 +149,7 @@ class DailyTask:
             task_start_time=datetime.combine(date, self.daily_task_start_time),
             task_end_time=datetime.combine(date, self.daily_task_end_time),
             task_is_daily=1,
+            task_pic_url=self.daily_task_pic_url,
         )
         return normal_task
 
@@ -153,8 +158,8 @@ class DailyTask:
 def add_task(task):
     cmd = """
         INSERT INTO tasks (user_email, daily_task_id, task_status, task_vital,
-        task_title, task_content, task_tag, task_is_daily, task_start_time, task_end_time, task_duration_time)
-        VALUE (%s, %s, %s ,%s, %s, %s, %s, %s, %s, %s, %s)
+        task_title, task_content, task_tag, task_is_daily, task_start_time, task_end_time, task_duration_time, task_elapsed_time, task_complete_time, task_pic_url)
+        VALUE (%s, %s, %s , %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
     args = (
         task.user_email,
@@ -168,6 +173,9 @@ def add_task(task):
         task.task_start_time,
         task.task_end_time,
         task.task_duration_time,
+        task.task_elapsed_time,
+        task.task_complete_time,
+        task.task_pic_url,
     )
     return database_write(cmd, args)
 
@@ -189,7 +197,8 @@ def reset_task(task):
     cmd = """
     UPDATE tasks
     SET task_status = %s, task_vital = %s, task_title = %s, task_content = %s, task_tag = %s, \
-    task_start_time = %s, task_end_time = %s, task_duration_time = %s
+    task_start_time = %s, task_end_time = %s, task_duration_time = %s,task_elapsed_time =%s, \
+    task_complete_time = %s, task_pic_url = %s
     WHERE task_id = %s
     """
     args = (
@@ -201,6 +210,9 @@ def reset_task(task):
         task.task_start_time,
         task.task_end_time,
         task.task_duration_time,
+        task.task_elapsed_time,
+        task.task_complete_time,
+        task.task_pic_url,
         task.task_id,
     )
     return database_write(cmd, args)
@@ -247,13 +259,14 @@ def _get_task_objects(data):
                 task_duration_time=line[11],
                 task_elapsed_time=line[12],
                 task_complete_time=line[13],
+                task_pic_url=line[14],
             )
         )
     return result
 
 
 def _get_task_objects_of_user_with_condition(
-        user_email, condition_cmd="", condition_args=()
+    user_email, condition_cmd="", condition_args=()
 ):
     update_tasks(user_email)
     return _get_task_objects(
@@ -294,12 +307,20 @@ def get_task_objects_of_user_with_status_in_date(user_email, some_date, status):
 
 
 def get_complete_task_sum_in_date(user_email, some_date):
-    return len(get_task_objects_of_user_with_status_in_date(user_email, some_date, TaskStatus.COMPLETED))
+    return len(
+        get_task_objects_of_user_with_status_in_date(
+            user_email, some_date, TaskStatus.COMPLETED
+        )
+    )
 
 
 def get_work_time_sum_in_date(user_email, some_date):
-    task_complete_list = get_task_objects_of_user_with_status_in_date(user_email, some_date, TaskStatus.COMPLETED)
-    task_underway_list = get_task_objects_of_user_with_status_in_date(user_email, some_date, TaskStatus.UNDERWAY)
+    task_complete_list = get_task_objects_of_user_with_status_in_date(
+        user_email, some_date, TaskStatus.COMPLETED
+    )
+    task_underway_list = get_task_objects_of_user_with_status_in_date(
+        user_email, some_date, TaskStatus.UNDERWAY
+    )
     time_sum = timedelta(days=0)
 
     for task in task_complete_list:
@@ -330,7 +351,9 @@ def get_work_time_sum(user_email):
 
 
 def get_average_work_time(user_email):
-    date_sum = date.today() - get_user_info(user_email, "register_date") + timedelta(days=1)
+    date_sum = (
+        date.today() - get_user_info(user_email, "register_date") + timedelta(days=1)
+    )
     return get_work_time_sum(user_email) / date_sum.days
 
 
@@ -458,6 +481,7 @@ def _get_daily_task_objects(data):
             daily_task_end_time=(temp + line[9]).time(),
             daily_task_duration_time=line[10],
             daily_task_elapsed_time=line[11],
+            daily_task_pic_url=line[12],
         )
         result.append(daily_task)
 
@@ -471,8 +495,9 @@ def add_daily_task(daily_task):
         daily_task_title, daily_task_content, daily_task_tag,
         daily_task_start_date, daily_task_end_date,
         daily_task_start_time, daily_task_end_time,
-        daily_task_duration_time, daily_task_elapsed_time)
-        VALUE (%s, %s, %s ,%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        daily_task_duration_time, daily_task_elapsed_time,
+        daily_task_pic_url)
+        VALUE (%s, %s, %s ,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
     args = (
         daily_task.daily_task_id,
@@ -487,6 +512,7 @@ def add_daily_task(daily_task):
         daily_task.daily_task_end_time,
         daily_task.daily_task_duration_time,
         daily_task.daily_task_elapsed_time,
+        daily_task.daily_task_pic_url,
     )
     connection = database_connect()
     cursor = connection.cursor()
@@ -509,7 +535,7 @@ def delete_daily_task(*daily_task_id):
 
 
 def _get_daily_task_objects_of_user_with_condition(
-        user_email, condition_cmd="", condition_args=()
+    user_email, condition_cmd="", condition_args=()
 ):
     return _get_daily_task_objects(
         join(
@@ -558,7 +584,7 @@ def create_daily_task_copy_date(user_email, date):
         if temp <= daily_task.daily_task_end_date:
             if daily_task.daily_task_end_time < datetime.now().time():
                 if not is_daily_task_copy_exist(
-                        user_email, daily_task.daily_task_id, temp
+                    user_email, daily_task.daily_task_id, temp
                 ):
                     if not add_task(daily_task.to_normal_task(temp)):
                         return False
@@ -622,8 +648,60 @@ def task_is_complete(task):
     if task.task_is_daily:
         daily_task = get_daily_task_object(task.user_email, task.daily_task_id)[0]
         if daily_task.daily_task_end_date > date.today():
-            task = daily_task.to_normal_task(date.today() + timedelta(days=1))
-            add_task(task)
+            if not is_daily_task_copy_exist(
+                task.user_email,
+                daily_task.daily_task_id,
+                date.today() + timedelta(days=1),
+            ):
+                task = daily_task.to_normal_task(date.today() + timedelta(days=1))
+                add_task(task)
 
 
-add_work_time(get_task_object_of_user("114514")[0], timedelta(hours=4))
+def reset_daily_task(daily_task):
+    cmd = """
+        UPDATE daily_tasks 
+        daily_task_vital = %s,\
+        daily_task_title = %s, daily_task_content = %s, daily_task_tag = %s,\
+        daily_task_start_date = %s, daily_task_end_date = %s,\
+        daily_task_start_time = %s, daily_task_end_time = %s,\
+        daily_task_duration_time = %s, daily_task_elapsed_time = %s,\
+        daily_task_pic_url = %s
+        WHERE daily_task_id = %s
+        """
+    args = (
+        daily_task.daily_task_vital,
+        daily_task.daily_task_title,
+        daily_task.daily_task_content,
+        daily_task.daily_task_tag,
+        daily_task.daily_task_start_date,
+        daily_task.daily_task_end_date,
+        daily_task.daily_task_start_time,
+        daily_task.daily_task_end_time,
+        daily_task.daily_task_duration_time,
+        daily_task.daily_task_elapsed_time,
+        daily_task.daily_task_pic_url,
+        daily_task.daily_task_id,
+    )
+    return database_write(cmd, args)
+
+
+def modify_task_pic_url(task, pic_url):
+    pic_name = pic_url.split("/")[-1]
+    temp = str(task.user_email) + "/task_pic/" + str(task.task_id) + "_" + pic_name
+    bucket.put_object_from_file(temp, pic_url)
+    pic_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
+    task.task_pic_url = pic_url
+
+
+def modify_daily_task_pic_url(daily_task, pic_url):
+    pic_name = pic_url.split("/")[-1]
+    temp = (
+        str(daily_task.user_email)
+        + "/daily_task_pic/"
+        + str(daily_task.daily_task_id)
+        + "_"
+        + pic_name
+    )
+    bucket.put_object_from_file(temp, pic_url)
+    pic_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
+    daily_task.daily_task_pic_url = pic_url
