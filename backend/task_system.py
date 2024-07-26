@@ -687,7 +687,7 @@ def reset_daily_task(daily_task):
 
 def modify_task_pic_url(task, pic_url):
     pic_name = pic_url.split("/")[-1]
-    temp = str(task.user_email) + "_task/" + str(task.task_id) + "_" + pic_name
+    temp = str(task.user_email) + "/task_pic/" + str(task.task_id) + "_" + pic_name
     bucket.put_object_from_file(temp, pic_url)
     pic_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
     task.task_pic_url = pic_url
@@ -697,7 +697,7 @@ def modify_daily_task_pic_url(daily_task, pic_url):
     pic_name = pic_url.split("/")[-1]
     temp = (
         str(daily_task.user_email)
-        + "_daily_task/"
+        + "/daily_task_pic/"
         + str(daily_task.daily_task_id)
         + "_"
         + pic_name
