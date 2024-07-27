@@ -703,10 +703,12 @@ class CustomListItem_Todo(QWidget):
 
 
 class CustomListItem_Schedule(QWidget):
-    def __init__(self, name, period='', importance=TaskVital.TRIVIAL, parent=None):
+    def __init__(self, name, duration, period='', importance=TaskVital.TRIVIAL, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
         self.label_period = QLabel(period, self)
+        self.label_duration = QLabel(duration, self)
+        self.checkbox_complete = QCheckBox(self)
         self.pushButton_name = QPushButton(name, self)
         self.important_icon = QLabel(self)
         self.important_icon.setFixedSize(30, 30)
@@ -721,7 +723,11 @@ class CustomListItem_Schedule(QWidget):
         scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.important_icon.setPixmap(scaled_pixmap)
 
-        layout.addWidget(self.label_period, self.pushButton_name, self.important_icon)
+        layout.addWidget(self.label_period)
+        layout.addWidget(self.checkbox_complete)
+        layout.addWidget(self.pushButton_name)
+        layout.addWidget(self.label_duration)
+        layout.addWidget(self.important_icon)
         self.setLayout(layout)
 
 
@@ -917,23 +923,29 @@ class MainWindow(QMainWindow):
         schedule_list = get_task_schedule_objects(user_now, morning, afternoon, night)
         now_period = schedule_list[0].task_time_period
         count = 0
-        for task in schedule_list:
-            if task.task_time_period == now_period:
+        for task_schedule in schedule_list:
+            if task_schedule.task_time_period == now_period:
                 count += 1
                 if count == 1:
-                    custom_item = CustomListItem_Schedule(task.task_title, now_period, task.task_importance)
+                    custom_item = CustomListItem_Schedule(task_schedule.task.task_title, task_schedule.task_time,
+                                                          now_period, task_schedule.task.task_importance)
                 else:
-                    custom_item = CustomListItem_Schedule(task.task_title, '', task.task_importance)
-
+                    custom_item = CustomListItem_Schedule(task_schedule.task.task_title, task_schedule.task_time,
+                                                          '', task_schedule.task.task_importance)
             else:
-                now_period = task.task_time_period
+                now_period = task_schedule.task_time_period
                 count = 1
-                custom_item = CustomListItem_Schedule(task.task_title, now_period, task.task_importance)
-            custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task))
+                custom_item = CustomListItem_Schedule(task_schedule.task.task_title, task_schedule.task_time,
+                                                      now_period, task_schedule.task.task_importance)
+            custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task_schedule.task))
+            custom_item.checkbox_complete.clicked.connect(lambda: self.complete_schedule_task(task_schedule))
             list_item = QListWidgetItem(self.ui.listWidget_schedule)
             list_item.setSizeHint(custom_item.sizeHint())
             self.ui.listWidget_schedule.addItem(list_item)
             self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
+
+    def complete_schedule_task(self, task_schedule):
+        add_work_time(task_schedule.task, task_schedule.task_time)
 
     def calendar_click(self):
         self.ui.listWidget_calender.clear()
