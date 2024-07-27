@@ -935,37 +935,40 @@ class MainWindow(QMainWindow):
         self.win = FreeTimeWindow()
 
     def schedule(self):
-        self.ui.stackedWidget_3.setCurrentIndex(2)
         schedule_list = get_task_schedule_objects(user_now, morning, afternoon, night)
-        now_period = schedule_list[0].task_time_period
-        count = 0
-        for task_schedule in schedule_list:
-            if task_schedule.task_time_period == now_period:
-                count += 1
-                if count == 1:
+        if len(schedule_list) == 0:
+            self.ui.stackedWidget_3.setCurrentIndex(3)
+        else:
+            self.ui.stackedWidget_3.setCurrentIndex(2)
+            now_period = schedule_list[0].task_time_period
+            count = 0
+            for task_schedule in schedule_list:
+                if task_schedule.task_time_period == now_period:
+                    count += 1
+                    if count == 1:
+                        custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
+                                                              task_schedule.task_time,
+                                                              now_period,
+                                                              task_schedule.task.task_importance)
+                    else:
+                        custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
+                                                              task_schedule.task_time,
+                                                              '', task_schedule.task.task_importance)
+                else:
+                    now_period = task_schedule.task_time_period
+                    count = 1
                     custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
                                                           task_schedule.task_time,
                                                           now_period,
                                                           task_schedule.task.task_importance)
-                else:
-                    custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
-                                                          task_schedule.task_time,
-                                                          '', task_schedule.task.task_importance)
-            else:
-                now_period = task_schedule.task_time_period
-                count = 1
-                custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
-                                                      task_schedule.task_time,
-                                                      now_period,
-                                                      task_schedule.task.task_importance)
-            custom_item.pushButton_name.clicked.connect(
-                lambda: self.display_task(task_schedule.task))
-            custom_item.checkbox_complete.clicked.connect(
-                lambda: self.complete_schedule_task(task_schedule))
-            list_item = QListWidgetItem(self.ui.listWidget_schedule)
-            list_item.setSizeHint(custom_item.sizeHint())
-            self.ui.listWidget_schedule.addItem(list_item)
-            self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
+                custom_item.pushButton_name.clicked.connect(
+                    lambda: self.display_task(task_schedule.task))
+                custom_item.checkbox_complete.clicked.connect(
+                    lambda: self.complete_schedule_task(task_schedule))
+                list_item = QListWidgetItem(self.ui.listWidget_schedule)
+                list_item.setSizeHint(custom_item.sizeHint())
+                self.ui.listWidget_schedule.addItem(list_item)
+                self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
 
     def complete_schedule_task(self, task_schedule):
         add_work_time(task_schedule.task, task_schedule.task_time)
