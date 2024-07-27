@@ -135,9 +135,7 @@ class SignupWindow(QMainWindow):
         elif is_user_email_exist(email_address):
             self.ui.stackedWidget.setCurrentIndex(6)
         else:
-
             check = send_email_code(email_address)
-            print(check)
             if not check:
                 self.ui.stackedWidget.setCurrentIndex(4)
             else:
