@@ -306,18 +306,23 @@ def get_task_objects_of_user_with_status_in_date(user_email, some_date, status):
     )
 
 
+def get_task_objects_of_user_completed_in_date(user_email, some_date):
+    condition_cmd = """
+        AND DATE(t.task_complete_time) = %s 
+        """
+    return _get_task_objects_of_user_with_condition(
+        user_email, condition_cmd, (some_date,)
+    )
+
+
 def get_complete_task_sum_in_date(user_email, some_date):
     return len(
-        get_task_objects_of_user_with_status_in_date(
-            user_email, some_date, TaskStatus.COMPLETED
-        )
+        get_task_objects_of_user_completed_in_date(user_email, some_date)
     )
 
 
 def get_work_time_sum_in_date(user_email, some_date):
-    task_complete_list = get_task_objects_of_user_with_status_in_date(
-        user_email, some_date, TaskStatus.COMPLETED
-    )
+    task_complete_list = get_task_objects_of_user_completed_in_date(user_email, some_date)
     task_underway_list = get_task_objects_of_user_with_status_in_date(
         user_email, some_date, TaskStatus.UNDERWAY
     )
@@ -355,6 +360,22 @@ def get_average_work_time(user_email):
             date.today() - get_user_info(user_email, "register_date") + timedelta(days=1)
     )
     return get_work_time_sum(user_email) / date_sum.days
+
+
+def get_week_report_of_user(user_email):
+    complete_task_list = get_tasks_of_user_with_status(user_email, TaskStatus.COMPLETED)
+    complete_task_list.sort(key=lambda x: x.task_complete_time)
+    print_list(complete_task_list)
+
+    this_week_start = date.today() - timedelta(days=date.today().weekday())
+
+    week_report = []
+    for delta in range(0, 7):
+        week_date = this_week_start + timedelta(days=delta)
+        week_report.append(
+            len(list(filter(lambda obj: obj.task_complete_time.date() == week_date, complete_task_list))))
+
+    return week_report
 
 
 def _get_time(task_time_period, task):
