@@ -660,6 +660,7 @@ def task_is_complete(task):
 def reset_daily_task(daily_task):
     cmd = """
         UPDATE daily_tasks 
+        SET
         daily_task_vital = %s,\
         daily_task_title = %s, daily_task_content = %s, daily_task_tag = %s,\
         daily_task_start_date = %s, daily_task_end_date = %s,\

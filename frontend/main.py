@@ -461,6 +461,8 @@ class DisplayTaskWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        self.file_path = None
+        self.new_file_path = None
 
         self.ui.lineEdit_display_taskname.setText(task.task_title)
         self.ui.comboBox_important.setCurrentText(transfer_vital(task.task_vital))
@@ -469,6 +471,7 @@ class DisplayTaskWindow(QMainWindow):
         self.ui.progressBar_display_progress.setValue(task.task_elapsed_time / task.task_duration_time * 100)
         self.ui.label_dispaly_state.setText(task.task_status)
         self.ui.stackedWidget_2.setCurrentIndex(0)
+        self.ui.pushButton_3.clicked.connect(lambda: self.update_photo())
 
         if task.task_is_daily:
             self.ui.checkBox_is_daily.setChecked(True)
@@ -477,6 +480,13 @@ class DisplayTaskWindow(QMainWindow):
 
             daily = get_daily_task_object(user_now, task.daily_task_id)[0]
 
+            self.file_path = daily.daily_task_pic_url
+            if self.file_path:
+                pixmap = QtGui.QPixmap(self.file_path)
+                if not pixmap.isNull():
+                    self.ui.label_15.setPixmap(
+                        pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
+                                      Qt.KeepAspectRatio, Qt.SmoothTransformation))
             self.ui.dateEdit_every_begin_date.setDate(daily.daily_task_start_date)
             self.ui.dateEdit_every_end_date.setDate(daily.daily_task_end_date)
             self.ui.timeEdit_every_begin_time.setTime(daily.daily_task_start_time)
@@ -495,7 +505,13 @@ class DisplayTaskWindow(QMainWindow):
 
             self.ui.dateTimeEdit_ordinary_begin.setDateTime(task.task_start_time)
             self.ui.dateTimeEdit_ordinary_end.setDateTime(task.task_end_time)
-
+            self.file_path = task.task_pic_url
+            if self.file_path:
+                pixmap = QtGui.QPixmap(self.file_path)
+                if not pixmap.isNull():
+                    self.ui.label_15.setPixmap(
+                        pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
+                                      Qt.KeepAspectRatio, Qt.SmoothTransformation))
             self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(lambda: self.modify_ordinary_begin_time())
             self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(lambda: self.modify_ordinary_end_time())
 
@@ -521,11 +537,27 @@ class DisplayTaskWindow(QMainWindow):
     def modify_ordinary_end_time(self, task):
         task.task_end_time = self.ui.dateTimeEdit_ordinary_end.dateTime().toPyDateTime()
 
+    def update_photo(self):
+        options = QFileDialog.Options()
+        file_path, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
+                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
+        if file_path:
+            pixmap = QtGui.QPixmap(file_path)
+            if not pixmap.isNull():
+                self.new_file_path = file_path
+                self.ui.label_15.setPixmap(
+                    pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
+                                  Qt.KeepAspectRatio, Qt.SmoothTransformation))
+
     def modify_task(self, task=None, daily=None):
         if self.ui.checkBox_is_daily.isChecked():
             self.close()
+            if self.new_file_path:
+                daily.daily_task_pic_url = self.new_file_path
             reset_daily_task(daily)
         else:
+            if self.new_file_path:
+                task.task_pic_url = self.new_file_path
             self.close()
             reset_task(task)
 
@@ -647,7 +679,7 @@ class CustomListItem_Todo(QWidget):
     def __init__(self, text, status, importance=TaskVital.TRIVIAL, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
-        self.button_1 = QCheckBox(self)
+        self.button_1 = QPushButton("完成", self)
         self.button_2 = QPushButton(text, self)
         self.important_icon = QLabel(self)
         self.important_icon.setFixedSize(30, 30)
@@ -655,11 +687,11 @@ class CustomListItem_Todo(QWidget):
             self.button_1.setChecked(True)
 
         if importance == TaskVital.TRIVIAL:
-            icon_pixmap = QPixmap("../icons/橙色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/yellow.png")
         elif importance == TaskVital.NORMAL:
-            icon_pixmap = QPixmap("../icons/黄色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/orange.png")
         else:
-            icon_pixmap = QPixmap("../icons/红色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/red.png")
 
         scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.important_icon.setPixmap(scaled_pixmap)
@@ -680,11 +712,11 @@ class CustomListItem_Schedule(QWidget):
         self.important_icon.setFixedSize(30, 30)
 
         if importance == TaskVital.TRIVIAL:
-            icon_pixmap = QPixmap("../icons/橙色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/yellow.png")
         elif importance == TaskVital.NORMAL:
-            icon_pixmap = QPixmap("../icons/黄色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/orange.png")
         else:
-            icon_pixmap = QPixmap("../icons/红色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/red.png")
 
         scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.important_icon.setPixmap(scaled_pixmap)
@@ -703,11 +735,11 @@ class CustomListItem_Calendar(QWidget):
         self.important_icon.setFixedSize(30, 30)
 
         if importance == TaskVital.TRIVIAL:
-            icon_pixmap = QPixmap("../icons/橙色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/yellow.png")
         elif importance == TaskVital.NORMAL:
-            icon_pixmap = QPixmap("../icons/黄色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/orange.png")
         else:
-            icon_pixmap = QPixmap("../icons/红色五角星.png")
+            icon_pixmap = QPixmap("frontend/icons/red.png")
 
         scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.important_icon.setPixmap(scaled_pixmap)
@@ -744,7 +776,7 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget_2.setCurrentIndex(1)
             self.todolist()
         self.ui.stackedWidget_3.setCurrentIndex(0)
-        self.ui.stackedWidget_4.setCurrentIndex(0)
+        self.ui.stackedWidget_4.setCurrentIndex(1)
 
         image_loader = ImageLoader(self.ui.label_avatar, self)
         image_loader.loadImage(get_user_info(user_now, 'avatar_url'))  # 替换为你的图片URL
@@ -852,14 +884,17 @@ class MainWindow(QMainWindow):
         self.ui.listWidget_todolist.clear()
         task_list = get_tasks_of_user_with_status(user_now, TaskStatus.PENDING) + \
                     get_tasks_of_user_with_status(user_now, TaskStatus.UNDERWAY)
-        for task in task_list:
-            custom_item = CustomListItem_Todo(task.task_title, task.task_status, task.task_vital)
-            custom_item.button_1.clicked.connect(lambda: self.complete_task(task))
-            custom_item.button_2.clicked.connect(lambda: self.display_task(task))
-            list_item = QListWidgetItem(self.ui.listWidget_todolist)
-            list_item.setSizeHint(custom_item.sizeHint())
-            self.ui.listWidget_todolist.addItem(list_item)
-            self.ui.listWidget_todolist.setItemWidget(list_item, custom_item)
+        if len(task_list) == 0:
+            self.ui.stackedWidget_2.setCurrentIndex(0)
+        else:
+            for task in task_list:
+                custom_item = CustomListItem_Todo(task.task_title, task.task_status, task.task_vital)
+                custom_item.button_1.clicked.connect(lambda: self.complete_task(task))
+                custom_item.button_2.clicked.connect(lambda: self.display_task(task))
+                list_item = QListWidgetItem(self.ui.listWidget_todolist)
+                list_item.setSizeHint(custom_item.sizeHint())
+                self.ui.listWidget_todolist.addItem(list_item)
+                self.ui.listWidget_todolist.setItemWidget(list_item, custom_item)
 
     def add_task(self):
         self.ui.stackedWidget_2.setCurrentIndex(1)
@@ -901,16 +936,20 @@ class MainWindow(QMainWindow):
             self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
 
     def calendar_click(self):
-        self.ui.stackedWidget_3.setCurrentIndex(1)
+        self.ui.listWidget_calender.clear()
         current_date = self.ui.calendarWidget.selectedDate().toPyDate()
         task_list = get_ordered_tasks_date(user_now, current_date)
-        for task in task_list:
-            custom_item = CustomListItem_Calendar(task.task_title, task.task_status, task.task_vital)
-            custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task))
-            list_item = QListWidgetItem(self.ui.listWidget_calender)
-            list_item.setSizeHint(custom_item.sizeHint())
-            self.ui.listWidget_calender.addItem(list_item)
-            self.ui.listWidget_calender.setItemWidget(list_item, custom_item)
+        if len(task_list) == 0:
+            self.ui.stackedWidget_4.setCurrentIndex(0)
+        else:
+            self.ui.stackedWidget_4.setCurrentIndex(2)
+            for task in task_list:
+                custom_item = CustomListItem_Calendar(task.task_title, task.task_status, task.task_vital)
+                custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task))
+                list_item = QListWidgetItem(self.ui.listWidget_calender)
+                list_item.setSizeHint(custom_item.sizeHint())
+                self.ui.listWidget_calender.addItem(list_item)
+                self.ui.listWidget_calender.setItemWidget(list_item, custom_item)
 
     def modify_person(self):
         self.win = ModifyPersonWindow()
