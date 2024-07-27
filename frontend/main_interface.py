@@ -1064,6 +1064,7 @@ class Ui_Main_interface(object):
         self.label_5.setObjectName("label_5")
         self.label_7 = QtWidgets.QLabel(self.frame)
         self.label_7.setGeometry(QtCore.QRect(20, -7, 361, 51))
+        self.label_7.setMinimumSize(QtCore.QSize(361, 51))
         font = QtGui.QFont()
         font.setFamily("Century Gothic")
         font.setPointSize(14)
@@ -1089,7 +1090,7 @@ class Ui_Main_interface(object):
         Main_interface.setStatusBar(self.statusbar)
 
         self.retranslateUi(Main_interface)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
         self.stackedWidget_2.setCurrentIndex(1)
         self.stackedWidget_3.setCurrentIndex(0)
         self.stackedWidget_4.setCurrentIndex(0)

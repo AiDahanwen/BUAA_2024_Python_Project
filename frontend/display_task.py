@@ -173,7 +173,7 @@ class Ui_DisplayTaskWindow(object):
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout_8.addWidget(self.pushButton_2)
         self.label_15 = QtWidgets.QLabel(self.frame)
-        self.label_15.setGeometry(QtCore.QRect(530, 120, 231, 181))
+        self.label_15.setGeometry(QtCore.QRect(530, 120, 231, 151))
         self.label_15.setStyleSheet("background-color: rgb(35, 65, 76);\n"
 "color: rgb(255, 255, 255);")
         self.label_15.setObjectName("label_15")
@@ -532,10 +532,12 @@ class Ui_DisplayTaskWindow(object):
         self.stackedWidget_2.addWidget(self.page_3)
         self.pushButton_display_ensure = QtWidgets.QPushButton(self.frame)
         self.pushButton_display_ensure.setGeometry(QtCore.QRect(54, 710, 701, 41))
-        self.pushButton_display_ensure.setStyleSheet("background-color: rgb(35, 63, 74);\n"
+        self.pushButton_display_ensure.setStyleSheet("\n"
+"background-color: rgb(35, 63, 74);\n"
 "color: rgb(255, 255, 255);\n"
 "font: 75 11pt \"微软雅黑\";\n"
-"border-radius:15px;")
+"border-radius:15px;\n"
+"")
         self.pushButton_display_ensure.setObjectName("pushButton_display_ensure")
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(0, 0, 811, 41))
@@ -549,6 +551,17 @@ class Ui_DisplayTaskWindow(object):
         self.label_8.setStyleSheet("background-color: rgba(255, 255, 255, 150);")
         self.label_8.setText("")
         self.label_8.setObjectName("label_8")
+        self.pushButton_3 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_3.setGeometry(QtCore.QRect(540, 280, 211, 28))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setUnderline(True)
+        font.setWeight(75)
+        self.pushButton_3.setFont(font)
+        self.pushButton_3.setStyleSheet("border:none")
+        self.pushButton_3.setObjectName("pushButton_3")
         self.label_8.raise_()
         self.label.raise_()
         self.frame_left.raise_()
@@ -560,6 +573,7 @@ class Ui_DisplayTaskWindow(object):
         self.pushButton_display_ensure.raise_()
         self.label_5.raise_()
         self.frame.raise_()
+        self.pushButton_3.raise_()
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(120, 14, 811, 781))
         self.label_7.setStyleSheet("border-image: url(:/pictures/pictures/login_background.jpg);\n"
@@ -613,4 +627,5 @@ class Ui_DisplayTaskWindow(object):
         self.label_13.setText(_translate("DisplayTaskWindow", "截止日期："))
         self.label_14.setText(_translate("DisplayTaskWindow", "  每日截止时间："))
         self.pushButton_display_ensure.setText(_translate("DisplayTaskWindow", "确认"))
+        self.pushButton_3.setText(_translate("DisplayTaskWindow", "修改图片"))
 import res_rc

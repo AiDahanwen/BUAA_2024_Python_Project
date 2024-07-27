@@ -322,7 +322,7 @@ color: rgb(0, 0, 0);</string>
        <x>530</x>
        <y>120</y>
        <width>231</width>
-       <height>181</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1057,6 +1057,31 @@ border-top-left-radius:20px;</string>
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>280</y>
+       <width>211</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border:none</string>
+     </property>
+     <property name="text">
+      <string>修改图片</string>
+     </property>
+    </widget>
     <zorder>label_8</zorder>
     <zorder>label</zorder>
     <zorder>frame_left</zorder>
@@ -1068,6 +1093,7 @@ border-top-left-radius:20px;</string>
     <zorder>pushButton_display_ensure</zorder>
     <zorder>label_5</zorder>
     <zorder>frame</zorder>
+    <zorder>pushButton_3</zorder>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
