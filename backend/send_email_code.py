@@ -1,9 +1,9 @@
+import random
+import re
 import smtplib
 import string
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import random
-import re
 
 from backend.database import get_constant_info
 
@@ -19,7 +19,7 @@ def update_constants():
     global email_password
     global mail_host
     global send_port
-    
+
     send_by = get_constant_info(file_name, 'send_by')
     email_password = get_constant_info(file_name, 'email_password')
     mail_host = get_constant_info(file_name, 'mail_host')
@@ -32,17 +32,17 @@ def get_code(n=6):
 
 
 def send_email(send_to, verify_code, subject='Email Verification Code'):
-    with open('html_content.html', 'r', encoding='utf-8') as file:
+    with open('./backend/html_content.html', 'r', encoding='utf-8') as file:
         html_content = file.read().replace("verify_code", str(verify_code))
-    
+
     msg = MIMEMultipart('alternative')
     msg['From'] = send_by
     msg['To'] = send_to
     msg['Subject'] = subject
-    
+
     html_part = MIMEText(html_content, 'html')
     msg.attach(html_part)
-    
+
     smtp = smtplib.SMTP_SSL(mail_host, send_port)
     smtp.login(send_by, email_password)
     smtp.sendmail(send_by, send_to, msg.as_string())
@@ -56,6 +56,7 @@ def send_email_code(send_to):
         send_email(send_to, verify_code)
         return verify_code
     except Exception as e:
+        print(e)
         return False
 
 
@@ -68,4 +69,4 @@ def is_valid_email(email):
 
 
 if __name__ == '__main__':
-    print(send_email_code('2895227477@qq.com'))
+    print(send_email_code('2892278592@qq.com'))

@@ -1,8 +1,9 @@
-import bcrypt
-from backend.database import *
 from datetime import date
-from backend.database import *
+
+import bcrypt
 import oss2
+
+from backend.database import *
 
 # 填写RAM用户的访问密钥（AccessKey ID和AccessKey Secret）
 accessKeyId = "LTAI5tNicQ2EWpzvo7YAYB7D"
@@ -101,5 +102,6 @@ def get_local_user_email_password():
         with open("local/storage.txt", "r") as fd:
             data = fd.read()
         return data.split()
-    except FileNotFoundError:
+    except FileNotFoundError as e:
+        print(e)
         return False

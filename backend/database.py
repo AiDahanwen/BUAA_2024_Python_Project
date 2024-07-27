@@ -1,5 +1,6 @@
-import pymysql
 import inspect
+
+import pymysql
 
 
 def database_connect():
@@ -15,6 +16,7 @@ def database_connect():
 
 
 def database_read(cmd, args, fetchone=True):
+    global connection
     try:
         connection = database_connect()
         cursor = connection.cursor()
@@ -23,25 +25,23 @@ def database_read(cmd, args, fetchone=True):
             result = cursor.fetchone()[0]
         else:
             result = cursor.fetchall()
-        cursor.close()
-        connection.close()
         return result
     except Exception as e:
+        connection = database_connect()
         print(f"{inspect.stack()[1].function} error!")
         print(e)
         return False
 
 
 def database_write(cmd, args):
+    global connection
     try:
-        connection = database_connect()
         cursor = connection.cursor()
         cursor.execute(cmd, args)
         connection.commit()
-        cursor.close()
-        connection.close()
         return True
     except Exception as e:
+        connection = database_connect()
         print(f"{inspect.stack()[1].function} error!")
         print(e)
         return False
@@ -96,21 +96,21 @@ def get(table_name, identifier_name, identifier):
 
 
 def join(
-    table_name,
-    reference_table_name,
-    identifier_name,
-    identifier,
-    condition_cmd,
-    condition_args,
+        table_name,
+        reference_table_name,
+        identifier_name,
+        identifier,
+        condition_cmd,
+        condition_args,
 ):
     cmd = (
-        f"""
+            f"""
     SELECT t.*
     FROM {table_name} t
     JOIN {reference_table_name} u ON t.{identifier_name} = u.{identifier_name}
     WHERE u.{identifier_name} = %s
     """
-        + condition_cmd
+            + condition_cmd
     )
     args = (identifier,) + condition_args
     return database_read(cmd, args, False)
@@ -136,3 +136,6 @@ def get_list_head(table_name):
 def print_list(lis):
     for item in lis:
         print(item)
+
+
+connection = database_connect()

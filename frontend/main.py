@@ -1,34 +1,30 @@
-from time import sleep
-from datetime import datetime, timedelta, date, time
-from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QTime, QPropertyAnimation, QRect
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtGui import QCursor
-from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QWidget, QHBoxLayout, QCheckBox, QPushButton, \
-    QLabel, QListWidgetItem
-from PyQt5 import QtCore, Qt
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
+import sys
 
-from frontend.login_new import *
-from frontend.Modify_Person import *
-from frontend.signup import *
-from frontend.find_password import *
-from frontend.add_task import *
-from frontend.main_interface import *
-from frontend.free_time import *
-from frontend.display_task import *
-from frontend.calendar_task import *
+from PyQt5 import Qt
+from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QCursor
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
+from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QFileDialog, QHBoxLayout, QCheckBox, \
+    QPushButton, \
+    QLabel, QListWidgetItem
+from PyQt5.QtWidgets import QMainWindow
 
 from backend.daily_sentence import *
 from backend.send_email_code import *
-from backend.user_system import *
 from backend.task_system import *
-
-import sys
+from frontend.Modify_Person import *
+from frontend.add_task import *
+from frontend.calendar_task import *
+from frontend.display_task import *
+from frontend.find_password import *
+from frontend.free_time import *
+from frontend.login_new import *
+from frontend.main_interface import *
+from frontend.signup import *
 
 user_now = "2895227477@qq.com"
 morning = 0
@@ -139,7 +135,9 @@ class SignupWindow(QMainWindow):
         elif is_user_email_exist(email_address):
             self.ui.stackedWidget.setCurrentIndex(6)
         else:
+
             check = send_email_code(email_address)
+            print(check)
             if not check:
                 self.ui.stackedWidget.setCurrentIndex(4)
             else:
@@ -290,7 +288,8 @@ class AddTaskWindow(QMainWindow):
     def upload_photos(self):
         options = QFileDialog.Options()
         file_path, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
-                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
+                                                   "Images (*.png *.xpm *.jpg);;All Files (*)",
+                                                   options=options)
         if file_path:
             pixmap = QtGui.QPixmap(file_path)
             if not pixmap.isNull():
@@ -438,8 +437,10 @@ class CalendarTaskWindow(QMainWindow):
 
             daily = get_daily_task_object(user_now, task.task_id)[0]
 
-            self.ui.label_calendar_daily_begin_date.setText(daily.daily_task_start_date.strftime('%Y-%m-%d'))
-            self.ui.label_calendar_daily_begin_time.setText(daily.daily_task_start_time.strftime('%H:%M:%S'))
+            self.ui.label_calendar_daily_begin_date.setText(
+                daily.daily_task_start_date.strftime('%Y-%m-%d'))
+            self.ui.label_calendar_daily_begin_time.setText(
+                daily.daily_task_start_time.strftime('%H:%M:%S'))
             self.ui.label_daily_end_date.setText(daily.daily_task_end_date.strftime('%Y-%m-%d'))
             self.ui.label_daily_end_time.setText(daily.daily_task_end_time.strftime('%H:%M:%S'))
 
@@ -448,8 +449,10 @@ class CalendarTaskWindow(QMainWindow):
             self.ui.checkBox_calendar_is_daily.setEnabled(False)
             self.ui.stackedWidget_2.setCurrentIndex(0)
 
-            self.ui.label_ordinary_begin_time.setText(task.task_start_time.strftime('%Y-%m-%d %H:%M:%S'))
-            self.ui.label_ordinary_end_time.setText(task.task_end_time.strftime('%Y-%m-%d %H:%M:%S'))
+            self.ui.label_ordinary_begin_time.setText(
+                task.task_start_time.strftime('%Y-%m-%d %H:%M:%S'))
+            self.ui.label_ordinary_end_time.setText(
+                task.task_end_time.strftime('%Y-%m-%d %H:%M:%S'))
 
         self.show()
 
@@ -468,7 +471,8 @@ class DisplayTaskWindow(QMainWindow):
         self.ui.comboBox_important.setCurrentText(transfer_vital(task.task_vital))
         self.ui.textEdit_task_content.setText(task.task_content)
         self.ui.comboBox_display_task_type.setCurrentText(task.task_tag)
-        self.ui.progressBar_display_progress.setValue(task.task_elapsed_time / task.task_duration_time * 100)
+        self.ui.progressBar_display_progress.setValue(
+            task.task_elapsed_time / task.task_duration_time * 100)
         self.ui.label_dispaly_state.setText(task.task_status)
         self.ui.stackedWidget_2.setCurrentIndex(0)
         self.ui.pushButton_3.clicked.connect(lambda: self.update_photo())
@@ -492,10 +496,14 @@ class DisplayTaskWindow(QMainWindow):
             self.ui.timeEdit_every_begin_time.setTime(daily.daily_task_start_time)
             self.ui.timeEdit_every_end_time.setTime(daily.daily_task_end_time)
 
-            self.ui.dateEdit_every_begin_date.dateChanged.connect(lambda: self.modify_daily_begin_date(daily))
-            self.ui.dateEdit_every_end_date.dateChanged.connect(lambda: self.modify_daily_end_date(daily))
-            self.ui.timeEdit_every_begin_time.timeChanged.connect(lambda: self.modify_daily_begin_time(daily))
-            self.ui.timeEdit_every_end_time.timeChanged.connect(lambda: self.modify_daily_end_time(daily))
+            self.ui.dateEdit_every_begin_date.dateChanged.connect(
+                lambda: self.modify_daily_begin_date(daily))
+            self.ui.dateEdit_every_end_date.dateChanged.connect(
+                lambda: self.modify_daily_end_date(daily))
+            self.ui.timeEdit_every_begin_time.timeChanged.connect(
+                lambda: self.modify_daily_begin_time(daily))
+            self.ui.timeEdit_every_end_time.timeChanged.connect(
+                lambda: self.modify_daily_end_time(daily))
 
             self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(daily=daily))
 
@@ -512,8 +520,10 @@ class DisplayTaskWindow(QMainWindow):
                     self.ui.label_15.setPixmap(
                         pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
                                       Qt.KeepAspectRatio, Qt.SmoothTransformation))
-            self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(lambda: self.modify_ordinary_begin_time())
-            self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(lambda: self.modify_ordinary_end_time())
+            self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(
+                lambda: self.modify_ordinary_begin_time())
+            self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(
+                lambda: self.modify_ordinary_end_time())
 
             self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(task=task))
 
@@ -540,7 +550,8 @@ class DisplayTaskWindow(QMainWindow):
     def update_photo(self):
         options = QFileDialog.Options()
         file_path, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
-                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
+                                                   "Images (*.png *.xpm *.jpg);;All Files (*)",
+                                                   options=options)
         if file_path:
             pixmap = QtGui.QPixmap(file_path)
             if not pixmap.isNull():
@@ -774,7 +785,8 @@ class MainWindow(QMainWindow):
         self.label_adjust_size()
 
         self.ui.stackedWidget.setCurrentIndex(0)
-        task_list = get_tasks_of_user_with_status(user_now, TaskStatus.PENDING) + get_tasks_of_user_with_status(
+        task_list = get_tasks_of_user_with_status(user_now,
+                                                  TaskStatus.PENDING) + get_tasks_of_user_with_status(
             user_now, TaskStatus.UNDERWAY)
         if len(task_list) == 0:
             self.ui.stackedWidget_2.setCurrentIndex(0)
@@ -789,8 +801,10 @@ class MainWindow(QMainWindow):
         self.ui.label_user_name.setText(get_user_info(user_now, 'name'))
         self.ui.label_sentence.setText(get_user_info(user_now, 'signature'))
 
-        self.ui.listWidget.itemClicked.connect(lambda: self.change_page(self.ui.listWidget.currentRow()))
-        self.ui.listWidget_2.itemClicked.connect(lambda: self.change_page(self.ui.listWidget_2.currentRow() + 3))
+        self.ui.listWidget.itemClicked.connect(
+            lambda: self.change_page(self.ui.listWidget.currentRow()))
+        self.ui.listWidget_2.itemClicked.connect(
+            lambda: self.change_page(self.ui.listWidget_2.currentRow() + 3))
         self.ui.pushButton_M_addtask.clicked.connect(lambda: self.add_task())
         self.ui.pushButton_P_modify_password.clicked.connect(lambda: self.modify_person())
         self.ui.pushButton_M_schedule.clicked.connect(lambda: self.schedule())
@@ -798,8 +812,10 @@ class MainWindow(QMainWindow):
         self.ui.calendarWidget.clicked.connect(lambda: self.calendar_click())
         self.ui.pushButton_modify_avatar.clicked.connect(lambda: self.modify_avatar())
 
-        self.ui.label_Sta_accumulate_sumofnum.setText("任务个数：" + str(get_complete_task_sum(user_now)))
-        self.ui.label_Sta_accumulate_sumoftime.setText("时长总数：" + str(get_work_time_sum(user_now)))
+        self.ui.label_Sta_accumulate_sumofnum.setText(
+            "任务个数：" + str(get_complete_task_sum(user_now)))
+        self.ui.label_Sta_accumulate_sumoftime.setText(
+            "时长总数：" + str(get_work_time_sum(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
@@ -853,7 +869,8 @@ class MainWindow(QMainWindow):
                 self.ui.label.setText(night_text)
                 text_set_flag = True
             elif int(current_hour) < 12:
-                morning_text_list = ["早上好，今天要做些什么呢？", "早上好~欢迎开启美好的一天☀", "又是新的一天啦 加油！"]
+                morning_text_list = ["早上好，今天要做些什么呢？", "早上好~欢迎开启美好的一天☀",
+                                     "又是新的一天啦 加油！"]
                 morning_text = morning_text_list.pop(random.randint(0, len(morning_text_list) - 1))
                 self.ui.label.setText(morning_text)
                 text_set_flag = True
@@ -894,7 +911,8 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget_2.setCurrentIndex(0)
         else:
             for task in task_list:
-                custom_item = CustomListItem_Todo(task.task_title, task.task_status, task.task_vital)
+                custom_item = CustomListItem_Todo(task.task_title, task.task_status,
+                                                  task.task_vital)
                 custom_item.button_1.clicked.connect(lambda: self.complete_task(task))
                 custom_item.button_2.clicked.connect(lambda: self.display_task(task))
                 list_item = QListWidgetItem(self.ui.listWidget_todolist)
@@ -927,18 +945,25 @@ class MainWindow(QMainWindow):
             if task_schedule.task_time_period == now_period:
                 count += 1
                 if count == 1:
-                    custom_item = CustomListItem_Schedule(task_schedule.task.task_title, task_schedule.task_time,
-                                                          now_period, task_schedule.task.task_importance)
+                    custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
+                                                          task_schedule.task_time,
+                                                          now_period,
+                                                          task_schedule.task.task_importance)
                 else:
-                    custom_item = CustomListItem_Schedule(task_schedule.task.task_title, task_schedule.task_time,
+                    custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
+                                                          task_schedule.task_time,
                                                           '', task_schedule.task.task_importance)
             else:
                 now_period = task_schedule.task_time_period
                 count = 1
-                custom_item = CustomListItem_Schedule(task_schedule.task.task_title, task_schedule.task_time,
-                                                      now_period, task_schedule.task.task_importance)
-            custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task_schedule.task))
-            custom_item.checkbox_complete.clicked.connect(lambda: self.complete_schedule_task(task_schedule))
+                custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
+                                                      task_schedule.task_time,
+                                                      now_period,
+                                                      task_schedule.task.task_importance)
+            custom_item.pushButton_name.clicked.connect(
+                lambda: self.display_task(task_schedule.task))
+            custom_item.checkbox_complete.clicked.connect(
+                lambda: self.complete_schedule_task(task_schedule))
             list_item = QListWidgetItem(self.ui.listWidget_schedule)
             list_item.setSizeHint(custom_item.sizeHint())
             self.ui.listWidget_schedule.addItem(list_item)
@@ -956,7 +981,8 @@ class MainWindow(QMainWindow):
         else:
             self.ui.stackedWidget_4.setCurrentIndex(2)
             for task in task_list:
-                custom_item = CustomListItem_Calendar(task.task_title, task.task_status, task.task_vital)
+                custom_item = CustomListItem_Calendar(task.task_title, task.task_status,
+                                                      task.task_vital)
                 custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task))
                 list_item = QListWidgetItem(self.ui.listWidget_calender)
                 list_item.setSizeHint(custom_item.sizeHint())
@@ -979,16 +1005,19 @@ class MainWindow(QMainWindow):
     def modify_avatar(self):
         options = QFileDialog.Options()
         file_path, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
-                                                   "Images (*.png *.xpm *.jpg);;All Files (*)", options=options)
+                                                   "Images (*.png *.xpm *.jpg);;All Files (*)",
+                                                   options=options)
         if file_path:
             pixmap = QtGui.QPixmap(file_path)
             if not pixmap.isNull():
                 self.ui.label_user_avatar.setPixmap(
-                    pixmap.scaled(self.ui.label_user_avatar.width(), self.ui.label_user_avatar.height(),
+                    pixmap.scaled(self.ui.label_user_avatar.width(),
+                                  self.ui.label_user_avatar.height(),
                                   Qt.KeepAspectRatio, Qt.SmoothTransformation))
                 modify_user_avatar(user_now, file_path)
                 self.ui.label_avatar.setPixmap(
-                    pixmap.scaled(self.ui.label_user_avatar.width(), self.ui.label_user_avatar.height(),
+                    pixmap.scaled(self.ui.label_user_avatar.width(),
+                                  self.ui.label_user_avatar.height(),
                                   Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
     def log_out(self):
