@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>994</width>
+    <height>752</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,17 +20,20 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="frame_whole">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>50</y>
-      <width>271</width>
-      <height>331</height>
+      <x>210</x>
+      <y>40</y>
+      <width>401</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">QFrame#frame_whole{
+border-radius:20px;
+	border-image: url(:/pictures/pictures/login_background.jpg);
+}</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -41,10 +44,10 @@
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>10</y>
-       <width>211</width>
-       <height>41</height>
+       <x>30</x>
+       <y>60</y>
+       <width>221</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -53,8 +56,16 @@
        <height>41</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>20</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;微软雅黑&quot;;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>空闲时长</string>
@@ -63,11 +74,16 @@
     <widget class="QPushButton" name="pushButton_free_ensure">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>280</y>
-       <width>75</width>
-       <height>23</height>
+       <x>54</x>
+       <y>482</y>
+       <width>291</width>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(31, 68, 53);
+color: rgb(255, 255, 255);
+font: 11pt &quot;微软雅黑&quot;;</string>
      </property>
      <property name="text">
       <string>确认</string>
@@ -76,10 +92,10 @@
     <widget class="QFrame" name="frame">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>60</y>
-       <width>271</width>
-       <height>61</height>
+       <x>40</x>
+       <y>130</y>
+       <width>321</width>
+       <height>71</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -87,6 +103,9 @@
        <width>231</width>
        <height>51</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="spacing">
@@ -124,9 +143,9 @@
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>130</y>
-       <width>191</width>
-       <height>141</height>
+       <y>210</y>
+       <width>321</width>
+       <height>261</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -146,6 +165,14 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">background-color: transparent;</string>
           </property>
@@ -161,6 +188,18 @@
             <horstretch>15</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
           </property>
           <property name="decimals">
            <number>1</number>
@@ -185,6 +224,14 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
            <string>下午：</string>
           </property>
@@ -197,6 +244,9 @@
             <horstretch>15</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
           </property>
           <property name="decimals">
            <number>1</number>
@@ -221,6 +271,14 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
            <string>晚上：</string>
           </property>
@@ -234,6 +292,9 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
+          </property>
           <property name="decimals">
            <number>1</number>
           </property>
@@ -246,10 +307,152 @@
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>401</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border-top-left-radius:20px;
+border-top-right-radius:20px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>120</y>
+       <width>361</width>
+       <height>421</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 150);
+border-radius:20px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_close_and_mini">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>0</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QPushButton" name="pushButton_minimize">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_minimize{
+border:none;
+}
+QPushButton:hover{
+padding-left:5px;
+padding-top:5px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="res.qrc">
+          <normaloff>:/icons/icons/24gl-minimization.png</normaloff>:/icons/icons/24gl-minimization.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_close">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_close{
+border:none;
+}
+QPushButton:hover{
+padding-left:5px;
+padding-top:5px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="res.qrc">
+          <normaloff>:/icons/icons/Close.png</normaloff>:/icons/icons/Close.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <zorder>label_8</zorder>
+    <zorder>label_4</zorder>
+    <zorder>pushButton_free_ensure</zorder>
+    <zorder>frame</zorder>
+    <zorder>layoutWidget</zorder>
+    <zorder>label_7</zorder>
+    <zorder>pushButton_close</zorder>
+    <zorder>pushButton_minimize</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
- <connections/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButton_close</sender>
+   <signal>clicked()</signal>
+   <receiver>FreeTimeWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>599</x>
+     <y>59</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>710</x>
+     <y>78</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_minimize</sender>
+   <signal>clicked()</signal>
+   <receiver>FreeTimeWindow</receiver>
+   <slot>showMinimized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>533</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>407</x>
+     <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
