@@ -693,7 +693,7 @@ QPushButton:hover{
                  <item>
                   <widget class="QStackedWidget" name="stackedWidget_3">
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>3</number>
                    </property>
                    <widget class="QWidget" name="page_12">
                     <widget class="QLabel" name="label_2">
@@ -808,6 +808,30 @@ color: rgb(39, 72, 80);</string>
                       <widget class="QListWidget" name="listWidget_schedule"/>
                      </item>
                     </layout>
+                   </widget>
+                   <widget class="QWidget" name="page_13">
+                    <widget class="QLabel" name="label_27">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>80</y>
+                       <width>451</width>
+                       <height>61</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>微软雅黑</family>
+                       <pointsize>20</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>-当前没有任务可被调度-</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
                    </widget>
                   </widget>
                  </item>
