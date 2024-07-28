@@ -17,9 +17,8 @@ def database_connect():
 
 def database_read(cmd, args, fetchone=True):
     global connection
+    global cursor
     try:
-        connection = database_connect()
-        cursor = connection.cursor()
         cursor.execute(cmd, args)
         if fetchone:
             result = cursor.fetchone()[0]
@@ -28,6 +27,7 @@ def database_read(cmd, args, fetchone=True):
         return result
     except Exception as e:
         connection = database_connect()
+        cursor = connection.cursor()
         print(f"{inspect.stack()[1].function} error!")
         print(e)
         return False
@@ -35,13 +35,14 @@ def database_read(cmd, args, fetchone=True):
 
 def database_write(cmd, args):
     global connection
+    global cursor
     try:
-        cursor = connection.cursor()
         cursor.execute(cmd, args)
         connection.commit()
         return True
     except Exception as e:
         connection = database_connect()
+        cursor = connection.cursor()
         print(f"{inspect.stack()[1].function} error!")
         print(e)
         return False
@@ -139,3 +140,4 @@ def print_list(lis):
 
 
 connection = database_connect()
+cursor = connection.cursor()
