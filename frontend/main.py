@@ -32,6 +32,7 @@ morning = 0
 afternoon = 0
 night = 0
 text_set_flag = False
+main_window = None
 
 
 def transfer_vital(vital):
@@ -354,6 +355,8 @@ class AddTaskWindow(QMainWindow):
         if daily_task:
             modify_daily_task_pic_url(daily_task, self.photo_path)
             add_daily_task(daily_task)
+            print("have added everyday task")
+            main_window.todolist()
             self.close()
 
     def ordinary_task(self):
@@ -361,6 +364,8 @@ class AddTaskWindow(QMainWindow):
         if task:
             modify_task_pic_url(task, self.photo_path)
             add_task(task)
+            print("have added ordinary task")
+            main_window.todolist()
             self.close()
 
     def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
@@ -474,7 +479,6 @@ class DisplayTaskWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-        self.file_path = None
         self.new_file_path = None
 
         self.ui.lineEdit_display_taskname.setText(task.task_title)
@@ -494,13 +498,9 @@ class DisplayTaskWindow(QMainWindow):
 
             daily = get_daily_task_object(user_now, task.daily_task_id)[0]
 
-            self.file_path = daily.daily_task_pic_url
-            if self.file_path:
-                pixmap = QtGui.QPixmap(self.file_path)
-                if not pixmap.isNull():
-                    self.ui.label_15.setPixmap(
-                        pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
-                                      Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            if daily.daily_task_pic_url:
+                image_loader = ImageLoader(self.ui.label_15, self)
+                image_loader.loadImage(daily.daily_task_pic_url)  # 替换为你的图片URL
             self.ui.dateEdit_every_begin_date.setDate(daily.daily_task_start_date)
             self.ui.dateEdit_every_end_date.setDate(daily.daily_task_end_date)
             self.ui.timeEdit_every_begin_time.setTime(daily.daily_task_start_time)
@@ -523,13 +523,9 @@ class DisplayTaskWindow(QMainWindow):
 
             self.ui.dateTimeEdit_ordinary_begin.setDateTime(task.task_start_time)
             self.ui.dateTimeEdit_ordinary_end.setDateTime(task.task_end_time)
-            self.file_path = task.task_pic_url
-            if self.file_path:
-                pixmap = QtGui.QPixmap(self.file_path)
-                if not pixmap.isNull():
-                    self.ui.label_15.setPixmap(
-                        pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
-                                      Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            if task.task_pic_url:
+                image_loader = ImageLoader(self.ui.label_15, self)
+                image_loader.loadImage(task.task_pic_url)  # 替换为你的图片URL
             self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(
                 lambda: self.modify_ordinary_begin_time(task))
             self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(
@@ -575,10 +571,12 @@ class DisplayTaskWindow(QMainWindow):
             self.close()
             if self.new_file_path:
                 daily.daily_task_pic_url = self.new_file_path
+                modify_daily_task_pic_url(daily, self.new_file_path)
             reset_daily_task(daily)
         else:
             if self.new_file_path:
                 task.task_pic_url = self.new_file_path
+                modify_task_pic_url(task, self.new_file_path)
             self.close()
             reset_task(task)
 
@@ -743,8 +741,8 @@ class CustomListItem_Schedule(QWidget):
     def __init__(self, name, duration, period='', importance=TaskVital.TRIVIAL, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
-        self.label_period = QLabel(period, self)
-        self.label_duration = QLabel(duration, self)
+        self.label_period = QLabel(str(period), self)
+        self.label_duration = QLabel(str(duration), self)
         self.checkbox_complete = QCheckBox(self)
         self.pushButton_name = QPushButton(name, self)
         self.important_icon = QLabel(self)
@@ -930,6 +928,7 @@ class MainWindow(QMainWindow):
             self.log_out()
 
     def todolist(self):
+        print("will show todolist")
         self.ui.listWidget_todolist.clear()
         task_list = get_tasks_of_user_with_status(user_now, TaskStatus.PENDING) + \
                     get_tasks_of_user_with_status(user_now, TaskStatus.UNDERWAY)
@@ -942,13 +941,13 @@ class MainWindow(QMainWindow):
                 custom_item.button_1.clicked.connect(lambda: self.complete_task(task))
 
                 custom_item.button_1.setStyleSheet("QPushButton{\n"
-                                                "background-color: rgb(41, 74, 82);\n"
-                                                "color: rgb(255, 255, 255);\n"
-                                                "}\n"
-                                                "QPushButton:hover{\n"
-                                                "    padding-left:5px;\n"
-                                                "    padding-top:5px;\n"
-                                                "}")
+                                                   "background-color: rgb(41, 74, 82);\n"
+                                                   "color: rgb(255, 255, 255);\n"
+                                                   "}\n"
+                                                   "QPushButton:hover{\n"
+                                                   "    padding-left:5px;\n"
+                                                   "    padding-top:5px;\n"
+                                                   "}")
 
                 custom_item.button_2.clicked.connect(lambda: self.display_task(task))
                 list_item = QListWidgetItem(self.ui.listWidget_todolist)
@@ -1122,5 +1121,6 @@ class MainWindow(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainWindow()
+    main_window = MainWindow()
+    # window = LoginWindow()
     sys.exit(app.exec_())

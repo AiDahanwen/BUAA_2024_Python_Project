@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20195de9-5b54-4861-8d87-9698e055c851" name="更改" comment="frontend-modify add_task.ui and display_task.ui">
+    <list default="true" id="20195de9-5b54-4861-8d87-9698e055c851" name="更改" comment="frontend-modify main_interface and task complete button-cuzn">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main_interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main_interface.ui" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main_interface.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/add_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/add_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/add_task.ui" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/add_task.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/display_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/display_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/display_task.ui" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/display_task.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/CuZn's/BUAA_python_project_2024/BUAA_2024_Python_Project",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RunManager">
@@ -147,15 +148,7 @@
       <option name="project" value="LOCAL" />
       <updated>1722150653621</updated>
     </task>
-    <task id="LOCAL-00009" summary="frontend-modify add_task.ui and display_task.ui">
-      <option name="closed" value="true" />
-      <created>1722151230994</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1722151230994</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,7 +171,6 @@
     <MESSAGE value="merge with zhw-cuzn" />
     <MESSAGE value="frontend-make display task draggable-cuzn" />
     <MESSAGE value="frontend-modify main_interface and task complete button-cuzn" />
-    <MESSAGE value="frontend-modify add_task.ui and display_task.ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="frontend-modify add_task.ui and display_task.ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="frontend-modify main_interface and task complete button-cuzn" />
   </component>
 </project>
