@@ -670,6 +670,18 @@ color: rgb(255, 255, 255);</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>169</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>169</width>
+             <height>35</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>微软雅黑</family>
