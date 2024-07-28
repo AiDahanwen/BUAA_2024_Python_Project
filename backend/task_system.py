@@ -373,7 +373,8 @@ def get_week_report_of_user(user_email):
     for delta in range(0, 7):
         week_date = this_week_start + timedelta(days=delta)
         week_report.append(
-            len(list(filter(lambda obj: obj.task_complete_time.date() == week_date, complete_task_list))))
+            len(list(filter(lambda obj: obj.task_complete_time.date() == week_date,
+                            complete_task_list))))
 
     return week_report
 
@@ -652,10 +653,10 @@ def update_task_status(user_email):
     cmd = """
     UPDATE tasks
     SET task_status = CASE
-        WHEN NOW() < task_start_time THEN 'pending'
-        WHEN NOW() > task_end_time AND task_status <> 'completed' THEN 'expired'
-        WHEN NOW() BETWEEN task_start_time AND task_end_time AND task_status <> 'completed' THEN 'underway'
         WHEN task_status = 'completed' THEN 'completed'
+        WHEN NOW() < task_start_time THEN 'pending'
+        WHEN NOW() > task_end_time THEN 'expired'
+        WHEN NOW() BETWEEN task_start_time AND task_end_time THEN 'underway'
         ELSE 'pending'
     END
     WHERE user_email = %s
@@ -727,3 +728,17 @@ def modify_daily_task_pic_url(daily_task, pic_url):
     bucket.put_object_from_file(temp, pic_url)
     pic_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
     daily_task.daily_task_pic_url = pic_url
+
+
+if __name__ == '__main__':
+    testTask = Task('test')
+    testTask.task_start_time = datetime.now()
+    testTask.task_end_time = datetime.now() + timedelta(hours=0.1)
+    print(add_task(testTask))
+    testDailyTask = DailyTask('test')
+    testDailyTask.daily_task_start_date = date.today() - timedelta(days=5)
+    testDailyTask.daily_task_end_date = date.today() + timedelta(days=5)
+    testDailyTask.daily_task_start_time = (datetime.now() - timedelta(hours=0.1)).time()
+    testDailyTask.daily_task_end_time = (datetime.now() + timedelta(hours=0.1)).time()
+    print(add_daily_task(testDailyTask))
+    print(update_tasks('test'))
