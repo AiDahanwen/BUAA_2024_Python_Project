@@ -23,6 +23,9 @@
     <file>icons/-NotebookDotLine.png</file>
     <file>icons/TargetArrow.png</file>
   </qresource>
+  <qresource prefix="music">
+    <file>music/click_wooden_fish.mp3</file>
+  </qresource>
   <qresource prefix="pictures">
     <file>pictures/muyu_1.png</file>
     <file>pictures/muyu_transparent_bg.jpg</file>

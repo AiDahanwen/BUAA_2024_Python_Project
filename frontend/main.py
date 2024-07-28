@@ -7,6 +7,7 @@ from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor, QTextCharFormat, QColor, QFont
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
 from PyQt5.QtWidgets import QApplication, QWidget, QCalendarWidget
 from PyQt5.QtWidgets import QFileDialog, QHBoxLayout, QCheckBox, \
@@ -689,6 +690,7 @@ class ImageLoader(QObject):
         reply.deleteLater()
 
     def loadImage(self, url):
+        print("url is", url)
         request = QNetworkRequest(QUrl(url))
         self.manager.get(request)
         self.manager.finished.connect(self.replyFinished)
@@ -870,6 +872,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_modify_avatar.clicked.connect(lambda: self.modify_avatar())
         self.ui.pushButton_2.clicked.connect(lambda: self.do_muyu_anim())
         self.ui.pushButton_2.clicked.connect(lambda: self.moralities_add())
+        self.ui.pushButton_2.clicked.connect(lambda: self.play_muyu_music())
 
         self.show()
 
@@ -1098,25 +1101,18 @@ class MainWindow(QMainWindow):
         if self.ui.frame_24.geometry() == QRect(170, 20, 120, 41):
             self.ui.frame_24.setVisible(False)
 
-        # self.anim_disappear = QPropertyAnimation(self.ui.frame_24, b"windowOpacity")
-        # self.anim_disappear.setDuration(20)
-        # self.anim_disappear.setStartValue(1)
-        # self.anim_disappear.setEndValue(0)
-        # self.anim_disappear.start()
-        # print("窗口渐隐")
-        # for i in range(80, 0, -1):
-        #     opacity = i/100
-        #     print("opacity:", opacity)
-        #     self.ui.frame_24.setStyleSheet("background-color:rgba(")
-        #     self.ui.frame_24.repaint()
-        #     QApplication.processEvents()
-        #     sleep(0.05)
-
     def moralities_add(self):
         morality = get_user_info(user_now, 'moralities')
         morality += 1
         reset_user_info(user_now, 'moralities', morality)
         self.ui.label_merits.setText(str(morality))
+
+    def play_muyu_music(self):
+        player = QMediaPlayer()
+        audio = QMediaContent(QUrl(":/music/music/click_wooden_fish.mp3"))
+        player.setMedia(audio)
+        player.play()
+        print ("play music")
 
 
 if __name__ == '__main__':
