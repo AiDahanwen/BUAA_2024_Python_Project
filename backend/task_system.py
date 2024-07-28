@@ -733,6 +733,13 @@ def modify_daily_task_pic_url(daily_task, pic_url):
     pic_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
     daily_task.daily_task_pic_url = pic_url
 
+def get_tasks_objects_urgent(user_email):
+    condition_cmd="""
+    AND (task_status = 'pending' OR task_status = 'underway')
+    AND NOW() < DATE(task_end_time)
+    AND NOW() + INTERVAL 1 DAY >= task_end_time
+    """
+    return _get_task_objects_of_user_with_condition(user_email, condition_cmd,())
 
 if __name__ == '__main__':
     testTask = Task('test')
