@@ -227,6 +227,7 @@ def add_work_time(task, work_time):
         """
         args = (work_time, task.task_id)
         database_write(cmd, args)
+        add_user_work_time(task.user_email, work_time)
     else:
         task_is_complete(task)
 
@@ -319,22 +320,6 @@ def get_complete_task_sum_in_date(user_email, some_date):
     return len(
         get_task_objects_of_user_completed_in_date(user_email, some_date)
     )
-
-
-def get_work_time_sum_in_date(user_email, some_date):
-    task_complete_list = get_task_objects_of_user_completed_in_date(user_email, some_date)
-    task_underway_list = get_task_objects_of_user_with_status_in_date(
-        user_email, some_date, TaskStatus.UNDERWAY
-    )
-    time_sum = timedelta(days=0)
-
-    for task in task_complete_list:
-        time_sum += task.task_duration_time
-
-    for task in task_underway_list:
-        time_sum += task.task_elapsed_time
-
-    return time_sum
 
 
 def get_complete_task_sum(user_email):
@@ -455,24 +440,6 @@ def get_task_schedule_objects(user_email, morning_time, afternoon_time, evening_
 def get_ordered_tasks_date(user_email, date):
     tasks_date = get_task_objects_of_user_in_date(user_email, date)
     return sorted(tasks_date, key=lambda x: x.task_start_time)
-
-
-def get_task_completed_sum(user_email):
-    tasks = get_tasks_of_user_with_status(user_email, TaskStatus.COMPLETED)
-    task_num = len(tasks)
-    duration_sum = sum(
-        [(_.task_end_time - _.task_start_time).total_seconds() / 3600 for _ in tasks]
-    )
-    workday_num = len(
-        set(
-            [
-                _.task_start_time.date()
-                for _ in tasks
-                if _.task_start_time.month == datetime.today().month
-            ]
-        )
-    )
-    return task_num, duration_sum, duration_sum / workday_num
 
 
 def get_task_completed_date(user_email, date):
@@ -667,6 +634,8 @@ def update_task_status(user_email):
 def task_is_complete(task):
     reset_task_info(task.task_id, "status", TaskStatus.COMPLETED)
     reset_task_info(task.task_id, "complete_time", datetime.now())
+    reset_task_info(task.task_id, "elapsed_time", task.task_duration_time)
+    add_user_work_time(task.user_email, task.task_duration_time - task.task_elapsed_time)
     if task.task_is_daily:
         daily_task = get_daily_task_object(task.user_email, task.daily_task_id)[0]
         if daily_task.daily_task_end_date > date.today():
@@ -733,13 +702,15 @@ def modify_daily_task_pic_url(daily_task, pic_url):
     pic_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
     daily_task.daily_task_pic_url = pic_url
 
+
 def get_tasks_objects_urgent(user_email):
-    condition_cmd="""
+    condition_cmd = """
     AND (task_status = 'pending' OR task_status = 'underway')
     AND NOW() < DATE(task_end_time)
     AND NOW() + INTERVAL 1 DAY >= task_end_time
     """
-    return _get_task_objects_of_user_with_condition(user_email, condition_cmd,())
+    return _get_task_objects_of_user_with_condition(user_email, condition_cmd, ())
+
 
 if __name__ == '__main__':
     testTask = Task('test')

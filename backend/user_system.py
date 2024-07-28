@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, time
 
 import bcrypt
 import oss2
@@ -102,3 +102,25 @@ def get_local_user_email_password():
     except FileNotFoundError as e:
         print(e)
         return False
+
+
+def check_work_time_update_time(user_email):
+    if get_user_info(user_email, "work_time_update_date") != date.today():
+        reset_user_info(user_email, "work_time_update_date", date.today())
+        reset_user_info(user_email, "work_time", time(minute=0))
+
+
+def get_work_time(user_email):
+    check_work_time_update_time(user_email)
+    return get_user_info(user_email, "work_time")
+
+
+def add_user_work_time(user_email, delta_time):
+    check_work_time_update_time(user_email)
+    cmd = """
+    UPDATE users
+    SET user_work_time = ADDTIME(user_work_time, %s)
+    WHERE user_email = %s
+    """
+    args = (delta_time, user_email)
+    database_write(cmd, args)

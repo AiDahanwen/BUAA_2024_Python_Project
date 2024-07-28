@@ -306,7 +306,7 @@ class AddTaskWindow(QMainWindow):
         task_content = self.ui.textEdit_Add_task_content.toPlainText()
         task_type = self.ui.comboBox_Add_task_type.currentText()
         task_important = self.ui.comboBox_important.currentText()
-        task_duration_time = self.ui.doubleSpinBox_duration.value()
+        task_duration_time = timedelta(hours=self.ui.doubleSpinBox_duration.value())
         if task_name == "":
             self.ui.stackedWidget.setCurrentIndex(1)
         elif task_type == '请选择任务类型':
@@ -849,7 +849,7 @@ class MainWindow(QMainWindow):
         self.ui.label_Sta_everyday_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
-            "时长总数：" + str(get_work_time_sum_in_date(user_now, datetime.today())))
+            "时长总数：" + str(get_work_time(user_now)))
 
         self.ui.lineEdit_modify_motto.setText(get_user_info(user_now, 'signature'))
         self.ui.lineEdit_modify_name.setText(get_user_info(user_now, 'name'))
@@ -997,7 +997,7 @@ class MainWindow(QMainWindow):
                 self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
 
     def complete_schedule_task(self, task_schedule):
-        add_work_time(task_schedule.task, task_schedule.task_time)
+        add_user_work_time(task_schedule.task, task_schedule.task_time)
 
     def calendar_click(self):
         self.ui.listWidget_calender.clear()
