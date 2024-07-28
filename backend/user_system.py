@@ -80,6 +80,8 @@ def list_user_info(user_email):
 
 
 def modify_user_avatar(user_email, avatar_url):
+    if not avatar_url:
+        return
     avatar_name = avatar_url.split("/")[-1]
     temp = str(user_email) + "/" + "user_avatar/" + avatar_name
     bucket.put_object_from_file(temp, avatar_url)
