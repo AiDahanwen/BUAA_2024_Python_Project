@@ -175,7 +175,9 @@ class Ui_DisplayTaskWindow(object):
         self.label_15 = QtWidgets.QLabel(self.frame)
         self.label_15.setGeometry(QtCore.QRect(530, 120, 231, 151))
         self.label_15.setStyleSheet("background-color: rgb(35, 65, 76);\n"
+"font: 12pt \"微软雅黑\";\n"
 "color: rgb(255, 255, 255);")
+        self.label_15.setAlignment(QtCore.Qt.AlignCenter)
         self.label_15.setObjectName("label_15")
         self.frame_6 = QtWidgets.QFrame(self.frame)
         self.frame_6.setGeometry(QtCore.QRect(510, 320, 241, 50))
@@ -607,7 +609,7 @@ class Ui_DisplayTaskWindow(object):
         self.label_6.setText(_translate("DisplayTaskWindow", "任务进度   "))
         self.label_4.setText(_translate("DisplayTaskWindow", "任务状态"))
         self.label_dispaly_state.setText(_translate("DisplayTaskWindow", "已完成"))
-        self.label_15.setText(_translate("DisplayTaskWindow", "任务图片"))
+        self.label_15.setText(_translate("DisplayTaskWindow", "未添加任务图片"))
         self.label_16.setText(_translate("DisplayTaskWindow", "重要程度"))
         self.comboBox_important.setItemText(0, _translate("DisplayTaskWindow", "不重要"))
         self.comboBox_important.setItemText(1, _translate("DisplayTaskWindow", "一般重要"))

@@ -327,10 +327,14 @@ color: rgb(0, 0, 0);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(35, 65, 76);
+font: 12pt &quot;微软雅黑&quot;;
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>任务图片</string>
+      <string>未添加任务图片</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QFrame" name="frame_6">
