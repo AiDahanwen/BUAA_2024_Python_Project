@@ -1,68 +1,56 @@
 import sys
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import *
-
-
-class CustomListItem(QWidget):
-
-    def __init__(self, text, importance=False, parent=None):
-        super().__init__(parent)
-        layout = QHBoxLayout(self)
-        self.button_1 = QCheckBox(self)
-        self.button_2 = QPushButton(text, self)
-
-        # 按钮点击后触发的槽函数
-        if importance:
-            self.important_icon = QLabel(self)
-            # 注意修改图片的大小
-            self.important_icon.setFixedSize(30, 30)
-            icon_pixmap = QPixmap("../icons/TargetArrow.png")
-            scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-            self.important_icon.setPixmap(scaled_pixmap)
-        else:
-            self.important_icon = QLabel(self)
-
-        layout.addWidget(self.button_1)
-        layout.addWidget(self.button_2)
-        layout.addWidget(self.important_icon)
-        self.setLayout(layout)
-
-
-class MainWindow(QWidget):
+class PlotWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Custom QListWidget Item Example")
-        self.setGeometry(100, 100, 400, 300)
 
-        layout = QVBoxLayout(self)
-        self.list_widget = QListWidget(self)
-        layout.addWidget(self.list_widget)
+        # 创建一个Figure对象
+        self.figure = plt.figure()
 
-        # 添加自定义项
-        for i in range(5):
-            custom_item = CustomListItem(f"Item {i}", True)
-            # 用于设置槽函数
-            custom_item.button_1.clicked.connect(lambda: self.delete_task())
-            custom_item.button_2.clicked.connect(lambda: self.display_task())
+        # 创建一个FigureCanvas对象
+        self.canvas = FigureCanvas(self.figure)
 
-            list_item = QListWidgetItem(self.list_widget)
-            list_item.setSizeHint(custom_item.sizeHint())
-            self.list_widget.addItem(list_item)
-            self.list_widget.setItemWidget(list_item, custom_item)
+        # 创建一个布局，并将canvas添加到布局中
+        layout = QVBoxLayout()
+        layout.addWidget(self.canvas)
 
-        self.setLayout(layout)
+        # 创建一个QWidget，并将布局设置为该QWidget的布局
+        container = QWidget()
+        container.setLayout(layout)
 
-    def delete_task(self):
-        print("Delete task")
+        # 将QWidget设置为主窗口的中心窗口
+        self.setCentralWidget(container)
 
-    def display_task(self):
-        print("Display task")
+        # 绘制折线图
+        self.plot()
 
+    def plot(self):
+        # 清除当前图形
+        self.figure.clear()
 
-if __name__ == "__main__":
+        # 创建一个新的绘图对象
+        ax = self.figure.add_subplot(111)
+
+        # 数据
+        x = [1, 2, 3, 4, 5]
+        y = [1, 4, 9, 16, 25]
+
+        # 绘制折线图
+        ax.plot(x, y, 'r-')
+
+        # 设置标题和标签
+        ax.set_title('简单折线图')
+        ax.set_xlabel('X轴')
+        ax.set_ylabel('Y轴')
+
+        # 更新canvas
+        self.canvas.draw()
+
+if __name__ == '__main__':
     app = QApplication(sys.argv)
-    main_window = MainWindow()
+    main_window = PlotWindow()
     main_window.show()
     sys.exit(app.exec_())

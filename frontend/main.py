@@ -1,6 +1,8 @@
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect, QLocale
 import sys
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 from PyQt5 import Qt
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
@@ -8,7 +10,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor, QTextCharFormat, QColor, QFont
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
-from PyQt5.QtWidgets import QApplication, QWidget, QCalendarWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QCalendarWidget, QFrame
 from PyQt5.QtWidgets import QFileDialog, QHBoxLayout, QCheckBox, \
     QPushButton, \
     QLabel, QListWidgetItem
@@ -33,6 +35,9 @@ afternoon = 0
 night = 0
 text_set_flag = False
 main_window = None
+
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+mpl.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
 
 
 def transfer_vital(vital):
@@ -357,6 +362,7 @@ class AddTaskWindow(QMainWindow):
             add_daily_task(daily_task)
             print("have added everyday task")
             main_window.todolist()
+            main_window.urgent_list()
             self.close()
 
     def ordinary_task(self):
@@ -366,6 +372,7 @@ class AddTaskWindow(QMainWindow):
             add_task(task)
             print("have added ordinary task")
             main_window.todolist()
+            main_window.urgent_list()
             self.close()
 
     def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
@@ -797,6 +804,32 @@ class CustomListItem_Calendar(QWidget):
         self.setLayout(layout)
 
 
+class CustomListItem_urgent(QWidget):
+    def __init__(self, task, parent=None):
+        super().__init__(parent)
+        layout = QHBoxLayout(self)
+        self.pushButton_name = QPushButton(task.task_title, self)
+        self.label_ddl = QLabel(task.task_end_time.strftime("%Y-%m-%d %H:%M:%S"), self)
+
+        self.important_icon = QLabel(self)
+        self.important_icon.setFixedSize(30, 30)
+        importance = task.task_vital
+        if importance == TaskVital.TRIVIAL:
+            icon_pixmap = QPixmap("frontend/icons/yellow.png")
+        elif importance == TaskVital.NORMAL:
+            icon_pixmap = QPixmap("frontend/icons/orange.png")
+        else:
+            icon_pixmap = QPixmap("frontend/icons/red.png")
+        scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.important_icon.setPixmap(scaled_pixmap)
+
+        self.pushButton_name.clicked.connect(lambda: main_window.display_task(task))
+        layout.addWidget(self.pushButton_name)
+        layout.addWidget(self.label_ddl)
+        layout.addWidget(self.important_icon)
+        self.setLayout(layout)
+
+
 class MainWindow(QMainWindow):
     # 表示此时早上好等语句有没有set
     text_set_flag = False
@@ -825,6 +858,12 @@ class MainWindow(QMainWindow):
             self.todolist()
         self.ui.stackedWidget_3.setCurrentIndex(0)
         self.ui.stackedWidget_4.setCurrentIndex(1)
+        urgent_list = get_tasks_objects_urgent(user_now)
+        if len(urgent_list) == 0:
+            self.ui.stackedWidget_urgent.setCurrentIndex(0)
+        else:
+            self.ui.stackedWidget_urgent.setCurrentIndex(1)
+            self.urgent_list()
 
         image_loader = ImageLoader(self.ui.label_avatar, self)
         image_loader.loadImage(get_user_info(user_now, 'avatar_url'))  # 替换为你的图片URL
@@ -858,6 +897,15 @@ class MainWindow(QMainWindow):
         image_loader.loadImage(get_user_info(user_now, 'avatar_url'))
         self.ui.lineEdit_modify_name.textChanged.connect(lambda: self.modify_name())
         self.ui.lineEdit_modify_motto.textChanged.connect(lambda: self.modify_motto())
+
+        self.ui.frame_20.setFrameShape(QFrame.StyledPanel)
+        self.ui.frame_20.setFixedSize(self.ui.frame_20.width(), self.ui.frame_20.height())
+        self.figure = plt.figure()
+        self.canvas = FigureCanvas(self.figure)
+        layout = QHBoxLayout()
+        layout.addWidget(self.canvas)
+        self.ui.frame_20.setLayout(layout)
+        self.plot_task_num()
 
         timer = QtCore.QTimer(self)
         timer.timeout.connect(self.showtime)
@@ -956,14 +1004,38 @@ class MainWindow(QMainWindow):
                 self.ui.listWidget_todolist.addItem(list_item)
                 self.ui.listWidget_todolist.setItemWidget(list_item, custom_item)
 
+    def urgent_list(self):
+        self.ui.listWidget_urgent.clear()
+        urgent_list = get_tasks_objects_urgent(user_now)
+        if len(urgent_list) == 0:
+            self.ui.stackedWidget_urgent.setCurrentIndex(0)
+        else:
+            for task in urgent_list:
+                custom_item = CustomListItem_urgent(task)
+                list_item = QListWidgetItem(self.ui.listWidget_urgent)
+                list_item.setSizeHint(custom_item.sizeHint())
+                self.ui.listWidget_urgent.addItem(list_item)
+                self.ui.listWidget_urgent.setItemWidget(list_item, custom_item)
+
+    def plot_task_num(self):
+        self.figure.clear()
+        y = get_week_report_of_user(user_now)
+        x = [i + 1 for i in range(7)]
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y, color='green')
+        ax.set_xticklabels(['周一', '周二', '周三', '周四', '周五', '周六', '周日'])
+        ax.set_xlabel('日期')
+        ax.set_ylabel('任务个数')
+        self.canvas.draw()
+
     def add_task(self):
         self.ui.stackedWidget_2.setCurrentIndex(1)
         self.win = AddTaskWindow()
-        self.todolist()
 
     def complete_task(self, task):
         task_is_complete(task)
         self.todolist()
+        self.urgent_list()
 
     def display_task(self, task):
         self.win = DisplayTaskWindow(task)
@@ -973,6 +1045,7 @@ class MainWindow(QMainWindow):
         self.win = FreeTimeWindow()
 
     def schedule(self):
+        self.ui.listWidget_schedule.clear()
         schedule_list = get_task_schedule_objects(user_now, morning, afternoon, night)
         if len(schedule_list) == 0:
             self.ui.stackedWidget_3.setCurrentIndex(3)
@@ -997,7 +1070,7 @@ class MainWindow(QMainWindow):
                 self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
 
     def complete_schedule_task(self, task_schedule):
-        add_user_work_time(task_schedule.task, task_schedule.task_time)
+        add_work_time(task_schedule.task, task_schedule.task_time)
 
     def calendar_click(self):
         self.ui.listWidget_calender.clear()
