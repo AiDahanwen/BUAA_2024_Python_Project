@@ -885,6 +885,8 @@ class MainWindow(QMainWindow):
             "任务个数：" + str(get_complete_task_sum(user_now)))
         self.ui.label_Sta_accumulate_sumoftime.setText(
             "时长总数：" + str(get_work_time_sum(user_now)))
+        # self.ui.label_Sta_accumulate_averagetime.setText(
+        #     "日均时长：" + str(get_average_work_time(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
@@ -1020,9 +1022,10 @@ class MainWindow(QMainWindow):
     def plot_task_num(self):
         self.figure.clear()
         y = get_week_report_of_user(user_now)
-        x = [i + 1 for i in range(7)]
+        x = [i for i in range(7)]
         ax = self.figure.add_subplot(111)
         ax.plot(x, y, color='green')
+        ax.set_xticks(x)
         ax.set_xticklabels(['周一', '周二', '周三', '周四', '周五', '周六', '周日'])
         ax.set_xlabel('日期')
         ax.set_ylabel('任务个数')
