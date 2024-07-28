@@ -1,5 +1,6 @@
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
 import sys
+import matplotlib.pyplot as plt
 
 from PyQt5 import Qt
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect

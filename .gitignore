@@ -47,4 +47,5 @@ Thumbs.db
 /.mvn/
 /mvnw.cmd
 /mvnw
-.pyc
+*.pyc
+.gitignore
