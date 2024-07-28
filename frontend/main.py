@@ -1,14 +1,14 @@
-from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
+from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect, QLocale
 import sys
 import matplotlib.pyplot as plt
 
 from PyQt5 import Qt
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QCursor
+from PyQt5.QtGui import QCursor, QTextCharFormat, QColor, QFont
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QCalendarWidget
 from PyQt5.QtWidgets import QFileDialog, QHBoxLayout, QCheckBox, \
     QPushButton, \
     QLabel, QListWidgetItem
@@ -423,6 +423,17 @@ class CalendarTaskWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+        #改变日历风格
+        self.setLocale(QLocale(QLocale.Chinese))
+        self.setNavigationBarVisible(False)
+        self.setSelectionMode(QCalendarWidget.SingleSelection)
+        format = QTextCharFormat()
+        format.setForeground(QColor(51, 51, 51))
+        format.setBackground(QColor(247, 247, 247))
+        format.setFontFamily("Microsoft YaHei")
+        format.setFontPointSize(9)
+        format.setFontWeight(QFont.Medium)
 
         self.ui.label_calendar_name.setText(task.task_title)
         self.ui.label_calendar_tag.setText(task.task_tag)
