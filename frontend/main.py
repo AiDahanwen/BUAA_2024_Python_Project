@@ -1,5 +1,6 @@
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
 import sys
+import matplotlib.pyplot as plt
 
 from PyQt5 import Qt
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
@@ -519,9 +520,9 @@ class DisplayTaskWindow(QMainWindow):
                         pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
                                       Qt.KeepAspectRatio, Qt.SmoothTransformation))
             self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(
-                lambda: self.modify_ordinary_begin_time())
+                lambda: self.modify_ordinary_begin_time(task))
             self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(
-                lambda: self.modify_ordinary_end_time())
+                lambda: self.modify_ordinary_end_time(task))
 
             self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(task=task))
 
@@ -949,18 +950,18 @@ class MainWindow(QMainWindow):
                         custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
                                                               task_schedule.task_time,
                                                               now_period,
-                                                              task_schedule.task.task_importance)
+                                                              task_schedule.task.task_vital)
                     else:
                         custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
                                                               task_schedule.task_time,
-                                                              '', task_schedule.task.task_importance)
+                                                              '', task_schedule.task.task_vital)
                 else:
                     now_period = task_schedule.task_time_period
                     count = 1
                     custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
                                                           task_schedule.task_time,
                                                           now_period,
-                                                          task_schedule.task.task_importance)
+                                                          task_schedule.task.task_vital)
                 custom_item.pushButton_name.clicked.connect(
                     lambda: self.display_task(task_schedule.task))
                 custom_item.checkbox_complete.clicked.connect(
