@@ -1,14 +1,14 @@
-from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
+from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect, QLocale
 import sys
 import matplotlib.pyplot as plt
 
 from PyQt5 import Qt
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QCursor
+from PyQt5.QtGui import QCursor, QTextCharFormat, QColor, QFont
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QCalendarWidget
 from PyQt5.QtWidgets import QFileDialog, QHBoxLayout, QCheckBox, \
     QPushButton, \
     QLabel, QListWidgetItem
@@ -32,6 +32,7 @@ morning = 0
 afternoon = 0
 night = 0
 text_set_flag = False
+main_window = None
 
 
 def transfer_vital(vital):
@@ -355,6 +356,7 @@ class AddTaskWindow(QMainWindow):
             modify_daily_task_pic_url(daily_task, self.photo_path)
             add_daily_task(daily_task)
             print("have added everyday task")
+            main_window.todolist()
             self.close()
 
     def ordinary_task(self):
@@ -363,6 +365,7 @@ class AddTaskWindow(QMainWindow):
             modify_task_pic_url(task, self.photo_path)
             add_task(task)
             print("have added ordinary task")
+            main_window.todolist()
             self.close()
 
     def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
@@ -426,6 +429,17 @@ class CalendarTaskWindow(QMainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
+        #改变日历风格
+        self.setLocale(QLocale(QLocale.Chinese))
+        self.setNavigationBarVisible(False)
+        self.setSelectionMode(QCalendarWidget.SingleSelection)
+        format = QTextCharFormat()
+        format.setForeground(QColor(51, 51, 51))
+        format.setBackground(QColor(247, 247, 247))
+        format.setFontFamily("Microsoft YaHei")
+        format.setFontPointSize(9)
+        format.setFontWeight(QFont.Medium)
+
         self.ui.label_calendar_name.setText(task.task_title)
         self.ui.label_calendar_tag.setText(task.task_tag)
         self.ui.label_calendar_important.setText(task.task_vital)
@@ -465,7 +479,6 @@ class DisplayTaskWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-        self.file_path = None
         self.new_file_path = None
 
         self.ui.lineEdit_display_taskname.setText(task.task_title)
@@ -485,13 +498,9 @@ class DisplayTaskWindow(QMainWindow):
 
             daily = get_daily_task_object(user_now, task.daily_task_id)[0]
 
-            self.file_path = daily.daily_task_pic_url
-            if self.file_path:
-                pixmap = QtGui.QPixmap(self.file_path)
-                if not pixmap.isNull():
-                    self.ui.label_15.setPixmap(
-                        pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
-                                      Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            if daily.daily_task_pic_url:
+                image_loader = ImageLoader(self.ui.label_15, self)
+                image_loader.loadImage(daily.daily_task_pic_url)  # 替换为你的图片URL
             self.ui.dateEdit_every_begin_date.setDate(daily.daily_task_start_date)
             self.ui.dateEdit_every_end_date.setDate(daily.daily_task_end_date)
             self.ui.timeEdit_every_begin_time.setTime(daily.daily_task_start_time)
@@ -514,13 +523,9 @@ class DisplayTaskWindow(QMainWindow):
 
             self.ui.dateTimeEdit_ordinary_begin.setDateTime(task.task_start_time)
             self.ui.dateTimeEdit_ordinary_end.setDateTime(task.task_end_time)
-            self.file_path = task.task_pic_url
-            if self.file_path:
-                pixmap = QtGui.QPixmap(self.file_path)
-                if not pixmap.isNull():
-                    self.ui.label_15.setPixmap(
-                        pixmap.scaled(self.ui.label_15.width(), self.ui.label_15.height(),
-                                      Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            if task.task_pic_url:
+                image_loader = ImageLoader(self.ui.label_15, self)
+                image_loader.loadImage(task.task_pic_url)  # 替换为你的图片URL
             self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(
                 lambda: self.modify_ordinary_begin_time(task))
             self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(
@@ -1116,5 +1121,6 @@ class MainWindow(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainWindow()
+    main_window = MainWindow()
+    # window = LoginWindow()
     sys.exit(app.exec_())

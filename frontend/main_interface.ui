@@ -72,10 +72,10 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgba(236, 236, 236, 0);</string>
+      <string notr="true">background-color:rgba(0, 0, 0, 0);</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="page_5">
       <widget class="QLabel" name="label">
@@ -889,7 +889,7 @@ border-radius:10px;</string>
       </widget>
      </widget>
      <widget class="QWidget" name="page_2">
-      <widget class="QFrame" name="frame">
+      <widget class="QFrame" name="frame_calendar">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -903,6 +903,9 @@ border-radius:10px;</string>
          <width>991</width>
          <height>701</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <widget class="QCalendarWidget" name="calendarWidget">
         <property name="geometry">
@@ -929,19 +932,20 @@ border-radius:10px;</string>
          <font>
           <family>微软雅黑</family>
           <pointsize>11</pointsize>
-          <weight>9</weight>
+          <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(238, 234, 225);
-font: 75 11pt &quot;微软雅黑&quot;;
-border-radius:20px;
-</string>
+         <string notr="true">background-color:rgb(231, 242, 211);
+border-radius:20px;</string>
         </property>
         <property name="gridVisible">
          <bool>true</bool>
+        </property>
+        <property name="verticalHeaderFormat">
+         <enum>QCalendarWidget::NoVerticalHeader</enum>
         </property>
        </widget>
        <widget class="QFrame" name="frame_5">
@@ -966,7 +970,11 @@ border-radius:20px;
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
+         <string notr="true">QFrame#frame_5{
+background-color: rgba(255, 255, 255, 150);
+border-bottom-left-radius:20px;
+border-bottom-right-radius:20px;
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -984,20 +992,34 @@ border-radius:20px;
           </rect>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page_no_task">
           <widget class="QLabel" name="label_23">
            <property name="geometry">
             <rect>
-             <x>80</x>
+             <x>10</x>
              <y>130</y>
-             <width>271</width>
+             <width>441</width>
              <height>151</height>
             </rect>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>20</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(40, 73, 81);</string>
+           </property>
            <property name="text">
-            <string>在当前日期没有任务</string>
+            <string>-在当前日期没有任务-</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </widget>
@@ -1007,21 +1029,33 @@ border-radius:20px;
             <rect>
              <x>10</x>
              <y>190</y>
-             <width>271</width>
-             <height>20</height>
+             <width>471</width>
+             <height>101</height>
             </rect>
            </property>
            <property name="minimumSize">
             <size>
-             <width>271</width>
-             <height>20</height>
+             <width>471</width>
+             <height>101</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
+            <string notr="true">color: rgb(52, 86, 95);</string>
            </property>
            <property name="text">
             <string>选择左侧任意日期以查看当日任务情况♪(´▽｀)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -1065,7 +1099,7 @@ border-radius:20px;
                 <x>0</x>
                 <y>0</y>
                 <width>481</width>
-                <height>671</height>
+                <height>581</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1159,6 +1193,11 @@ border-radius:20px;
                    <verstretch>9</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border:none;</string>
                  </property>
@@ -1170,52 +1209,6 @@ border-radius:20px;
            </item>
           </layout>
          </widget>
-        </widget>
-       </widget>
-       <widget class="QFrame" name="frame_26">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>9</y>
-          <width>16</width>
-          <height>683</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <widget class="QLabel" name="label_19">
-         <property name="geometry">
-          <rect>
-           <x>110</x>
-           <y>10</y>
-           <width>251</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial Black</family>
-           <pointsize>20</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Tasks List</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_20">
@@ -1236,7 +1229,9 @@ border-radius:20px;
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
+         <string notr="true">background-color: rgba(255, 255, 255, 150);
+border-top-left-radius:20px;
+border-top-right-radius:20px;</string>
         </property>
         <property name="text">
          <string>Tasks List</string>
@@ -1366,6 +1361,14 @@ box-shadow:5px 5px 5px #888888;
                 <layout class="QVBoxLayout" name="verticalLayout_10">
                  <item>
                   <widget class="QLabel" name="label_Sta_accumulate_sumofnum">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
                    <property name="text">
                     <string>任务个数：</string>
                    </property>
@@ -1373,6 +1376,14 @@ box-shadow:5px 5px 5px #888888;
                  </item>
                  <item>
                   <widget class="QLabel" name="label_Sta_accumulate_sumoftime">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
                    <property name="text">
                     <string>时长总数：</string>
                    </property>
@@ -1380,6 +1391,14 @@ box-shadow:5px 5px 5px #888888;
                  </item>
                  <item>
                   <widget class="QLabel" name="label_Sta_accumulate_averagetime">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
                    <property name="text">
                     <string>日均时长：</string>
                    </property>
@@ -1490,6 +1509,14 @@ border-radius:10px;
                 <layout class="QVBoxLayout" name="verticalLayout_11">
                  <item>
                   <widget class="QLabel" name="label_Sta_everyday_sumofnum">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
                    <property name="text">
                     <string>任务总数：</string>
                    </property>
@@ -1497,6 +1524,14 @@ border-radius:10px;
                  </item>
                  <item>
                   <widget class="QLabel" name="label_Sta_everyday_sumoftime">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
                    <property name="text">
                     <string>时长总数：</string>
                    </property>
@@ -1587,9 +1622,15 @@ background-color: rgba(255, 255, 255, 220);
                <rect>
                 <x>40</x>
                 <y>80</y>
-                <width>101</width>
+                <width>161</width>
                 <height>51</height>
                </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>161</width>
+                <height>0</height>
+               </size>
               </property>
               <property name="font">
                <font>
