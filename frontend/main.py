@@ -470,8 +470,8 @@ class DisplayTaskWindow(QMainWindow):
         self.ui.comboBox_important.setCurrentText(transfer_vital(task.task_vital))
         self.ui.textEdit_task_content.setText(task.task_content)
         self.ui.comboBox_display_task_type.setCurrentText(task.task_tag)
-        self.ui.progressBar_display_progress.setValue(
-            task.task_elapsed_time / task.task_duration_time * 100)
+        self.ui.progressBar_display_progress.setValue(int(
+            task.task_elapsed_time / task.task_duration_time * 100))
         self.ui.label_dispaly_state.setText(task.task_status)
         self.ui.stackedWidget_2.setCurrentIndex(0)
         self.ui.pushButton_3.clicked.connect(lambda: self.update_photo())

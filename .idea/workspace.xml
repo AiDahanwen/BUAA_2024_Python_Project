@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20195de9-5b54-4861-8d87-9698e055c851" name="更改" comment="frontend-try-zhwww">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_7_28_14_09____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2024_7_28_14_09____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main_interface.ui" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main_interface.ui" afterDir="false" />
-    </list>
+    <list default="true" id="20195de9-5b54-4861-8d87-9698e055c851" name="更改" comment="frontend-try-zhwww" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,9 +20,6 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2jpyiSs9f7LVXb3oS7Dlnfv1Pvv" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -36,24 +27,24 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.main.executor": "Run",
+    "Python.main.py.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/python_learn/new_project/BUAA_2024_Python_Project",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Debugger"
+    "last_opened_file_path": "D:/python_learn/new_project/BUAA_2024_Python_Project"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="main.py" type="PythonConfigurationType" factoryName="Python">
       <module name="BUAA_2024_Python_Project" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/frontend" />
+      <option name="SDK_NAME" value="Python 3.8" />
+      <option name="WORKING_DIRECTORY" value="D:\python_learn\new_project\BUAA_2024_Python_Project" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -142,7 +133,6 @@
     <MESSAGE value="frontend-debug schedule-zhwww" />
     <MESSAGE value="frontend-debug display-zhwww" />
     <MESSAGE value="frontend-try-zhwww" />
-    <MESSAGE value="add .gitignore-cuzn" />
-    <option name="LAST_COMMIT_MESSAGE" value="add .gitignore-cuzn" />
+    <option name="LAST_COMMIT_MESSAGE" value="frontend-try-zhwww" />
   </component>
 </project>
