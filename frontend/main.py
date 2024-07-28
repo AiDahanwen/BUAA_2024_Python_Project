@@ -429,7 +429,7 @@ class CalendarTaskWindow(QMainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
-        #改变日历风格
+        # 改变日历风格
         self.setLocale(QLocale(QLocale.Chinese))
         self.setNavigationBarVisible(False)
         self.setSelectionMode(QCalendarWidget.SingleSelection)
@@ -711,19 +711,19 @@ class ImageLoader(QObject):
 
 
 class CustomListItem_Todo(QWidget):
-    def __init__(self, text, status, importance=TaskVital.TRIVIAL, parent=None):
+    def __init__(self, task, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
         self.button_1 = QPushButton("完成", self)
-        self.button_2 = QPushButton(text, self)
+        self.button_2 = QPushButton(task.task_title, self)
         self.important_icon = QLabel(self)
         self.important_icon.setFixedSize(30, 30)
-        if status == TaskStatus.COMPLETED:
+        if task.task_status == TaskStatus.COMPLETED:
             self.button_1.setChecked(True)
 
-        if importance == TaskVital.TRIVIAL:
+        if task.task_vital == TaskVital.TRIVIAL:
             icon_pixmap = QPixmap("frontend/icons/yellow.png")
-        elif importance == TaskVital.NORMAL:
+        elif task.task_vital == TaskVital.NORMAL:
             icon_pixmap = QPixmap("frontend/icons/orange.png")
         else:
             icon_pixmap = QPixmap("frontend/icons/red.png")
@@ -731,6 +731,8 @@ class CustomListItem_Todo(QWidget):
         scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.important_icon.setPixmap(scaled_pixmap)
 
+        self.button_1.clicked.connect(lambda: main_window.complete_task(task))
+        self.button_2.clicked.connect(lambda: main_window.display_task(task))
         layout.addWidget(self.button_1)
         layout.addWidget(self.button_2)
         layout.addWidget(self.important_icon)
@@ -738,15 +740,16 @@ class CustomListItem_Todo(QWidget):
 
 
 class CustomListItem_Schedule(QWidget):
-    def __init__(self, name, duration, period='', importance=TaskVital.TRIVIAL, parent=None):
+    def __init__(self, task_schedule, period=False, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
-        self.label_period = QLabel(str(period), self)
-        self.label_duration = QLabel(str(duration), self)
+        self.label_period = QLabel(str(task_schedule.task_time_period), self)
+        self.label_duration = QLabel(str(task_schedule.task_time), self)
         self.checkbox_complete = QCheckBox(self)
-        self.pushButton_name = QPushButton(name, self)
+        self.pushButton_name = QPushButton(task_schedule.task.task_title, self)
         self.important_icon = QLabel(self)
         self.important_icon.setFixedSize(30, 30)
+        importance = task_schedule.task.task_vital
 
         if importance == TaskVital.TRIVIAL:
             icon_pixmap = QPixmap("frontend/icons/yellow.png")
@@ -758,6 +761,8 @@ class CustomListItem_Schedule(QWidget):
         scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.important_icon.setPixmap(scaled_pixmap)
 
+        self.pushButton_name.clicked.connect(lambda: main_window.display_task(task_schedule.task))
+        self.checkbox_complete.clicked.connect(lambda: main_window.complete_schedule_task(task_schedule))
         layout.addWidget(self.label_period)
         layout.addWidget(self.checkbox_complete)
         layout.addWidget(self.pushButton_name)
@@ -767,14 +772,14 @@ class CustomListItem_Schedule(QWidget):
 
 
 class CustomListItem_Calendar(QWidget):
-    def __init__(self, name, state, importance=TaskVital.TRIVIAL, parent=None):
+    def __init__(self, task, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
-        self.pushButton_name = QPushButton(name, self)
-        self.label_state = QLabel(state, self)
+        self.pushButton_name = QPushButton(task.task_title, self)
+        self.label_state = QLabel(task.task_status, self)
         self.important_icon = QLabel(self)
         self.important_icon.setFixedSize(30, 30)
-
+        importance = task.task_vital
         if importance == TaskVital.TRIVIAL:
             icon_pixmap = QPixmap("frontend/icons/yellow.png")
         elif importance == TaskVital.NORMAL:
@@ -785,6 +790,7 @@ class CustomListItem_Calendar(QWidget):
         scaled_pixmap = icon_pixmap.scaled(30, 30, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.important_icon.setPixmap(scaled_pixmap)
 
+        self.pushButton_name.clicked.connect(lambda: main_window.display_task(task))
         layout.addWidget(self.pushButton_name)
         layout.addWidget(self.label_state)
         layout.addWidget(self.important_icon)
@@ -936,10 +942,7 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget_2.setCurrentIndex(0)
         else:
             for task in task_list:
-                custom_item = CustomListItem_Todo(task.task_title, task.task_status,
-                                                  task.task_vital)
-                custom_item.button_1.clicked.connect(lambda: self.complete_task(task))
-
+                custom_item = CustomListItem_Todo(task)
                 custom_item.button_1.setStyleSheet("QPushButton{\n"
                                                    "background-color: rgb(41, 74, 82);\n"
                                                    "color: rgb(255, 255, 255);\n"
@@ -948,8 +951,6 @@ class MainWindow(QMainWindow):
                                                    "    padding-left:5px;\n"
                                                    "    padding-top:5px;\n"
                                                    "}")
-
-                custom_item.button_2.clicked.connect(lambda: self.display_task(task))
                 list_item = QListWidgetItem(self.ui.listWidget_todolist)
                 list_item.setSizeHint(custom_item.sizeHint())
                 self.ui.listWidget_todolist.addItem(list_item)
@@ -983,25 +984,13 @@ class MainWindow(QMainWindow):
                 if task_schedule.task_time_period == now_period:
                     count += 1
                     if count == 1:
-                        custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
-                                                              task_schedule.task_time,
-                                                              now_period,
-                                                              task_schedule.task.task_vital)
+                        custom_item = CustomListItem_Schedule(task_schedule, True)
                     else:
-                        custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
-                                                              task_schedule.task_time,
-                                                              '', task_schedule.task.task_vital)
+                        custom_item = CustomListItem_Schedule(task_schedule, False)
                 else:
                     now_period = task_schedule.task_time_period
                     count = 1
-                    custom_item = CustomListItem_Schedule(task_schedule.task.task_title,
-                                                          task_schedule.task_time,
-                                                          now_period,
-                                                          task_schedule.task.task_vital)
-                custom_item.pushButton_name.clicked.connect(
-                    lambda: self.display_task(task_schedule.task))
-                custom_item.checkbox_complete.clicked.connect(
-                    lambda: self.complete_schedule_task(task_schedule))
+                    custom_item = CustomListItem_Schedule(task_schedule, True)
                 list_item = QListWidgetItem(self.ui.listWidget_schedule)
                 list_item.setSizeHint(custom_item.sizeHint())
                 self.ui.listWidget_schedule.addItem(list_item)
@@ -1019,9 +1008,7 @@ class MainWindow(QMainWindow):
         else:
             self.ui.stackedWidget_4.setCurrentIndex(2)
             for task in task_list:
-                custom_item = CustomListItem_Calendar(task.task_title, task.task_status,
-                                                      task.task_vital)
-                custom_item.pushButton_name.clicked.connect(lambda: self.display_task(task))
+                custom_item = CustomListItem_Calendar(task)
                 list_item = QListWidgetItem(self.ui.listWidget_calender)
                 list_item.setSizeHint(custom_item.sizeHint())
                 self.ui.listWidget_calender.addItem(list_item)
