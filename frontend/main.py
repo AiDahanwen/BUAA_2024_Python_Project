@@ -929,6 +929,16 @@ class MainWindow(QMainWindow):
                 custom_item = CustomListItem_Todo(task.task_title, task.task_status,
                                                   task.task_vital)
                 custom_item.button_1.clicked.connect(lambda: self.complete_task(task))
+
+                custom_item.button_1.setStyleSheet("QPushButton{\n"
+                                                "background-color: rgb(41, 74, 82);\n"
+                                                "color: rgb(255, 255, 255);\n"
+                                                "}\n"
+                                                "QPushButton:hover{\n"
+                                                "    padding-left:5px;\n"
+                                                "    padding-top:5px;\n"
+                                                "}")
+
                 custom_item.button_2.clicked.connect(lambda: self.display_task(task))
                 list_item = QListWidgetItem(self.ui.listWidget_todolist)
                 list_item.setSizeHint(custom_item.sizeHint())

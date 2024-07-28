@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20195de9-5b54-4861-8d87-9698e055c851" name="更改" comment="merge with zhw-cuzn">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_7_28_14_09____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2024_7_28_14_09____.xml" afterDir="false" />
+    <list default="true" id="20195de9-5b54-4861-8d87-9698e055c851" name="更改" comment="frontend-make display task draggable-cuzn">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/display_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/display_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/display_task.ui" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/display_task.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/free_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/free_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/free_time.ui" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/free_time.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main_interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main_interface.ui" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main_interface.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +43,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/python_learn/new_project/BUAA_2024_Python_Project"
+    "last_opened_file_path": "D:/CuZn's/BUAA_python_project_2024/BUAA_2024_Python_Project",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RunManager">
@@ -51,7 +56,8 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="D:\python_learn\new_project\BUAA_2024_Python_Project" />
+      <option name="SDK_NAME" value="Python 3.12" />
+      <option name="WORKING_DIRECTORY" value="D:\CuZn's\BUAA_python_project_2024\BUAA_2024_Python_Project" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -129,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722148727989</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="frontend-make display task draggable-cuzn">
+      <option name="closed" value="true" />
+      <created>1722149170552</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722149170552</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,6 +164,7 @@
     <MESSAGE value="frontend-try-zhwww" />
     <MESSAGE value="add .xml to gitignore-cuzn" />
     <MESSAGE value="merge with zhw-cuzn" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge with zhw-cuzn" />
+    <MESSAGE value="frontend-make display task draggable-cuzn" />
+    <option name="LAST_COMMIT_MESSAGE" value="frontend-make display task draggable-cuzn" />
   </component>
 </project>

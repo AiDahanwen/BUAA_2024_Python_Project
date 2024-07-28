@@ -373,7 +373,7 @@ font: 87 23pt &quot;Arial Black&quot;;</string>
                   <item>
                    <widget class="QStackedWidget" name="stackedWidget_2">
                     <property name="currentIndex">
-                     <number>0</number>
+                     <number>1</number>
                     </property>
                     <widget class="QWidget" name="page_6">
                      <widget class="QLabel" name="label_10">
@@ -387,8 +387,14 @@ font: 87 23pt &quot;Arial Black&quot;;</string>
                       </property>
                       <property name="minimumSize">
                        <size>
-                        <width>221</width>
-                        <height>20</height>
+                        <width>411</width>
+                        <height>101</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>411</width>
+                        <height>101</height>
                        </size>
                       </property>
                       <property name="font">
@@ -453,7 +459,16 @@ color: rgb(37, 70, 77);</string>
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QListWidget" name="listWidget_todolist"/>
+                       <widget class="QListWidget" name="listWidget_todolist">
+                        <property name="styleSheet">
+                         <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>test1</string>
+                         </property>
+                        </item>
+                       </widget>
                       </item>
                      </layout>
                     </widget>
@@ -767,8 +782,8 @@ color: rgb(43, 76, 84);</string>
                      </property>
                      <property name="minimumSize">
                       <size>
-                       <width>241</width>
-                       <height>20</height>
+                       <width>421</width>
+                       <height>91</height>
                       </size>
                      </property>
                      <property name="styleSheet">

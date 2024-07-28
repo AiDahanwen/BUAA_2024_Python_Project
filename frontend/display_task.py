@@ -572,8 +572,8 @@ class Ui_DisplayTaskWindow(object):
         self.stackedWidget_2.raise_()
         self.pushButton_display_ensure.raise_()
         self.label_5.raise_()
-        self.frame.raise_()
         self.pushButton_3.raise_()
+        self.frame.raise_()
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(120, 14, 811, 781))
         self.label_7.setStyleSheet("border-image: url(:/pictures/pictures/login_background.jpg);\n"

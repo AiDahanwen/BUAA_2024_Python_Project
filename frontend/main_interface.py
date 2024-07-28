@@ -181,7 +181,8 @@ class Ui_Main_interface(object):
         self.page_6.setObjectName("page_6")
         self.label_10 = QtWidgets.QLabel(self.page_6)
         self.label_10.setGeometry(QtCore.QRect(20, 170, 411, 101))
-        self.label_10.setMinimumSize(QtCore.QSize(221, 20))
+        self.label_10.setMinimumSize(QtCore.QSize(411, 101))
+        self.label_10.setMaximumSize(QtCore.QSize(411, 101))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(20)
@@ -207,7 +208,10 @@ class Ui_Main_interface(object):
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.listWidget_todolist = QtWidgets.QListWidget(self.page_7)
+        self.listWidget_todolist.setStyleSheet("font: 14pt \"微软雅黑\";")
         self.listWidget_todolist.setObjectName("listWidget_todolist")
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget_todolist.addItem(item)
         self.horizontalLayout_2.addWidget(self.listWidget_todolist)
         self.stackedWidget_2.addWidget(self.page_7)
         self.verticalLayout_4.addWidget(self.stackedWidget_2)
@@ -350,7 +354,7 @@ class Ui_Main_interface(object):
         self.page_8.setObjectName("page_8")
         self.label_11 = QtWidgets.QLabel(self.page_8)
         self.label_11.setGeometry(QtCore.QRect(30, 80, 421, 91))
-        self.label_11.setMinimumSize(QtCore.QSize(241, 20))
+        self.label_11.setMinimumSize(QtCore.QSize(421, 91))
         self.label_11.setStyleSheet("font: 12pt \"微软雅黑\";\n"
 "color: rgb(39, 72, 80);")
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
@@ -1266,8 +1270,8 @@ class Ui_Main_interface(object):
 
         self.retranslateUi(Main_interface)
         self.stackedWidget.setCurrentIndex(1)
-        self.stackedWidget_2.setCurrentIndex(0)
-        self.stackedWidget_3.setCurrentIndex(3)
+        self.stackedWidget_2.setCurrentIndex(1)
+        self.stackedWidget_3.setCurrentIndex(1)
         self.stackedWidget_4.setCurrentIndex(0)
         self.pushButton_9.clicked.connect(Main_interface.close) # type: ignore
         self.pushButton_8.clicked.connect(Main_interface.showMinimized) # type: ignore
@@ -1282,6 +1286,11 @@ class Ui_Main_interface(object):
         self.label_10.setText(_translate("Main_interface", "-今天还没有任务哦-"))
         self.label_25.setText(_translate("Main_interface", "点击右上角加号\n"
 "添加今日任务\\^o^/"))
+        __sortingEnabled = self.listWidget_todolist.isSortingEnabled()
+        self.listWidget_todolist.setSortingEnabled(False)
+        item = self.listWidget_todolist.item(0)
+        item.setText(_translate("Main_interface", "test1"))
+        self.listWidget_todolist.setSortingEnabled(__sortingEnabled)
         self.label_4.setText(_translate("Main_interface", "Schedule"))
         self.pushButton_M_schedule.setText(_translate("Main_interface", "智能任务安排"))
         self.pushButton_M_freetime.setText(_translate("Main_interface", "添加空闲时间"))

@@ -412,8 +412,7 @@ padding-top:5px;
     <zorder>frame</zorder>
     <zorder>layoutWidget</zorder>
     <zorder>label_7</zorder>
-    <zorder>pushButton_close</zorder>
-    <zorder>pushButton_minimize</zorder>
+    <zorder>frame_close_and_mini</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
