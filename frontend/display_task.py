@@ -142,17 +142,17 @@ class Ui_DisplayTaskWindow(object):
         self.label_dispaly_state.setObjectName("label_dispaly_state")
         self.horizontalLayout_2.addWidget(self.label_dispaly_state)
         self.verticalLayout.addWidget(self.frame_status)
-        self.frame1 = QtWidgets.QFrame(self.frame)
-        self.frame1.setGeometry(QtCore.QRect(650, 0, 158, 41))
-        self.frame1.setMinimumSize(QtCore.QSize(158, 25))
-        self.frame1.setStyleSheet("QPushButton:hover{\n"
+        self.frame_mini_and_close = QtWidgets.QFrame(self.frame)
+        self.frame_mini_and_close.setGeometry(QtCore.QRect(650, 0, 158, 41))
+        self.frame_mini_and_close.setMinimumSize(QtCore.QSize(158, 41))
+        self.frame_mini_and_close.setStyleSheet("QPushButton:hover{\n"
 "    padding-left:5px;\n"
 "    padding-top:5px;\n"
 "}")
-        self.frame1.setObjectName("frame1")
-        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame1)
+        self.frame_mini_and_close.setObjectName("frame_mini_and_close")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_mini_and_close)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.pushButton = QtWidgets.QPushButton(self.frame1)
+        self.pushButton = QtWidgets.QPushButton(self.frame_mini_and_close)
         self.pushButton.setMinimumSize(QtCore.QSize(75, 23))
         self.pushButton.setStyleSheet("border:none")
         self.pushButton.setText("")
@@ -162,7 +162,7 @@ class Ui_DisplayTaskWindow(object):
         self.pushButton.setIconSize(QtCore.QSize(20, 20))
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_8.addWidget(self.pushButton)
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame1)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame_mini_and_close)
         self.pushButton_2.setMinimumSize(QtCore.QSize(75, 23))
         self.pushButton_2.setStyleSheet("border:none")
         self.pushButton_2.setText("")
@@ -573,7 +573,7 @@ class Ui_DisplayTaskWindow(object):
         self.pushButton_display_ensure.raise_()
         self.label_5.raise_()
         self.pushButton_3.raise_()
-        self.frame.raise_()
+        self.frame_mini_and_close.raise_()
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(120, 14, 811, 781))
         self.label_7.setStyleSheet("border-image: url(:/pictures/pictures/login_background.jpg);\n"

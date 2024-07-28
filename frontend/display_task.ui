@@ -240,7 +240,7 @@ color: rgb(0, 0, 0);</string>
       </item>
      </layout>
     </widget>
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="frame_mini_and_close">
      <property name="geometry">
       <rect>
        <x>650</x>
@@ -252,7 +252,7 @@ color: rgb(0, 0, 0);</string>
      <property name="minimumSize">
       <size>
        <width>158</width>
-       <height>25</height>
+       <height>41</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -1093,7 +1093,7 @@ border-top-left-radius:20px;</string>
     <zorder>pushButton_display_ensure</zorder>
     <zorder>label_5</zorder>
     <zorder>pushButton_3</zorder>
-    <zorder>frame</zorder>
+    <zorder>frame_mini_and_close</zorder>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">

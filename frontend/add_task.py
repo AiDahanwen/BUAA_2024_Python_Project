@@ -360,6 +360,8 @@ class Ui_AddTaskWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
         self.label_13.setSizePolicy(sizePolicy)
+        self.label_13.setMinimumSize(QtCore.QSize(169, 35))
+        self.label_13.setMaximumSize(QtCore.QSize(169, 35))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
