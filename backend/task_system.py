@@ -709,6 +709,8 @@ def reset_daily_task(daily_task):
 
 
 def modify_task_pic_url(task, pic_url):
+    if pic_url==None:
+        return
     pic_name = pic_url.split("/")[-1]
     temp = str(task.user_email) + "/task_pic/" + str(task.task_id) + "_" + pic_name
     bucket.put_object_from_file(temp, pic_url)
