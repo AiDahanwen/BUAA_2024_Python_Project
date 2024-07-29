@@ -90,7 +90,7 @@ def modify_user_avatar(user_email, avatar_url):
 
 
 def store_local_user_email_password(user_email, user_password):
-    with open("local/storage.txt", "w") as fd:
+    with open("backend/local/storage.txt", "w") as fd:
         fd.write(f"{user_email} {user_password}")
 
 
