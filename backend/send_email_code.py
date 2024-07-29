@@ -32,7 +32,7 @@ def get_code(n=6):
 
 
 def send_email(send_to, verify_code, subject='Email Verification Code'):
-    with open('./backend/html_content.html', 'r', encoding='utf-8') as file:
+    with open('../backend/html_content.html', 'r', encoding='utf-8') as file:
         html_content = file.read().replace("verify_code", str(verify_code))
 
     msg = MIMEMultipart('alternative')
