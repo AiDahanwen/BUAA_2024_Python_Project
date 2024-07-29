@@ -281,8 +281,8 @@ def get_task_object_of_user(user_email):
 
 def get_task_objects_of_user_in_date(user_email, some_date):
     condition_cmd = """
-    AND DATE(t.task_start_time) <= %s 
-    AND DATE(t.task_end_time) >= %s 
+    AND DATE(t.task_start_time) <= %s
+    AND DATE(t.task_end_time) >= %s
     """
     return _get_task_objects_of_user_with_condition(
         user_email, condition_cmd, (some_date, some_date)
@@ -350,7 +350,6 @@ def get_average_work_time(user_email):
 def get_week_report_of_user(user_email):
     complete_task_list = get_tasks_of_user_with_status(user_email, TaskStatus.COMPLETED)
     complete_task_list.sort(key=lambda x: x.task_complete_time)
-    print_list(complete_task_list)
 
     this_week_start = date.today() - timedelta(days=date.today().weekday())
 
@@ -706,21 +705,23 @@ def modify_daily_task_pic_url(daily_task, pic_url):
 def get_tasks_objects_urgent(user_email):
     condition_cmd = """
     AND (task_status = 'pending' OR task_status = 'underway')
-    AND NOW() < DATE(task_end_time)
-    AND NOW() + INTERVAL 1 DAY >= task_end_time
+    AND NOW() < task_end_time
+    AND DATE_ADD(NOW(), INTERVAL 1 DAY) >= task_end_time
     """
     return _get_task_objects_of_user_with_condition(user_email, condition_cmd, ())
 
 
 if __name__ == '__main__':
     testTask = Task('test')
-    testTask.task_start_time = datetime.now()
-    testTask.task_end_time = datetime.now() + timedelta(hours=0.1)
-    print(add_task(testTask))
-    testDailyTask = DailyTask('test')
-    testDailyTask.daily_task_start_date = date.today() - timedelta(days=5)
-    testDailyTask.daily_task_end_date = date.today() + timedelta(days=5)
-    testDailyTask.daily_task_start_time = (datetime.now() - timedelta(hours=0.1)).time()
-    testDailyTask.daily_task_end_time = (datetime.now() + timedelta(hours=0.1)).time()
-    print(add_daily_task(testDailyTask))
-    print(update_tasks('test'))
+    # testTask.task_start_time = datetime.now()
+    # testTask.task_end_time = datetime.now() + timedelta(hours=0.1)
+    # print(add_task(testTask))
+    # testDailyTask = DailyTask('test')
+    # testDailyTask.daily_task_start_date = date.today() - timedelta(days=5)
+    # testDailyTask.daily_task_end_date = date.today() + timedelta(days=5)
+    # testDailyTask.daily_task_start_time = (datetime.now() - timedelta(hours=0.1)).time()
+    # testDailyTask.daily_task_end_time = (datetime.now() + timedelta(hours=0.1)).time()
+    # print(add_daily_task(testDailyTask))
+    # print(update_tasks('test'))
+    # print_list(get_tasks_objects_urgent('2895227477@qq.com'))
+    # print_list(get_task_objects_of_user_in_date('2895227477@qq.com',datetime.strptime('2024-08-31', '%Y-%m-%d').date()))

@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect, QLocale
+from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect, QLocale, QCoreApplication
 import sys
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -87,6 +87,7 @@ class LoginWindow(QMainWindow):
         else:
             global user_now, main_window
             user_now = account
+            store_local_user_email_password(account, password)
             self.close()
             self.win = MainWindow()
             main_window = self.win
@@ -839,6 +840,18 @@ class MainWindow(QMainWindow):
         super().__init__()
         global text_set_flag
         text_set_flag = False
+
+        # 检测屏幕分辨率
+        # self.desktop = QApplication.desktop()
+        # self.screenRect = self.desktop.screenGeometry()
+        # self.screenheight = self.screenRect.height()
+        # self.screenwidth = self.screenRect.width()
+        #
+        # self.height = int(self.screenheight)
+        # self.width = int(self.screenwidth)
+        #
+        # self.resize(self.width, self.height)
+
         self.win = None
         self.login = None
         self.ui = Ui_Main_interface()
@@ -1185,6 +1198,7 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == '__main__':
+    QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
     main_window = MainWindow()
     # window = LoginWindow()
