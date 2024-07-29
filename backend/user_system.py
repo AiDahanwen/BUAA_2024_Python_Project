@@ -96,7 +96,7 @@ def store_local_user_email_password(user_email, user_password):
 
 def get_local_user_email_password():
     try:
-        with open("local/storage.txt", "r") as fd:
+        with open("backend/local/storage.txt", "r") as fd:
             data = fd.read()
         return data.split()
     except FileNotFoundError as e:

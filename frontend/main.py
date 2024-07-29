@@ -87,6 +87,7 @@ class LoginWindow(QMainWindow):
         else:
             global user_now
             user_now = account
+            store_local_user_email_password(account, password)
             self.close()
             self.win = MainWindow()
         # 注意返回登陆的账号信息
@@ -839,7 +840,7 @@ class MainWindow(QMainWindow):
         global text_set_flag
         text_set_flag = False
 
-        #检测屏幕分辨率
+        # 检测屏幕分辨率
         # self.desktop = QApplication.desktop()
         # self.screenRect = self.desktop.screenGeometry()
         # self.screenheight = self.screenRect.height()
