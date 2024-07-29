@@ -406,7 +406,7 @@ padding-top:5px;
       </item>
      </layout>
     </widget>
-    <widget class="QStackedWidget" name="stackedWidget">
+    <widget class="QStackedWidget" name="stackedWidget_wrong">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -419,7 +419,7 @@ padding-top:5px;
       <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page"/>
      <widget class="QWidget" name="page_2">
@@ -538,7 +538,7 @@ padding-top:5px;
     <zorder>layoutWidget</zorder>
     <zorder>label_7</zorder>
     <zorder>frame_close_and_mini</zorder>
-    <zorder>stackedWidget</zorder>
+    <zorder>stackedWidget_wrong</zorder>
     <zorder>label_12</zorder>
    </widget>
   </widget>
