@@ -30,9 +30,6 @@ from frontend.main_interface import *
 from frontend.signup import *
 
 user_now = "2895227477@qq.com"
-morning = 0
-afternoon = 0
-night = 0
 text_set_flag = False
 main_window = None
 
@@ -402,16 +399,25 @@ class FreeTimeWindow(QMainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
+        self.ui.stackedWidget_wrong.setCurrentIndex(0)
+
         self.show()
         self.ui.pushButton_free_ensure.clicked.connect(lambda: self.free_time())
 
     def free_time(self):
-        global morning, afternoon, night
         morning = self.ui.doubleSpinBox_free_morning.value()
         afternoon = self.ui.doubleSpinBox_free_afternoon.value()
         night = self.ui.doubleSpinBox_free_night.value()
-        # 保存空闲时间
-        self.close()
+        print(morning, afternoon, night)
+        if morning > 6:
+            self.ui.stackedWidget_wrong.setCurrentIndex(1)
+        elif afternoon > 6:
+            self.ui.stackedWidget_wrong.setCurrentIndex(2)
+        elif night > 5.5:
+            self.ui.stackedWidget_wrong.setCurrentIndex(3)
+        else:
+            set_free_time(user_now, morning, afternoon, night)
+            self.close()
 
     def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
         if event.button() == Qt.LeftButton:
@@ -1064,7 +1070,8 @@ class MainWindow(QMainWindow):
 
     def schedule(self):
         self.ui.listWidget_schedule.clear()
-        schedule_list = get_task_schedule_objects(user_now, morning, afternoon, night)
+        free_time = get_free_time(user_now)
+        schedule_list = get_task_schedule_objects(user_now, free_time[0], free_time[1], free_time[2])
         if len(schedule_list) == 0:
             self.ui.stackedWidget_3.setCurrentIndex(3)
         else:
