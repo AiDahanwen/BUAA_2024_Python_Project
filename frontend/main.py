@@ -840,15 +840,15 @@ class MainWindow(QMainWindow):
         text_set_flag = False
 
         #检测屏幕分辨率
-        self.desktop = QApplication.desktop()
-        self.screenRect = self.desktop.screenGeometry()
-        self.screenheight = self.screenRect.height()
-        self.screenwidth = self.screenRect.width()
-
-        self.height = int(self.screenheight)
-        self.width = int(self.screenwidth)
-
-        self.resize(self.width, self.height)
+        # self.desktop = QApplication.desktop()
+        # self.screenRect = self.desktop.screenGeometry()
+        # self.screenheight = self.screenRect.height()
+        # self.screenwidth = self.screenRect.width()
+        #
+        # self.height = int(self.screenheight)
+        # self.width = int(self.screenwidth)
+        #
+        # self.resize(self.width, self.height)
 
         self.win = None
         self.login = None
