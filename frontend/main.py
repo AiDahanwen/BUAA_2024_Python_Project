@@ -85,10 +85,11 @@ class LoginWindow(QMainWindow):
         elif not is_user_password_correct(account, password):
             self.ui.stackedWidget_2.setCurrentIndex(3)
         else:
-            global user_now
+            global user_now, main_window
             user_now = account
             self.close()
             self.win = MainWindow()
+            main_window = self.win
         # 注意返回登陆的账号信息
 
     def sign_up(self):
@@ -856,6 +857,7 @@ class MainWindow(QMainWindow):
         else:
             self.ui.stackedWidget_2.setCurrentIndex(1)
             self.todolist()
+        # 注意此处需要修改，schedule的提示语
         self.ui.stackedWidget_3.setCurrentIndex(0)
         self.ui.stackedWidget_4.setCurrentIndex(1)
         urgent_list = get_tasks_objects_urgent(user_now)
