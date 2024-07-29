@@ -124,3 +124,23 @@ def add_user_work_time(user_email, delta_time):
     """
     args = (delta_time, user_email)
     database_write(cmd, args)
+
+
+def set_free_time(user_email, morning, afternoon, evening):
+    cmd = """
+    UPDATE users
+    SET user_morning_time = %s, user_afternoon_time = %s, user_evening_time = %s
+    WHERE user_email = %s
+    """
+    args = (morning, afternoon, evening, user_email)
+    return database_write(cmd, args)
+
+
+def get_free_time(user_email):
+    cmd = """
+    SELECT user_morning_time, user_afternoon_time, user_evening_time
+    FROM users
+    WHERE user_email = %s
+    """
+    args = (user_email,)
+    return database_read(cmd, args, False)[0]
