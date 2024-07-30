@@ -1,3 +1,5 @@
+import datetime
+
 from PyQt5.QtCore import QObject, QUrl, pyqtSlot, QPropertyAnimation, QRect, QLocale, QCoreApplication
 import sys
 import matplotlib.pyplot as plt
@@ -915,7 +917,7 @@ class MainWindow(QMainWindow):
         self.ui.label_Sta_accumulate_averagetime.setText(
             "日均时长：" + str(get_average_work_time(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
-            "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
+            "任务个数：" + str(get_complete_task_sum_in_date(user_now, date.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
             "时长总数：" + str(get_work_time(user_now)))
 
@@ -1075,7 +1077,7 @@ class MainWindow(QMainWindow):
         self.ui.label_Sta_accumulate_averagetime.setText(
             "日均时长：" + str(get_average_work_time(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
-            "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
+            "任务个数：" + str(get_complete_task_sum_in_date(user_now, date.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
             "时长总数：" + str(get_work_time(user_now)))
         self.plot_task_num()
@@ -1126,7 +1128,7 @@ class MainWindow(QMainWindow):
         self.ui.label_Sta_accumulate_averagetime.setText(
             "日均时长：" + str(get_average_work_time(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
-            "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
+            "任务个数：" + str(get_complete_task_sum_in_date(user_now, date.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
             "时长总数：" + str(get_work_time(user_now)))
         self.plot_task_num()
