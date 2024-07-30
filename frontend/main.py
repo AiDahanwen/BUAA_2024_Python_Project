@@ -778,7 +778,8 @@ class CustomListItem_Schedule(QWidget):
         self.important_icon.setPixmap(scaled_pixmap)
 
         self.pushButton_name.clicked.connect(lambda: main_window.display_task(task_schedule.task))
-        self.checkbox_complete.clicked.connect(lambda: main_window.complete_schedule_task(task_schedule))
+        self.checkbox_complete.clicked.connect(
+            lambda: main_window.complete_schedule_task(task_schedule, self.checkbox_complete))
         layout.addWidget(self.label_period)
         layout.addWidget(self.checkbox_complete)
         layout.addWidget(self.pushButton_name)
@@ -1112,8 +1113,10 @@ class MainWindow(QMainWindow):
                 self.ui.listWidget_schedule.addItem(list_item)
                 self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
 
-    def complete_schedule_task(self, task_schedule):
+    def complete_schedule_task(self, task_schedule, checkbox):
         add_work_time(task_schedule.task, task_schedule.task_time)
+        checkbox.setChecked(True)
+        checkbox.setEnabled(False)
         self.todolist()
         self.urgent_list()
         self.ui.label_Sta_accumulate_sumofnum.setText(
