@@ -312,7 +312,7 @@ QPushButton:pressed{
                <string/>
               </property>
               <property name="placeholderText">
-               <string> 用户名/邮箱：</string>
+               <string>邮箱：</string>
               </property>
              </widget>
             </item>
@@ -673,7 +673,7 @@ color: rgb(162, 162, 162);</string>
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
            <property name="currentIndex">
-            <number>4</number>
+            <number>2</number>
            </property>
            <widget class="QWidget" name="page_2"/>
            <widget class="QWidget" name="page_3">
