@@ -36,9 +36,9 @@ class Ui_Main_interface(object):
         self.frame.setGeometry(QtCore.QRect(20, 20, 1231, 811))
         self.frame.setMinimumSize(QtCore.QSize(801, 521))
         self.frame.setStyleSheet("QFrame#frame{\n"
-"    background-color: rgb(255, 255, 255);\n"
-"    border-radius:20px;\n"
-"}")
+                                 "    background-color: rgb(255, 255, 255);\n"
+                                 "    border-radius:20px;\n"
+                                 "}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -60,15 +60,15 @@ class Ui_Main_interface(object):
         font.setWeight(75)
         self.label.setFont(font)
         self.label.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(35, 65, 75);\n"
-"border-bottom-left-radius:20px;\n"
-"border-bottom-right-radius:20px;")
+                                 "background-color: rgb(35, 65, 75);\n"
+                                 "border-bottom-left-radius:20px;\n"
+                                 "border-bottom-right-radius:20px;")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.label_6 = QtWidgets.QLabel(self.page_5)
         self.label_6.setGeometry(QtCore.QRect(70, 250, 391, 401))
         self.label_6.setStyleSheet("border-image: url(:/pictures/pictures/meme1.jpg);\n"
-"border-radius:20px;")
+                                   "border-radius:20px;")
         self.label_6.setText("")
         self.label_6.setObjectName("label_6")
         self.label_time = QtWidgets.QLabel(self.page_5)
@@ -80,9 +80,9 @@ class Ui_Main_interface(object):
         font.setWeight(50)
         self.label_time.setFont(font)
         self.label_time.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(35, 65, 75);\n"
-"border-top-left-radius:20px;\n"
-"border-top-right-radius:20px;")
+                                      "background-color: rgb(35, 65, 75);\n"
+                                      "border-top-left-radius:20px;\n"
+                                      "border-top-right-radius:20px;")
         self.label_time.setAlignment(QtCore.Qt.AlignCenter)
         self.label_time.setObjectName("label_time")
         self.listView_3 = QtWidgets.QListView(self.page_5)
@@ -117,7 +117,7 @@ class Ui_Main_interface(object):
         self.frame_todolist_small.setSizePolicy(sizePolicy)
         self.frame_todolist_small.setMinimumSize(QtCore.QSize(301, 449))
         self.frame_todolist_small.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
-"border-radius:10px;")
+                                                "border-radius:10px;")
         self.frame_todolist_small.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_todolist_small.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_todolist_small.setObjectName("frame_todolist_small")
@@ -145,16 +145,16 @@ class Ui_Main_interface(object):
         font.setWeight(10)
         self.label_9.setFont(font)
         self.label_9.setStyleSheet("color: rgb(42, 75, 85);\n"
-"\n"
-"font: 87 23pt \"Arial Black\";")
+                                   "\n"
+                                   "font: 87 23pt \"Arial Black\";")
         self.label_9.setObjectName("label_9")
         self.pushButton_M_addtask = QtWidgets.QPushButton(self.frame_9)
         self.pushButton_M_addtask.setGeometry(QtCore.QRect(389, 9, 61, 61))
         self.pushButton_M_addtask.setMinimumSize(QtCore.QSize(31, 23))
         self.pushButton_M_addtask.setStyleSheet("QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                                "    padding-left:5px;\n"
+                                                "    padding-top:5px;\n"
+                                                "}")
         self.pushButton_M_addtask.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/resource/icons/加.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -203,7 +203,7 @@ class Ui_Main_interface(object):
         self.label_25 = QtWidgets.QLabel(self.page_6)
         self.label_25.setGeometry(QtCore.QRect(0, 230, 451, 141))
         self.label_25.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(37, 70, 77);")
+                                    "color: rgb(37, 70, 77);")
         self.label_25.setAlignment(QtCore.Qt.AlignCenter)
         self.label_25.setObjectName("label_25")
         self.stackedWidget_2.addWidget(self.page_6)
@@ -224,7 +224,7 @@ class Ui_Main_interface(object):
         self.label_24 = QtWidgets.QLabel(self.frame_9)
         self.label_24.setGeometry(QtCore.QRect(11, -6, 451, 721))
         self.label_24.setStyleSheet("background-color: rgba(255, 255, 255, 150);\n"
-"border-radius:20px;")
+                                    "border-radius:20px;")
         self.label_24.setText("")
         self.label_24.setObjectName("label_24")
         self.label_24.raise_()
@@ -252,9 +252,9 @@ class Ui_Main_interface(object):
         self.frame_3.setSizePolicy(sizePolicy)
         self.frame_3.setMinimumSize(QtCore.QSize(298, 274))
         self.frame_3.setStyleSheet("QFrame#frame_3{\n"
-"    background-color: rgba(184, 205, 204, 150);\n"
-"border-radius:10px;\n"
-"}")
+                                   "    background-color: rgba(184, 205, 204, 150);\n"
+                                   "border-radius:10px;\n"
+                                   "}")
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_3.setObjectName("frame_3")
@@ -283,15 +283,15 @@ class Ui_Main_interface(object):
         self.pushButton_M_schedule.setGeometry(QtCore.QRect(230, 70, 121, 31))
         self.pushButton_M_schedule.setMinimumSize(QtCore.QSize(121, 31))
         self.pushButton_M_schedule.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(41, 74, 82);\n"
-"    color: rgb(255, 255, 255);\n"
-"    font: 10pt \"微软雅黑\";\n"
-"border-radius:10px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                                 "    background-color: rgb(41, 74, 82);\n"
+                                                 "    color: rgb(255, 255, 255);\n"
+                                                 "    font: 10pt \"微软雅黑\";\n"
+                                                 "border-radius:10px;\n"
+                                                 "}\n"
+                                                 "QPushButton:hover{\n"
+                                                 "    padding-left:5px;\n"
+                                                 "    padding-top:5px;\n"
+                                                 "}")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/resource/icons/调度管理.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_M_schedule.setIcon(icon1)
@@ -301,15 +301,15 @@ class Ui_Main_interface(object):
         self.pushButton_M_freetime.setGeometry(QtCore.QRect(100, 70, 121, 31))
         self.pushButton_M_freetime.setMinimumSize(QtCore.QSize(121, 31))
         self.pushButton_M_freetime.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(41, 74, 82);\n"
-"    color: rgb(255, 255, 255);\n"
-"    font: 10pt \"微软雅黑\";\n"
-"border-radius:10px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                                 "    background-color: rgb(41, 74, 82);\n"
+                                                 "    color: rgb(255, 255, 255);\n"
+                                                 "    font: 10pt \"微软雅黑\";\n"
+                                                 "border-radius:10px;\n"
+                                                 "}\n"
+                                                 "QPushButton:hover{\n"
+                                                 "    padding-left:5px;\n"
+                                                 "    padding-top:5px;\n"
+                                                 "}")
         self.pushButton_M_freetime.setObjectName("pushButton_M_freetime")
         self.label_4.raise_()
         self.pushButton_M_freetime.raise_()
@@ -332,7 +332,7 @@ class Ui_Main_interface(object):
         self.label_2 = QtWidgets.QLabel(self.page_12)
         self.label_2.setGeometry(QtCore.QRect(20, 90, 431, 61))
         self.label_2.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(43, 76, 84);")
+                                   "color: rgb(43, 76, 84);")
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.label_26 = QtWidgets.QLabel(self.page_12)
@@ -356,7 +356,7 @@ class Ui_Main_interface(object):
         self.label_11.setGeometry(QtCore.QRect(30, 60, 421, 91))
         self.label_11.setMinimumSize(QtCore.QSize(421, 91))
         self.label_11.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(39, 72, 80);")
+                                    "color: rgb(39, 72, 80);")
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11.setWordWrap(True)
         self.label_11.setObjectName("label_11")
@@ -390,9 +390,9 @@ class Ui_Main_interface(object):
         self.frame_4.setSizePolicy(sizePolicy)
         self.frame_4.setMinimumSize(QtCore.QSize(298, 165))
         self.frame_4.setStyleSheet("QFrame#frame_4{\n"
-"background-color: rgba(255, 255, 255, 150);\n"
-"border-radius:10px;\n"
-"}")
+                                   "background-color: rgba(255, 255, 255, 150);\n"
+                                   "border-radius:10px;\n"
+                                   "}")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
@@ -444,8 +444,8 @@ class Ui_Main_interface(object):
         self.frame_urgent_title.setGeometry(QtCore.QRect(20, -4, 421, 51))
         self.frame_urgent_title.setMinimumSize(QtCore.QSize(421, 31))
         self.frame_urgent_title.setStyleSheet("QFrame#frame_urgent_title{\n"
-"background-color: rgba(42, 75, 83, 50);\n"
-"}")
+                                              "background-color: rgba(42, 75, 83, 50);\n"
+                                              "}")
         self.frame_urgent_title.setObjectName("frame_urgent_title")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_urgent_title)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
@@ -526,7 +526,7 @@ class Ui_Main_interface(object):
         font.setWeight(50)
         self.calendarWidget.setFont(font)
         self.calendarWidget.setStyleSheet("background-color:rgb(231, 242, 211);\n"
-"border-radius:20px;")
+                                          "border-radius:20px;")
         self.calendarWidget.setGridVisible(True)
         self.calendarWidget.setVerticalHeaderFormat(QtWidgets.QCalendarWidget.NoVerticalHeader)
         self.calendarWidget.setObjectName("calendarWidget")
@@ -539,10 +539,10 @@ class Ui_Main_interface(object):
         self.frame_5.setSizePolicy(sizePolicy)
         self.frame_5.setMinimumSize(QtCore.QSize(301, 449))
         self.frame_5.setStyleSheet("QFrame#frame_5{\n"
-"background-color: rgba(255, 255, 255, 150);\n"
-"border-bottom-left-radius:20px;\n"
-"border-bottom-right-radius:20px;\n"
-"}")
+                                   "background-color: rgba(255, 255, 255, 150);\n"
+                                   "border-bottom-left-radius:20px;\n"
+                                   "border-bottom-right-radius:20px;\n"
+                                   "}")
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
@@ -670,8 +670,8 @@ class Ui_Main_interface(object):
         font.setWeight(75)
         self.label_20.setFont(font)
         self.label_20.setStyleSheet("background-color: rgba(255, 255, 255, 150);\n"
-"border-top-left-radius:20px;\n"
-"border-top-right-radius:20px;")
+                                    "border-top-left-radius:20px;\n"
+                                    "border-top-right-radius:20px;")
         self.label_20.setAlignment(QtCore.Qt.AlignCenter)
         self.label_20.setObjectName("label_20")
         self.stackedWidget.addWidget(self.page_2)
@@ -692,10 +692,10 @@ class Ui_Main_interface(object):
         self.frame_6.setMinimumSize(QtCore.QSize(301, 220))
         self.frame_6.setMaximumSize(QtCore.QSize(450, 430))
         self.frame_6.setStyleSheet("QFrame#frame_6{\n"
-"    background-color: rgba(241, 234, 226, 220);\n"
-"border-radius:10px;\n"
-"box-shadow:5px 5px 5px #888888;\n"
-"}")
+                                   "    background-color: rgba(241, 234, 226, 220);\n"
+                                   "border-radius:10px;\n"
+                                   "box-shadow:5px 5px 5px #888888;\n"
+                                   "}")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
@@ -769,12 +769,12 @@ class Ui_Main_interface(object):
         self.frame_7.setMinimumSize(QtCore.QSize(450, 220))
         self.frame_7.setMaximumSize(QtCore.QSize(400, 430))
         self.frame_7.setStyleSheet("QFrame#frame_7{\n"
-"    background-color: rgba(238, 247, 252, 200);\n"
-"\n"
-"    \n"
-"    \n"
-"border-radius:10px;\n"
-"}")
+                                   "    background-color: rgba(238, 247, 252, 200);\n"
+                                   "\n"
+                                   "    \n"
+                                   "    \n"
+                                   "border-radius:10px;\n"
+                                   "}")
         self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_7.setObjectName("frame_7")
@@ -846,7 +846,7 @@ class Ui_Main_interface(object):
         self.frame_8.setMinimumSize(QtCore.QSize(609, 221))
         self.frame_8.setMaximumSize(QtCore.QSize(1000, 16777215))
         self.frame_8.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
-"border-radius:10px;")
+                                   "border-radius:10px;")
         self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_8.setObjectName("frame_8")
@@ -862,8 +862,8 @@ class Ui_Main_interface(object):
         self.frame_19.setSizePolicy(sizePolicy)
         self.frame_19.setMaximumSize(QtCore.QSize(930, 16777215))
         self.frame_19.setStyleSheet("QFrame#frame_19{\n"
-"background-color: rgba(255, 255, 255, 220);\n"
-"}")
+                                    "background-color: rgba(255, 255, 255, 220);\n"
+                                    "}")
         self.frame_19.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_19.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_19.setObjectName("frame_19")
@@ -877,7 +877,7 @@ class Ui_Main_interface(object):
         font.setWeight(75)
         self.label_16.setFont(font)
         self.label_16.setStyleSheet("")
-        self.label_16.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_16.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_16.setObjectName("label_16")
         self.frame_20 = QtWidgets.QFrame(self.frame_19)
         self.frame_20.setGeometry(QtCore.QRect(210, 0, 694, 221))
@@ -947,13 +947,13 @@ class Ui_Main_interface(object):
         self.label_user_avatar = QtWidgets.QLabel(self.frame_17)
         self.label_user_avatar.setGeometry(QtCore.QRect(50, 60, 120, 120))
         self.label_user_avatar.setStyleSheet("border-radius:30px;\n"
-"background-color: rgb(41, 75, 82);")
+                                             "background-color: rgb(41, 75, 82);")
         self.label_user_avatar.setObjectName("label_user_avatar")
         self.pushButton_modify_avatar = QtWidgets.QPushButton(self.frame_17)
         self.pushButton_modify_avatar.setGeometry(QtCore.QRect(60, 190, 101, 35))
         self.pushButton_modify_avatar.setMinimumSize(QtCore.QSize(0, 35))
         self.pushButton_modify_avatar.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"text-decoration: underline;")
+                                                    "text-decoration: underline;")
         self.pushButton_modify_avatar.setObjectName("pushButton_modify_avatar")
         self.frame_name = QtWidgets.QFrame(self.frame_17)
         self.frame_name.setGeometry(QtCore.QRect(200, 60, 411, 71))
@@ -1012,7 +1012,7 @@ class Ui_Main_interface(object):
         self.label_3 = QtWidgets.QLabel(self.frame_17)
         self.label_3.setGeometry(QtCore.QRect(10, 14, 911, 331))
         self.label_3.setStyleSheet("background-color: rgba(255, 255, 255, 220);\n"
-"border-radius:20px;")
+                                   "border-radius:20px;")
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.frame_password = QtWidgets.QFrame(self.frame_17)
@@ -1084,10 +1084,10 @@ class Ui_Main_interface(object):
         self.pushButton_P_modify_password.setFont(font)
         self.pushButton_P_modify_password.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.pushButton_P_modify_password.setStyleSheet("QPushButton:pressed{\n"
-"    text-decoration: underline;\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                                        "    text-decoration: underline;\n"
+                                                        "    padding-left:5px;\n"
+                                                        "    padding-top:5px;\n"
+                                                        "}")
         self.pushButton_P_modify_password.setCheckable(True)
         self.pushButton_P_modify_password.setChecked(True)
         self.pushButton_P_modify_password.setObjectName("pushButton_P_modify_password")
@@ -1107,9 +1107,9 @@ class Ui_Main_interface(object):
         self.frame_23 = QtWidgets.QFrame(self.frame_17)
         self.frame_23.setGeometry(QtCore.QRect(10, 370, 321, 301))
         self.frame_23.setStyleSheet("QFrame#frame_23{\n"
-"background-color: rgb(0, 0, 0);\n"
-"border-radius:20px;\n"
-"}")
+                                    "background-color: rgb(0, 0, 0);\n"
+                                    "border-radius:20px;\n"
+                                    "}")
         self.frame_23.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_23.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_23.setObjectName("frame_23")
@@ -1182,16 +1182,16 @@ class Ui_Main_interface(object):
         font.setWeight(75)
         self.listWidget.setFont(font)
         self.listWidget.setStyleSheet("QListWidget#listWidget{\n"
-"border:none;\n"
-"background-color: rgba(255, 255, 255, 0);\n"
-"    color: rgb(255, 255, 255);\n"
-"\n"
-"}")
+                                      "border:none;\n"
+                                      "background-color: rgba(255, 255, 255, 0);\n"
+                                      "    color: rgb(255, 255, 255);\n"
+                                      "\n"
+                                      "}")
         self.listWidget.setMovement(QtWidgets.QListView.Static)
         self.listWidget.setWordWrap(True)
         self.listWidget.setObjectName("listWidget")
         item = QtWidgets.QListWidgetItem()
-        item.setTextAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignVCenter)
+        item.setTextAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignVCenter)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(12)
@@ -1242,10 +1242,10 @@ class Ui_Main_interface(object):
         self.listWidget_2.setFont(font)
         self.listWidget_2.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.listWidget_2.setStyleSheet("border:none;\n"
-"color: rgb(255, 255, 255);\n"
-"font: 75 14pt \"微软雅黑\";\n"
-"border-bottom-left:15px;\n"
-"background-color: rgba(255, 255, 255, 0);")
+                                        "color: rgb(255, 255, 255);\n"
+                                        "font: 75 14pt \"微软雅黑\";\n"
+                                        "border-bottom-left:15px;\n"
+                                        "background-color: rgba(255, 255, 255, 0);")
         self.listWidget_2.setObjectName("listWidget_2")
         item = QtWidgets.QListWidgetItem()
         font = QtGui.QFont()
@@ -1288,7 +1288,7 @@ class Ui_Main_interface(object):
         self.label_avatar.setMinimumSize(QtCore.QSize(101, 101))
         self.label_avatar.setMaximumSize(QtCore.QSize(101, 101))
         self.label_avatar.setStyleSheet("border-radius:30px;\n"
-"background-color: rgb(255, 255, 255);")
+                                        "background-color: rgb(255, 255, 255);")
         self.label_avatar.setObjectName("label_avatar")
         self.label_user_name = QtWidgets.QLabel(self.frame_21)
         self.label_user_name.setGeometry(QtCore.QRect(10, 120, 181, 61))
@@ -1302,7 +1302,7 @@ class Ui_Main_interface(object):
         font.setWeight(75)
         self.label_user_name.setFont(font)
         self.label_user_name.setStyleSheet("color: rgb(255, 255, 255);\n"
-"")
+                                           "")
         self.label_user_name.setAlignment(QtCore.Qt.AlignCenter)
         self.label_user_name.setObjectName("label_user_name")
         self.label_sentence = QtWidgets.QLabel(self.frame_21)
@@ -1317,15 +1317,15 @@ class Ui_Main_interface(object):
         font.setWeight(50)
         self.label_sentence.setFont(font)
         self.label_sentence.setStyleSheet("\n"
-"color: rgba(255, 255, 255, 200);\n"
-"font: 11pt \"微软雅黑\";")
+                                          "color: rgba(255, 255, 255, 200);\n"
+                                          "font: 11pt \"微软雅黑\";")
         self.label_sentence.setWordWrap(True)
         self.label_sentence.setObjectName("label_sentence")
         self.frame_10 = QtWidgets.QFrame(self.frame)
         self.frame_10.setGeometry(QtCore.QRect(1110, 0, 121, 41))
         self.frame_10.setStyleSheet("QPushButton{\n"
-"    border:none;\n"
-"}")
+                                    "    border:none;\n"
+                                    "}")
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
@@ -1333,9 +1333,9 @@ class Ui_Main_interface(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.pushButton_8 = QtWidgets.QPushButton(self.frame_10)
         self.pushButton_8.setStyleSheet("QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                        "    padding-left:5px;\n"
+                                        "    padding-top:5px;\n"
+                                        "}")
         self.pushButton_8.setText("")
         icon7 = QtGui.QIcon()
         icon7.addPixmap(QtGui.QPixmap(":/icons/icons/24gl-minimization.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -1345,12 +1345,12 @@ class Ui_Main_interface(object):
         self.horizontalLayout_3.addWidget(self.pushButton_8)
         self.pushButton_9 = QtWidgets.QPushButton(self.frame_10)
         self.pushButton_9.setStyleSheet("QPushButton#pushButton_9{\n"
-"background-image: url(:/icons/icons/Close.png);\n"
-"}\n"
-"QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                        "background-image: url(:/icons/icons/Close.png);\n"
+                                        "}\n"
+                                        "QPushButton:hover{\n"
+                                        "    padding-left:5px;\n"
+                                        "    padding-top:5px;\n"
+                                        "}")
         self.pushButton_9.setText("")
         icon8 = QtGui.QIcon()
         icon8.addPixmap(QtGui.QPixmap(":/icons/icons/Close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -1361,23 +1361,23 @@ class Ui_Main_interface(object):
         self.listView = QtWidgets.QListView(self.frame)
         self.listView.setGeometry(QtCore.QRect(0, 0, 1231, 811))
         self.listView.setStyleSheet("border-radius:20px;\n"
-"border-image: url(:/pictures/pictures/main_interface_background.jpg);\n"
-"")
+                                    "border-image: url(:/pictures/pictures/main_interface_background.jpg);\n"
+                                    "")
         self.listView.setObjectName("listView")
         self.listView_2 = QtWidgets.QListView(self.frame)
         self.listView_2.setGeometry(QtCore.QRect(0, 0, 221, 811))
         self.listView_2.setStyleSheet("border-top-left-radius:20px;\n"
-"border-bottom-left-radius:20px;\n"
-"background-color: qlineargradient(spread:pad, x1:0.425421, y1:0.609, x2:0.405, y2:0, stop:0 rgba(30, 60, 70, 200), stop:1 rgba(45, 79, 89, 150));\n"
-"")
+                                      "border-bottom-left-radius:20px;\n"
+                                      "background-color: qlineargradient(spread:pad, x1:0.425421, y1:0.609, x2:0.405, y2:0, stop:0 rgba(30, 60, 70, 200), stop:1 rgba(45, 79, 89, 150));\n"
+                                      "")
         self.listView_2.setObjectName("listView_2")
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(0, -1, 1231, 41))
         self.label_5.setMinimumSize(QtCore.QSize(1231, 41))
         self.label_5.setMaximumSize(QtCore.QSize(16777215, 41))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-top-right-radius:20px;\n"
-"border-top-left-radius:20px;")
+                                   "border-top-right-radius:20px;\n"
+                                   "border-top-left-radius:20px;")
         self.label_5.setText("")
         self.label_5.setObjectName("label_5")
         self.label_7 = QtWidgets.QLabel(self.frame)
@@ -1391,7 +1391,7 @@ class Ui_Main_interface(object):
         font.setWeight(50)
         self.label_7.setFont(font)
         self.label_7.setStyleSheet("font: 14pt \"Century Gothic\";\n"
-"color: rgb(55, 89, 100);")
+                                   "color: rgb(55, 89, 100);")
         self.label_7.setObjectName("label_7")
         self.listView.raise_()
         self.listView_2.raise_()
@@ -1413,8 +1413,8 @@ class Ui_Main_interface(object):
         self.stackedWidget_3.setCurrentIndex(2)
         self.stackedWidget_urgent.setCurrentIndex(1)
         self.stackedWidget_4.setCurrentIndex(2)
-        self.pushButton_9.clicked.connect(Main_interface.close) # type: ignore
-        self.pushButton_8.clicked.connect(Main_interface.showMinimized) # type: ignore
+        self.pushButton_9.clicked.connect(Main_interface.close)  # type: ignore
+        self.pushButton_8.clicked.connect(Main_interface.showMinimized)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Main_interface)
 
     def retranslateUi(self, Main_interface):
@@ -1425,7 +1425,7 @@ class Ui_Main_interface(object):
         self.label_9.setText(_translate("Main_interface", "ToDoList"))
         self.label_10.setText(_translate("Main_interface", "-今天还没有任务哦-"))
         self.label_25.setText(_translate("Main_interface", "点击右上角加号\n"
-"添加今日任务\\^o^/"))
+                                                           "添加今日任务\\^o^/"))
         __sortingEnabled = self.listWidget_todolist.isSortingEnabled()
         self.listWidget_todolist.setSortingEnabled(False)
         item = self.listWidget_todolist.item(0)
@@ -1435,10 +1435,10 @@ class Ui_Main_interface(object):
         self.pushButton_M_schedule.setText(_translate("Main_interface", "智能任务安排"))
         self.pushButton_M_freetime.setText(_translate("Main_interface", "添加空闲时间"))
         self.label_2.setText(_translate("Main_interface", "点击【添加空闲时间】\n"
-"添加今日空闲时间ヾ(•ω•`)o"))
+                                                          "添加今日空闲时间ヾ(•ω•`)o"))
         self.label_26.setText(_translate("Main_interface", "-今天还没有空闲时间哦-"))
         self.label_11.setText(_translate("Main_interface", "点击【智能任务安排】\n"
-"为你智能安排任务完成顺序(●\'◡\'●)"))
+                                                           "为你智能安排任务完成顺序(●\'◡\'●)"))
         self.label_27.setText(_translate("Main_interface", "-当前没有任务可被调度-"))
         self.label_19.setText(_translate("Main_interface", "Urgent Tasks"))
         self.label_28.setText(_translate("Main_interface", "-今天没有紧急任务-"))
@@ -1492,5 +1492,7 @@ class Ui_Main_interface(object):
         self.label_user_name.setText(_translate("Main_interface", "我的名字"))
         self.label_sentence.setText(_translate("Main_interface", "快快写完吧！啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"))
         self.label_7.setText(_translate("Main_interface", "TDesigner - todolist just for you"))
-import res_rc
-import resource_rc
+
+
+import frontend.res_rc
+import frontend.resource_rc

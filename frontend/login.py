@@ -21,13 +21,13 @@ class Ui_LoginWindow(object):
         self.frame.setGeometry(QtCore.QRect(50, 10, 761, 501))
         self.frame.setMinimumSize(QtCore.QSize(761, 501))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"\n"
-"QPushButton{\n"
-"    border:none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                                 "\n"
+                                 "QPushButton{\n"
+                                 "    border:none;\n"
+                                 "}\n"
+                                 "\n"
+                                 "\n"
+                                 "")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -37,7 +37,7 @@ class Ui_LoginWindow(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.frame_8 = QtWidgets.QFrame(self.frame)
         self.frame_8.setStyleSheet("border-top-left-radius:20px;\n"
-"border-bottom-left-radius:20px;")
+                                   "border-bottom-left-radius:20px;")
         self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_8.setObjectName("frame_8")
@@ -81,11 +81,11 @@ class Ui_LoginWindow(object):
         self.frame_2.setGeometry(QtCore.QRect(10, 140, 350, 350))
         self.frame_2.setMinimumSize(QtCore.QSize(350, 350))
         self.frame_2.setStyleSheet("#frame_2{\n"
-"    background-color: rgb(255, 255, 255);\n"
-"    border-top-right-radius:20px;\n"
-"    border-bottom-left-radius:20px;\n"
-"}\n"
-"")
+                                   "    background-color: rgb(255, 255, 255);\n"
+                                   "    border-top-right-radius:20px;\n"
+                                   "    border-bottom-left-radius:20px;\n"
+                                   "}\n"
+                                   "")
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
@@ -98,9 +98,9 @@ class Ui_LoginWindow(object):
         sizePolicy.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
         self.frame_3.setSizePolicy(sizePolicy)
         self.frame_3.setStyleSheet("QPushButton:pressed{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                   "    padding-top:5px;\n"
+                                   "    padding-left:5px;\n"
+                                   "}")
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_3.setObjectName("frame_3")
@@ -109,23 +109,23 @@ class Ui_LoginWindow(object):
         self.lineEdit_L_account = QtWidgets.QLineEdit(self.frame_3)
         self.lineEdit_L_account.setMinimumSize(QtCore.QSize(0, 50))
         self.lineEdit_L_account.setStyleSheet("border:1px solid gray;\n"
-"border-radius:10px;")
+                                              "border-radius:10px;")
         self.lineEdit_L_account.setText("")
         self.lineEdit_L_account.setObjectName("lineEdit_L_account")
         self.verticalLayout_3.addWidget(self.lineEdit_L_account)
         self.lineEdit_L_password = QtWidgets.QLineEdit(self.frame_3)
         self.lineEdit_L_password.setMinimumSize(QtCore.QSize(0, 50))
         self.lineEdit_L_password.setStyleSheet("border:1px solid gray;\n"
-"border-radius:10px;")
+                                               "border-radius:10px;")
         self.lineEdit_L_password.setText("")
         self.lineEdit_L_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_L_password.setObjectName("lineEdit_L_password")
         self.verticalLayout_3.addWidget(self.lineEdit_L_password)
         self.pushButton_L_forget = QtWidgets.QPushButton(self.frame_3)
         self.pushButton_L_forget.setStyleSheet("QPushButton:pressed{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                               "    padding-top:5px;\n"
+                                               "    padding-left:5px;\n"
+                                               "}")
         self.pushButton_L_forget.setObjectName("pushButton_L_forget")
         self.verticalLayout_3.addWidget(self.pushButton_L_forget, 0, QtCore.Qt.AlignRight)
         self.pushButton_L_login = QtWidgets.QPushButton(self.frame_3)
@@ -186,13 +186,13 @@ class Ui_LoginWindow(object):
         self.frame_10 = QtWidgets.QFrame(self.frame_9)
         self.frame_10.setGeometry(QtCore.QRect(260, 0, 121, 41))
         self.frame_10.setStyleSheet("QPushButton{\n"
-"    border:none;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                    "    border:none;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton:hover{\n"
+                                    "    padding-top:5px;\n"
+                                    "    padding-left:5px;\n"
+                                    "}")
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
@@ -230,8 +230,8 @@ class Ui_LoginWindow(object):
 
         self.retranslateUi(LoginWindow)
         self.stackedWidget_2.setCurrentIndex(4)
-        self.pushButton_2.clicked.connect(LoginWindow.close) # type: ignore
-        self.pushButton.clicked.connect(LoginWindow.showMinimized) # type: ignore
+        self.pushButton_2.clicked.connect(LoginWindow.close)  # type: ignore
+        self.pushButton.clicked.connect(LoginWindow.showMinimized)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(LoginWindow)
 
     def retranslateUi(self, LoginWindow):
@@ -247,4 +247,6 @@ class Ui_LoginWindow(object):
         self.label_2.setText(_translate("LoginWindow", "密码错误！"))
         self.label_5.setText(_translate("LoginWindow", "邮箱格式错误！"))
         self.label.setText(_translate("LoginWindow", "Welcome Back! :)"))
-import res_rc
+
+
+import frontend.res_rc

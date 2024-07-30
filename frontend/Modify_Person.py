@@ -48,9 +48,9 @@ class Ui_Modify_Person(object):
         self.frame_2.setSizePolicy(sizePolicy)
         self.frame_2.setMinimumSize(QtCore.QSize(231, 291))
         self.frame_2.setStyleSheet("QPushButton:pressed{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                   "    padding-top:5px;\n"
+                                   "    padding-left:5px;\n"
+                                   "}")
         self.frame_2.setObjectName("frame_2")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame_2)
         self.verticalLayout.setSpacing(20)
@@ -88,13 +88,13 @@ class Ui_Modify_Person(object):
         self.frame_10 = QtWidgets.QFrame(self.frame)
         self.frame_10.setGeometry(QtCore.QRect(310, 0, 91, 41))
         self.frame_10.setStyleSheet("QPushButton{\n"
-"    border:none;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                    "    border:none;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton:hover{\n"
+                                    "    padding-top:5px;\n"
+                                    "    padding-left:5px;\n"
+                                    "}")
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
@@ -118,9 +118,9 @@ class Ui_Modify_Person(object):
         self.pushButton_modify_send.setGeometry(QtCore.QRect(290, 90, 75, 30))
         self.pushButton_modify_send.setMinimumSize(QtCore.QSize(0, 30))
         self.pushButton_modify_send.setStyleSheet("QPushButton:pressed{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                                  "    padding-left:5px;\n"
+                                                  "    padding-top:5px;\n"
+                                                  "}")
         self.pushButton_modify_send.setObjectName("pushButton_modify_send")
         self.frame_3 = QtWidgets.QFrame(self.frame)
         self.frame_3.setGeometry(QtCore.QRect(60, 360, 231, 32))
@@ -230,4 +230,6 @@ class Ui_Modify_Person(object):
         self.label_5.setText(_translate("Modify_Person", "验证码发送失败，请重试！"))
         self.label_6.setText(_translate("Modify_Person", "密码不能为空！"))
         self.label_7.setText(_translate("Modify_Person", "此邮箱未注册！"))
-import res_rc
+
+
+import frontend.res_rc
