@@ -25,9 +25,9 @@ class Ui_FreeTimeWindow(object):
         self.frame_whole = QtWidgets.QFrame(self.centralwidget)
         self.frame_whole.setGeometry(QtCore.QRect(200, 40, 471, 641))
         self.frame_whole.setStyleSheet("QFrame#frame_whole{\n"
-"border-radius:20px;\n"
-"    border-image: url(:/pictures/pictures/login_background.jpg);\n"
-"}")
+                                       "border-radius:20px;\n"
+                                       "    border-image: url(:/pictures/pictures/login_background.jpg);\n"
+                                       "}")
         self.frame_whole.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_whole.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_whole.setObjectName("frame_whole")
@@ -45,8 +45,8 @@ class Ui_FreeTimeWindow(object):
         self.pushButton_free_ensure = QtWidgets.QPushButton(self.frame_whole)
         self.pushButton_free_ensure.setGeometry(QtCore.QRect(60, 520, 351, 31))
         self.pushButton_free_ensure.setStyleSheet("background-color: rgb(31, 68, 53);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 11pt \"微软雅黑\";")
+                                                  "color: rgb(255, 255, 255);\n"
+                                                  "font: 11pt \"微软雅黑\";")
         self.pushButton_free_ensure.setObjectName("pushButton_free_ensure")
         self.frame = QtWidgets.QFrame(self.frame_whole)
         self.frame.setGeometry(QtCore.QRect(50, 130, 371, 81))
@@ -169,14 +169,14 @@ class Ui_FreeTimeWindow(object):
         self.label_7 = QtWidgets.QLabel(self.frame_whole)
         self.label_7.setGeometry(QtCore.QRect(0, 0, 471, 41))
         self.label_7.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-top-left-radius:20px;\n"
-"border-top-right-radius:20px;")
+                                   "border-top-left-radius:20px;\n"
+                                   "border-top-right-radius:20px;")
         self.label_7.setText("")
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(self.frame_whole)
         self.label_8.setGeometry(QtCore.QRect(30, 120, 411, 501))
         self.label_8.setStyleSheet("background-color: rgba(255, 255, 255, 150);\n"
-"border-radius:20px;")
+                                   "border-radius:20px;")
         self.label_8.setText("")
         self.label_8.setObjectName("label_8")
         self.frame_close_and_mini = QtWidgets.QFrame(self.frame_whole)
@@ -186,12 +186,12 @@ class Ui_FreeTimeWindow(object):
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.pushButton_minimize = QtWidgets.QPushButton(self.frame_close_and_mini)
         self.pushButton_minimize.setStyleSheet("QPushButton#pushButton_minimize{\n"
-"border:none;\n"
-"}\n"
-"QPushButton:hover{\n"
-"padding-left:5px;\n"
-"padding-top:5px;\n"
-"}")
+                                               "border:none;\n"
+                                               "}\n"
+                                               "QPushButton:hover{\n"
+                                               "padding-left:5px;\n"
+                                               "padding-top:5px;\n"
+                                               "}")
         self.pushButton_minimize.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/icons/24gl-minimization.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -201,12 +201,12 @@ class Ui_FreeTimeWindow(object):
         self.horizontalLayout_4.addWidget(self.pushButton_minimize)
         self.pushButton_close = QtWidgets.QPushButton(self.frame_close_and_mini)
         self.pushButton_close.setStyleSheet("QPushButton#pushButton_close{\n"
-"border:none;\n"
-"}\n"
-"QPushButton:hover{\n"
-"padding-left:5px;\n"
-"padding-top:5px;\n"
-"}")
+                                            "border:none;\n"
+                                            "}\n"
+                                            "QPushButton:hover{\n"
+                                            "padding-left:5px;\n"
+                                            "padding-top:5px;\n"
+                                            "}")
         self.pushButton_close.setText("")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/icons/icons/Close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -285,8 +285,8 @@ class Ui_FreeTimeWindow(object):
 
         self.retranslateUi(FreeTimeWindow)
         self.stackedWidget_wrong.setCurrentIndex(1)
-        self.pushButton_close.clicked.connect(FreeTimeWindow.close) # type: ignore
-        self.pushButton_minimize.clicked.connect(FreeTimeWindow.showMinimized) # type: ignore
+        self.pushButton_close.clicked.connect(FreeTimeWindow.close)  # type: ignore
+        self.pushButton_minimize.clicked.connect(FreeTimeWindow.showMinimized)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(FreeTimeWindow)
 
     def retranslateUi(self, FreeTimeWindow):
@@ -303,5 +303,7 @@ class Ui_FreeTimeWindow(object):
         self.label_10.setText(_translate("FreeTimeWindow", "下午空闲时间不能超过最大空闲时间！"))
         self.label_11.setText(_translate("FreeTimeWindow", "晚上空闲时间不能超过最大空闲时间！"))
         self.label_12.setText(_translate("FreeTimeWindow", "上午：06：00-12：00；下午：12：00-18：00；\n"
-"晚上：18：00-23：30"))
-import res_rc
+                                                           "晚上：18：00-23：30"))
+
+
+import frontend.res_rc

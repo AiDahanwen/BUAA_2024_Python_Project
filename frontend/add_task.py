@@ -21,13 +21,13 @@ class Ui_AddTaskWindow(object):
         self.frame.setGeometry(QtCore.QRect(120, 10, 731, 801))
         self.frame.setMinimumSize(QtCore.QSize(431, 531))
         self.frame.setStyleSheet("#frame{\n"
-"    border-radius:15px;\n"
-"    background-color: rgba(255, 255, 255, 0);\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"")
+                                 "    border-radius:15px;\n"
+                                 "    background-color: rgba(255, 255, 255, 0);\n"
+                                 "}\n"
+                                 "\n"
+                                 "\n"
+                                 "\n"
+                                 "")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -47,9 +47,9 @@ class Ui_AddTaskWindow(object):
         self.frame_2 = QtWidgets.QFrame(self.frame)
         self.frame_2.setGeometry(QtCore.QRect(60, 140, 601, 501))
         self.frame_2.setStyleSheet("QPushButton:pressed{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                   "    padding-top:5px;\n"
+                                   "    padding-left:5px;\n"
+                                   "}")
         self.frame_2.setObjectName("frame_2")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame_2)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -77,7 +77,7 @@ class Ui_AddTaskWindow(object):
         self.verticalLayout.addWidget(self.textEdit_Add_task_content)
         self.pushButton_Add_task_photo = QtWidgets.QPushButton(self.frame_2)
         self.pushButton_Add_task_photo.setStyleSheet("background-color: rgb(39, 88, 66);\n"
-"color: rgb(255, 255, 255);")
+                                                     "color: rgb(255, 255, 255);")
         self.pushButton_Add_task_photo.setObjectName("pushButton_Add_task_photo")
         self.verticalLayout.addWidget(self.pushButton_Add_task_photo)
         self.frame_4 = QtWidgets.QFrame(self.frame_2)
@@ -435,9 +435,9 @@ class Ui_AddTaskWindow(object):
         self.frame_close_and_mini = QtWidgets.QFrame(self.frame)
         self.frame_close_and_mini.setGeometry(QtCore.QRect(620, 0, 111, 41))
         self.frame_close_and_mini.setStyleSheet("QPushButton:hover{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                                "    padding-top:5px;\n"
+                                                "    padding-left:5px;\n"
+                                                "}")
         self.frame_close_and_mini.setObjectName("frame_close_and_mini")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_close_and_mini)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -463,16 +463,16 @@ class Ui_AddTaskWindow(object):
         self.frame_ensure.setGeometry(QtCore.QRect(60, 660, 601, 101))
         self.frame_ensure.setMinimumSize(QtCore.QSize(0, 101))
         self.frame_ensure.setStyleSheet("QPushButton:pressed{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                        "    padding-left:5px;\n"
+                                        "    padding-top:5px;\n"
+                                        "}")
         self.frame_ensure.setObjectName("frame_ensure")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_ensure)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.pushButton_Add_ensure = QtWidgets.QPushButton(self.frame_ensure)
         self.pushButton_Add_ensure.setMinimumSize(QtCore.QSize(550, 30))
         self.pushButton_Add_ensure.setStyleSheet("background-color: rgb(39, 88, 66);\n"
-"color: rgb(255, 255, 255);")
+                                                 "color: rgb(255, 255, 255);")
         self.pushButton_Add_ensure.setObjectName("pushButton_Add_ensure")
         self.verticalLayout_4.addWidget(self.pushButton_Add_ensure)
         self.stackedWidget = QtWidgets.QStackedWidget(self.frame_ensure)
@@ -543,8 +543,8 @@ class Ui_AddTaskWindow(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
         self.stackedWidget.setPalette(palette)
         self.stackedWidget.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
-"color: rgb(170, 0, 0);\n"
-"font: 11pt \"微软雅黑\";")
+                                         "color: rgb(170, 0, 0);\n"
+                                         "font: 11pt \"微软雅黑\";")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
@@ -743,8 +743,8 @@ class Ui_AddTaskWindow(object):
         self.label_16 = QtWidgets.QLabel(self.frame)
         self.label_16.setGeometry(QtCore.QRect(0, 0, 731, 41))
         self.label_16.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-top-left-radius:20px;\n"
-"border-top-right-radius:20px;")
+                                    "border-top-left-radius:20px;\n"
+                                    "border-top-right-radius:20px;")
         self.label_16.setText("")
         self.label_16.setObjectName("label_16")
         self.label_17 = QtWidgets.QLabel(self.frame)
@@ -767,7 +767,7 @@ class Ui_AddTaskWindow(object):
         self.label_15 = QtWidgets.QLabel(self.centralwidget)
         self.label_15.setGeometry(QtCore.QRect(120, 14, 731, 801))
         self.label_15.setStyleSheet("border-image: url(:/pictures/pictures/login_background.jpg);\n"
-"border-radius:20px;")
+                                    "border-radius:20px;")
         self.label_15.setText("")
         self.label_15.setObjectName("label_15")
         self.label_15.raise_()
@@ -781,8 +781,8 @@ class Ui_AddTaskWindow(object):
         self.retranslateUi(AddTaskWindow)
         self.stackedWidget_2.setCurrentIndex(1)
         self.stackedWidget.setCurrentIndex(2)
-        self.pushButton_3.clicked.connect(AddTaskWindow.showMinimized) # type: ignore
-        self.pushButton_4.clicked.connect(AddTaskWindow.close) # type: ignore
+        self.pushButton_3.clicked.connect(AddTaskWindow.showMinimized)  # type: ignore
+        self.pushButton_4.clicked.connect(AddTaskWindow.close)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(AddTaskWindow)
 
     def retranslateUi(self, AddTaskWindow):
@@ -817,5 +817,7 @@ class Ui_AddTaskWindow(object):
         self.label_6.setText(_translate("AddTaskWindow", "请选择任务类型！"))
         self.label_7.setText(_translate("AddTaskWindow", "任务重要等级不能为空！"))
         self.label_14.setText(_translate("AddTaskWindow", "总耗时/每日耗时不能为空！"))
-import res_rc
-import resource_rc
+
+
+import frontend.res_rc
+import frontend.resource_rc
