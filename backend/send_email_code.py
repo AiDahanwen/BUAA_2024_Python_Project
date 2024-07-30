@@ -6,6 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from backend.database import get_constant_info
+from backend.html_content import html_content
 
 send_by = '3498314162@qq.com'
 email_password = 'rkkemgvqthnachie'
@@ -32,15 +33,12 @@ def get_code(n=6):
 
 
 def send_email(send_to, verify_code, subject='Email Verification Code'):
-    with open('backend/html_content.html', 'r', encoding='utf-8') as file:
-        html_content = file.read().replace("verify_code", str(verify_code))
-
     msg = MIMEMultipart('alternative')
     msg['From'] = send_by
     msg['To'] = send_to
     msg['Subject'] = subject
 
-    html_part = MIMEText(html_content, 'html')
+    html_part = MIMEText(html_content.replace("verify_code", str(verify_code)), 'html')
     msg.attach(html_part)
 
     smtp = smtplib.SMTP_SSL(mail_host, send_port)

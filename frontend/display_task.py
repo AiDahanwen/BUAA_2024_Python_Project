@@ -21,9 +21,9 @@ class Ui_DisplayTaskWindow(object):
         self.frame = QtWidgets.QFrame(self.centralwidget)
         self.frame.setGeometry(QtCore.QRect(120, 10, 811, 791))
         self.frame.setStyleSheet("QFrame#frame{\n"
-"background-color: rgba(255, 255, 255, 0);\n"
-"border-radius:20px;\n"
-"}")
+                                 "background-color: rgba(255, 255, 255, 0);\n"
+                                 "border-radius:20px;\n"
+                                 "}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -41,10 +41,10 @@ class Ui_DisplayTaskWindow(object):
         self.frame_left = QtWidgets.QFrame(self.frame)
         self.frame_left.setGeometry(QtCore.QRect(50, 120, 451, 381))
         self.frame_left.setStyleSheet("QFrame#frame_left{\n"
-"background-color: rgba(255, 255, 255, 150);\n"
-"font: 11pt \"微软雅黑\";\n"
-"}\n"
-"")
+                                      "background-color: rgba(255, 255, 255, 150);\n"
+                                      "font: 11pt \"微软雅黑\";\n"
+                                      "}\n"
+                                      "")
         self.frame_left.setObjectName("frame_left")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame_left)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -138,7 +138,7 @@ class Ui_DisplayTaskWindow(object):
         self.horizontalLayout_2.addWidget(self.label_4)
         self.label_dispaly_state = QtWidgets.QLabel(self.frame_status)
         self.label_dispaly_state.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(0, 0, 0);")
+                                               "color: rgb(0, 0, 0);")
         self.label_dispaly_state.setObjectName("label_dispaly_state")
         self.horizontalLayout_2.addWidget(self.label_dispaly_state)
         self.verticalLayout.addWidget(self.frame_status)
@@ -146,9 +146,9 @@ class Ui_DisplayTaskWindow(object):
         self.frame_mini_and_close.setGeometry(QtCore.QRect(650, 0, 158, 41))
         self.frame_mini_and_close.setMinimumSize(QtCore.QSize(158, 41))
         self.frame_mini_and_close.setStyleSheet("QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+                                                "    padding-left:5px;\n"
+                                                "    padding-top:5px;\n"
+                                                "}")
         self.frame_mini_and_close.setObjectName("frame_mini_and_close")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_mini_and_close)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
@@ -175,8 +175,8 @@ class Ui_DisplayTaskWindow(object):
         self.label_15 = QtWidgets.QLabel(self.frame)
         self.label_15.setGeometry(QtCore.QRect(530, 120, 231, 151))
         self.label_15.setStyleSheet("background-color: rgb(35, 65, 76);\n"
-"font: 12pt \"微软雅黑\";\n"
-"color: rgb(255, 255, 255);")
+                                    "font: 12pt \"微软雅黑\";\n"
+                                    "color: rgb(255, 255, 255);")
         self.label_15.setAlignment(QtCore.Qt.AlignCenter)
         self.label_15.setObjectName("label_15")
         self.frame_6 = QtWidgets.QFrame(self.frame)
@@ -286,9 +286,9 @@ class Ui_DisplayTaskWindow(object):
         self.stackedWidget_2.setSizePolicy(sizePolicy)
         self.stackedWidget_2.setMinimumSize(QtCore.QSize(311, 88))
         self.stackedWidget_2.setStyleSheet("\n"
-"background-color: rgba(255, 255, 255, 150);\n"
-"border-radius:20px;\n"
-"")
+                                           "background-color: rgba(255, 255, 255, 150);\n"
+                                           "border-radius:20px;\n"
+                                           "")
         self.stackedWidget_2.setObjectName("stackedWidget_2")
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
@@ -335,7 +335,7 @@ class Ui_DisplayTaskWindow(object):
         self.dateTimeEdit_ordinary_begin.setSizePolicy(sizePolicy)
         self.dateTimeEdit_ordinary_begin.setMinimumSize(QtCore.QSize(234, 40))
         self.dateTimeEdit_ordinary_begin.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(170, 170, 170);")
+                                                       "color: rgb(170, 170, 170);")
         self.dateTimeEdit_ordinary_begin.setObjectName("dateTimeEdit_ordinary_begin")
         self.horizontalLayout_9.addWidget(self.dateTimeEdit_ordinary_begin)
         self.verticalLayout_3.addWidget(self.frame_2)
@@ -373,7 +373,7 @@ class Ui_DisplayTaskWindow(object):
         self.dateTimeEdit_ordinary_end.setSizePolicy(sizePolicy)
         self.dateTimeEdit_ordinary_end.setMinimumSize(QtCore.QSize(234, 40))
         self.dateTimeEdit_ordinary_end.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(170, 170, 170);")
+                                                     "color: rgb(170, 170, 170);")
         self.dateTimeEdit_ordinary_end.setObjectName("dateTimeEdit_ordinary_end")
         self.horizontalLayout_10.addWidget(self.dateTimeEdit_ordinary_end)
         self.verticalLayout_3.addWidget(self.frame_3)
@@ -422,7 +422,7 @@ class Ui_DisplayTaskWindow(object):
         font.setWeight(50)
         self.dateEdit_every_begin_date.setFont(font)
         self.dateEdit_every_begin_date.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(170, 170, 170);")
+                                                     "color: rgb(170, 170, 170);")
         self.dateEdit_every_begin_date.setObjectName("dateEdit_every_begin_date")
         self.horizontalLayout_11.addWidget(self.dateEdit_every_begin_date)
         self.label_12 = QtWidgets.QLabel(self.frame_4)
@@ -455,7 +455,7 @@ class Ui_DisplayTaskWindow(object):
         font.setWeight(50)
         self.timeEdit_every_begin_time.setFont(font)
         self.timeEdit_every_begin_time.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(170, 170, 170);")
+                                                     "color: rgb(170, 170, 170);")
         self.timeEdit_every_begin_time.setObjectName("timeEdit_every_begin_time")
         self.horizontalLayout_11.addWidget(self.timeEdit_every_begin_time)
         self.verticalLayout_2.addWidget(self.frame_4)
@@ -494,7 +494,7 @@ class Ui_DisplayTaskWindow(object):
         font.setWeight(50)
         self.dateEdit_every_end_date.setFont(font)
         self.dateEdit_every_end_date.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(170, 170, 170);")
+                                                   "color: rgb(170, 170, 170);")
         self.dateEdit_every_end_date.setObjectName("dateEdit_every_end_date")
         self.horizontalLayout_13.addWidget(self.dateEdit_every_end_date)
         self.label_14 = QtWidgets.QLabel(self.frame_5)
@@ -527,7 +527,7 @@ class Ui_DisplayTaskWindow(object):
         font.setWeight(50)
         self.timeEdit_every_end_time.setFont(font)
         self.timeEdit_every_end_time.setStyleSheet("font: 12pt \"微软雅黑\";\n"
-"color: rgb(170, 170, 170);")
+                                                   "color: rgb(170, 170, 170);")
         self.timeEdit_every_end_time.setObjectName("timeEdit_every_end_time")
         self.horizontalLayout_13.addWidget(self.timeEdit_every_end_time)
         self.verticalLayout_2.addWidget(self.frame_5)
@@ -535,17 +535,17 @@ class Ui_DisplayTaskWindow(object):
         self.pushButton_display_ensure = QtWidgets.QPushButton(self.frame)
         self.pushButton_display_ensure.setGeometry(QtCore.QRect(54, 710, 701, 41))
         self.pushButton_display_ensure.setStyleSheet("\n"
-"background-color: rgb(35, 63, 74);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 75 11pt \"微软雅黑\";\n"
-"border-radius:15px;\n"
-"")
+                                                     "background-color: rgb(35, 63, 74);\n"
+                                                     "color: rgb(255, 255, 255);\n"
+                                                     "font: 75 11pt \"微软雅黑\";\n"
+                                                     "border-radius:15px;\n"
+                                                     "")
         self.pushButton_display_ensure.setObjectName("pushButton_display_ensure")
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(0, 0, 811, 41))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-top-right-radius:20px;\n"
-"border-top-left-radius:20px;")
+                                   "border-top-right-radius:20px;\n"
+                                   "border-top-left-radius:20px;")
         self.label_5.setText("")
         self.label_5.setObjectName("label_5")
         self.label_8 = QtWidgets.QLabel(self.frame)
@@ -579,7 +579,7 @@ class Ui_DisplayTaskWindow(object):
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(120, 14, 811, 781))
         self.label_7.setStyleSheet("border-image: url(:/pictures/pictures/login_background.jpg);\n"
-"border-radius:20px;")
+                                   "border-radius:20px;")
         self.label_7.setText("")
         self.label_7.setObjectName("label_7")
         self.label_7.raise_()
@@ -591,8 +591,8 @@ class Ui_DisplayTaskWindow(object):
 
         self.retranslateUi(DisplayTaskWindow)
         self.stackedWidget_2.setCurrentIndex(0)
-        self.pushButton.clicked.connect(DisplayTaskWindow.showMinimized) # type: ignore
-        self.pushButton_2.clicked.connect(DisplayTaskWindow.close) # type: ignore
+        self.pushButton.clicked.connect(DisplayTaskWindow.showMinimized)  # type: ignore
+        self.pushButton_2.clicked.connect(DisplayTaskWindow.close)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(DisplayTaskWindow)
 
     def retranslateUi(self, DisplayTaskWindow):
@@ -601,11 +601,12 @@ class Ui_DisplayTaskWindow(object):
         self.label.setText(_translate("DisplayTaskWindow", "任务详情"))
         self.label_2.setText(_translate("DisplayTaskWindow", "任务名称   "))
         self.label_3.setText(_translate("DisplayTaskWindow", "任务内容   "))
-        self.textEdit_task_content.setHtml(_translate("DisplayTaskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'微软雅黑\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.textEdit_task_content.setHtml(_translate("DisplayTaskWindow",
+                                                      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                      "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                      "p, li { white-space: pre-wrap; }\n"
+                                                      "</style></head><body style=\" font-family:\'微软雅黑\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+                                                      "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.label_6.setText(_translate("DisplayTaskWindow", "任务进度   "))
         self.label_4.setText(_translate("DisplayTaskWindow", "任务状态"))
         self.label_dispaly_state.setText(_translate("DisplayTaskWindow", "已完成"))
@@ -630,4 +631,6 @@ class Ui_DisplayTaskWindow(object):
         self.label_14.setText(_translate("DisplayTaskWindow", "  每日截止时间："))
         self.pushButton_display_ensure.setText(_translate("DisplayTaskWindow", "确认"))
         self.pushButton_3.setText(_translate("DisplayTaskWindow", "修改图片"))
-import res_rc
+
+
+import frontend.res_rc

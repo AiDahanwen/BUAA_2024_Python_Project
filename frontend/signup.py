@@ -26,9 +26,9 @@ class Ui_SignupWindow(object):
         self.frame.setSizePolicy(sizePolicy)
         self.frame.setMinimumSize(QtCore.QSize(361, 381))
         self.frame.setStyleSheet("QFrame#frame{\n"
-"border-radius:20px;\n"
-"background-color: rgb(255, 255, 255);\n"
-"}")
+                                 "border-radius:20px;\n"
+                                 "background-color: rgb(255, 255, 255);\n"
+                                 "}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -51,9 +51,9 @@ class Ui_SignupWindow(object):
         self.frame_2.setSizePolicy(sizePolicy)
         self.frame_2.setMinimumSize(QtCore.QSize(231, 291))
         self.frame_2.setStyleSheet("QPushButton:pressed{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                   "    padding-top:5px;\n"
+                                   "    padding-left:5px;\n"
+                                   "}")
         self.frame_2.setObjectName("frame_2")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame_2)
         self.verticalLayout.setSpacing(20)
@@ -94,16 +94,16 @@ class Ui_SignupWindow(object):
         self.pushButton_S_ensure = QtWidgets.QPushButton(self.frame_2)
         self.pushButton_S_ensure.setMinimumSize(QtCore.QSize(390, 40))
         self.pushButton_S_ensure.setStyleSheet("QPushButton#pushButton_S_ensure{\n"
-"background-color: rgb(53, 100, 110);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 10pt \"微软雅黑\";\n"
-"border-radius:20px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"padding-left:5px;\n"
-"padding-top:5px;\n"
-"}\n"
-"")
+                                               "background-color: rgb(53, 100, 110);\n"
+                                               "color: rgb(255, 255, 255);\n"
+                                               "font: 10pt \"微软雅黑\";\n"
+                                               "border-radius:20px;\n"
+                                               "}\n"
+                                               "QPushButton:hover{\n"
+                                               "padding-left:5px;\n"
+                                               "padding-top:5px;\n"
+                                               "}\n"
+                                               "")
         self.pushButton_S_ensure.setObjectName("pushButton_S_ensure")
         self.verticalLayout.addWidget(self.pushButton_S_ensure, 0, QtCore.Qt.AlignHCenter)
         self.lineEdit_S_check.raise_()
@@ -115,13 +115,13 @@ class Ui_SignupWindow(object):
         self.frame_10 = QtWidgets.QFrame(self.frame)
         self.frame_10.setGeometry(QtCore.QRect(560, 0, 91, 41))
         self.frame_10.setStyleSheet("QPushButton{\n"
-"    border:none;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+                                    "    border:none;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton:hover{\n"
+                                    "    padding-top:5px;\n"
+                                    "    padding-left:5px;\n"
+                                    "}")
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
@@ -145,27 +145,27 @@ class Ui_SignupWindow(object):
         self.pushButton_S_send.setGeometry(QtCore.QRect(480, 152, 91, 34))
         self.pushButton_S_send.setMinimumSize(QtCore.QSize(0, 30))
         self.pushButton_S_send.setStyleSheet("\n"
-"QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}\n"
-"QPushButton#pushButton_S_send{\n"
-"    background-color: rgb(53, 100, 110);\n"
-"    color: rgb(255, 255, 255);\n"
-"    font: 10pt \"微软雅黑\";\n"
-"}")
+                                             "QPushButton:hover{\n"
+                                             "    padding-left:5px;\n"
+                                             "    padding-top:5px;\n"
+                                             "}\n"
+                                             "QPushButton#pushButton_S_send{\n"
+                                             "    background-color: rgb(53, 100, 110);\n"
+                                             "    color: rgb(255, 255, 255);\n"
+                                             "    font: 10pt \"微软雅黑\";\n"
+                                             "}")
         self.pushButton_S_send.setObjectName("pushButton_S_send")
         self.listView = QtWidgets.QListView(self.frame)
         self.listView.setGeometry(QtCore.QRect(0, 0, 651, 641))
         self.listView.setStyleSheet("border-image:url(:/pictures/pictures/find_password_background.jpg);\n"
-"border-radius:20px;")
+                                    "border-radius:20px;")
         self.listView.setObjectName("listView")
         self.stackedWidget = QtWidgets.QStackedWidget(self.frame)
         self.stackedWidget.setGeometry(QtCore.QRect(150, 520, 301, 69))
         self.stackedWidget.setMinimumSize(QtCore.QSize(229, 30))
         self.stackedWidget.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
-"color: rgb(48, 92, 74);\n"
-"font: 10pt \"微软雅黑\";")
+                                         "color: rgb(48, 92, 74);\n"
+                                         "font: 10pt \"微软雅黑\";")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page_void = QtWidgets.QWidget()
         self.page_void.setObjectName("page_void")
@@ -238,13 +238,13 @@ class Ui_SignupWindow(object):
         self.listView_2 = QtWidgets.QListView(self.frame)
         self.listView_2.setGeometry(QtCore.QRect(50, 70, 551, 531))
         self.listView_2.setStyleSheet("background-color: rgba(255, 255, 255, 170);\n"
-"border-radius:20px;")
+                                      "border-radius:20px;")
         self.listView_2.setObjectName("listView_2")
         self.label_8 = QtWidgets.QLabel(self.frame)
         self.label_8.setGeometry(QtCore.QRect(0, 0, 651, 41))
         self.label_8.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-top-right-radius:20px;\n"
-"border-top-left-radius:20px;")
+                                   "border-top-right-radius:20px;\n"
+                                   "border-top-left-radius:20px;")
         self.label_8.setText("")
         self.label_8.setObjectName("label_8")
         self.listView.raise_()
@@ -259,8 +259,8 @@ class Ui_SignupWindow(object):
 
         self.retranslateUi(SignupWindow)
         self.stackedWidget.setCurrentIndex(4)
-        self.pushButton.clicked.connect(SignupWindow.showMinimized) # type: ignore
-        self.pushButton_2.clicked.connect(SignupWindow.close) # type: ignore
+        self.pushButton.clicked.connect(SignupWindow.showMinimized)  # type: ignore
+        self.pushButton_2.clicked.connect(SignupWindow.close)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(SignupWindow)
 
     def retranslateUi(self, SignupWindow):
@@ -280,4 +280,6 @@ class Ui_SignupWindow(object):
         self.label_5.setText(_translate("SignupWindow", "验证码发送失败，请重试！"))
         self.label_6.setText(_translate("SignupWindow", "用户名或密码不能为空！"))
         self.label_7.setText(_translate("SignupWindow", "此邮箱已注册！"))
-import res_rc
+
+
+import frontend.res_rc

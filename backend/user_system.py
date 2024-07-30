@@ -1,3 +1,4 @@
+import os
 from datetime import date, time
 
 import bcrypt
@@ -90,18 +91,19 @@ def modify_user_avatar(user_email, avatar_url):
 
 
 def store_local_user_email_password(user_email, user_password):
-    with open("backend/local/storage.txt", "w") as fd:
+    if not os.path.exists("./local"):
+        os.makedirs("./local")
+    with open("local/storage.txt", "w") as fd:
         fd.write(f"{user_email} {user_password}")
 
 
 def get_local_user_email_password():
     try:
-        with open("backend/local/storage.txt", "r") as fd:
+        with open("local/storage.txt", "r") as fd:
             data = fd.read()
         return data.split()
     except FileNotFoundError as e:
-        print(e)
-        return False
+        return []
 
 
 def check_work_time_update_time(user_email):
