@@ -1077,6 +1077,7 @@ class MainWindow(QMainWindow):
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
             "时长总数：" + str(get_work_time(user_now)))
+        self.plot_task_num()
 
     def display_task(self, task):
         self.win = DisplayTaskWindow(task)
@@ -1125,6 +1126,7 @@ class MainWindow(QMainWindow):
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
             "时长总数：" + str(get_work_time(user_now)))
+        self.plot_task_num()
 
     def calendar_click(self):
         self.ui.listWidget_calender.clear()
