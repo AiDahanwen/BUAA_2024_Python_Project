@@ -778,7 +778,8 @@ class CustomListItem_Schedule(QWidget):
         self.important_icon.setPixmap(scaled_pixmap)
 
         self.pushButton_name.clicked.connect(lambda: main_window.display_task(task_schedule.task))
-        self.checkbox_complete.clicked.connect(lambda: main_window.complete_schedule_task(task_schedule))
+        self.checkbox_complete.clicked.connect(
+            lambda: main_window.complete_schedule_task(task_schedule, self.checkbox_complete))
         layout.addWidget(self.label_period)
         layout.addWidget(self.checkbox_complete)
         layout.addWidget(self.pushButton_name)
@@ -911,8 +912,8 @@ class MainWindow(QMainWindow):
             "任务个数：" + str(get_complete_task_sum(user_now)))
         self.ui.label_Sta_accumulate_sumoftime.setText(
             "时长总数：" + str(get_work_time_sum(user_now)))
-        # self.ui.label_Sta_accumulate_averagetime.setText(
-        #     "日均时长：" + str(get_average_work_time(user_now)))
+        self.ui.label_Sta_accumulate_averagetime.setText(
+            "日均时长：" + str(get_average_work_time(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
         self.ui.label_Sta_everyday_sumoftime.setText(
@@ -1067,6 +1068,17 @@ class MainWindow(QMainWindow):
         self.todolist()
         self.urgent_list()
         self.schedule()
+        self.ui.label_Sta_accumulate_sumofnum.setText(
+            "任务个数：" + str(get_complete_task_sum(user_now)))
+        self.ui.label_Sta_accumulate_sumoftime.setText(
+            "时长总数：" + str(get_work_time_sum(user_now)))
+        self.ui.label_Sta_accumulate_averagetime.setText(
+            "日均时长：" + str(get_average_work_time(user_now)))
+        self.ui.label_Sta_everyday_sumofnum.setText(
+            "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
+        self.ui.label_Sta_everyday_sumoftime.setText(
+            "时长总数：" + str(get_work_time(user_now)))
+        self.plot_task_num()
 
     def display_task(self, task):
         self.win = DisplayTaskWindow(task)
@@ -1101,10 +1113,23 @@ class MainWindow(QMainWindow):
                 self.ui.listWidget_schedule.addItem(list_item)
                 self.ui.listWidget_schedule.setItemWidget(list_item, custom_item)
 
-    def complete_schedule_task(self, task_schedule):
+    def complete_schedule_task(self, task_schedule, checkbox):
         add_work_time(task_schedule.task, task_schedule.task_time)
+        checkbox.setChecked(True)
+        checkbox.setEnabled(False)
         self.todolist()
         self.urgent_list()
+        self.ui.label_Sta_accumulate_sumofnum.setText(
+            "任务个数：" + str(get_complete_task_sum(user_now)))
+        self.ui.label_Sta_accumulate_sumoftime.setText(
+            "时长总数：" + str(get_work_time_sum(user_now)))
+        self.ui.label_Sta_accumulate_averagetime.setText(
+            "日均时长：" + str(get_average_work_time(user_now)))
+        self.ui.label_Sta_everyday_sumofnum.setText(
+            "任务个数：" + str(get_complete_task_sum_in_date(user_now, datetime.today())))
+        self.ui.label_Sta_everyday_sumoftime.setText(
+            "时长总数：" + str(get_work_time(user_now)))
+        self.plot_task_num()
 
     def calendar_click(self):
         self.ui.listWidget_calender.clear()
@@ -1216,6 +1241,6 @@ class MainWindow(QMainWindow):
 if __name__ == '__main__':
     QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
-    main_window = MainWindow()
-    # window = LoginWindow()
+    # main_window = MainWindow()
+    window = LoginWindow()
     sys.exit(app.exec_())
