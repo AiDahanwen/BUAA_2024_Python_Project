@@ -1038,6 +1038,7 @@ class MainWindow(QMainWindow):
         if len(urgent_list) == 0:
             self.ui.stackedWidget_urgent.setCurrentIndex(0)
         else:
+            self.ui.stackedWidget_urgent.setCurrentIndex(1)
             for task in urgent_list:
                 custom_item = CustomListItem_urgent(task)
                 list_item = QListWidgetItem(self.ui.listWidget_urgent)
