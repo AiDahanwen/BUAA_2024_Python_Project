@@ -371,6 +371,7 @@ class AddTaskWindow(QMainWindow):
             add_task(task)
             print("have added ordinary task")
             main_window.todolist()
+            print("will print urgent_list")
             main_window.urgent_list()
             self.close()
 
@@ -876,8 +877,12 @@ class MainWindow(QMainWindow):
         else:
             self.ui.stackedWidget_2.setCurrentIndex(1)
             self.todolist()
+        free_time_list = get_free_time(user_now)
+        if free_time_list[0] == 0 and free_time_list[1] == 0 and free_time_list[2] == 0:
+            self.ui.stackedWidget_3.setCurrentIndex(0)
+        else:
+            self.ui.stackedWidget_3.setCurrentIndex(1)
         # 注意此处需要修改，schedule的提示语
-        self.ui.stackedWidget_3.setCurrentIndex(0)
         self.ui.stackedWidget_4.setCurrentIndex(1)
         urgent_list = get_tasks_objects_urgent(user_now)
         if len(urgent_list) == 0:
@@ -1005,7 +1010,6 @@ class MainWindow(QMainWindow):
             self.log_out()
 
     def todolist(self):
-        print("will show todolist")
         self.ui.listWidget_todolist.clear()
         task_list = get_tasks_of_user_with_status(user_now, TaskStatus.PENDING) + \
                     get_tasks_of_user_with_status(user_now, TaskStatus.UNDERWAY)
@@ -1030,6 +1034,7 @@ class MainWindow(QMainWindow):
     def urgent_list(self):
         self.ui.listWidget_urgent.clear()
         urgent_list = get_tasks_objects_urgent(user_now)
+        print(len(urgent_list))
         if len(urgent_list) == 0:
             self.ui.stackedWidget_urgent.setCurrentIndex(0)
         else:
@@ -1060,6 +1065,7 @@ class MainWindow(QMainWindow):
         task_is_complete(task)
         self.todolist()
         self.urgent_list()
+        self.schedule()
 
     def display_task(self, task):
         self.win = DisplayTaskWindow(task)
@@ -1096,6 +1102,8 @@ class MainWindow(QMainWindow):
 
     def complete_schedule_task(self, task_schedule):
         add_work_time(task_schedule.task, task_schedule.task_time)
+        self.todolist()
+        self.urgent_list()
 
     def calendar_click(self):
         self.ui.listWidget_calender.clear()
@@ -1207,6 +1215,6 @@ class MainWindow(QMainWindow):
 if __name__ == '__main__':
     QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
-    #main_window = MainWindow()
-    window = LoginWindow()
+    main_window = MainWindow()
+    # window = LoginWindow()
     sys.exit(app.exec_())
