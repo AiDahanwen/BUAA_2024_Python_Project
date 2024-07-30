@@ -1,3 +1,4 @@
+import copy
 from datetime import datetime, timedelta, time
 from enum import Enum
 
@@ -220,6 +221,7 @@ def reset_task(task):
 
 def add_work_time(task, work_time):
     if task.task_elapsed_time + work_time < task.task_duration_time:
+        task.task_elapsed_time += work_time
         cmd = """
         UPDATE tasks
         SET task_elapsed_time = ADDTIME(task_elapsed_time, %s)
@@ -267,7 +269,7 @@ def _get_task_objects(data):
 
 
 def _get_task_objects_of_user_with_condition(
-        user_email, condition_cmd="", condition_args=()
+    user_email, condition_cmd="", condition_args=()
 ):
     update_tasks(user_email)
     return _get_task_objects(
@@ -317,9 +319,7 @@ def get_task_objects_of_user_completed_in_date(user_email, some_date):
 
 
 def get_complete_task_sum_in_date(user_email, some_date):
-    return len(
-        get_task_objects_of_user_completed_in_date(user_email, some_date)
-    )
+    return len(get_task_objects_of_user_completed_in_date(user_email, some_date))
 
 
 def get_complete_task_sum(user_email):
@@ -342,7 +342,7 @@ def get_work_time_sum(user_email):
 
 def get_average_work_time(user_email):
     date_sum = (
-            date.today() - get_user_info(user_email, "register_date") + timedelta(days=1)
+        date.today() - get_user_info(user_email, "register_date") + timedelta(days=1)
     )
     return get_work_time_sum(user_email) / date_sum.days
 
@@ -357,8 +357,15 @@ def get_week_report_of_user(user_email):
     for delta in range(0, 7):
         week_date = this_week_start + timedelta(days=delta)
         week_report.append(
-            len(list(filter(lambda obj: obj.task_complete_time.date() == week_date,
-                            complete_task_list))))
+            len(
+                list(
+                    filter(
+                        lambda obj: obj.task_complete_time.date() == week_date,
+                        complete_task_list,
+                    )
+                )
+            )
+        )
 
     return week_report
 
@@ -400,16 +407,18 @@ def get_task_schedule_objects(user_email, morning_time, afternoon_time, evening_
         user_email, current_date, TaskStatus.PENDING
     )
     task_objects_list.sort(key=lambda x: (x.task_end_time, -x.task_vital), reverse=True)
+    task_objects_list_copy = copy.deepcopy(task_objects_list)
 
     # 规划日程
     task_schedule_list = []
     while (morning_time or afternoon_time or evening_time) and task_objects_list:
         task = task_objects_list.pop()
+        task_copy = task_objects_list_copy.pop()
 
         task_time = min([_get_time(TaskTimePeriod.MORNING, task), morning_time])
         if task_time:
             task_schedule_list.append(
-                TaskSchedule(task, TaskTimePeriod.MORNING, task_time)
+                TaskSchedule(task_copy, TaskTimePeriod.MORNING, task_time)
             )
             task.task_elapsed_time += task_time
             morning_time -= task_time
@@ -417,7 +426,7 @@ def get_task_schedule_objects(user_email, morning_time, afternoon_time, evening_
         task_time = min([_get_time(TaskTimePeriod.AFTERNOON, task), afternoon_time])
         if task_time:
             task_schedule_list.append(
-                TaskSchedule(task, TaskTimePeriod.AFTERNOON, task_time)
+                TaskSchedule(task_copy, TaskTimePeriod.AFTERNOON, task_time)
             )
             task.task_elapsed_time += task_time
             afternoon_time -= task_time
@@ -425,7 +434,7 @@ def get_task_schedule_objects(user_email, morning_time, afternoon_time, evening_
         task_time = min([_get_time(TaskTimePeriod.EVENING, task), evening_time])
         if task_time:
             task_schedule_list.append(
-                TaskSchedule(task, TaskTimePeriod.EVENING, task_time)
+                TaskSchedule(task_copy, TaskTimePeriod.EVENING, task_time)
             )
             task.task_elapsed_time += task_time
             evening_time -= task_time
@@ -523,7 +532,7 @@ def delete_daily_task(*daily_task_id):
 
 
 def _get_daily_task_objects_of_user_with_condition(
-        user_email, condition_cmd="", condition_args=()
+    user_email, condition_cmd="", condition_args=()
 ):
     return _get_daily_task_objects(
         join(
@@ -572,7 +581,7 @@ def create_daily_task_copy_date(user_email, date):
         if temp <= daily_task.daily_task_end_date:
             if daily_task.daily_task_end_time < datetime.now().time():
                 if not is_daily_task_copy_exist(
-                        user_email, daily_task.daily_task_id, temp
+                    user_email, daily_task.daily_task_id, temp
                 ):
                     if not add_task(daily_task.to_normal_task(temp)):
                         return False
@@ -631,17 +640,21 @@ def update_task_status(user_email):
 
 
 def task_is_complete(task):
+    task.task_status = TaskStatus.COMPLETED
+    task.task_elapsed_time = task.task_duration_time
     reset_task_info(task.task_id, "status", TaskStatus.COMPLETED)
     reset_task_info(task.task_id, "complete_time", datetime.now())
     reset_task_info(task.task_id, "elapsed_time", task.task_duration_time)
-    add_user_work_time(task.user_email, task.task_duration_time - task.task_elapsed_time)
+    add_user_work_time(
+        task.user_email, task.task_duration_time - task.task_elapsed_time
+    )
     if task.task_is_daily:
         daily_task = get_daily_task_object(task.user_email, task.daily_task_id)[0]
         if daily_task.daily_task_end_date > date.today():
             if not is_daily_task_copy_exist(
-                    task.user_email,
-                    daily_task.daily_task_id,
-                    date.today() + timedelta(days=1),
+                task.user_email,
+                daily_task.daily_task_id,
+                date.today() + timedelta(days=1),
             ):
                 task = daily_task.to_normal_task(date.today() + timedelta(days=1))
                 add_task(task)
@@ -691,11 +704,11 @@ def modify_daily_task_pic_url(daily_task, pic_url):
         return
     pic_name = pic_url.split("/")[-1]
     temp = (
-            str(daily_task.user_email)
-            + "/daily_task_pic/"
-            + str(daily_task.daily_task_id)
-            + "_"
-            + pic_name
+        str(daily_task.user_email)
+        + "/daily_task_pic/"
+        + str(daily_task.daily_task_id)
+        + "_"
+        + pic_name
     )
     bucket.put_object_from_file(temp, pic_url)
     pic_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp
@@ -711,8 +724,8 @@ def get_tasks_objects_urgent(user_email):
     return _get_task_objects_of_user_with_condition(user_email, condition_cmd, ())
 
 
-if __name__ == '__main__':
-    testTask = Task('test')
+if __name__ == "__main__":
+    testTask = Task("test")
     # testTask.task_start_time = datetime.now()
     # testTask.task_end_time = datetime.now() + timedelta(hours=0.1)
     # print(add_task(testTask))

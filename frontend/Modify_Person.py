@@ -19,23 +19,29 @@ class Ui_Modify_Person(object):
         self.centralwidget.setObjectName("centralwidget")
         self.frame_whole = QtWidgets.QFrame(self.centralwidget)
         self.frame_whole.setGeometry(QtCore.QRect(210, 40, 461, 521))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame_whole.sizePolicy().hasHeightForWidth())
         self.frame_whole.setSizePolicy(sizePolicy)
         self.frame_whole.setMinimumSize(QtCore.QSize(361, 381))
-        self.frame_whole.setStyleSheet("QFrame#frame_whole{\n"
-"background-color: rgba(255, 255, 255, 0);\n"
-"border-radius:20px;\n"
-"    background-image: url(:/pictures/pictures/find_password_background.jpg);\n"
-"}")
+        self.frame_whole.setStyleSheet(
+            "QFrame#frame_whole{\n"
+            "background-color: rgba(255, 255, 255, 0);\n"
+            "border-radius:20px;\n"
+            "    background-image: url(:/pictures/pictures/find_password_background.jpg);\n"
+            "}"
+        )
         self.frame_whole.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_whole.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_whole.setObjectName("frame_whole")
         self.label = QtWidgets.QLabel(self.frame_whole)
         self.label.setGeometry(QtCore.QRect(30, 50, 171, 61))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -52,35 +58,49 @@ class Ui_Modify_Person(object):
         self.label.setObjectName("label")
         self.frame_2 = QtWidgets.QFrame(self.frame_whole)
         self.frame_2.setGeometry(QtCore.QRect(40, 100, 291, 321))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(10)
         sizePolicy.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
         self.frame_2.setSizePolicy(sizePolicy)
         self.frame_2.setMinimumSize(QtCore.QSize(231, 291))
-        self.frame_2.setStyleSheet("QPushButton:pressed{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+        self.frame_2.setStyleSheet(
+            "QPushButton:pressed{\n"
+            "    padding-top:5px;\n"
+            "    padding-left:5px;\n"
+            "}"
+        )
         self.frame_2.setObjectName("frame_2")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame_2)
         self.verticalLayout.setSpacing(20)
         self.verticalLayout.setObjectName("verticalLayout")
         self.lineEdit_modify_email_address = QtWidgets.QLineEdit(self.frame_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEdit_modify_email_address.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.lineEdit_modify_email_address.sizePolicy().hasHeightForWidth()
+        )
         self.lineEdit_modify_email_address.setSizePolicy(sizePolicy)
         self.lineEdit_modify_email_address.setMinimumSize(QtCore.QSize(0, 30))
         self.lineEdit_modify_email_address.setText("")
-        self.lineEdit_modify_email_address.setObjectName("lineEdit_modify_email_address")
+        self.lineEdit_modify_email_address.setObjectName(
+            "lineEdit_modify_email_address"
+        )
         self.verticalLayout.addWidget(self.lineEdit_modify_email_address)
         self.lineEdit_modify_check = QtWidgets.QLineEdit(self.frame_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEdit_modify_check.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.lineEdit_modify_check.sizePolicy().hasHeightForWidth()
+        )
         self.lineEdit_modify_check.setSizePolicy(sizePolicy)
         self.lineEdit_modify_check.setMinimumSize(QtCore.QSize(0, 30))
         self.lineEdit_modify_check.setObjectName("lineEdit_modify_check")
@@ -94,27 +114,37 @@ class Ui_Modify_Person(object):
         self.lineEdit_modify_password2.setObjectName("lineEdit_modify_password2")
         self.verticalLayout.addWidget(self.lineEdit_modify_password2)
         self.pushButton_modify_ensure = QtWidgets.QPushButton(self.frame_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_modify_ensure.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.pushButton_modify_ensure.sizePolicy().hasHeightForWidth()
+        )
         self.pushButton_modify_ensure.setSizePolicy(sizePolicy)
         self.pushButton_modify_ensure.setMinimumSize(QtCore.QSize(200, 0))
-        self.pushButton_modify_ensure.setStyleSheet("background-color: rgb(41, 82, 97);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 75 10pt \"微软雅黑\";")
+        self.pushButton_modify_ensure.setStyleSheet(
+            "background-color: rgb(41, 82, 97);\n"
+            "color: rgb(255, 255, 255);\n"
+            'font: 75 10pt "微软雅黑";'
+        )
         self.pushButton_modify_ensure.setObjectName("pushButton_modify_ensure")
-        self.verticalLayout.addWidget(self.pushButton_modify_ensure, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout.addWidget(
+            self.pushButton_modify_ensure, 0, QtCore.Qt.AlignHCenter
+        )
         self.frame_10 = QtWidgets.QFrame(self.frame_whole)
         self.frame_10.setGeometry(QtCore.QRect(350, 0, 111, 41))
-        self.frame_10.setStyleSheet("QPushButton{\n"
-"    border:none;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"    padding-top:5px;\n"
-"    padding-left:5px;\n"
-"}")
+        self.frame_10.setStyleSheet(
+            "QPushButton{\n"
+            "    border:none;\n"
+            "}\n"
+            "\n"
+            "QPushButton:hover{\n"
+            "    padding-top:5px;\n"
+            "    padding-left:5px;\n"
+            "}"
+        )
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
@@ -123,14 +153,22 @@ class Ui_Modify_Person(object):
         self.pushButton = QtWidgets.QPushButton(self.frame_10)
         self.pushButton.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/icons/24gl-minimization.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(
+            QtGui.QPixmap(":/icons/icons/24gl-minimization.png"),
+            QtGui.QIcon.Normal,
+            QtGui.QIcon.Off,
+        )
         self.pushButton.setIcon(icon)
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_3.addWidget(self.pushButton)
         self.pushButton_2 = QtWidgets.QPushButton(self.frame_10)
         self.pushButton_2.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icons/icons/Close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(
+            QtGui.QPixmap(":/icons/icons/Close.png"),
+            QtGui.QIcon.Normal,
+            QtGui.QIcon.Off,
+        )
         self.pushButton_2.setIcon(icon1)
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout_3.addWidget(self.pushButton_2)
@@ -139,15 +177,17 @@ class Ui_Modify_Person(object):
         self.pushButton_modify_send = QtWidgets.QPushButton(self.frame_whole)
         self.pushButton_modify_send.setGeometry(QtCore.QRect(340, 120, 91, 30))
         self.pushButton_modify_send.setMinimumSize(QtCore.QSize(0, 30))
-        self.pushButton_modify_send.setStyleSheet("QPushButton#pushButton_modify_send{\n"
-"    background-color: rgb(41, 82, 97);\n"
-"    color: rgb(255, 255, 255);\n"
-"    font: 9pt \"微软雅黑\";\n"
-"}\n"
-"QPushButton:hover{\n"
-"    padding-left:5px;\n"
-"    padding-top:5px;\n"
-"}")
+        self.pushButton_modify_send.setStyleSheet(
+            "QPushButton#pushButton_modify_send{\n"
+            "    background-color: rgb(41, 82, 97);\n"
+            "    color: rgb(255, 255, 255);\n"
+            '    font: 9pt "微软雅黑";\n'
+            "}\n"
+            "QPushButton:hover{\n"
+            "    padding-left:5px;\n"
+            "    padding-top:5px;\n"
+            "}"
+        )
         self.pushButton_modify_send.setObjectName("pushButton_modify_send")
         self.stackedWidget = QtWidgets.QStackedWidget(self.frame_whole)
         self.stackedWidget.setGeometry(QtCore.QRect(50, 410, 321, 71))
@@ -238,7 +278,9 @@ class Ui_Modify_Person(object):
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.page)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.label_7 = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
@@ -254,9 +296,11 @@ class Ui_Modify_Person(object):
         self.stackedWidget.addWidget(self.page)
         self.label_8 = QtWidgets.QLabel(self.frame_whole)
         self.label_8.setGeometry(QtCore.QRect(0, 0, 461, 41))
-        self.label_8.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-top-left-radius:20px;\n"
-"border-top-right-radius:20px;")
+        self.label_8.setStyleSheet(
+            "background-color: rgb(255, 255, 255);\n"
+            "border-top-left-radius:20px;\n"
+            "border-top-right-radius:20px;"
+        )
         self.label_8.setText("")
         self.label_8.setObjectName("label_8")
         self.label.raise_()
@@ -272,18 +316,26 @@ class Ui_Modify_Person(object):
 
         self.retranslateUi(Modify_Person)
         self.stackedWidget.setCurrentIndex(3)
-        self.pushButton.clicked.connect(Modify_Person.showMinimized) # type: ignore
-        self.pushButton_2.clicked.connect(Modify_Person.close) # type: ignore
+        self.pushButton.clicked.connect(Modify_Person.showMinimized)  # type: ignore
+        self.pushButton_2.clicked.connect(Modify_Person.close)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Modify_Person)
 
     def retranslateUi(self, Modify_Person):
         _translate = QtCore.QCoreApplication.translate
         Modify_Person.setWindowTitle(_translate("Modify_Person", "MainWindow"))
         self.label.setText(_translate("Modify_Person", "修改密码"))
-        self.lineEdit_modify_email_address.setPlaceholderText(_translate("Modify_Person", "邮箱："))
-        self.lineEdit_modify_check.setPlaceholderText(_translate("Modify_Person", "验证码："))
-        self.lineEdit_modify_password1.setPlaceholderText(_translate("Modify_Person", "密码："))
-        self.lineEdit_modify_password2.setPlaceholderText(_translate("Modify_Person", "确认密码："))
+        self.lineEdit_modify_email_address.setPlaceholderText(
+            _translate("Modify_Person", "邮箱：")
+        )
+        self.lineEdit_modify_check.setPlaceholderText(
+            _translate("Modify_Person", "验证码：")
+        )
+        self.lineEdit_modify_password1.setPlaceholderText(
+            _translate("Modify_Person", "密码：")
+        )
+        self.lineEdit_modify_password2.setPlaceholderText(
+            _translate("Modify_Person", "确认密码：")
+        )
         self.pushButton_modify_ensure.setText(_translate("Modify_Person", "确认"))
         self.pushButton_modify_send.setText(_translate("Modify_Person", "发送验证码"))
         self.label_2.setText(_translate("Modify_Person", "邮箱格式错误！"))
@@ -292,4 +344,6 @@ class Ui_Modify_Person(object):
         self.label_5.setText(_translate("Modify_Person", "验证码发送失败，请重试！"))
         self.label_6.setText(_translate("Modify_Person", "密码不能为空！"))
         self.label_7.setText(_translate("Modify_Person", "此邮箱未注册！"))
-import res_rc
+
+
+import frontend.res_rc
