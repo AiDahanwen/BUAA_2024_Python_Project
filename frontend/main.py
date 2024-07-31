@@ -566,7 +566,7 @@ class DisplayTaskWindow(QMainWindow):
             # self.ui.comboBox_important.currentTextChanged.connect(
             #     lambda: self.modify_daily_vital(daily))
 
-            self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(daily=daily))
+            self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(daily=daily, task=task))
 
         else:
             self.ui.checkBox_is_daily.setChecked(False)
@@ -663,8 +663,14 @@ class DisplayTaskWindow(QMainWindow):
             daily.daily_task_end_date = self.ui.dateEdit_every_end_date.date().toPyDate()
             daily.daily_task_start_time = self.ui.timeEdit_every_begin_time.time().toPyTime()
             daily.daily_task_end_time = self.ui.timeEdit_every_end_time.time().toPyTime()
-            print(daily.daily_task_title)
             reset_daily_task(daily)
+            task.task_title = daily.daily_task_title
+            task.task_content = daily.daily_task_content
+            task.task_tag = daily.daily_task_tag
+            task.task_vital = daily.daily_task_vital
+            task.task_start_time = datetime.combine(task.task_start_time.date(), daily.daily_task_start_time)
+            task.task_end_time = datetime.combine(task.task_end_time.date(), daily.daily_task_end_time)
+            reset_task(task)
         else:
             if self.new_file_path:
                 task.task_pic_url = self.new_file_path
