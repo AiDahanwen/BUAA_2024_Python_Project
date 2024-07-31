@@ -75,7 +75,7 @@
       <string notr="true">background-color:rgba(0, 0, 0, 0);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_5">
       <widget class="QLabel" name="label">
@@ -101,11 +101,11 @@
        </property>
        <property name="font">
         <font>
-         <family>华文细黑</family>
+         <family>等线</family>
          <pointsize>20</pointsize>
-         <weight>75</weight>
+         <weight>50</weight>
          <italic>false</italic>
-         <bold>true</bold>
+         <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -149,7 +149,7 @@ border-radius:20px;</string>
        </property>
        <property name="font">
         <font>
-         <family>Century Gothic</family>
+         <family>微软雅黑</family>
          <pointsize>38</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -3263,7 +3263,7 @@ border-top-left-radius:20px;</string>
      </property>
      <property name="font">
       <font>
-       <family>Century Gothic</family>
+       <family>微软雅黑</family>
        <pointsize>14</pointsize>
        <weight>50</weight>
        <italic>false</italic>
@@ -3271,7 +3271,7 @@ border-top-left-radius:20px;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 14pt &quot;Century Gothic&quot;;
+      <string notr="true">font: 14pt &quot;微软雅黑&quot;;
 color: rgb(55, 89, 100);</string>
      </property>
      <property name="text">
