@@ -179,11 +179,20 @@ border-bottom-left-radius:20px</string>
              </disabled>
             </palette>
            </property>
+           <property name="font">
+            <font>
+             <family>仿宋</family>
+             <pointsize>14</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">font: 15pt &quot;华文行楷&quot;;</string>
+            <string notr="true"/>
            </property>
            <property name="text">
-            <string>此处放每日一句aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</string>
+            <string>白日依山尽，黄河入海流。
+欲穷千里目，更上一层楼。</string>
            </property>
            <property name="wordWrap">
             <bool>true</bool>

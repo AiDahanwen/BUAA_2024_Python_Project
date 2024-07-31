@@ -53,11 +53,11 @@ class Ui_Main_interface(object):
         self.label.setMinimumSize(QtCore.QSize(701, 71))
         self.label.setMaximumSize(QtCore.QSize(701, 71))
         font = QtGui.QFont()
-        font.setFamily("华文细黑")
+        font.setFamily("等线")
         font.setPointSize(20)
-        font.setBold(True)
+        font.setBold(False)
         font.setItalic(False)
-        font.setWeight(75)
+        font.setWeight(50)
         self.label.setFont(font)
         self.label.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(35, 65, 75);\n"
@@ -74,7 +74,7 @@ class Ui_Main_interface(object):
         self.label_time = QtWidgets.QLabel(self.page_5)
         self.label_time.setGeometry(QtCore.QRect(70, 20, 701, 131))
         font = QtGui.QFont()
-        font.setFamily("Century Gothic")
+        font.setFamily("微软雅黑")
         font.setPointSize(38)
         font.setBold(False)
         font.setWeight(50)
@@ -1543,13 +1543,13 @@ class Ui_Main_interface(object):
         self.label_7.setGeometry(QtCore.QRect(20, -7, 501, 51))
         self.label_7.setMinimumSize(QtCore.QSize(501, 51))
         font = QtGui.QFont()
-        font.setFamily("Century Gothic")
+        font.setFamily("微软雅黑")
         font.setPointSize(14)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.label_7.setFont(font)
-        self.label_7.setStyleSheet("font: 14pt \"Century Gothic\";\n"
+        self.label_7.setStyleSheet("font: 14pt \"微软雅黑\";\n"
 "color: rgb(55, 89, 100);")
         self.label_7.setObjectName("label_7")
         self.listView.raise_()
@@ -1567,7 +1567,7 @@ class Ui_Main_interface(object):
         Main_interface.setStatusBar(self.statusbar)
 
         self.retranslateUi(Main_interface)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         self.stackedWidget_2.setCurrentIndex(1)
         self.stackedWidget_3.setCurrentIndex(3)
         self.stackedWidget_urgent.setCurrentIndex(1)
@@ -1653,5 +1653,5 @@ class Ui_Main_interface(object):
         self.label_user_name.setText(_translate("Main_interface", "我的名字"))
         self.label_sentence.setText(_translate("Main_interface", "快快写完吧！啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"))
         self.label_7.setText(_translate("Main_interface", "TDesigner - todolist just for you"))
-import frontend.res_rc
-import frontend.resource_rc
+import res_rc
+import resource_rc
