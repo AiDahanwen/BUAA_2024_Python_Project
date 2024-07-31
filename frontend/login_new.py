@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from backend.user_system import get_local_user_email_password
+
 
 class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow):
@@ -166,6 +168,10 @@ class Ui_LoginWindow(object):
         self.lineEdit_L_password.setText("")
         self.lineEdit_L_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_L_password.setObjectName("lineEdit_L_password")
+        local_info = get_local_user_email_password()
+        if len(local_info) == 2:
+            self.lineEdit_L_account.setText(f"{local_info[0]}")
+            self.lineEdit_L_password.setText(f"{local_info[1]}")
         self.verticalLayout_3.addWidget(self.lineEdit_L_password)
         self.frame_5 = QtWidgets.QFrame(self.frame_3)
         self.frame_5.setMinimumSize(QtCore.QSize(453, 100))
