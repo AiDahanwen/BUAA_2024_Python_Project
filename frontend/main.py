@@ -68,6 +68,8 @@ class LoginWindow(QMainWindow):
         # 每日一句功能
         self.ui.label_L_daily_sentence.setText(get_sentence()[0])
 
+        self.m_flag = False
+
         self.show()
 
     def login_in(self):
@@ -132,6 +134,8 @@ class SignupWindow(QMainWindow):
         self.ui.stackedWidget.adjustSize()
         self.ui.label.adjustSize()
         self.ui.pushButton_S_send.adjustSize()
+
+        self.m_flag = False
 
         self.show()
 
@@ -206,6 +210,8 @@ class FindWindow(QMainWindow):
 
         self.ui.pushButton_F_send.adjustSize()
         self.ui.label.adjustSize()
+
+        self.m_flag = False
 
         self.show()
 
@@ -289,6 +295,8 @@ class AddTaskWindow(QMainWindow):
         if self.ui.radioButton_Add_is_every.isChecked() else self.ordinary_task())
 
         self.ui.label.adjustSize()
+
+        self.m_flag = False
         self.show()
 
     def upload_photos(self):
@@ -404,6 +412,13 @@ class FreeTimeWindow(QMainWindow):
 
         self.ui.stackedWidget_wrong.setCurrentIndex(0)
 
+        self.m_flag = False
+
+        free_time = get_free_time(user_now)
+        self.ui.doubleSpinBox_free_morning.setValue(free_time[0])
+        self.ui.doubleSpinBox_free_afternoon.setValue(free_time[1])
+        self.ui.doubleSpinBox_free_night.setValue(free_time[2])
+
         self.show()
         self.ui.pushButton_free_ensure.clicked.connect(lambda: self.free_time())
 
@@ -487,6 +502,7 @@ class CalendarTaskWindow(QMainWindow):
             self.ui.label_ordinary_end_time.setText(
                 task.task_end_time.strftime('%Y-%m-%d %H:%M:%S'))
 
+        self.m_flag = False
         self.show()
 
 
@@ -551,6 +567,7 @@ class DisplayTaskWindow(QMainWindow):
 
             self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(task=task))
 
+        self.m_flag = False
         self.show()
 
     def modify_daily_begin_date(self, daily):
@@ -629,6 +646,7 @@ class ModifyPersonWindow(QMainWindow):
 
         self.ui.stackedWidget.setCurrentIndex(0)
 
+        self.m_flag = False
         self.show()
 
     def send_check(self):
@@ -870,6 +888,8 @@ class MainWindow(QMainWindow):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
         self.label_adjust_size()
+
+        self.m_flag = False
 
         self.ui.stackedWidget.setCurrentIndex(0)
         task_list = get_tasks_of_user_with_status(user_now,
