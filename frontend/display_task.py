@@ -654,4 +654,4 @@ class Ui_DisplayTaskWindow(object):
         self.pushButton_display_ensure.setText(_translate("DisplayTaskWindow", "确认"))
         self.pushButton_3.setText(_translate("DisplayTaskWindow", "修改图片"))
         self.label_18.setText(_translate("DisplayTaskWindow", "截止时间不能早于当前时间！"))
-import res_rc
+import frontend.res_rc

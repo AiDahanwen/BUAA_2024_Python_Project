@@ -516,4 +516,4 @@ class Ui_LoginWindow(object):
         self.label.setText(_translate("LoginWindow", "Welcome Back! :)"))
 
 
-import res_rc
+import frontend.res_rc

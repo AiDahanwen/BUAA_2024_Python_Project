@@ -1653,5 +1653,5 @@ class Ui_Main_interface(object):
         self.label_user_name.setText(_translate("Main_interface", "我的名字"))
         self.label_sentence.setText(_translate("Main_interface", "快快写完吧！啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"))
         self.label_7.setText(_translate("Main_interface", "TDesigner - todolist just for you"))
-import res_rc
-import resource_rc
+import frontend.res_rc
+import frontend.resource_rc
