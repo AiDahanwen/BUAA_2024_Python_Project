@@ -524,6 +524,7 @@ class DisplayTaskWindow(QMainWindow):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.new_file_path = None
 
+        self.ui.stackedWidget_wrong.setCurrentIndex(0)
         self.ui.lineEdit_display_taskname.setText(task.task_title)
         self.ui.comboBox_important.setCurrentText(transfer_vital(task.task_vital))
         self.ui.textEdit_task_content.setText(task.task_content)
@@ -549,23 +550,6 @@ class DisplayTaskWindow(QMainWindow):
             self.ui.timeEdit_every_begin_time.setTime(daily.daily_task_start_time)
             self.ui.timeEdit_every_end_time.setTime(daily.daily_task_end_time)
 
-            # self.ui.dateEdit_every_begin_date.dateChanged.connect(
-            #     lambda: self.modify_daily_begin_date(daily))
-            # self.ui.dateEdit_every_end_date.dateChanged.connect(
-            #     lambda: self.modify_daily_end_date(daily))
-            # self.ui.timeEdit_every_begin_time.timeChanged.connect(
-            #     lambda: self.modify_daily_begin_time(daily))
-            # self.ui.timeEdit_every_end_time.timeChanged.connect(
-            #     lambda: self.modify_daily_end_time(daily))
-            # self.ui.lineEdit_display_taskname.textChanged.connect(
-            #     lambda: self.modify_daily_title(daily))
-            # self.ui.textEdit_task_content.textChanged.connect(
-            #     lambda: self.modify_daily_content(daily))
-            # self.ui.comboBox_display_task_type.currentTextChanged.connect(
-            #     lambda: self.modify_daily_tag(daily))
-            # self.ui.comboBox_important.currentTextChanged.connect(
-            #     lambda: self.modify_daily_vital(daily))
-
             self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(daily=daily, task=task))
 
         else:
@@ -577,64 +561,11 @@ class DisplayTaskWindow(QMainWindow):
             if task.task_pic_url:
                 image_loader = ImageLoader(self.ui.label_15, self)
                 image_loader.loadImage(task.task_pic_url)  # 替换为你的图片URL
-            # self.ui.dateTimeEdit_ordinary_begin.dateTimeChanged.connect(
-            #     lambda: self.modify_ordinary_begin_time(task))
-            # self.ui.dateTimeEdit_ordinary_end.dateTimeChanged.connect(
-            #     lambda: self.modify_ordinary_end_time(task))
-            # self.ui.lineEdit_display_taskname.textChanged.connect(
-            #     lambda: self.modify_ordinary_title(task))
-            # self.ui.textEdit_task_content.textChanged.connect(
-            #     lambda: self.modify_ordinary_content(task))
-            # self.ui.comboBox_display_task_type.currentTextChanged.connect(
-            #     lambda: self.modify_ordinary_tag(task))
-            # self.ui.comboBox_important.currentTextChanged.connect(
-            #     lambda: self.modify_ordinary_vital(task))
+
             self.ui.pushButton_display_ensure.clicked.connect(lambda: self.modify_task(task=task))
 
         self.m_flag = False
         self.show()
-
-    def modify_daily_begin_date(self, daily):
-        daily.daily_task_start_date = self.ui.dateEdit_every_begin_date.date().toPyDate()
-
-    def modify_daily_end_date(self, daily):
-        daily.daily_task_end_date = self.ui.dateEdit_every_end_date.date().toPyDate()
-
-    def modify_daily_begin_time(self, daily):
-        daily.daily_task_start_time = self.ui.timeEdit_every_begin_time.time().toPyTime()
-
-    def modify_daily_end_time(self, daily):
-        daily.daily_task_end_time = self.ui.timeEdit_every_end_time.time().toPyTime()
-
-    def modify_ordinary_begin_time(self, task):
-        task.task_start_time = self.ui.dateTimeEdit_ordinary_begin.dateTime().toPyDateTime()
-
-    def modify_ordinary_end_time(self, task):
-        task.task_end_time = self.ui.dateTimeEdit_ordinary_end.dateTime().toPyDateTime()
-
-    def modify_daily_title(self, daily):
-        daily.daily_task_title = self.ui.lineEdit_display_taskname.text()
-
-    def modify_daily_content(self, daily):
-        daily.daily_task_content = self.ui.textEdit_task_content.toPlainText()
-
-    def modify_daily_tag(self, daily):
-        daily.daily_task_tag = self.ui.comboBox_display_task_type.currentText()
-
-    def modify_daily_vital(self, daily):
-        daily.daily_task_vital = reverse_vital(self.ui.comboBox_important.currentText())
-
-    def modify_ordinary_title(self, task):
-        task.task_title = self.ui.lineEdit_display_taskname.text()
-
-    def modify_ordinary_content(self, task):
-        task.task_content = self.ui.textEdit_task_content.toPlainText()
-
-    def modify_ordinary_tag(self, task):
-        task.task_tag = self.ui.comboBox_display_task_type.currentText()
-
-    def modify_ordinary_vital(self, task):
-        task.task_vital = reverse_vital(self.ui.comboBox_important.currentText())
 
     def update_photo(self):
         options = QFileDialog.Options()
@@ -650,27 +581,33 @@ class DisplayTaskWindow(QMainWindow):
                                   Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
     def modify_task(self, task=None, daily=None):
-        print("will modify")
         if self.ui.checkBox_is_daily.isChecked():
-            if self.new_file_path:
-                daily.daily_task_pic_url = self.new_file_path
-                modify_daily_task_pic_url(daily, self.new_file_path)
-            daily.daily_task_title = self.ui.lineEdit_display_taskname.text()
-            daily.daily_task_content = self.ui.textEdit_task_content.toPlainText()
-            daily.daily_task_tag = self.ui.comboBox_display_task_type.currentText()
-            daily.daily_task_vital = reverse_vital(self.ui.comboBox_important.currentText())
-            daily.daily_task_start_date = self.ui.dateEdit_every_begin_date.date().toPyDate()
-            daily.daily_task_end_date = self.ui.dateEdit_every_end_date.date().toPyDate()
-            daily.daily_task_start_time = self.ui.timeEdit_every_begin_time.time().toPyTime()
-            daily.daily_task_end_time = self.ui.timeEdit_every_end_time.time().toPyTime()
-            reset_daily_task(daily)
-            task.task_title = daily.daily_task_title
-            task.task_content = daily.daily_task_content
-            task.task_tag = daily.daily_task_tag
-            task.task_vital = daily.daily_task_vital
-            task.task_start_time = datetime.combine(task.task_start_time.date(), daily.daily_task_start_time)
-            task.task_end_time = datetime.combine(task.task_end_time.date(), daily.daily_task_end_time)
-            reset_task(task)
+            if self.ui.dateEdit_every_end_date.date() < datetime.today().date():
+                self.ui.stackedWidget_wrong.setCurrentIndex(1)
+            else:
+                if self.new_file_path:
+                    daily.daily_task_pic_url = self.new_file_path
+                    modify_daily_task_pic_url(daily, self.new_file_path)
+                daily.daily_task_title = self.ui.lineEdit_display_taskname.text()
+                daily.daily_task_content = self.ui.textEdit_task_content.toPlainText()
+                daily.daily_task_tag = self.ui.comboBox_display_task_type.currentText()
+                daily.daily_task_vital = reverse_vital(self.ui.comboBox_important.currentText())
+                daily.daily_task_start_date = self.ui.dateEdit_every_begin_date.date().toPyDate()
+                daily.daily_task_end_date = self.ui.dateEdit_every_end_date.date().toPyDate()
+                daily.daily_task_start_time = self.ui.timeEdit_every_begin_time.time().toPyTime()
+                daily.daily_task_end_time = self.ui.timeEdit_every_end_time.time().toPyTime()
+                reset_daily_task(daily)
+                task.task_title = daily.daily_task_title
+                task.task_content = daily.daily_task_content
+                task.task_tag = daily.daily_task_tag
+                task.task_vital = daily.daily_task_vital
+                task.task_start_time = datetime.combine(task.task_start_time.date(), daily.daily_task_start_time)
+                task.task_end_time = datetime.combine(task.task_end_time.date(), daily.daily_task_end_time)
+                reset_task(task)
+                main_window.todolist()
+                main_window.schedule()
+                main_window.urgent_list()
+                self.close()
         else:
             if self.new_file_path:
                 task.task_pic_url = self.new_file_path
@@ -683,10 +620,10 @@ class DisplayTaskWindow(QMainWindow):
             task.task_vital = reverse_vital(self.ui.comboBox_important.currentText())
             print(task.task_title)
             reset_task(task)
-        main_window.todolist()
-        main_window.schedule()
-        main_window.urgent_list()
-        self.close()
+            main_window.todolist()
+            main_window.schedule()
+            main_window.urgent_list()
+            self.close()
 
     def mousePressEvent(self, event):  # 鼠标拖拽窗口移动
         if event.button() == Qt.LeftButton:
