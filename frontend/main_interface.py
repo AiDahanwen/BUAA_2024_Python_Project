@@ -33,7 +33,7 @@ class Ui_Main_interface(object):
         self.centralwidget.setFont(font)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(20, 20, 1231, 811))
+        self.frame.setGeometry(QtCore.QRect(20, 20, 1211, 741))
         self.frame.setMinimumSize(QtCore.QSize(801, 521))
         self.frame.setStyleSheet("QFrame#frame{\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -43,7 +43,7 @@ class Ui_Main_interface(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.stackedWidget = QtWidgets.QStackedWidget(self.frame)
-        self.stackedWidget.setGeometry(QtCore.QRect(220, 40, 1011, 761))
+        self.stackedWidget.setGeometry(QtCore.QRect(220, 40, 991, 691))
         self.stackedWidget.setStyleSheet("background-color:rgba(0, 0, 0, 0);")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page_5 = QtWidgets.QWidget()
@@ -53,11 +53,11 @@ class Ui_Main_interface(object):
         self.label.setMinimumSize(QtCore.QSize(701, 71))
         self.label.setMaximumSize(QtCore.QSize(701, 71))
         font = QtGui.QFont()
-        font.setFamily("华文细黑")
+        font.setFamily("等线")
         font.setPointSize(20)
-        font.setBold(True)
+        font.setBold(False)
         font.setItalic(False)
-        font.setWeight(75)
+        font.setWeight(50)
         self.label.setFont(font)
         self.label.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(35, 65, 75);\n"
@@ -74,7 +74,7 @@ class Ui_Main_interface(object):
         self.label_time = QtWidgets.QLabel(self.page_5)
         self.label_time.setGeometry(QtCore.QRect(70, 20, 701, 131))
         font = QtGui.QFont()
-        font.setFamily("Century Gothic")
+        font.setFamily("微软雅黑")
         font.setPointSize(38)
         font.setBold(False)
         font.setWeight(50)
@@ -94,7 +94,7 @@ class Ui_Main_interface(object):
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
         self.layoutWidget = QtWidgets.QWidget(self.page)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 981, 741))
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 981, 681))
         self.layoutWidget.setObjectName("layoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -388,7 +388,7 @@ class Ui_Main_interface(object):
         self.frame_13.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_13.setObjectName("frame_13")
         self.stackedWidget_3 = QtWidgets.QStackedWidget(self.frame_13)
-        self.stackedWidget_3.setGeometry(QtCore.QRect(1, 1, 466, 241))
+        self.stackedWidget_3.setGeometry(QtCore.QRect(1, 1, 466, 201))
         self.stackedWidget_3.setObjectName("stackedWidget_3")
         self.page_12 = QtWidgets.QWidget()
         self.page_12.setObjectName("page_12")
@@ -427,13 +427,13 @@ class Ui_Main_interface(object):
         self.page_9 = QtWidgets.QWidget()
         self.page_9.setObjectName("page_9")
         self.layoutWidget1 = QtWidgets.QWidget(self.page_9)
-        self.layoutWidget1.setGeometry(QtCore.QRect(10, 0, 439, 249))
+        self.layoutWidget1.setGeometry(QtCore.QRect(10, 0, 439, 201))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_12.setObjectName("verticalLayout_12")
         self.frame_urgent_title_3 = QtWidgets.QFrame(self.layoutWidget1)
-        self.frame_urgent_title_3.setMinimumSize(QtCore.QSize(421, 31))
+        self.frame_urgent_title_3.setMinimumSize(QtCore.QSize(421, 40))
         self.frame_urgent_title_3.setStyleSheet("QFrame#frame_urgent_title_3{\n"
 "background-color: rgba(42, 75, 83, 50);\n"
 "}")
@@ -446,7 +446,7 @@ class Ui_Main_interface(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_35.sizePolicy().hasHeightForWidth())
         self.label_35.setSizePolicy(sizePolicy)
-        self.label_35.setMinimumSize(QtCore.QSize(204, 29))
+        self.label_35.setMinimumSize(QtCore.QSize(0, 0))
         self.label_35.setMaximumSize(QtCore.QSize(204, 29))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
@@ -463,7 +463,7 @@ class Ui_Main_interface(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_36.sizePolicy().hasHeightForWidth())
         self.label_36.setSizePolicy(sizePolicy)
-        self.label_36.setMinimumSize(QtCore.QSize(135, 31))
+        self.label_36.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
@@ -480,7 +480,7 @@ class Ui_Main_interface(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_37.sizePolicy().hasHeightForWidth())
         self.label_37.setSizePolicy(sizePolicy)
-        self.label_37.setMinimumSize(QtCore.QSize(68, 31))
+        self.label_37.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
@@ -491,7 +491,7 @@ class Ui_Main_interface(object):
         self.label_37.setObjectName("label_37")
         self.horizontalLayout_9.addWidget(self.label_37)
         self.label_38 = QtWidgets.QLabel(self.frame_urgent_title_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_38.sizePolicy().hasHeightForWidth())
@@ -1264,7 +1264,7 @@ class Ui_Main_interface(object):
         self.label_my_emali_address.setStyleSheet("color: rgb(115, 115, 115);")
         self.label_my_emali_address.setObjectName("label_my_emali_address")
         self.frame_23 = QtWidgets.QFrame(self.frame_17)
-        self.frame_23.setGeometry(QtCore.QRect(10, 370, 321, 301))
+        self.frame_23.setGeometry(QtCore.QRect(10, 370, 321, 281))
         self.frame_23.setStyleSheet("QFrame#frame_23{\n"
 "background-color: rgb(0, 0, 0);\n"
 "border-radius:20px;\n"
@@ -1384,7 +1384,7 @@ class Ui_Main_interface(object):
         item.setIcon(icon4)
         self.listWidget.addItem(item)
         self.listWidget_2 = QtWidgets.QListWidget(self.frame)
-        self.listWidget_2.setGeometry(QtCore.QRect(10, 640, 211, 100))
+        self.listWidget_2.setGeometry(QtCore.QRect(10, 620, 211, 100))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1481,7 +1481,7 @@ class Ui_Main_interface(object):
         self.label_sentence.setWordWrap(True)
         self.label_sentence.setObjectName("label_sentence")
         self.frame_10 = QtWidgets.QFrame(self.frame)
-        self.frame_10.setGeometry(QtCore.QRect(1110, 0, 121, 41))
+        self.frame_10.setGeometry(QtCore.QRect(1090, 0, 121, 41))
         self.frame_10.setStyleSheet("QPushButton{\n"
 "    border:none;\n"
 "}")
@@ -1518,21 +1518,21 @@ class Ui_Main_interface(object):
         self.pushButton_9.setObjectName("pushButton_9")
         self.horizontalLayout_3.addWidget(self.pushButton_9)
         self.listView = QtWidgets.QListView(self.frame)
-        self.listView.setGeometry(QtCore.QRect(0, 0, 1231, 811))
+        self.listView.setGeometry(QtCore.QRect(0, 0, 1211, 741))
         self.listView.setStyleSheet("border-radius:20px;\n"
 "border-image: url(:/pictures/pictures/main_interface_background.jpg);\n"
 "")
         self.listView.setObjectName("listView")
         self.listView_2 = QtWidgets.QListView(self.frame)
-        self.listView_2.setGeometry(QtCore.QRect(0, 0, 221, 811))
+        self.listView_2.setGeometry(QtCore.QRect(0, 0, 221, 741))
         self.listView_2.setStyleSheet("border-top-left-radius:20px;\n"
 "border-bottom-left-radius:20px;\n"
 "background-color: qlineargradient(spread:pad, x1:0.425421, y1:0.609, x2:0.405, y2:0, stop:0 rgba(30, 60, 70, 200), stop:1 rgba(45, 79, 89, 150));\n"
 "")
         self.listView_2.setObjectName("listView_2")
         self.label_5 = QtWidgets.QLabel(self.frame)
-        self.label_5.setGeometry(QtCore.QRect(0, -1, 1231, 41))
-        self.label_5.setMinimumSize(QtCore.QSize(1231, 41))
+        self.label_5.setGeometry(QtCore.QRect(0, -1, 1211, 41))
+        self.label_5.setMinimumSize(QtCore.QSize(0, 0))
         self.label_5.setMaximumSize(QtCore.QSize(16777215, 41))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-top-right-radius:20px;\n"
@@ -1543,13 +1543,13 @@ class Ui_Main_interface(object):
         self.label_7.setGeometry(QtCore.QRect(20, -7, 501, 51))
         self.label_7.setMinimumSize(QtCore.QSize(501, 51))
         font = QtGui.QFont()
-        font.setFamily("Century Gothic")
+        font.setFamily("微软雅黑")
         font.setPointSize(14)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.label_7.setFont(font)
-        self.label_7.setStyleSheet("font: 14pt \"Century Gothic\";\n"
+        self.label_7.setStyleSheet("font: 14pt \"微软雅黑\";\n"
 "color: rgb(55, 89, 100);")
         self.label_7.setObjectName("label_7")
         self.listView.raise_()
@@ -1567,9 +1567,9 @@ class Ui_Main_interface(object):
         Main_interface.setStatusBar(self.statusbar)
 
         self.retranslateUi(Main_interface)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
         self.stackedWidget_2.setCurrentIndex(1)
-        self.stackedWidget_3.setCurrentIndex(2)
+        self.stackedWidget_3.setCurrentIndex(3)
         self.stackedWidget_urgent.setCurrentIndex(1)
         self.stackedWidget_4.setCurrentIndex(2)
         self.pushButton_9.clicked.connect(Main_interface.close) # type: ignore
