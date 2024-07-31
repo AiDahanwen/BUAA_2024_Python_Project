@@ -269,7 +269,7 @@ def _get_task_objects(data):
 
 
 def _get_task_objects_of_user_with_condition(
-    user_email, condition_cmd="", condition_args=()
+        user_email, condition_cmd="", condition_args=()
 ):
     update_tasks(user_email)
     return _get_task_objects(
@@ -342,7 +342,7 @@ def get_work_time_sum(user_email):
 
 def get_average_work_time(user_email):
     date_sum = (
-        date.today() - get_user_info(user_email, "register_date") + timedelta(days=1)
+            date.today() - get_user_info(user_email, "register_date") + timedelta(days=1)
     )
     return get_work_time_sum(user_email) / date_sum.days
 
@@ -532,7 +532,7 @@ def delete_daily_task(*daily_task_id):
 
 
 def _get_daily_task_objects_of_user_with_condition(
-    user_email, condition_cmd="", condition_args=()
+        user_email, condition_cmd="", condition_args=()
 ):
     return _get_daily_task_objects(
         join(
@@ -581,7 +581,7 @@ def create_daily_task_copy_date(user_email, date):
         if temp <= daily_task.daily_task_end_date:
             if daily_task.daily_task_end_time < datetime.now().time():
                 if not is_daily_task_copy_exist(
-                    user_email, daily_task.daily_task_id, temp
+                        user_email, daily_task.daily_task_id, temp
                 ):
                     if not add_task(daily_task.to_normal_task(temp)):
                         return False
@@ -640,22 +640,17 @@ def update_task_status(user_email):
 
 
 def task_is_complete(task):
+    add_user_work_time(task.user_email, task.task_duration_time - task.task_elapsed_time)
     task.task_status = TaskStatus.COMPLETED
+    task.task_complete_time = datetime.now()
     task.task_elapsed_time = task.task_duration_time
-    reset_task_info(task.task_id, "status", TaskStatus.COMPLETED)
-    reset_task_info(task.task_id, "complete_time", datetime.now())
-    reset_task_info(task.task_id, "elapsed_time", task.task_duration_time)
-    add_user_work_time(
-        task.user_email, task.task_duration_time - task.task_elapsed_time
-    )
+    reset_task_info(task.task_id, "status", task.task_status)
+    reset_task_info(task.task_id, "complete_time", task.task_complete_time)
+    reset_task_info(task.task_id, "elapsed_time", task.task_elapsed_time)
     if task.task_is_daily:
         daily_task = get_daily_task_object(task.user_email, task.daily_task_id)[0]
         if daily_task.daily_task_end_date > date.today():
-            if not is_daily_task_copy_exist(
-                task.user_email,
-                daily_task.daily_task_id,
-                date.today() + timedelta(days=1),
-            ):
+            if not is_daily_task_copy_exist(task.user_email, daily_task.daily_task_id, date.today() + timedelta(days=1)):
                 task = daily_task.to_normal_task(date.today() + timedelta(days=1))
                 add_task(task)
 
@@ -704,11 +699,11 @@ def modify_daily_task_pic_url(daily_task, pic_url):
         return
     pic_name = pic_url.split("/")[-1]
     temp = (
-        str(daily_task.user_email)
-        + "/daily_task_pic/"
-        + str(daily_task.daily_task_id)
-        + "_"
-        + pic_name
+            str(daily_task.user_email)
+            + "/daily_task_pic/"
+            + str(daily_task.daily_task_id)
+            + "_"
+            + pic_name
     )
     bucket.put_object_from_file(temp, pic_url)
     pic_url = "https://foolish-han.oss-cn-beijing.aliyuncs.com/" + temp

@@ -912,14 +912,16 @@ class MainWindow(QMainWindow):
 
         self.ui.label_Sta_accumulate_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum(user_now)))
+        work_time_sum = get_work_time_sum(user_now)
         self.ui.label_Sta_accumulate_sumoftime.setText(
-            "时长总数：" + str(get_work_time_sum(user_now)))
+            "时长总数：" + f'{work_time_sum.days * 24 + work_time_sum.seconds // 3600}小时 {work_time_sum.seconds // 60 % 60}分钟')
         self.ui.label_Sta_accumulate_averagetime.setText(
             "日均时长：" + str(get_average_work_time(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, date.today())))
+        work_time = get_work_time(user_now)
         self.ui.label_Sta_everyday_sumoftime.setText(
-            "时长总数：" + str(get_work_time(user_now)))
+            "时长总数：" + f'{work_time.days * 24 + work_time.seconds // 3600}小时 {work_time.seconds // 60 % 60}分钟')
 
         self.ui.lineEdit_modify_motto.setText(get_user_info(user_now, 'signature'))
         self.ui.lineEdit_modify_name.setText(get_user_info(user_now, 'name'))
@@ -1072,14 +1074,16 @@ class MainWindow(QMainWindow):
         self.schedule()
         self.ui.label_Sta_accumulate_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum(user_now)))
+        work_time_sum = get_work_time_sum(user_now)
         self.ui.label_Sta_accumulate_sumoftime.setText(
-            "时长总数：" + str(get_work_time_sum(user_now)))
+            "时长总数：" + f'{work_time_sum.days * 24 + work_time_sum.seconds // 3600}小时 {work_time_sum.seconds // 60 % 60}分钟')
         self.ui.label_Sta_accumulate_averagetime.setText(
             "日均时长：" + str(get_average_work_time(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, date.today())))
+        work_time = get_work_time(user_now)
         self.ui.label_Sta_everyday_sumoftime.setText(
-            "时长总数：" + str(get_work_time(user_now)))
+            "时长总数：" + f'{work_time.days * 24 + work_time.seconds // 3600}小时 {work_time.seconds // 60 % 60}分钟')
         self.plot_task_num()
 
     def display_task(self, task):
@@ -1123,14 +1127,16 @@ class MainWindow(QMainWindow):
         self.urgent_list()
         self.ui.label_Sta_accumulate_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum(user_now)))
+        work_time_sum = get_work_time_sum(user_now)
         self.ui.label_Sta_accumulate_sumoftime.setText(
-            "时长总数：" + str(get_work_time_sum(user_now)))
+            "时长总数：" + f'{work_time_sum.days * 24 + work_time_sum.seconds // 3600}小时 {work_time_sum.seconds // 60 % 60}分钟')
         self.ui.label_Sta_accumulate_averagetime.setText(
             "日均时长：" + str(get_average_work_time(user_now)))
         self.ui.label_Sta_everyday_sumofnum.setText(
             "任务个数：" + str(get_complete_task_sum_in_date(user_now, date.today())))
+        work_time = get_work_time(user_now)
         self.ui.label_Sta_everyday_sumoftime.setText(
-            "时长总数：" + str(get_work_time(user_now)))
+            "时长总数：" + f'{work_time.days * 24 + work_time.seconds // 3600}小时 {work_time.seconds // 60 % 60}分钟')
         self.plot_task_num()
 
     def calendar_click(self):
