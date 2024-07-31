@@ -75,7 +75,7 @@
       <string notr="true">background-color:rgba(0, 0, 0, 0);</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_5">
       <widget class="QLabel" name="label">
@@ -927,7 +927,7 @@ color: rgb(39, 72, 80);</string>
                 </widget>
                </widget>
                <widget class="QWidget" name="page_9">
-                <widget class="QWidget" name="">
+                <widget class="QWidget" name="layoutWidget">
                  <property name="geometry">
                   <rect>
                    <x>10</x>
@@ -1604,7 +1604,7 @@ border-bottom-right-radius:20px;
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <widget class="QWidget" name="layoutWidget">
+                 <widget class="QFrame" name="frame">
                   <property name="geometry">
                    <rect>
                     <x>0</x>
@@ -1613,9 +1613,20 @@ border-bottom-right-radius:20px;
                     <height>61</height>
                    </rect>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">QFrame#frame{
+	background-color: rgba(43, 78, 84, 50);
+}</string>
+                  </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_6">
                    <item>
                     <widget class="QLabel" name="label_18">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                       <horstretch>3</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="font">
                       <font>
                        <family>微软雅黑</family>
@@ -1634,6 +1645,12 @@ border-bottom-right-radius:20px;
                    </item>
                    <item>
                     <widget class="QLabel" name="label_21">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                       <horstretch>2</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="font">
                       <font>
                        <family>微软雅黑</family>
@@ -1646,12 +1663,18 @@ border-bottom-right-radius:20px;
                       <string>任务状态</string>
                      </property>
                      <property name="alignment">
-                      <set>Qt::AlignCenter</set>
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QLabel" name="label_22">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="font">
                       <font>
                        <family>微软雅黑</family>
