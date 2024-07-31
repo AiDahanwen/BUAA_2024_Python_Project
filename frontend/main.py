@@ -64,6 +64,11 @@ class LoginWindow(QMainWindow):
         self.ui = Ui_LoginWindow()
         self.ui.setupUi(self)
 
+        local_info = get_local_user_email_password()
+        if len(local_info) == 2:
+            self.ui.lineEdit_L_account.setText(f"{local_info[0]}")
+            self.ui.lineEdit_L_password.setText(f"{local_info[1]}")
+
         # 消除边框
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
