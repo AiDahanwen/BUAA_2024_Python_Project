@@ -461,4 +461,4 @@ class Ui_LoginWindow(object):
         self.label_2.setText(_translate("LoginWindow", "密码错误！"))
         self.label_7.setText(_translate("LoginWindow", "邮箱格式错误！"))
         self.label.setText(_translate("LoginWindow", "Welcome Back! :)"))
-import res_rc
+import frontend.res_rc
