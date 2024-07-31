@@ -23,7 +23,7 @@
       <x>120</x>
       <y>10</y>
       <width>811</width>
-      <height>791</height>
+      <height>831</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1086,6 +1086,52 @@ border-top-left-radius:20px;</string>
       <string>修改图片</string>
      </property>
     </widget>
+    <widget class="QStackedWidget" name="stackedWidget_wrong">
+     <property name="geometry">
+      <rect>
+       <x>99</x>
+       <y>770</y>
+       <width>621</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:rgba(0, 0, 0, 0)</string>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="page"/>
+     <widget class="QWidget" name="page_4">
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>591</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>截止时间不能早于当前时间！</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+    </widget>
     <zorder>label_8</zorder>
     <zorder>label</zorder>
     <zorder>frame_left</zorder>
@@ -1098,6 +1144,7 @@ border-top-left-radius:20px;</string>
     <zorder>label_5</zorder>
     <zorder>pushButton_3</zorder>
     <zorder>frame_mini_and_close</zorder>
+    <zorder>stackedWidget_wrong</zorder>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
@@ -1105,7 +1152,7 @@ border-top-left-radius:20px;</string>
       <x>120</x>
       <y>14</y>
       <width>811</width>
-      <height>781</height>
+      <height>821</height>
      </rect>
     </property>
     <property name="styleSheet">
