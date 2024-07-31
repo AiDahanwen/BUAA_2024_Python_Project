@@ -330,13 +330,14 @@ class AddTaskWindow(QMainWindow):
         task_type = self.ui.comboBox_Add_task_type.currentText()
         task_important = self.ui.comboBox_important.currentText()
         task_duration_time = timedelta(hours=self.ui.doubleSpinBox_duration.value())
+        task_check = self.ui.doubleSpinBox_duration.value()
         if task_name == "":
             self.ui.stackedWidget.setCurrentIndex(1)
         elif task_type == '请选择任务类型':
             self.ui.stackedWidget.setCurrentIndex(3)
         elif task_important == '请选择重要等级':
             self.ui.stackedWidget.setCurrentIndex(4)
-        elif task_duration_time == 0:
+        elif task_check == 0:
             self.ui.stackedWidget.setCurrentIndex(5)
         elif self.ui.radioButton_Add_is_every.isChecked():
             task_begin_date = self.ui.dateEdit_every_begin_date.date().toPyDate()
