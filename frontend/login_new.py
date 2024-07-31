@@ -178,11 +178,6 @@ class Ui_LoginWindow(object):
         if len(local_info) == 2:
             self.lineEdit_L_account.setText(f"{local_info[0]}")
             self.lineEdit_L_password.setText(f"{local_info[1]}")
-        self.verticalLayout_3.addWidget(self.lineEdit_L_password)
-        local_info = get_local_user_email_password()
-        if len(local_info) == 2:
-            self.lineEdit_L_account.setText(f"{local_info[0]}")
-            self.lineEdit_L_password.setText(f"{local_info[1]}")
         self.frame_5 = QtWidgets.QFrame(self.frame_3)
         self.frame_5.setMinimumSize(QtCore.QSize(453, 100))
         self.frame_5.setMaximumSize(QtCore.QSize(453, 100))
